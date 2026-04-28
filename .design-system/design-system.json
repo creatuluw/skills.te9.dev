@@ -1,0 +1,938 @@
+{
+  "meta": {
+    "name": "LVS Design System",
+    "version": "1.0",
+    "description": "A comprehensive design system built with vanilla CSS and semantic class names. Zero dependencies, full accessibility, and beautiful by default.",
+    "fonts": {
+      "heading": {
+        "family": "'Space Grotesk', system-ui, sans-serif",
+        "weights": [400, 500, 600, 700],
+        "usage": "Page titles, headings, logo, numeric displays"
+      },
+      "body": {
+        "family": "'Manrope', system-ui, sans-serif",
+        "weights": [300, 400, 500, 600, 700],
+        "usage": "Body text, descriptions, UI text, labels"
+      },
+      "loadHTML": "<link rel=\"preconnect\" href=\"https://fonts.googleapis.com\">\n<link rel=\"preconnect\" href=\"https://fonts.gstatic.com\" crossorigin>\n<link href=\"https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap\" rel=\"stylesheet\" />"
+    },
+    "icons": {
+      "library": "Solar icon set via Iconify",
+      "variant": "bold-duotone for filled emphasis, linear for subtle/outlined contexts",
+      "cdnScript": "<script src=\"https://code.iconify.design/iconify-icon/2.1.0/iconify-icon.min.js\"></script>",
+      "usage": "Use <iconify-icon icon=\"solar:icon-name-bold-duotone\"></iconify-icon>",
+      "sizes": {
+        "inline": "16px (w-4 h-4)",
+        "button": "16-20px",
+        "navigation": "20px (w-5 h-5)",
+        "decorative": "40px (w-10 h-10)"
+      }
+    }
+  },
+  "tokens": {
+    "global": {
+      "colors": {
+        "brand-bg":            { "value": "#F5F5F5", "usage": "Page background, card surfaces" },
+        "brand-dark":          { "value": "#181617", "usage": "Primary text, headings, button backgrounds" },
+        "accent":              { "value": "#ED722E", "usage": "Calls-to-action, emphasis, highlights" },
+        "accent-light":        { "value": "#FCEEE5", "usage": "Accent background tints" },
+        "accent-dark":         { "value": "#C45A1A", "usage": "Accent hover states" },
+        "brand-muted":         { "value": "#71717A", "usage": "Secondary text, descriptions, labels" },
+        "brand-light":         { "value": "#A1A1AA", "usage": "Decorative elements, placeholder text" },
+        "success-50":          { "value": "#F0FDF4", "usage": "Success background" },
+        "success-500":         { "value": "#22C55E", "usage": "Success primary" },
+        "success-700":         { "value": "#15803D", "usage": "Success text on light bg" },
+        "warning-50":          { "value": "#FFFBEB", "usage": "Warning background" },
+        "warning-500":         { "value": "#F59E0B", "usage": "Warning primary" },
+        "warning-700":         { "value": "#B45309", "usage": "Warning text on light bg" },
+        "error-50":            { "value": "#FEF2F2", "usage": "Error background" },
+        "error-500":           { "value": "#EF4444", "usage": "Error primary" },
+        "error-700":           { "value": "#B91C1C", "usage": "Error text on light bg" },
+        "info-50":             { "value": "#EFF6FF", "usage": "Info background" },
+        "info-500":            { "value": "#3B82F6", "usage": "Info primary" },
+        "info-700":            { "value": "#1D4ED8", "usage": "Info text on light bg" },
+        "neutral-50":          { "value": "#F9FAFB", "usage": "Neutral background" },
+        "neutral-500":         { "value": "#6B7280", "usage": "Neutral primary" },
+        "neutral-700":         { "value": "#374151", "usage": "Neutral text on light bg" },
+        "white":               { "value": "#FFFFFF", "usage": "Card backgrounds, inverted text" },
+        "navbar-bg":           { "value": "rgba(245, 245, 245, 0.85)", "usage": "Navbar with blur backdrop" },
+        "overlay":             { "value": "rgba(0, 0, 0, 0.4)", "usage": "Card hover overlay" },
+        "modal-backdrop":      { "value": "rgba(0, 0, 0, 0.6)", "usage": "Modal backdrop" },
+        "input-border":        { "value": "#d4d4d8", "usage": "Default input/select border color" }
+      },
+      "borderSubtle": { "value": "1px solid rgba(0,0,0,0.06)", "usage": "Default card/divider border" },
+      "typography": {
+        "scale": {
+          "hero-xl":      { "size": "56px", "weight": 700, "lineHeight": 1.1,  "letterSpacing": "-0.02em", "usage": "Hero heading (large desktop)" },
+          "hero-md":       { "size": "44px", "weight": 700, "lineHeight": 1.1,  "letterSpacing": "-0.02em", "usage": "Hero heading (tablet)" },
+          "hero-sm":       { "size": "36px", "weight": 600, "lineHeight": 1.15, "letterSpacing": "-0.01em", "usage": "Hero heading (mobile)" },
+          "section-xl":    { "size": "40px", "weight": 700, "lineHeight": 1.2,  "letterSpacing": "-0.02em", "usage": "Section heading (large)" },
+          "section-md":    { "size": "32px", "weight": 600, "lineHeight": 1.2,  "letterSpacing": "-0.01em", "usage": "Section heading (desktop)" },
+          "section-sm":    { "size": "24px", "weight": 600, "lineHeight": 1.25, "letterSpacing": "0",       "usage": "Section heading (mobile)" },
+          "modal-title":   { "size": "22px", "weight": 600, "lineHeight": 1.3,  "letterSpacing": "0",       "usage": "Modal heading" },
+          "card-title":    { "size": "18px", "weight": 600, "lineHeight": 1.4,  "letterSpacing": "0",       "usage": "Card title" },
+          "h1":            { "size": "32px", "weight": 700, "lineHeight": 1.2,  "letterSpacing": "-0.01em", "usage": "Page H1" },
+          "h2":            { "size": "24px", "weight": 600, "lineHeight": 1.3,  "letterSpacing": "0",       "usage": "Page H2" },
+          "h3":            { "size": "20px", "weight": 600, "lineHeight": 1.4,  "letterSpacing": "0",       "usage": "Page H3" },
+          "h4":            { "size": "18px", "weight": 600, "lineHeight": 1.4,  "letterSpacing": "0",       "usage": "Page H4" },
+          "body-lg":       { "size": "18px", "weight": 400, "lineHeight": 1.6,  "letterSpacing": "0",       "usage": "Lead text, intro paragraphs" },
+          "body":          { "size": "15px", "weight": 400, "lineHeight": 1.6,  "letterSpacing": "0",       "usage": "Default body text" },
+          "body-sm":       { "size": "14px", "weight": 400, "lineHeight": 1.5,  "letterSpacing": "0",       "usage": "Card descriptions, UI text" },
+          "body-xs":       { "size": "13px", "weight": 400, "lineHeight": 1.5,  "letterSpacing": "0",       "usage": "Helper text, hints" },
+          "small":         { "size": "12px", "weight": 400, "lineHeight": 1.4,  "letterSpacing": "0",       "usage": "Small text, metadata" },
+          "label":         { "size": "11px", "weight": 700, "lineHeight": 1.4,  "letterSpacing": "0.05em", "usage": "Uppercase labels" },
+          "caption":        { "size": "12px", "weight": 500, "lineHeight": 1.4,  "letterSpacing": "0",       "usage": "Captions, metadata" }
+        }
+      },
+      "spacing": {
+        "baseUnit": "8px",
+        "halfStep": "4px (for icon alignment only)",
+        "scale": {
+          "0":    { "rem": "0",     "px": 0,   "usage": "Reset" },
+          "0.5":  { "rem": "0.125rem","px": 2,  "usage": "Micro adjustments" },
+          "1":    { "rem": "0.25rem","px": 4,   "usage": "Tight inline spacing, icon-to-label gaps" },
+          "1.5":  { "rem": "0.375rem","px": 6,  "usage": "Scrollbar width" },
+          "2":    { "rem": "0.5rem", "px": 8,   "usage": "Icon gaps, tight component spacing" },
+          "2.5":  { "rem": "0.625rem","px": 10, "usage": "Timeline marker dots" },
+          "3":    { "rem": "0.75rem", "px": 12,  "usage": "Component internal gaps, button vertical padding" },
+          "3.5":  { "rem": "0.875rem","px": 14,  "usage": "Intermediate spacing" },
+          "4":    { "rem": "1rem",   "px": 16,  "usage": "Standard spacing, list items" },
+          "5":    { "rem": "1.25rem", "px": 20,  "usage": "Card grid gaps" },
+          "6":    { "rem": "1.5rem", "px": 24,  "usage": "Card padding, page padding mobile" },
+          "8":    { "rem": "2rem",   "px": 32,  "usage": "Section internal padding" },
+          "10":   { "rem": "2.5rem", "px": 40,  "usage": "Page padding desktop, hero gaps" },
+          "12":   { "rem": "3rem",   "px": 48,  "usage": "Major section breaks" },
+          "16":   { "rem": "4rem",   "px": 64,  "usage": "Page-level spacing" },
+          "20":   { "rem": "5rem",   "px": 80,  "usage": "Hero padding mobile" },
+          "24":   { "rem": "6rem",   "px": 96,  "usage": "Section padding mobile" },
+          "32":   { "rem": "8rem",   "px": 128, "usage": "Section padding desktop" }
+        }
+      },
+      "radius": {
+        "sm":   { "value": "0.25rem", "px": 4,    "usage": "Inputs, checkboxes, inline elements" },
+        "md":   { "value": "0.5rem",  "px": 8,    "usage": "Cards, panels, selects, tables" },
+        "lg":   { "value": "0.75rem", "px": 12,   "usage": "Modals, dialogs, cards, foundation cards" },
+        "xl":   { "value": "1rem",    "px": 16,   "usage": "Hero image, large containers" },
+        "2xl":  { "value": "1.5rem",  "px": 24,   "usage": "Modal content" },
+        "full": { "value": "9999px",  "px": null,  "usage": "Pills, badges, avatars, buttons" }
+      },
+      "shadows": {
+        "sm":  { "value": "0 1px 2px rgba(0,0,0,0.05)",   "usage": "Card surfaces, resting state" },
+        "md":  { "value": "0 4px 6px rgba(0,0,0,0.1)",     "usage": "Hovered cards, dropdowns, select menus" },
+        "lg":  { "value": "0 10px 15px rgba(0,0,0,0.1)",    "usage": "Tooltips, notifications, toasts" },
+        "xl":  { "value": "0 20px 25px rgba(0,0,0,0.15)",   "usage": "Drawers, side panels, dialogs" },
+        "2xl": { "value": "0 25px 50px rgba(0,0,0,0.25)",   "usage": "Full-screen modals, alert dialogs" }
+      },
+      "zIndex": {
+        "base": 0,
+        "dropdown": 1000,
+        "sticky": 2000,
+        "overlay": 3000,
+        "modal": 4000,
+        "popover": 5000,
+        "toast": 6000,
+        "navbar": 50,
+        "skipLink": 9999
+      }
+    },
+    "semantic": {
+      "surface-primary":   { "mapsTo": "--color-brand-bg",    "value": "#F5F5F5", "usage": "Main page background" },
+      "text-primary":       { "mapsTo": "--color-brand-dark",  "value": "#181617", "usage": "Headings, primary text" },
+      "text-secondary":     { "mapsTo": "--color-brand-muted", "value": "#71717A", "usage": "Descriptions, labels" },
+      "text-tertiary":      { "mapsTo": "--color-brand-light", "value": "#A1A1AA", "usage": "Decorative, placeholder (decorative only, not AA compliant)" }
+    },
+    "component": {
+      "button": {
+        "bg":    "--color-brand-dark",
+        "text":  "#ffffff",
+        "border": "1px solid --color-brand-muted (secondary variant)"
+      },
+      "card": {
+        "bg":      "#ffffff",
+        "border":  "1px solid rgba(0,0,0,0.06)",
+        "shadow":  "--shadow-sm"
+      },
+      "input": {
+        "border":      "#d4d4d8",
+        "focusBorder": "--color-brand-dark",
+        "focusRing":   "0 0 0 3px rgba(26,26,26,0.1)"
+      }
+    }
+  },
+  "animation": {
+    "durations": {
+      "fast":    { "value": "200ms", "usage": "Micro-interactions (toggle, checkbox)" },
+      "normal":  { "value": "300ms", "usage": "Standard transitions (hover, focus)" },
+      "slow":    { "value": "500ms", "usage": "Overlay transitions (modal, dropdown)" },
+      "slower":  { "value": "800ms", "usage": "Page-level reveals, hero entrance" }
+    },
+    "easing": {
+      "spring":   { "value": "cubic-bezier(0.2, 0.8, 0.2, 1)", "usage": "All enter/exit curves (primary)" },
+      "default":  { "value": "cubic-bezier(0.4, 0, 0.2, 1)",    "usage": "Standard transitions" },
+      "in":       { "value": "cubic-bezier(0.4, 0, 1, 1)",       "usage": "Enter animations" },
+      "out":      { "value": "cubic-bezier(0, 0, 0.2, 1)",       "usage": "Exit animations" },
+      "inOut":    { "value": "cubic-bezier(0.4, 0, 0.2, 1)",    "usage": "Symmetric transitions" }
+    },
+    "keyframes": {
+      "fadeInUp": {
+        "from": { "opacity": 0, "transform": "translateY(30px)" },
+        "to":   { "opacity": 1, "transform": "translateY(0)" },
+        "usage": "Hero entrance, section reveals"
+      },
+      "scrollBounce": {
+        "0%, 100%": { "transform": "translateY(0)" },
+        "50%":      { "transform": "translateY(6px)" },
+        "usage": "Scroll hint arrows"
+      },
+      "drawLine": {
+        "from": { "height": 0 },
+        "to":   { "height": "100%" },
+        "usage": "Timeline progress line"
+      }
+    },
+    "delays": {
+      "delay-1": "0.1s",
+      "delay-2": "0.25s",
+      "delay-3": "0.4s",
+      "delay-4": "0.55s",
+      "delay-5": "0.7s",
+      "staggerIncrement": "70ms between children"
+    },
+    "patterns": {
+      "fadeInUp": {
+        "description": "Elements translate 30px upward while fading from transparent to opaque. Staggered delays create cinematic reveal.",
+        "class": ".animate-fade-in-up",
+        "duration": "0.8s",
+        "easing": "var(--ease-spring)",
+        "usage": "Hero text, labels, CTAs, first-impression content"
+      },
+      "staggerChildren": {
+        "description": "Applies fadeInUp to every direct child with incrementing delays (70ms apart).",
+        "class": ".stagger-in",
+        "duration": "0.6s",
+        "usage": "Card grids, tag lists, collection items"
+      },
+      "sectionReveal": {
+        "description": "Sections start invisible and translated 30px down, then animate into view when entering viewport via IntersectionObserver. Once revealed, animation never repeats.",
+        "class": ".section-reveal",
+        "duration": "var(--duration-slower)",
+        "threshold": 0.1,
+        "rootMargin": "0px 0px -60px 0px"
+      },
+      "navUnderline": {
+        "description": "Pseudo-element underline grows from left to right on hover.",
+        "property": "width",
+        "duration": "var(--duration-normal)",
+        "easing": "ease"
+      },
+      "imageHoverScale": {
+        "description": "Images scale 1.04x on hover with overlay fade-in and backdrop blur.",
+        "scale": 1.04,
+        "duration": "var(--duration-slower)",
+        "easing": "var(--ease-spring)"
+      },
+      "modalSlideUp": {
+        "description": "Backdrop fades in while modal content slides up 20px and fades in.",
+        "modalTransform": "translateY(20px) → translateY(0)",
+        "backdropDuration": "var(--duration-normal)",
+        "modalDuration": "var(--duration-normal)"
+      },
+      "tagPillHover": {
+        "description": "Tag pills invert colors on hover — light bg becomes dark, dark text becomes white.",
+        "transition": "all var(--duration-normal) ease"
+      },
+      "scrollIndicator": {
+        "description": "Vertical bounce animation (6px) looping every 2 seconds.",
+        "class": ".scroll-indicator",
+        "duration": "2s infinite",
+        "easing": "ease-in-out"
+      },
+      "reducedMotion": {
+        "description": "All animations must respect prefers-reduced-motion. Keyframe animations disabled, elements shown in final state.",
+        "mediaQuery": "@media (prefers-reduced-motion: reduce)"
+      }
+    }
+  },
+  "breakpoints": {
+    "mobile":  { "min": 0,     "max": 639,   "columns": 4,  "margin": "24px", "usage": "Base styles, mobile-first" },
+    "tablet":  { "min": 640,   "max": 767,   "columns": 8,  "margin": "32px", "usage": "Small tablets, large phones" },
+    "desktop": { "min": 768,   "max": 1023,  "columns": 12, "margin": "40px", "usage": "Tablets, small laptops" },
+    "wide":    { "min": 1024,  "max": 1399,  "columns": 12, "margin": "40px", "usage": "Desktop, sidebar visible" },
+    "max":     { "min": 1400,  "max": null,  "columns": 12,  "margin": "auto", "usage": "Wide desktop, centered content" },
+    "maxWidth": "1400px",
+    "strategy": "Mobile-first — base styles target smallest screens, use min-width media queries to progressively enhance"
+  },
+  "components": {
+    "button": {
+      "description": "Primary actions, secondary options, and outlined alternatives. All variants share sizing, pill shape, and smooth hover transitions.",
+      "variants": {
+        "primary": {
+          "class": ".btn .btn-primary",
+          "structure": "<button class=\"btn btn-primary\"><span class=\"btn-inner\">Label</span></button>",
+          "css": {
+            "background": "var(--color-brand-dark)",
+            "color": "#ffffff",
+            "padding": "0.75rem 1.75rem",
+            "fontSize": "0.875rem",
+            "fontWeight": 500,
+            "borderRadius": "var(--radius-full)",
+            "hoverBackground": "#000000",
+            "transition": "all var(--duration-normal) var(--ease-spring)"
+          }
+        },
+        "secondary": {
+          "class": ".btn .btn-secondary",
+          "structure": "<button class=\"btn btn-secondary\"><span class=\"btn-inner\">Label</span></button>",
+          "css": {
+            "background": "#ffffff",
+            "color": "var(--color-brand-dark)",
+            "padding": "0.75rem 1.75rem",
+            "fontSize": "0.875rem",
+            "fontWeight": 500,
+            "borderRadius": "var(--radius-full)",
+            "border": "1px solid var(--color-brand-muted)",
+            "hoverBorderColor": "var(--color-brand-dark)",
+            "transition": "all var(--duration-normal) var(--ease-spring)"
+          }
+        },
+        "outlined": {
+          "class": ".btn .btn-outlined",
+          "structure": "<button class=\"btn btn-outlined\"><span class=\"btn-inner\">Label</span></button>",
+          "css": {
+            "background": "transparent",
+            "color": "var(--color-brand-muted)",
+            "padding": "0.75rem 1.75rem",
+            "fontSize": "0.875rem",
+            "fontWeight": 500,
+            "borderRadius": "var(--radius-full)",
+            "border": "1px solid var(--color-brand-muted)",
+            "hoverBorderColor": "var(--color-brand-dark)",
+            "hoverColor": "var(--color-brand-dark)",
+            "transition": "all var(--duration-normal) var(--ease-spring)"
+          }
+        },
+        "danger": {
+          "class": ".btn .btn-primary .btn-danger",
+          "description": "Destructive action button — red background override",
+          "css": {
+            "background": "var(--color-error-500)"
+          }
+        }
+      },
+      "baseCss": {
+        "display": "inline-flex",
+        "alignItems": "center",
+        "justifyContent": "center",
+        "fontWeight": 500,
+        "cursor": "pointer",
+        "border": "none",
+        "fontFamily": "inherit"
+      },
+      "innerCss": {
+        "display": "inline-flex",
+        "alignItems": "center",
+        "gap": "0.5rem",
+        "textDecoration": "none",
+        "color": "inherit"
+      }
+    },
+    "input": {
+      "description": "Text input with clear placeholder styling, focus ring matching brand, and smooth border transitions.",
+      "class": ".input",
+      "structure": "<input type=\"text\" class=\"input\" placeholder=\"Enter your email\" />",
+      "css": {
+        "width": "100%",
+        "padding": "0.75rem 1rem",
+        "border": "1px solid #d4d4d8",
+        "borderRadius": "var(--radius-md)",
+        "fontSize": "14px",
+        "fontFamily": "var(--font-body)",
+        "color": "var(--color-brand-dark)",
+        "background": "#fff",
+        "focusBorder": "var(--color-brand-dark)",
+        "focusRing": "0 0 0 3px rgba(26,26,26,0.1)",
+        "placeholderColor": "var(--color-brand-muted)",
+        "transition": "border-color var(--duration-normal) ease, box-shadow var(--duration-normal) ease"
+      }
+    },
+    "select": {
+      "description": "Dropdown select mirroring input styling. Custom arrow via embedded SVG. Native browser behavior enhanced with design tokens.",
+      "class": ".select",
+      "structure": "<select class=\"select\"><option>Option 1</option></select>",
+      "css": {
+        "width": "100%",
+        "padding": "0.75rem 2.5rem 0.75rem 1rem",
+        "border": "1px solid #d4d4d8",
+        "borderRadius": "var(--radius-md)",
+        "fontSize": "14px",
+        "fontFamily": "var(--font-body)",
+        "color": "var(--color-brand-dark)",
+        "background": "#fff",
+        "appearance": "none",
+        "focusBorder": "var(--color-brand-dark)",
+        "focusRing": "0 0 0 3px rgba(26,26,26,0.1)",
+        "focusBorderBottomRadius": "0"
+      }
+    },
+    "checkbox": {
+      "description": "Custom checkbox using appearance: none with checked state styling.",
+      "class": ".checkbox",
+      "wrapperClass": ".checkbox-wrapper",
+      "structure": "<div class=\"checkbox-wrapper\">\n  <input type=\"checkbox\" class=\"checkbox\" checked />\n  <span class=\"body-text\">Label</span>\n</div>",
+      "css": {
+        "width": "1.125rem",
+        "height": "1.125rem",
+        "border": "1px solid #d4d4d8",
+        "borderRadius": "var(--radius-sm)",
+        "checkedBackground": "var(--color-brand-dark)",
+        "checkedBorderColor": "var(--color-brand-dark)",
+        "checkmark": "✓ (white, centered)",
+        "transition": "all var(--duration-normal) ease"
+      }
+    },
+    "radio": {
+      "description": "Custom radio button using appearance: none with filled dot on checked.",
+      "class": ".radio",
+      "wrapperClass": ".radio-wrapper",
+      "structure": "<div class=\"radio-wrapper\">\n  <input type=\"radio\" class=\"radio\" name=\"group\" checked />\n  <span class=\"body-text\">Label</span>\n</div>",
+      "css": {
+        "width": "1.125rem",
+        "height": "1.125rem",
+        "border": "1px solid #d4d4d8",
+        "borderRadius": "var(--radius-full)",
+        "checkedBackground": "var(--color-brand-dark)",
+        "checkedBorderColor": "var(--color-brand-dark)",
+        "checkedDot": "0.375rem white circle centered",
+        "transition": "all var(--duration-normal) ease"
+      }
+    },
+    "switch": {
+      "description": "Toggle switch with smooth knob animation.",
+      "class": ".switch",
+      "structure": "<div class=\"switch checked\" onclick=\"this.classList.toggle('checked')\"></div>",
+      "css": {
+        "width": "2.25rem",
+        "height": "1.25rem",
+        "background": "#d4d4d8",
+        "borderRadius": "var(--radius-full)",
+        "knobSize": "0.875rem",
+        "knobBackground": "#fff",
+        "knobShadow": "var(--shadow-sm)",
+        "checkedBackground": "var(--color-brand-dark)",
+        "checkedKnobTranslate": "translateX(1rem)",
+        "transition": "background var(--duration-normal) ease, transform var(--duration-normal) var(--ease-spring)"
+      }
+    },
+    "card": {
+      "description": "Flexible containers for grouped content. No hover effects — clean static containers.",
+      "class": ".card",
+      "structure": "<div class=\"card\">\n  <div class=\"card-title\">Title</div>\n  <p class=\"card-desc\">Description</p>\n</div>",
+      "css": {
+        "background": "#fff",
+        "border": "1px solid rgba(0,0,0,0.06)",
+        "borderRadius": "var(--radius-lg)",
+        "padding": "1.5rem",
+        "boxShadow": "var(--shadow-sm)"
+      },
+      "titleCss": {
+        "fontFamily": "var(--font-heading)",
+        "fontSize": "1.125rem",
+        "fontWeight": 600,
+        "color": "var(--color-brand-dark)",
+        "marginBottom": "0.5rem",
+        "lineHeight": 1.4
+      },
+      "descCss": {
+        "fontSize": "14px",
+        "lineHeight": 1.6,
+        "color": "var(--color-brand-muted)"
+      }
+    },
+    "table": {
+      "description": "Data display with bordered containers, consistent header styling, and readable row formatting.",
+      "class": ".table-container .table",
+      "structure": "<div class=\"table-container\">\n  <table class=\"table\">\n    <tr><th>Header</th></tr>\n    <tr><td>Data</td></tr>\n  </table>\n</div>",
+      "css": {
+        "containerOverflow": "auto",
+        "containerBorder": "1px solid rgba(0,0,0,0.06)",
+        "containerBorderRadius": "var(--radius-lg)",
+        "thBackground": "var(--color-brand-bg)",
+        "thFontWeight": 600,
+        "thColor": "var(--color-brand-dark)",
+        "thPadding": "1rem",
+        "thBorderBottom": "1px solid rgba(0,0,0,0.06)",
+        "tdPadding": "1rem",
+        "tdColor": "var(--color-brand-muted)",
+        "tdBorderBottom": "1px solid rgba(0,0,0,0.06)",
+        "lastRowNoBorder": true,
+        "stripedRowBackground": "rgba(0,0,0,0.02)",
+        "fontSize": "14px"
+      }
+    },
+    "list": {
+      "description": "List components for sequential content with icons, badges, or actions.",
+      "class": ".list .list-item",
+      "structure": "<ul class=\"list\">\n  <li class=\"list-item\">\n    <span class=\"list-item-icon\">✓</span> Task completed\n  </li>\n</ul>",
+      "css": {
+        "listStyle": "none",
+        "border": "1px solid rgba(0,0,0,0.06)",
+        "borderRadius": "var(--radius-lg)",
+        "overflow": "hidden",
+        "itemPadding": "1rem",
+        "itemBorderBottom": "1px solid rgba(0,0,0,0.06)",
+        "itemFontSize": "14px",
+        "itemColor": "var(--color-brand-dark)",
+        "itemGap": "0.75rem",
+        "iconSize": "1.5rem"
+      },
+      "variants": {
+        "spread": { "class": ".list-item-spread", "description": "justify-content: space-between for label + badge" }
+      }
+    },
+    "tabs": {
+      "description": "Horizontal navigation tabs with bottom border active indicator.",
+      "class": ".tabs .tab",
+      "structure": "<div class=\"tabs\" data-tab-group=\"demo\">\n  <div class=\"tab active\" data-tab=\"overview\">Overview</div>\n  <div class=\"tab\" data-tab=\"details\">Details</div>\n</div>\n<div data-tab-panel=\"overview\">Content</div>",
+      "css": {
+        "display": "flex",
+        "borderBottom": "1px solid #d4d4d8",
+        "tabPadding": "0.75rem 1.5rem",
+        "tabFontSize": "14px",
+        "tabFontWeight": 500,
+        "tabColor": "var(--color-brand-muted)",
+        "tabActiveColor": "var(--color-brand-dark)",
+        "tabActiveBorderBottom": "2px solid var(--color-brand-dark)",
+        "tabHoverColor": "var(--color-brand-dark)",
+        "transition": "all var(--duration-normal) ease"
+      },
+      "behavior": "data-tab on each tab matches data-tab-panel on corresponding content div. Clicking a tab hides all panels and shows the matching one."
+    },
+    "modal": {
+      "description": "Dialog overlays with backdrop blur and slide-up animation. Dismiss on outside click or close button.",
+      "class": ".modal-overlay .modal",
+      "structure": "<div class=\"modal-overlay\" id=\"my-modal\" onclick=\"if(event.target===this)this.classList.remove('active')\">\n  <div class=\"modal\">\n    <button class=\"modal-close\" onclick=\"document.getElementById('my-modal').classList.remove('active')\">×</button>\n    <div class=\"modal-title\">Title</div>\n    <p class=\"modal-desc\">Description</p>\n    <div class=\"flex-row-end\">\n      <button class=\"btn btn-secondary\"><span class=\"btn-inner\">Cancel</span></button>\n      <button class=\"btn btn-primary\"><span class=\"btn-inner\">Confirm</span></button>\n    </div>\n  </div>\n</div>",
+      "css": {
+        "overlayBackground": "rgba(0,0,0,0.6)",
+        "overlayBackdropFilter": "blur(4px)",
+        "overlayZIndex": 100,
+        "overlayOpacityHidden": 0,
+        "overlayOpacityVisible": 1,
+        "overlayTransition": "opacity var(--duration-normal) ease, visibility var(--duration-normal) ease",
+        "modalBackground": "#fff",
+        "modalBorderRadius": "var(--radius-2xl)",
+        "modalPadding": "2rem",
+        "modalMaxWidth": "500px",
+        "modalBoxShadow": "var(--shadow-2xl)",
+        "modalTransformHidden": "translateY(20px)",
+        "modalTransformVisible": "translateY(0)",
+        "modalTransition": "transform var(--duration-normal) var(--ease-spring)",
+        "titleFontSize": "1.375rem",
+        "titleFontWeight": 600,
+        "descFontSize": "14px",
+        "descLineHeight": 1.6,
+        "closeButtonSize": "2rem",
+        "closeButtonRadius": "var(--radius-full)"
+      }
+    },
+    "alert": {
+      "description": "Inline feedback components with semantic colors and icons.",
+      "variants": {
+        "success": { "class": ".alert .alert-success", "bg": "var(--color-success-50)", "border": "rgba(34,197,94,0.2)", "color": "var(--color-success-700)", "icon": "solar:check-circle-bold-duotone" },
+        "warning": { "class": ".alert .alert-warning", "bg": "var(--color-warning-50)", "border": "rgba(245,158,11,0.2)", "color": "var(--color-warning-700)", "icon": "solar:danger-triangle-bold-duotone" },
+        "error":   { "class": ".alert .alert-error",   "bg": "var(--color-error-50)",   "border": "rgba(239,68,68,0.2)",  "color": "var(--color-error-700)",   "icon": "solar:close-circle-bold-duotone" },
+        "info":    { "class": ".alert .alert-info",    "bg": "var(--color-info-50)",    "border": "rgba(59,130,246,0.2)",  "color": "var(--color-info-700)",    "icon": "solar:info-circle-bold-duotone" },
+        "neutral": { "class": ".alert .alert-neutral", "bg": "var(--color-neutral-50)", "border": "rgba(107,114,128,0.2)","color": "var(--color-neutral-700)", "icon": "solar:minimalistic-magnifer-bold-duotone" }
+      },
+      "structure": "<div class=\"alert alert-success\">\n  <iconify-icon icon=\"solar:check-circle-bold-duotone\"></iconify-icon>\n  <span>Message</span>\n</div>",
+      "css": {
+        "display": "flex",
+        "alignItems": "flex-start",
+        "gap": "0.75rem",
+        "padding": "1rem",
+        "borderRadius": "var(--radius-md)",
+        "border": "1px solid",
+        "fontSize": "14px",
+        "lineHeight": 1.6,
+        "marginBottom": "1rem",
+        "iconSize": "1.25rem"
+      }
+    },
+    "toast": {
+      "description": "Floating notification above the surface.",
+      "class": ".toast",
+      "structure": "<div class=\"toast\">\n  <iconify-icon icon=\"solar:check-circle-bold-duotone\" style=\"color: var(--color-success-500);\"></iconify-icon>\n  <span>Message</span>\n</div>",
+      "css": {
+        "display": "flex",
+        "alignItems": "center",
+        "gap": "0.75rem",
+        "padding": "1rem",
+        "background": "#fff",
+        "border": "1px solid rgba(0,0,0,0.06)",
+        "borderRadius": "var(--radius-md)",
+        "boxShadow": "var(--shadow-lg)",
+        "fontSize": "14px",
+        "color": "var(--color-brand-dark)"
+      }
+    },
+    "badge": {
+      "description": "Inline label for status or category.",
+      "class": ".badge",
+      "structure": "<span class=\"badge\">New</span>",
+      "css": {
+        "display": "inline-flex",
+        "alignItems": "center",
+        "padding": "0.25rem 0.75rem",
+        "fontSize": "12px",
+        "fontWeight": 500,
+        "borderRadius": "var(--radius-full)",
+        "background": "var(--color-brand-bg)",
+        "color": "var(--color-brand-dark)"
+      },
+      "variants": {
+        "success": { "class": ".badge-success", "bg": "var(--color-success-50)", "color": "var(--color-success-700)" },
+        "warning": { "class": ".badge-warning", "bg": "var(--color-warning-50)", "color": "var(--color-warning-700)" },
+        "error":   { "class": ".badge-error",   "bg": "var(--color-error-50)",   "color": "var(--color-error-700)" },
+        "info":    { "class": ".badge-info",    "bg": "var(--color-info-50)",    "color": "var(--color-info-700)" }
+      }
+    },
+    "tooltip": {
+      "description": "Contextual hint on hover.",
+      "class": ".tooltip-container .tooltip",
+      "structure": "<div class=\"tooltip-container\">\n  <span>Hover me</span>\n  <div class=\"tooltip\">Tooltip text</div>\n</div>",
+      "css": {
+        "position": "absolute",
+        "bottom": "100%",
+        "left": "50%",
+        "transform": "translateX(-50%) translateY(-0.5rem)",
+        "background": "var(--color-brand-dark)",
+        "color": "#fff",
+        "padding": "0.5rem 0.75rem",
+        "borderRadius": "var(--radius-md)",
+        "fontSize": "12px",
+        "whiteSpace": "nowrap",
+        "opacityHidden": 0,
+        "opacityVisible": 1,
+        "transition": "opacity var(--duration-normal) ease, transform var(--duration-normal) ease"
+      }
+    },
+    "avatar": {
+      "description": "User representation with initials or image.",
+      "class": ".avatar",
+      "structure": "<div class=\"avatar\">JD</div> or <div class=\"avatar\"><img src=\"url\" alt=\"Name\" /></div>",
+      "css": {
+        "width": "2.5rem",
+        "height": "2.5rem",
+        "borderRadius": "var(--radius-full)",
+        "background": "var(--color-brand-bg)",
+        "display": "flex",
+        "alignItems": "center",
+        "justifyContent": "center",
+        "fontSize": "14px",
+        "fontWeight": 600,
+        "color": "var(--color-brand-dark)",
+        "overflow": "hidden",
+        "imgObjectFit": "cover"
+      }
+    },
+    "tag-pill": {
+      "description": "Category pills that invert on hover.",
+      "class": ".tag-pill",
+      "structure": "<span class=\"tag-pill\">Category</span>",
+      "css": {
+        "padding": "0.375rem 0.75rem",
+        "fontSize": "12px",
+        "fontWeight": 500,
+        "border": "1px solid #d4d4d8",
+        "borderRadius": "var(--radius-full)",
+        "background": "#fff",
+        "hoverBackground": "var(--color-brand-dark)",
+        "hoverColor": "#fff",
+        "transition": "all var(--duration-normal) ease",
+        "cursor": "pointer"
+      }
+    },
+    "navbar": {
+      "description": "Fixed top navigation with blur backdrop and scroll-triggered shadow.",
+      "class": ".navbar .navbar-inner",
+      "structure": "<nav class=\"navbar\" id=\"navbar\">\n  <div class=\"navbar-inner\">\n    <a href=\"#\" class=\"nav-logo\">Brand</a>\n    <div class=\"nav-links\">\n      <a href=\"#\" class=\"nav-link\">Link</a>\n    </div>\n    <a href=\"#\" class=\"nav-cta\">CTA</a>\n  </div>\n</nav>",
+      "css": {
+        "position": "fixed",
+        "inset": "0 0 auto",
+        "width": "100vw",
+        "zIndex": 50,
+        "background": "rgba(245,245,245,0.85)",
+        "backdropFilter": "blur(16px)",
+        "scrollShadow": "0 1px 20px rgba(0,0,0,0.06)",
+        "borderBottom": "1px solid rgba(0,0,0,0.06)",
+        "innerHeight": "4rem (mobile), 5rem (768px+)",
+        "logoFontSize": "1.25rem",
+        "logoFontWeight": 700,
+        "logoLetterSpacing": "-0.02em",
+        "linkFontSize": "0.875rem",
+        "linkFontWeight": 500,
+        "linkColor": "var(--color-brand-muted)",
+        "linkHoverColor": "var(--color-brand-dark)",
+        "ctaPadding": "0.625rem 1.25rem",
+        "ctaBorderRadius": "var(--radius-full)",
+        "ctaBackground": "var(--color-brand-dark)",
+        "ctaColor": "#fff",
+        "ctaHoverBackground": "#000"
+      },
+      "behavior": "Add class 'scrolled' when window.pageYOffset > 80 to trigger box-shadow"
+    },
+    "section": {
+      "description": "Content sections with vertical padding and optional reveal animation.",
+      "class": ".section .section-heading .section-label",
+      "css": {
+        "paddingBlock": "5rem (mobile), 6rem (768px+)",
+        "labelFontSize": "11px",
+        "labelFontWeight": 700,
+        "labelTextTransform": "uppercase",
+        "labelLetterSpacing": "0.05em",
+        "labelColor": "var(--color-brand-muted)",
+        "headingFontSize": "1.5rem (mobile), 2rem (640px+), 2.5rem (1024px+)",
+        "headingFontWeight": "600→700",
+        "headingFontFamily": "var(--font-heading)",
+        "headingLineHeight": 1.2,
+        "headingLetterSpacing": "-0.02em"
+      }
+    }
+  },
+  "patterns": {
+    "gridAndLayout": {
+      "description": "Our grid is built on an 8px base unit. All spacing, sizing, and breakpoints derive from multiples of 8.",
+      "containerMaxWidth": "1400px",
+      "containerPadding": {
+        "mobile": "1.5rem (24px) each side",
+        "tablet": "2rem (32px) each side",
+        "desktop": "2.5rem (40px) each side"
+      },
+      "rules": [
+        "Gutters are always 8px or 16px (1x or 2x base unit). Never arbitrary values.",
+        "Page margin scales by breakpoint — 24px → 32px → 40px. Content never touches the edge.",
+        "Max content width is 1400px, centered. Beyond that, margins grow.",
+        "All component padding, gaps, and margins must be a multiple of the 8px base unit. Half-step (4px) allowed for icon alignment only.",
+        "Use border-box sizing. Borders draw inward — never let a 1px border break your 8px rhythm."
+      ],
+      "columns": {
+        "mobile": 4,
+        "tablet": 8,
+        "desktop": 12,
+        "wide": 12
+      }
+    },
+    "forms": {
+      "description": "Complete form layout combining labels, inputs, and actions with consistent vertical rhythm.",
+      "class": ".form-stack .form-label",
+      "structure": "<div class=\"form-stack\">\n  <div>\n    <label class=\"form-label\">Email</label>\n    <input type=\"email\" class=\"input\" placeholder=\"you@example.com\" />\n  </div>\n  <div>\n    <label class=\"form-label\">Password</label>\n    <input type=\"password\" class=\"input\" placeholder=\"••••••••\" />\n  </div>\n  <button class=\"btn btn-primary\" style=\"margin-top: 0.5rem;\">\n    <span class=\"btn-inner\">Sign In</span>\n  </button>\n</div>",
+      "css": {
+        "stackGap": "1rem",
+        "labelFontSize": "11px",
+        "labelFontWeight": 700,
+        "labelTextTransform": "uppercase",
+        "labelLetterSpacing": "0.05em",
+        "labelColor": "var(--color-brand-muted)",
+        "labelMarginBottom": "0.5rem"
+      }
+    },
+    "navigation": {
+      "description": "Fixed navbar with blur backdrop and scroll-triggered shadow.",
+      "keyProperties": {
+        "position": "fixed",
+        "backdropFilter": "blur(16px)",
+        "scrollShadow": "0 1px 20px rgba(0,0,0,0.06)",
+        "scrollThreshold": "80px"
+      }
+    },
+    "emptyLoadingErrorStates": {
+      "description": "Consistent patterns for moments when content is absent, loading, or broken. Centered layout with icon, heading, description, and CTA.",
+      "structure": "<div style=\"text-align: center; padding: 2rem;\">\n  <div style=\"font-size: 2rem; margin-bottom: 0.5rem;\">📭</div>\n  <div style=\"font-family: var(--font-heading); font-size: 1.125rem; font-weight: 600;\">No items yet</div>\n  <div class=\"meta-text\" style=\"margin-top: 0.5rem;\">Get started by creating your first item</div>\n  <button class=\"btn btn-primary\" style=\"margin-top: 1rem;\">\n    <span class=\"btn-inner\">Create New</span>\n  </button>\n</div>"
+    },
+    "sectionReveal": {
+      "description": "IntersectionObserver-based scroll reveal. Elements start at opacity:0 and translateY(30px), transitioning to visible when entering viewport. Observer disconnects after reveal.",
+      "threshold": 0.1,
+      "rootMargin": "0px 0px -60px 0px",
+      "css": {
+        "initial": { "opacity": 0, "transform": "translateY(30px)" },
+        "revealed": { "opacity": 1, "transform": "translateY(0)" },
+        "transition": "opacity var(--duration-slower) var(--ease-spring), transform var(--duration-slower) var(--ease-spring)"
+      },
+      "js": "const revealObserver = new IntersectionObserver((entries) => {\n  entries.forEach((entry) => {\n    if (entry.isIntersecting) {\n      entry.target.classList.add('revealed');\n      revealObserver.unobserve(entry.target);\n    }\n  });\n}, { threshold: 0.1, rootMargin: '0px 0px -60px 0px' });\ndocument.querySelectorAll('.section-reveal').forEach((el) => {\n  revealObserver.observe(el);\n});"
+    },
+    "darkInvertedSection": {
+      "description": "When a section uses --color-brand-dark background, text colors must invert. Use descendant selectors on the section class.",
+      "css": ".dark-section .section-label { color: var(--color-brand-light); }\n.dark-section .section-heading { color: #fff; }"
+    }
+  },
+  "rules": {
+    "implementation": {
+      "methodology": "Vanilla CSS with :root custom properties and semantic class names. No utility classes in HTML markup.",
+      "noExternalCSSDependencies": true,
+      "noTailwind": true,
+      "noCDNForCSS": true,
+      "mobileFirst": true,
+      "boxSizing": "border-box (mandatory reset)",
+      "sectionPadding": "Always use longhand padding-top/padding-bottom for vertical spacing. Never use shorthand padding on sections that also carry .page-container.",
+      "semanticClassNames": "Use descriptive names like .section-heading, .timeline-card, .feature-card — not utility strings.",
+      "fontSmoothing": "-webkit-font-smoothing: antialiased is required on body",
+      "smoothScrolling": "html { scroll-behavior: smooth; }"
+    },
+    "color60_30_10": {
+      "description": "The 60-30-10 color rule for visual balance",
+      "dominant_60": { "color": "#F5F5F5", "role": "Page background, body text areas" },
+      "structure_30": { "color": "#181617", "role": "Navigation, headings, primary content" },
+      "accent_10": { "color": "#71717A / #A1A1AA / #ED722E", "role": "Muted accents, borders, subtle labels, call-to-action" }
+    },
+    "wcagAccessibility": {
+      "level": "WCAG 2.1 AA",
+      "contrastRatios": {
+        "darkOnBg": "17.4:1 — Pass",
+        "mutedOnBg": "4.6:1 — Pass",
+        "lightOnBg": "2.6:1 — Fail (decorative only)"
+      },
+      "requirements": [
+        "Contrast ratio: 4.5:1 for normal text, 3:1 for large text",
+        "Keyboard navigation for all interactive elements",
+        "Focus-visible rings for keyboard users",
+        "Skip navigation links",
+        "Reduced motion support via @media (prefers-reduced-motion: reduce)",
+        "Semantic HTML structure (header, nav, main, section, aside, footer)"
+      ],
+      "skipLinkHTML": "<a href=\"#main-content\" class=\"skip-link\">Skip to main content</a>",
+      "focusVisibleCSS": ":focus { outline: none; }\n:focus-visible {\n  outline: 2px solid var(--color-brand-dark);\n  outline-offset: 2px;\n}",
+      "reducedMotionCSS": "@media (prefers-reduced-motion: reduce) {\n  .section-reveal { opacity: 1; transform: none; transition: none; }\n  .animate-fade-in-up { animation: none; opacity: 1; transform: none; }\n  .stagger-in > * { animation: none; opacity: 1; transform: none; }\n  .timeline-line { animation: none; height: 100%; }\n  .scroll-indicator { animation: none; }\n}"
+    },
+    "interactionStates": {
+      "description": "Every interactive component must define five states",
+      "states": {
+        "default": "Resting appearance",
+        "hover": "transition: var(--duration-normal)",
+        "focus": "Outline ring, not box-shadow alone",
+        "active_pressed": "Visual feedback on interaction",
+        "disabled": "opacity: 0.5, cursor: not-allowed"
+      }
+    },
+    "spatialHierarchy": {
+      "description": "Space communicates importance. Dense spacing signals related content; generous spacing signals separation.",
+      "levels": {
+        "micro": { "size": "4px", "usage": "Inside components — icon-to-label gaps, inline badge padding, checkbox-to-text spacing" },
+        "tight": { "size": "8px", "usage": "Between sibling elements — buttons in a row, list items, form fields in a group, tags in a set" },
+        "standard": { "size": "16px", "usage": "Within sections — card internal padding, label-to-input gap, paragraph spacing, component guts" },
+        "comfortable": { "size": "24px", "usage": "Between sections — form groups, card-to-card in a grid, header to content" },
+        "spacious": { "size": "48px-80px", "usage": "Page sections — major whitespace between sections" }
+      }
+    },
+    "layoutComposition": {
+      "description": "Three layout strategies chosen based on content needs",
+      "strategies": {
+        "responsive": {
+          "description": "Fluid columns — content scales with viewport. Column count stays fixed, width stretches.",
+          "useFor": "Editorial pages, dashboards, hero sections"
+        },
+        "adaptive": {
+          "description": "Fixed boxes that wrap — items have fixed size and tile across. Count grows with width.",
+          "useFor": "Card grids, icon toolbars, product listings"
+        },
+        "strict": {
+          "description": "No flex, scroll instead — fixed dimensions that don't scale. Horizontal scroll below threshold.",
+          "useFor": "Data tables, code blocks, complex forms"
+        }
+      },
+      "decisionTree": "Does the user need to see more items or more content per item?\n→ More items → Adaptive (fixed boxes that wrap)\n→ More content → Responsive (fluid columns)\nWould shrinking below a certain size harm legibility?\n→ Yes → Strict (scroll at breakpoint)\n→ No → Responsive"
+    },
+    "usageGuidelines": [
+      "Use vanilla CSS with custom properties in :root",
+      "Semantic class names only (no utility strings)",
+      "Zero external CSS dependencies",
+      "Mobile-first responsive approach",
+      "Longhand padding for sections (never shorthand with .page-container)",
+      "60-30-10 color rule for visual balance"
+    ],
+    "designPrinciples": [
+      {
+        "name": "Balance",
+        "why": "Stability & structure",
+        "purpose": "Distribute visual weight evenly",
+        "usage": "Align elements on an invisible axis; pair heavy text blocks with ample white space"
+      },
+      {
+        "name": "Contrast",
+        "why": "Visual interest & hierarchy",
+        "purpose": "Make elements distinct",
+        "usage": "Pair light and dark, large and small, bold and thin to guide the eye"
+      },
+      {
+        "name": "Emphasis",
+        "why": "Directs user attention",
+        "purpose": "Create a single focal point",
+        "usage": "Use size, color, or position to make CTAs and key info unmissable — only one hero per screen"
+      },
+      {
+        "name": "Movement",
+        "why": "Controls content consumption",
+        "purpose": "Create a visual path",
+        "usage": "Use spacing, arrows, and progressive disclosure to lead users through content"
+      },
+      {
+        "name": "Pattern",
+        "why": "Predictability & reduced cognitive load",
+        "purpose": "Visual consistency",
+        "usage": "Repeat button styles, card layouts, and spacing rhythms across pages"
+      },
+      {
+        "name": "Proportion",
+        "why": "Communicates hierarchy",
+        "purpose": "Harmonious size relationships",
+        "usage": "Headings larger than body; icons proportional to text; containers sized to content"
+      },
+      {
+        "name": "Repetition",
+        "why": "Reinforces brand identity",
+        "purpose": "Unify through recurring elements",
+        "usage": "Reuse token values everywhere; never introduce new styles without updating the system"
+      },
+      {
+        "name": "Rhythm",
+        "why": "Predictable visual tempo",
+        "purpose": "Consistent spacing intervals",
+        "usage": "Apply the 8px grid strictly; equal gaps between cards; consistent section padding"
+      },
+      {
+        "name": "Unity",
+        "why": "Cohesive visual whole",
+        "purpose": "All elements belong together",
+        "usage": "Use shared tokens, consistent borders, and matching radii"
+      },
+      {
+        "name": "Hierarchy",
+        "why": "Guides user understanding",
+        "purpose": "Establish clear levels of importance",
+        "usage": "Use size, weight, color, and position for clear reading order"
+      },
+      {
+        "name": "Variety",
+        "why": "Prevents monotony & visual fatigue",
+        "purpose": "Introduce controlled diversity",
+        "usage": "Alternate card orientations, mix image and text blocks, vary component density"
+      },
+      {
+        "name": "White Space",
+        "why": "Content needs room to breathe",
+        "purpose": "Separate & group by absence",
+        "usage": "Use spacing tokens to create visual breathing room — margins are not wasted space"
+      }
+    ]
+  },
+  "boilerplate": {
+    "description": "Mandatory HTML structure and CSS resets that every page must include",
+    "htmlStructure": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n  <meta charset=\"UTF-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n  <title>Page Title</title>\n  <link rel=\"preconnect\" href=\"https://fonts.googleapis.com\">\n  <link rel=\"preconnect\" href=\"https://fonts.gstatic.com\" crossorigin>\n  <link href=\"https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap\" rel=\"stylesheet\" />\n  <script src=\"https://code.iconify.design/iconify-icon/2.1.0/iconify-icon.min.js\"></script>\n  <link rel=\"stylesheet\" href=\"style.css\">\n</head>\n<body>\n  <a href=\"#main-content\" class=\"skip-link\">Skip to main content</a>\n  <!-- Navbar, Main content, Footer -->\n  <main id=\"main-content\">\n    <!-- Sections with .page-container .section-reveal -->\n  </main>\n  <script src=\"script.js\"></script>\n</body>\n</html>",
+    "cssReset": "*,\n*::before,\n*::after { margin: 0; padding: 0; box-sizing: border-box; }\n\na { text-decoration: none; color: inherit; }\nbutton { cursor: pointer; border: none; background: none; font-family: inherit; }\nimg { display: block; max-width: 100%; }",
+    "bodyCss": "body {\n  font-family: var(--font-body);\n  background: var(--color-brand-bg);\n  color: var(--color-brand-dark);\n  -webkit-font-smoothing: antialiased;\n}\nhtml { scroll-behavior: smooth; }",
+    "skipLinkCss": ".skip-link {\n  position: absolute; left: -9999px; top: auto;\n  background: #fff; padding: 0.5rem 1rem; z-index: 9999;\n  font-size: 0.875rem;\n}\n.skip-link:focus { left: 1rem; top: 1rem; }",
+    "focusVisibleCss": ":focus { outline: none; }\n:focus-visible {\n  outline: 2px solid var(--color-brand-dark);\n  outline-offset: 2px;\n}",
+    "reducedMotionCss": "@media (prefers-reduced-motion: reduce) {\n  .section-reveal { opacity: 1; transform: none; transition: none; }\n  .animate-fade-in-up { animation: none; opacity: 1; transform: none; }\n  .stagger-in > * { animation: none; opacity: 1; transform: none; }\n  .timeline-line { animation: none; height: 100%; }\n  .scroll-indicator { animation: none; }\n}",
+    "navbarScrollJs": "const navbar = document.getElementById('navbar');\nwindow.addEventListener('scroll', () => {\n  navbar.classList.toggle('scrolled', window.pageYOffset > 80);\n});",
+    "scrollRevealJs": "const revealObserver = new IntersectionObserver((entries) => {\n  entries.forEach((entry) => {\n    if (entry.isIntersecting) {\n      entry.target.classList.add('revealed');\n      revealObserver.unobserve(entry.target);\n    }\n  });\n}, { threshold: 0.1, rootMargin: '0px 0px -60px 0px' });\n\ndocument.querySelectorAll('.section-reveal').forEach((el) => {\n  revealObserver.observe(el);\n});",
+    "cssVariables": ":root {\n  --color-brand-bg: #F5F5F5;\n  --color-brand-dark: #181617;\n  --color-accent: #ED722E;\n  --color-accent-light: #FCEEE5;\n  --color-accent-dark: #C45A1A;\n  --color-brand-muted: #71717A;\n  --color-brand-light: #A1A1AA;\n  --color-success-50: #F0FDF4;\n  --color-success-500: #22C55E;\n  --color-success-700: #15803D;\n  --color-warning-50: #FFFBEB;\n  --color-warning-500: #F59E0B;\n  --color-warning-700: #B45309;\n  --color-error-50: #FEF2F2;\n  --color-error-500: #EF4444;\n  --color-error-700: #B91C1C;\n  --color-info-50: #EFF6FF;\n  --color-info-500: #3B82F6;\n  --color-info-700: #1D4ED8;\n  --color-neutral-50: #F9FAFB;\n  --color-neutral-500: #6B7280;\n  --color-neutral-700: #374151;\n  --font-heading: 'Space Grotesk', system-ui, sans-serif;\n  --font-body: 'Manrope', system-ui, sans-serif;\n  --duration-fast: 200ms;\n  --duration-normal: 300ms;\n  --duration-slow: 500ms;\n  --duration-slower: 800ms;\n  --ease-spring: cubic-bezier(0.2, 0.8, 0.2, 1);\n  --radius-sm: 0.25rem;\n  --radius-md: 0.5rem;\n  --radius-lg: 0.75rem;\n  --radius-xl: 1rem;\n  --radius-2xl: 1.5rem;\n  --radius-full: 9999px;\n  --shadow-sm: 0 1px 2px rgba(0,0,0,0.05);\n  --shadow-md: 0 4px 6px rgba(0,0,0,0.1);\n  --shadow-lg: 0 10px 15px rgba(0,0,0,0.1);\n  --shadow-xl: 0 20px 25px rgba(0,0,0,0.15);\n  --shadow-2xl: 0 25px 50px rgba(0,0,0,0.25);\n  --border-subtle: 1px solid rgba(0,0,0,0.06);\n}"
+  }
+}

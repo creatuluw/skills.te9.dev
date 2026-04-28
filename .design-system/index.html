@@ -1,0 +1,3337 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>LVS Design System — Complete Documentation</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700&family=Space+Grotesque:wght@400;500;600;700&display=swap"
+            rel="stylesheet"
+        />
+        <script src="https://code.iconify.design/iconify-icon/2.1.0/iconify-icon.min.js"></script>
+        <link rel="stylesheet" href="style.css" />
+    </head>
+    <body>
+        <a href="#main-content" class="skip-link">Skip to main content</a>
+
+        <nav class="navbar" id="navbar">
+            <div class="navbar-inner">
+                <a href="#" class="nav-logo">LVS Design System</a>
+                <div class="nav-links">
+                    <a href="#foundations" class="nav-link">Foundations</a>
+                    <a href="#tokens" class="nav-link">Tokens</a>
+                    <a href="#components" class="nav-link">Components</a>
+                    <a href="#patterns" class="nav-link">Patterns</a>
+                    <a href="#rules" class="nav-link">Rules</a>
+                </div>
+                <a href="index.html" class="nav-cta">View Light Version →</a>
+            </div>
+        </nav>
+
+        <section class="hero">
+            <div class="hero-grid">
+                <div class="hero-text">
+                    <span class="hero-label animate-fade-in-up delay-1"
+                        >Design System v1.0</span
+                    >
+                    <h1 class="hero-heading animate-fade-in-up delay-2">
+                        Build consistent, accessible interfaces faster
+                    </h1>
+                    <p class="hero-sub animate-fade-in-up delay-3">
+                        LVS is a comprehensive design system built with vanilla
+                        CSS and semantic class names. Zero dependencies, full
+                        accessibility, and beautiful by default.
+                    </p>
+                    <div class="hero-buttons animate-fade-in-up delay-4">
+                        <a href="#tokens" class="btn btn-primary">
+                            <span class="btn-inner">Explore Tokens</span>
+                        </a>
+                        <a href="#components" class="btn btn-secondary">
+                            <span class="btn-inner">View Components</span>
+                        </a>
+                        <button
+                            type="button"
+                            class="btn btn-outlined"
+                            onclick="exportDesignSystem()"
+                        >
+                            <span class="btn-inner"
+                                ><iconify-icon
+                                    icon="solar:download-minimalistic-bold-duotone"
+                                ></iconify-icon>
+                                Export JSON</span
+                            >
+                        </button>
+                    </div>
+                </div>
+                <div class="hero-visual animate-fade-in-up delay-3">
+                    <div class="hero-image-wrapper">
+                        <img
+                            src="https://blackflagcreative.com/wp-content/uploads/2024/07/Design-System-Featured-Black-Flag-Creative-Los-Angeles-California-scaled.webp"
+                            alt="Design system featured"
+                            class="hero-image"
+                        />
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <nav class="sidebar-nav">
+            <div class="sidebar-group">
+                <div class="sidebar-group-title">Foundations</div>
+                <a href="#typography" class="sidebar-link">Typography</a>
+                <a href="#color" class="sidebar-link">Color</a>
+                <a href="#icons" class="sidebar-link">Icons</a>
+                <a href="#spacing" class="sidebar-link">Spacing</a>
+                <a href="#layout" class="sidebar-link">Layout</a>
+                <a href="#elevation" class="sidebar-link">Elevation</a>
+                <a href="#corner-radius" class="sidebar-link">Corner Radius</a>
+                <a href="#motion-animation" class="sidebar-link"
+                    >Motion & Animation</a
+                >
+            </div>
+            <div class="sidebar-group">
+                <div class="sidebar-group-title">Tokens</div>
+                <a href="#global-tokens" class="sidebar-link">Global</a>
+                <a href="#semantic-tokens" class="sidebar-link">Semantic</a>
+                <a href="#component-tokens" class="sidebar-link">Component</a>
+            </div>
+            <div class="sidebar-group">
+                <div class="sidebar-group-title">Components</div>
+                <a href="#button" class="sidebar-link">Button</a>
+                <a href="#input" class="sidebar-link">Input</a>
+                <a href="#select" class="sidebar-link">Select</a>
+                <a href="#checkbox-radio-switch" class="sidebar-link"
+                    >Checkbox / Radio / Switch</a
+                >
+                <a href="#card" class="sidebar-link">Card</a>
+                <a href="#table" class="sidebar-link">Table</a>
+                <a href="#list" class="sidebar-link">List</a>
+                <a href="#tabs" class="sidebar-link">Tabs</a>
+                <a href="#modal" class="sidebar-link">Modal</a>
+                <a href="#alert-toast" class="sidebar-link">Alert / Toast</a>
+                <a href="#badge-tooltip-avatar" class="sidebar-link"
+                    >Badge / Tooltip / Avatar</a
+                >
+            </div>
+            <div class="sidebar-group">
+                <div class="sidebar-group-title">Patterns</div>
+                <a href="#grid-layout" class="sidebar-link">Grid & Layout</a>
+                <a href="#forms" class="sidebar-link">Forms</a>
+                <a href="#navigation" class="sidebar-link">Navigation</a>
+                <a href="#states" class="sidebar-link"
+                    >Loading / Empty / Error</a
+                >
+            </div>
+            <div class="sidebar-group">
+                <div class="sidebar-group-title">Rules</div>
+                <a href="#spatial-hierarchy" class="sidebar-link"
+                    >Spatial Hierarchy</a
+                >
+                <a href="#layout-composition" class="sidebar-link"
+                    >Layout Composition</a
+                >
+                <a href="#accessibility" class="sidebar-link">Accessibility</a>
+                <a href="#interaction-states" class="sidebar-link"
+                    >Interaction States</a
+                >
+                <a href="#usage-guidelines" class="sidebar-link"
+                    >Usage Guidelines</a
+                >
+                <a href="#design-principles" class="sidebar-link"
+                    >Design Principles</a
+                >
+            </div>
+        </nav>
+
+        <main id="main-content" class="main-content">
+            <section
+                class="section page-container section-reveal"
+                id="foundations"
+            >
+                <h2 class="section-heading">The fundamental building blocks</h2>
+                <p class="section-intro">
+                    Foundations are the atomic visual decisions that shape every
+                    component and page in this system. They exist so that color,
+                    type, spacing, elevation, and shape stay consistent no
+                    matter who builds or where it ships — reducing ambiguity and
+                    building user trust through visual coherence.
+                </p>
+
+                <div class="concept" id="typography">
+                    <h3 class="concept-heading">Typography</h3>
+                    <p class="concept-desc">
+                        Typography creates the visual voice of the interface.
+                        Two typefaces — Space Grotesk for headings and Manrope
+                        for body text — work together to establish clear
+                        hierarchy between titles, labels, and reading content
+                        across every breakpoint.
+                    </p>
+                    <div class="concept-showcase">
+                        <div class="showcase-row">
+                            <div class="showcase-type-card">
+                                <div class="showcase-type-label">
+                                    Hero — 56px / 700
+                                </div>
+                                <div
+                                    class="showcase-type-sample"
+                                    style="
+                                        font-size: 2.5rem;
+                                        font-weight: 700;
+                                        line-height: 1.1;
+                                    "
+                                >
+                                    Aa
+                                </div>
+                            </div>
+                            <div class="showcase-type-card">
+                                <div class="showcase-type-label">
+                                    Heading — 32px / 600
+                                </div>
+                                <div
+                                    class="showcase-type-sample"
+                                    style="
+                                        font-size: 1.75rem;
+                                        font-weight: 600;
+                                        line-height: 1.2;
+                                    "
+                                >
+                                    Aa
+                                </div>
+                            </div>
+                            <div class="showcase-type-card">
+                                <div class="showcase-type-label">
+                                    Subheading — 20px / 500
+                                </div>
+                                <div
+                                    class="showcase-type-sample"
+                                    style="
+                                        font-size: 1.25rem;
+                                        font-weight: 500;
+                                        line-height: 1.3;
+                                    "
+                                >
+                                    Aa
+                                </div>
+                            </div>
+                            <div class="showcase-type-card">
+                                <div class="showcase-type-label">
+                                    Body — 15px / 400
+                                </div>
+                                <div
+                                    class="showcase-type-sample"
+                                    style="
+                                        font-size: 15px;
+                                        font-weight: 400;
+                                        line-height: 1.6;
+                                        font-family: var(--font-body);
+                                    "
+                                >
+                                    The quick brown fox
+                                </div>
+                            </div>
+                            <div class="showcase-type-card">
+                                <div class="showcase-type-label">
+                                    Caption — 12px / 500
+                                </div>
+                                <div
+                                    class="showcase-type-sample"
+                                    style="
+                                        font-size: 12px;
+                                        font-weight: 500;
+                                        line-height: 1.5;
+                                        font-family: var(--font-body);
+                                    "
+                                >
+                                    Small supporting text
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="concept" id="color">
+                    <h3 class="concept-heading">Color</h3>
+                    <p class="concept-desc">
+                        Color establishes brand identity, communicates
+                        hierarchy, and guides attention. Our palette is anchored
+                        by a warm accent for calls-to-action and emphasis, a
+                        near-black for text and primary surfaces, and a neutral
+                        scale for supporting content and backgrounds.
+                    </p>
+                    <div class="concept-showcase">
+                        <div class="showcase-row">
+                            <div class="showcase-color-card">
+                                <div
+                                    class="showcase-color-swatch"
+                                    style="background: var(--color-accent)"
+                                ></div>
+                                <div class="showcase-color-info">
+                                    <div class="showcase-color-name">
+                                        Accent
+                                    </div>
+                                    <div class="showcase-color-hex">
+                                        #ED722E
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="showcase-color-card">
+                                <div
+                                    class="showcase-color-swatch"
+                                    style="background: var(--color-brand-dark)"
+                                ></div>
+                                <div class="showcase-color-info">
+                                    <div class="showcase-color-name">
+                                        Brand Dark
+                                    </div>
+                                    <div class="showcase-color-hex">
+                                        #181617
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="showcase-color-card">
+                                <div
+                                    class="showcase-color-swatch"
+                                    style="background: var(--color-brand-muted)"
+                                ></div>
+                                <div class="showcase-color-info">
+                                    <div class="showcase-color-name">Muted</div>
+                                    <div class="showcase-color-hex">
+                                        #71717A
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="showcase-color-card">
+                                <div
+                                    class="showcase-color-swatch"
+                                    style="background: var(--color-brand-light)"
+                                ></div>
+                                <div class="showcase-color-info">
+                                    <div class="showcase-color-name">Light</div>
+                                    <div class="showcase-color-hex">
+                                        #A1A1AA
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="showcase-color-card">
+                                <div
+                                    class="showcase-color-swatch showcase-color-swatch-bordered"
+                                    style="background: var(--color-brand-bg)"
+                                ></div>
+                                <div class="showcase-color-info">
+                                    <div class="showcase-color-name">
+                                        Background
+                                    </div>
+                                    <div class="showcase-color-hex">
+                                        #F5F5F5
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="showcase-row" style="margin-top: 1rem">
+                            <div class="showcase-color-card">
+                                <div
+                                    class="showcase-color-swatch"
+                                    style="background: var(--color-success-500)"
+                                ></div>
+                                <div class="showcase-color-info">
+                                    <div class="showcase-color-name">
+                                        Success
+                                    </div>
+                                    <div class="showcase-color-hex">
+                                        #22C55E
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="showcase-color-card">
+                                <div
+                                    class="showcase-color-swatch"
+                                    style="background: var(--color-warning-500)"
+                                ></div>
+                                <div class="showcase-color-info">
+                                    <div class="showcase-color-name">
+                                        Warning
+                                    </div>
+                                    <div class="showcase-color-hex">
+                                        #F59E0B
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="showcase-color-card">
+                                <div
+                                    class="showcase-color-swatch"
+                                    style="background: var(--color-error-500)"
+                                ></div>
+                                <div class="showcase-color-info">
+                                    <div class="showcase-color-name">Error</div>
+                                    <div class="showcase-color-hex">
+                                        #EF4444
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="showcase-color-card">
+                                <div
+                                    class="showcase-color-swatch"
+                                    style="background: var(--color-info-500)"
+                                ></div>
+                                <div class="showcase-color-info">
+                                    <div class="showcase-color-name">Info</div>
+                                    <div class="showcase-color-hex">
+                                        #3B82F6
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="showcase-color-card">
+                                <div
+                                    class="showcase-color-swatch"
+                                    style="background: #6b7280"
+                                ></div>
+                                <div class="showcase-color-info">
+                                    <div class="showcase-color-name">
+                                        Neutral
+                                    </div>
+                                    <div class="showcase-color-hex">
+                                        #6B7280
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="concept" id="icons">
+                    <h3 class="concept-heading">Icons</h3>
+                    <p class="concept-desc">
+                        Icons from the Solar icon set provide consistent,
+                        scalable vector graphics for actions, status indicators,
+                        and navigation. Use the bold-duotone variant for filled
+                        emphasis and linear for subtle, outlined contexts.
+                    </p>
+                    <div class="concept-showcase">
+                        <div style="margin-bottom: 1rem">
+                            <div class="icon-grid">
+                                <div class="icon-grid-item">
+                                    <iconify-icon
+                                        icon="solar:sun-bold-duotone"
+                                    ></iconify-icon>
+                                    <div class="icon-grid-item-name">Sun</div>
+                                </div>
+                                <div class="icon-grid-item">
+                                    <iconify-icon
+                                        icon="solar:moon-bold-duotone"
+                                    ></iconify-icon>
+                                    <div class="icon-grid-item-name">Moon</div>
+                                </div>
+                                <div class="icon-grid-item">
+                                    <iconify-icon
+                                        icon="solar:heart-bold-duotone"
+                                    ></iconify-icon>
+                                    <div class="icon-grid-item-name">Heart</div>
+                                </div>
+                                <div class="icon-grid-item">
+                                    <iconify-icon
+                                        icon="solar:star-bold-duotone"
+                                    ></iconify-icon>
+                                    <div class="icon-grid-item-name">Star</div>
+                                </div>
+                                <div class="icon-grid-item">
+                                    <iconify-icon
+                                        icon="solar:user-rounded-bold-duotone"
+                                    ></iconify-icon>
+                                    <div class="icon-grid-item-name">User</div>
+                                </div>
+                                <div class="icon-grid-item">
+                                    <iconify-icon
+                                        icon="solar:settings-bold-duotone"
+                                    ></iconify-icon>
+                                    <div class="icon-grid-item-name">
+                                        Settings
+                                    </div>
+                                </div>
+                                <div class="icon-grid-item">
+                                    <iconify-icon
+                                        icon="solar:home-smile-bold-duotone"
+                                    ></iconify-icon>
+                                    <div class="icon-grid-item-name">Home</div>
+                                </div>
+                                <div class="icon-grid-item">
+                                    <iconify-icon
+                                        icon="solar:magnifer-bold-duotone"
+                                    ></iconify-icon>
+                                    <div class="icon-grid-item-name">
+                                        Search
+                                    </div>
+                                </div>
+                                <div class="icon-grid-item">
+                                    <iconify-icon
+                                        icon="solar:bell-bold-duotone"
+                                    ></iconify-icon>
+                                    <div class="icon-grid-item-name">Bell</div>
+                                </div>
+                                <div class="icon-grid-item">
+                                    <iconify-icon
+                                        icon="solar:calendar-bold-duotone"
+                                    ></iconify-icon>
+                                    <div class="icon-grid-item-name">
+                                        Calendar
+                                    </div>
+                                </div>
+                                <div class="icon-grid-item">
+                                    <iconify-icon
+                                        icon="solar:letter-bold-duotone"
+                                    ></iconify-icon>
+                                    <div class="icon-grid-item-name">Mail</div>
+                                </div>
+                                <div class="icon-grid-item">
+                                    <iconify-icon
+                                        icon="solar:chat-round-dots-bold-duotone"
+                                    ></iconify-icon>
+                                    <div class="icon-grid-item-name">Chat</div>
+                                </div>
+                                <div class="icon-grid-item">
+                                    <iconify-icon
+                                        icon="solar:cart-large-2-bold-duotone"
+                                    ></iconify-icon>
+                                    <div class="icon-grid-item-name">Cart</div>
+                                </div>
+                                <div class="icon-grid-item">
+                                    <iconify-icon
+                                        icon="solar:lock-bold-duotone"
+                                    ></iconify-icon>
+                                    <div class="icon-grid-item-name">Lock</div>
+                                </div>
+                                <div class="icon-grid-item">
+                                    <iconify-icon
+                                        icon="solar:eye-bold-duotone"
+                                    ></iconify-icon>
+                                    <div class="icon-grid-item-name">Eye</div>
+                                </div>
+                                <div class="icon-grid-item">
+                                    <iconify-icon
+                                        icon="solar:bookmark-bold-duotone"
+                                    ></iconify-icon>
+                                    <div class="icon-grid-item-name">
+                                        Bookmark
+                                    </div>
+                                </div>
+                                <div class="icon-grid-item">
+                                    <iconify-icon
+                                        icon="solar:share-bold-duotone"
+                                    ></iconify-icon>
+                                    <div class="icon-grid-item-name">Share</div>
+                                </div>
+                                <div class="icon-grid-item">
+                                    <iconify-icon
+                                        icon="solar:download-minimalistic-bold-duotone"
+                                    ></iconify-icon>
+                                    <div class="icon-grid-item-name">
+                                        Download
+                                    </div>
+                                </div>
+                                <div class="icon-grid-item">
+                                    <iconify-icon
+                                        icon="solar:trash-bin-trash-bold-duotone"
+                                    ></iconify-icon>
+                                    <div class="icon-grid-item-name">Trash</div>
+                                </div>
+                                <div class="icon-grid-item">
+                                    <iconify-icon
+                                        icon="solar:camera-bold-duotone"
+                                    ></iconify-icon>
+                                    <div class="icon-grid-item-name">
+                                        Camera
+                                    </div>
+                                </div>
+                            </div>
+                            <a
+                                href="https://icon-sets.iconify.design/solar/"
+                                target="_blank"
+                                rel="noopener"
+                                class="icon-link"
+                                >Browse the full Solar icon set →</a
+                            >
+                        </div>
+                    </div>
+                </div>
+
+                <div class="concept" id="spacing">
+                    <h3 class="concept-heading">Spacing</h3>
+                    <p class="concept-desc">
+                        Spacing is built on an 8px base unit. Every margin,
+                        padding, and gap is a multiple of this unit — creating a
+                        predictable visual rhythm. A 4px half-step is reserved
+                        for micro-alignments like icon-to-label pairs.
+                    </p>
+                    <div class="concept-showcase">
+                        <div class="showcase-row">
+                            <div class="showcase-spacing-card">
+                                <div
+                                    class="showcase-spacing-box"
+                                    style="width: 4px; height: 4px"
+                                ></div>
+                                <div class="showcase-spacing-label">
+                                    4px<br />Micro
+                                </div>
+                            </div>
+                            <div class="showcase-spacing-card">
+                                <div
+                                    class="showcase-spacing-box"
+                                    style="width: 8px; height: 8px"
+                                ></div>
+                                <div class="showcase-spacing-label">
+                                    8px<br />Tight
+                                </div>
+                            </div>
+                            <div class="showcase-spacing-card">
+                                <div
+                                    class="showcase-spacing-box"
+                                    style="width: 16px; height: 16px"
+                                ></div>
+                                <div class="showcase-spacing-label">
+                                    16px<br />Standard
+                                </div>
+                            </div>
+                            <div class="showcase-spacing-card">
+                                <div
+                                    class="showcase-spacing-box"
+                                    style="width: 24px; height: 24px"
+                                ></div>
+                                <div class="showcase-spacing-label">
+                                    24px<br />Comfortable
+                                </div>
+                            </div>
+                            <div class="showcase-spacing-card">
+                                <div
+                                    class="showcase-spacing-box"
+                                    style="width: 32px; height: 32px"
+                                ></div>
+                                <div class="showcase-spacing-label">
+                                    32px<br />Spacious
+                                </div>
+                            </div>
+                            <div class="showcase-spacing-card">
+                                <div
+                                    class="showcase-spacing-box"
+                                    style="width: 48px; height: 48px"
+                                ></div>
+                                <div class="showcase-spacing-label">
+                                    48px<br />Section
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="concept" id="layout">
+                    <h3 class="concept-heading">Layout</h3>
+                    <p class="concept-desc">
+                        Layout defines how content is contained and positioned
+                        on the page. A max-width container with responsive page
+                        margins ensures content never stretches too wide or sits
+                        too close to the viewport edge, maintaining readability
+                        and visual balance.
+                    </p>
+                    <div class="concept-showcase">
+                        <div class="grid-demo">
+                            <div class="grid-demo-col span-12">
+                                12 columns — full width
+                            </div>
+                            <div class="grid-demo-col span-6">6</div>
+                            <div class="grid-demo-col span-6">6</div>
+                            <div class="grid-demo-col span-4">4</div>
+                            <div class="grid-demo-col span-4">4</div>
+                            <div class="grid-demo-col span-4">4</div>
+                            <div class="grid-demo-col span-3">3</div>
+                            <div class="grid-demo-col span-3">3</div>
+                            <div class="grid-demo-col span-3">3</div>
+                            <div class="grid-demo-col span-3">3</div>
+                        </div>
+                        <div class="meta-pills">
+                            <span class="meta-pill"
+                                ><strong>Max width:</strong> 1400px</span
+                            >
+                            <span class="meta-pill"
+                                ><strong>Mobile:</strong> 24px margin</span
+                            >
+                            <span class="meta-pill"
+                                ><strong>Tablet:</strong> 32px margin</span
+                            >
+                            <span class="meta-pill"
+                                ><strong>Desktop:</strong> 40px margin</span
+                            >
+                        </div>
+                    </div>
+                </div>
+
+                <div class="concept" id="elevation">
+                    <h3 class="concept-heading">Elevation</h3>
+                    <p class="concept-desc">
+                        Elevation creates depth hierarchy through box shadows.
+                        Lower levels sit flush with the page for inline
+                        elements, while higher levels lift content above the
+                        surface for overlays, drawers, and modals — mimicking
+                        the physical layering users already understand.
+                    </p>
+                    <div class="concept-showcase">
+                        <div class="elevation-grid">
+                            <div class="elevation-card elevation-sm">
+                                <div class="elevation-card-label">
+                                    SM — Resting
+                                </div>
+                                <div class="elevation-card-title">
+                                    Card surfaces
+                                </div>
+                                <div class="elevation-card-meta">
+                                    Default state for cards, list items,
+                                    containers.
+                                </div>
+                                <div class="elevation-card-value">
+                                    0 1px 2px rgba(0,0,0,0.05)
+                                </div>
+                            </div>
+                            <div class="elevation-card elevation-md">
+                                <div class="elevation-card-label">
+                                    MD — Raised
+                                </div>
+                                <div class="elevation-card-title">
+                                    Dropdowns
+                                </div>
+                                <div class="elevation-card-meta">
+                                    Hovered cards, select menus, popovers.
+                                </div>
+                                <div class="elevation-card-value">
+                                    0 4px 6px rgba(0,0,0,0.1)
+                                </div>
+                            </div>
+                            <div class="elevation-card elevation-lg">
+                                <div class="elevation-card-label">
+                                    LG — Floating
+                                </div>
+                                <div class="elevation-card-title">Tooltips</div>
+                                <div class="elevation-card-meta">
+                                    Notifications, toasts, sticky headers.
+                                </div>
+                                <div class="elevation-card-value">
+                                    0 10px 15px rgba(0,0,0,0.1)
+                                </div>
+                            </div>
+                            <div class="elevation-card elevation-xl">
+                                <div class="elevation-card-label">
+                                    XL — Overlay
+                                </div>
+                                <div class="elevation-card-title">Drawers</div>
+                                <div class="elevation-card-meta">
+                                    Side panels, bottom sheets, dialogs.
+                                </div>
+                                <div class="elevation-card-value">
+                                    0 20px 25px rgba(0,0,0,0.15)
+                                </div>
+                            </div>
+                            <div class="elevation-card elevation-2xl">
+                                <div class="elevation-card-label">
+                                    2XL — Top
+                                </div>
+                                <div class="elevation-card-title">Modals</div>
+                                <div class="elevation-card-meta">
+                                    Full-screen modals, alert dialogs.
+                                </div>
+                                <div class="elevation-card-value">
+                                    0 25px 50px rgba(0,0,0,0.25)
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="concept" id="corner-radius">
+                    <h3 class="concept-heading">Corner Radius</h3>
+                    <p class="concept-desc">
+                        Corner radius tokens control the softness of element
+                        edges. Smaller radii suit inputs and inline elements,
+                        larger radii define cards and panels, and the full
+                        radius creates pills, avatars, and badges. Consistent
+                        radii create a unified visual language across the
+                        interface.
+                    </p>
+                    <div class="concept-showcase">
+                        <div class="radius-demo-grid">
+                            <div class="radius-demo-card">
+                                <div
+                                    class="radius-demo-shape"
+                                    style="border-radius: var(--radius-sm)"
+                                >
+                                    SM
+                                </div>
+                                <div class="radius-demo-label">Small</div>
+                                <div class="radius-demo-value">
+                                    0.25rem (4px)
+                                </div>
+                            </div>
+                            <div class="radius-demo-card">
+                                <div
+                                    class="radius-demo-shape"
+                                    style="border-radius: var(--radius-md)"
+                                >
+                                    MD
+                                </div>
+                                <div class="radius-demo-label">Medium</div>
+                                <div class="radius-demo-value">
+                                    0.5rem (8px)
+                                </div>
+                            </div>
+                            <div class="radius-demo-card">
+                                <div
+                                    class="radius-demo-shape"
+                                    style="border-radius: var(--radius-lg)"
+                                >
+                                    LG
+                                </div>
+                                <div class="radius-demo-label">Large</div>
+                                <div class="radius-demo-value">
+                                    0.75rem (12px)
+                                </div>
+                            </div>
+                            <div class="radius-demo-card">
+                                <div
+                                    class="radius-demo-shape"
+                                    style="border-radius: var(--radius-xl)"
+                                >
+                                    XL
+                                </div>
+                                <div class="radius-demo-label">Extra Large</div>
+                                <div class="radius-demo-value">1rem (16px)</div>
+                            </div>
+                            <div class="radius-demo-card">
+                                <div
+                                    class="radius-demo-shape"
+                                    style="border-radius: var(--radius-2xl)"
+                                >
+                                    2XL
+                                </div>
+                                <div class="radius-demo-label">2X Large</div>
+                                <div class="radius-demo-value">
+                                    1.5rem (24px)
+                                </div>
+                            </div>
+                            <div class="radius-demo-card">
+                                <div
+                                    class="radius-demo-shape"
+                                    style="border-radius: var(--radius-full)"
+                                >
+                                    Full
+                                </div>
+                                <div class="radius-demo-label">Full</div>
+                                <div class="radius-demo-value">
+                                    9999px (pill)
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="concept" id="motion-animation">
+                    <h3 class="concept-heading">Motion & Animation</h3>
+                    <p class="concept-desc">
+                        Motion brings the interface to life — guiding attention,
+                        communicating state changes, and creating a sense of
+                        polish. Every animation in this system shares a common
+                        easing curve and timing scale so that movements feel
+                        unified and intentional rather than random or jarring.
+                    </p>
+                    <div class="concept-showcase">
+                        <div style="margin-bottom: 1.5rem">
+                            <div
+                                class="label-text"
+                                style="margin-bottom: 0.75rem"
+                            >
+                                Shared Easing & Durations
+                            </div>
+                            <div
+                                class="table-container"
+                                style="margin-bottom: 1rem"
+                            >
+                                <table class="table" style="font-size: 13px">
+                                    <tr>
+                                        <th>Token</th>
+                                        <th>Value</th>
+                                        <th>Usage</th>
+                                    </tr>
+                                    <tr>
+                                        <td>--ease-spring</td>
+                                        <td>cubic-bezier(0.2, 0.8, 0.2, 1)</td>
+                                        <td>All enter/exit curves</td>
+                                    </tr>
+                                    <tr>
+                                        <td>--duration-fast</td>
+                                        <td>200ms</td>
+                                        <td>
+                                            Micro-interactions (toggle,
+                                            checkbox)
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>--duration-normal</td>
+                                        <td>300ms</td>
+                                        <td>
+                                            Standard transitions (hover, focus)
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>--duration-slow</td>
+                                        <td>500ms</td>
+                                        <td>
+                                            Overlay transitions (modal,
+                                            dropdown)
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>--duration-slower</td>
+                                        <td>800ms</td>
+                                        <td>
+                                            Page-level reveals, hero entrance
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="concept">
+                    <h3 class="concept-heading">
+                        1. Fade-In Up — Hero Entrance
+                    </h3>
+                    <p class="concept-desc">
+                        Elements translate 30px upward while fading from
+                        transparent to opaque. Staggered delays create a
+                        cinematic reveal sequence that leads the eye through
+                        content hierarchy. Used for hero text, labels, CTAs, and
+                        any first-impression content.
+                    </p>
+                    <div class="concept-showcase">
+                        <div class="anim-demo-wrapper">
+                            <button
+                                class="anim-replay-btn"
+                                onclick="replayAnim(this)"
+                            >
+                                <iconify-icon
+                                    icon="solar:play-bold"
+                                ></iconify-icon>
+                                Replay
+                            </button>
+                            <div class="component-example anim-demo-stage">
+                                <div
+                                    class="animate-fade-in-up delay-1"
+                                    style="
+                                        font-size: 11px;
+                                        font-weight: 700;
+                                        text-transform: uppercase;
+                                        letter-spacing: 0.05em;
+                                        color: var(--color-brand-muted);
+                                        margin-bottom: 0.5rem;
+                                    "
+                                >
+                                    Label — delay-1
+                                </div>
+                                <div
+                                    class="animate-fade-in-up delay-2"
+                                    style="
+                                        font-family: var(--font-heading);
+                                        font-size: 1.5rem;
+                                        font-weight: 700;
+                                        margin-bottom: 0.5rem;
+                                    "
+                                >
+                                    Heading — delay-2
+                                </div>
+                                <div
+                                    class="animate-fade-in-up delay-3"
+                                    style="
+                                        font-size: 14px;
+                                        color: var(--color-brand-muted);
+                                        margin-bottom: 0.75rem;
+                                    "
+                                >
+                                    Body text fades in third — delay-3
+                                </div>
+                                <div class="animate-fade-in-up delay-4">
+                                    <button class="btn btn-primary">
+                                        <span class="btn-inner"
+                                            >CTA — delay-4</span
+                                        >
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="component-code">
+                            @keyframes fadeInUp { from { opacity: 0; transform:
+                            translateY(30px); } to { opacity: 1; transform:
+                            translateY(0); } }<br /><br />.animate-fade-in-up {
+                            animation: fadeInUp 0.8s var(--ease-spring)
+                            forwards; opacity: 0; }<br />.delay-1 {
+                            animation-delay: 0.1s; } through .delay-5 {
+                            animation-delay: 0.7s; }
+                        </div>
+                    </div>
+                </div>
+
+                <div class="concept">
+                    <h3 class="concept-heading">2. Stagger Children</h3>
+                    <p class="concept-desc">
+                        Automatically applies the fade-in-up animation to every
+                        direct child with incrementing delays (70ms apart).
+                        Ideal for card grids, tag lists, and any collection of
+                        items that should appear to cascade into view rather
+                        than pop in simultaneously.
+                    </p>
+                    <div class="concept-showcase">
+                        <div class="anim-demo-wrapper">
+                            <button
+                                class="anim-replay-btn"
+                                onclick="replayAnim(this)"
+                            >
+                                <iconify-icon
+                                    icon="solar:play-bold"
+                                ></iconify-icon>
+                                Replay
+                            </button>
+                            <div class="component-example anim-demo-stage">
+                                <div
+                                    class="stagger-in"
+                                    style="
+                                        display: flex;
+                                        gap: 0.75rem;
+                                        flex-wrap: wrap;
+                                    "
+                                >
+                                    <div
+                                        class="card"
+                                        style="
+                                            flex: 1 1 120px;
+                                            min-width: 120px;
+                                            text-align: center;
+                                            padding: 1.25rem;
+                                        "
+                                    >
+                                        Card 1
+                                    </div>
+                                    <div
+                                        class="card"
+                                        style="
+                                            flex: 1 1 120px;
+                                            min-width: 120px;
+                                            text-align: center;
+                                            padding: 1.25rem;
+                                        "
+                                    >
+                                        Card 2
+                                    </div>
+                                    <div
+                                        class="card"
+                                        style="
+                                            flex: 1 1 120px;
+                                            min-width: 120px;
+                                            text-align: center;
+                                            padding: 1.25rem;
+                                        "
+                                    >
+                                        Card 3
+                                    </div>
+                                    <div
+                                        class="card"
+                                        style="
+                                            flex: 1 1 120px;
+                                            min-width: 120px;
+                                            text-align: center;
+                                            padding: 1.25rem;
+                                        "
+                                    >
+                                        Card 4
+                                    </div>
+                                    <div
+                                        class="card"
+                                        style="
+                                            flex: 1 1 120px;
+                                            min-width: 120px;
+                                            text-align: center;
+                                            padding: 1.25rem;
+                                        "
+                                    >
+                                        Card 5
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="component-code">
+                            .stagger-in > * { animation: fadeInUp 0.6s
+                            var(--ease-spring) forwards; opacity: 0; }<br />.stagger-in
+                            > *:nth-child(n) { animation-delay: calc(0.05s + (n
+                            - 1) * 0.07s); }
+                        </div>
+                    </div>
+                </div>
+
+                <div class="concept">
+                    <h3 class="concept-heading">3. Section Reveal on Scroll</h3>
+                    <p class="concept-desc">
+                        Sections start invisible and translated 30px down, then
+                        animate into view when they enter the viewport via
+                        IntersectionObserver. Once revealed, the observer
+                        disconnects so the animation never repeats. This is the
+                        primary page-scroll animation.
+                    </p>
+                    <div class="concept-showcase">
+                        <div class="anim-demo-wrapper">
+                            <button
+                                class="anim-replay-btn"
+                                onclick="replayAnim(this)"
+                            >
+                                <iconify-icon
+                                    icon="solar:play-bold"
+                                ></iconify-icon>
+                                Replay
+                            </button>
+                            <div class="component-example anim-demo-stage">
+                                <div
+                                    class="animate-fade-in-up delay-2"
+                                    style="
+                                        border: 2px dashed var(--color-accent);
+                                        border-radius: var(--radius-md);
+                                        padding: 1.5rem;
+                                        text-align: center;
+                                    "
+                                >
+                                    <div
+                                        style="
+                                            font-size: 11px;
+                                            font-weight: 700;
+                                            text-transform: uppercase;
+                                            letter-spacing: 0.05em;
+                                            color: var(--color-accent);
+                                            margin-bottom: 0.5rem;
+                                        "
+                                    >
+                                        This box fades in
+                                    </div>
+                                    <div
+                                        style="
+                                            font-size: 13px;
+                                            color: var(--color-brand-muted);
+                                        "
+                                    >
+                                        Simulates a section-reveal triggered by
+                                        IntersectionObserver
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="component-code">
+                            .section-reveal { opacity: 0; transform:
+                            translateY(30px); transition: opacity
+                            var(--duration-slower) var(--ease-spring), transform
+                            var(--duration-slower) var(--ease-spring); }<br />.section-reveal.revealed
+                            { opacity: 1; transform: translateY(0); }
+                        </div>
+                    </div>
+                </div>
+
+                <div class="concept">
+                    <h3 class="concept-heading">4. Nav Link Underline</h3>
+                    <p class="concept-desc">
+                        A pseudo-element underline grows from left to right on
+                        hover, creating a subtle but satisfying feedback loop.
+                        The width transition uses the standard duration and a
+                        linear easing for a clean mechanical feel.
+                    </p>
+                    <div class="concept-showcase">
+                        <div class="component-example">
+                            <div style="display: flex; gap: 2rem">
+                                <a
+                                    href="#motion-animation"
+                                    class="nav-link"
+                                    style="
+                                        position: relative;
+                                        font-size: 0.875rem;
+                                        font-weight: 500;
+                                        color: var(--color-brand-muted);
+                                    "
+                                    >Hover me</a
+                                >
+                                <a
+                                    href="#motion-animation"
+                                    class="nav-link"
+                                    style="
+                                        position: relative;
+                                        font-size: 0.875rem;
+                                        font-weight: 500;
+                                        color: var(--color-brand-muted);
+                                    "
+                                    >And me</a
+                                >
+                                <a
+                                    href="#motion-animation"
+                                    class="nav-link"
+                                    style="
+                                        position: relative;
+                                        font-size: 0.875rem;
+                                        font-weight: 500;
+                                        color: var(--color-brand-muted);
+                                    "
+                                    >Also me</a
+                                >
+                            </div>
+                        </div>
+                        <div class="component-code">
+                            .nav-link::after { content: ""; position: absolute;
+                            bottom: -2px; left: 0; width: 0; height: 1px;
+                            background: var(--color-brand-dark); transition:
+                            width var(--duration-normal) ease; }<br />.nav-link:hover::after
+                            { width: 100%; }
+                        </div>
+                    </div>
+                </div>
+
+                <div class="concept">
+                    <h3 class="concept-heading">
+                        5. Image Hover — Scale & Reveal
+                    </h3>
+                    <p class="concept-desc">
+                        Images gently scale up (1.04x) on hover while an overlay
+                        fades in with backdrop blur. The slow duration (800ms)
+                        and spring easing make the effect feel organic rather
+                        than mechanical. Used for portfolio cards, gallery
+                        items, and feature images.
+                    </p>
+                    <div class="concept-showcase">
+                        <div class="component-example">
+                            <div
+                                class="artwork-card"
+                                style="max-width: 300px; cursor: pointer"
+                            >
+                                <div
+                                    style="
+                                        aspect-ratio: 4/3;
+                                        border-radius: var(--radius-lg);
+                                        overflow: hidden;
+                                        background: #e4e4e7;
+                                        position: relative;
+                                    "
+                                >
+                                    <div
+                                        class="artwork-img"
+                                        style="
+                                            width: 100%;
+                                            height: 100%;
+                                            background: linear-gradient(
+                                                135deg,
+                                                #e4e4e7 0%,
+                                                #d4d4d8 50%,
+                                                #a1a1aa 100%
+                                            );
+                                            display: flex;
+                                            align-items: center;
+                                            justify-content: center;
+                                            font-size: 13px;
+                                            color: var(--color-brand-muted);
+                                        "
+                                    >
+                                        Image
+                                    </div>
+                                    <div
+                                        class="artwork-overlay"
+                                        style="
+                                            position: absolute;
+                                            inset: 0;
+                                            background: rgba(0, 0, 0, 0.4);
+                                            backdrop-filter: blur(4px);
+                                            display: flex;
+                                            align-items: center;
+                                            justify-content: center;
+                                        "
+                                    >
+                                        <span
+                                            style="
+                                                color: #fff;
+                                                font-size: 13px;
+                                                font-weight: 500;
+                                            "
+                                            >View Project</span
+                                        >
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="component-code">
+                            .artwork-card .artwork-img { transition: transform
+                            var(--duration-slower) var(--ease-spring); }<br />.artwork-card:hover
+                            .artwork-img { transform: scale(1.04); }<br />.artwork-card
+                            .artwork-overlay { opacity: 0; transition: opacity
+                            var(--duration-slow) var(--ease-spring); }<br />.artwork-card:hover
+                            .artwork-overlay { opacity: 1; }
+                        </div>
+                    </div>
+                </div>
+
+                <div class="concept">
+                    <h3 class="concept-heading">
+                        6. Modal — Slide Up with Backdrop
+                    </h3>
+                    <p class="concept-desc">
+                        The backdrop fades from transparent to a blurred dark
+                        overlay while the modal content slides up 20px and fades
+                        in. The two-phase transition (opacity for the backdrop,
+                        transform + opacity for content) creates a layered sense
+                        of depth.
+                    </p>
+                    <div class="concept-showcase">
+                        <div class="component-example">
+                            <button
+                                class="btn btn-primary modal-trigger"
+                                onclick="
+                                    document
+                                        .getElementById('demo-modal')
+                                        .classList.add('active')
+                                "
+                            >
+                                <span class="btn-inner">Open Modal Demo</span>
+                            </button>
+                        </div>
+                        <div class="component-code">
+                            .modal-overlay { opacity: 0; visibility: hidden;
+                            transition: opacity var(--duration-normal) ease;
+                            }<br />.modal-overlay.active { opacity: 1;
+                            visibility: visible; }<br />.modal { transform:
+                            translateY(20px); transition: transform
+                            var(--duration-normal) var(--ease-spring); }<br />.modal-overlay.active
+                            .modal { transform: translateY(0); }
+                        </div>
+                    </div>
+                </div>
+
+                <div class="concept">
+                    <h3 class="concept-heading">7. Tag Pill Hover</h3>
+                    <p class="concept-desc">
+                        Tag pills invert their colors on hover — light
+                        background becomes dark, dark text becomes white. The
+                        all property transition ensures both background and
+                        color animate in sync for a smooth, unified state
+                        change.
+                    </p>
+                    <div class="concept-showcase">
+                        <div class="component-example">
+                            <div
+                                style="
+                                    display: flex;
+                                    gap: 0.5rem;
+                                    flex-wrap: wrap;
+                                "
+                            >
+                                <span
+                                    class="tag-pill"
+                                    style="
+                                        padding: 0.375rem 0.75rem;
+                                        font-size: 12px;
+                                        font-weight: 500;
+                                        border: 1px solid #d4d4d8;
+                                        border-radius: var(--radius-full);
+                                        background: #fff;
+                                    "
+                                    >Brand Identity</span
+                                >
+                                <span
+                                    class="tag-pill"
+                                    style="
+                                        padding: 0.375rem 0.75rem;
+                                        font-size: 12px;
+                                        font-weight: 500;
+                                        border: 1px solid #d4d4d8;
+                                        border-radius: var(--radius-full);
+                                        background: #fff;
+                                    "
+                                    >Editorial</span
+                                >
+                                <span
+                                    class="tag-pill"
+                                    style="
+                                        padding: 0.375rem 0.75rem;
+                                        font-size: 12px;
+                                        font-weight: 500;
+                                        border: 1px solid #d4d4d8;
+                                        border-radius: var(--radius-full);
+                                        background: #fff;
+                                    "
+                                    >Typography</span
+                                >
+                                <span
+                                    class="tag-pill"
+                                    style="
+                                        padding: 0.375rem 0.75rem;
+                                        font-size: 12px;
+                                        font-weight: 500;
+                                        border: 1px solid #d4d4d8;
+                                        border-radius: var(--radius-full);
+                                        background: #fff;
+                                    "
+                                    >Motion</span
+                                >
+                            </div>
+                        </div>
+                        <div class="component-code">
+                            .tag-pill { transition: all var(--duration-normal)
+                            ease; cursor: pointer; }<br />.tag-pill:hover {
+                            background: var(--color-brand-dark); color: #fff; }
+                        </div>
+                    </div>
+                </div>
+
+                <div class="concept">
+                    <h3 class="concept-heading">8. Scroll Bounce Indicator</h3>
+                    <p class="concept-desc">
+                        A subtle vertical bounce animation (6px) that loops
+                        every 2 seconds, drawing the user's eye downward. Used
+                        sparingly for scroll-hint arrows and chevrons. The
+                        infinite loop and ease-in-out timing keep it gentle and
+                        non-distracting.
+                    </p>
+                    <div class="concept-showcase">
+                        <div class="anim-demo-wrapper">
+                            <button
+                                class="anim-replay-btn"
+                                onclick="replayAnim(this)"
+                            >
+                                <iconify-icon
+                                    icon="solar:play-bold"
+                                ></iconify-icon>
+                                Replay
+                            </button>
+                            <div
+                                class="component-example anim-demo-stage"
+                                style="text-align: center; padding: 2rem"
+                            >
+                                <div
+                                    class="scroll-indicator"
+                                    style="
+                                        display: inline-flex;
+                                        flex-direction: column;
+                                        align-items: center;
+                                        gap: 0.375rem;
+                                        color: var(--color-brand-muted);
+                                    "
+                                >
+                                    <span
+                                        style="
+                                            font-size: 10px;
+                                            text-transform: uppercase;
+                                            letter-spacing: 0.2em;
+                                            font-weight: 500;
+                                        "
+                                        >Scroll</span
+                                    >
+                                    <iconify-icon
+                                        icon="solar:alt-arrow-down-linear"
+                                        style="font-size: 1.25rem"
+                                    ></iconify-icon>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="component-code">
+                            @keyframes scrollBounce { 0%, 100% { transform:
+                            translateY(0); } 50% { transform: translateY(6px); }
+                            }<br />.scroll-indicator { animation: scrollBounce
+                            2s ease-in-out infinite; }
+                        </div>
+                    </div>
+                </div>
+
+                <div class="concept">
+                    <h3 class="concept-heading">9. Timeline Line Draw</h3>
+                    <p class="concept-desc">
+                        A vertical line animates its height from 0 to 100%,
+                        creating the illusion of being drawn on-screen.
+                        Triggered by IntersectionObserver when the timeline
+                        section enters the viewport. The spring easing gives it
+                        a natural deceleration.
+                    </p>
+                    <div class="concept-showcase">
+                        <div class="anim-demo-wrapper">
+                            <button
+                                class="anim-replay-btn"
+                                onclick="replayAnim(this)"
+                            >
+                                <iconify-icon
+                                    icon="solar:play-bold"
+                                ></iconify-icon>
+                                Replay
+                            </button>
+                            <div
+                                class="component-example anim-demo-stage"
+                                style="
+                                    padding: 1.5rem 1.5rem 1.5rem 2.5rem;
+                                    position: relative;
+                                "
+                            >
+                                <div
+                                    style="
+                                        position: absolute;
+                                        left: 1rem;
+                                        top: 0.5rem;
+                                        bottom: 0.5rem;
+                                        width: 2px;
+                                        background: #e4e4e7;
+                                    "
+                                >
+                                    <div
+                                        class="timeline-line"
+                                        style="
+                                            width: 100%;
+                                            background: var(--color-brand-dark);
+                                        "
+                                    ></div>
+                                </div>
+                                <div style="margin-bottom: 1.5rem">
+                                    <div
+                                        style="
+                                            font-size: 11px;
+                                            font-weight: 700;
+                                            text-transform: uppercase;
+                                            letter-spacing: 0.05em;
+                                            color: var(--color-brand-muted);
+                                        "
+                                    >
+                                        Phase 01
+                                    </div>
+                                    <div
+                                        style="
+                                            font-family: var(--font-heading);
+                                            font-weight: 600;
+                                            margin-top: 0.25rem;
+                                        "
+                                    >
+                                        Step One
+                                    </div>
+                                </div>
+                                <div>
+                                    <div
+                                        style="
+                                            font-size: 11px;
+                                            font-weight: 700;
+                                            text-transform: uppercase;
+                                            letter-spacing: 0.05em;
+                                            color: var(--color-brand-muted);
+                                        "
+                                    >
+                                        Phase 02
+                                    </div>
+                                    <div
+                                        style="
+                                            font-family: var(--font-heading);
+                                            font-weight: 600;
+                                            margin-top: 0.25rem;
+                                        "
+                                    >
+                                        Step Two
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="component-code">
+                            @keyframes drawLine { from { height: 0; } to {
+                            height: 100%; } }<br />.timeline-line { animation:
+                            drawLine 1.5s var(--ease-spring) forwards; }
+                        </div>
+                    </div>
+                </div>
+
+                <div class="concept">
+                    <h3 class="concept-heading">10. Reduced Motion</h3>
+                    <p class="concept-desc">
+                        All animations respect the prefers-reduced-motion media
+                        query. When the user has enabled reduced motion in their
+                        OS settings, every keyframe animation is disabled and
+                        elements are shown in their final state immediately.
+                        This is a non-negotiable accessibility requirement.
+                    </p>
+                    <div class="concept-showcase">
+                        <div class="component-code" style="margin-top: 0">
+                            @media (prefers-reduced-motion: reduce) {<br />&nbsp;&nbsp;.section-reveal
+                            { opacity: 1; transform: none; transition: none;
+                            }<br />&nbsp;&nbsp;.animate-fade-in-up { animation:
+                            none; opacity: 1; transform: none; }<br />&nbsp;&nbsp;.stagger-in
+                            > * { animation: none; opacity: 1; transform: none;
+                            }<br />&nbsp;&nbsp;.timeline-line { animation: none;
+                            height: 100%; }<br />&nbsp;&nbsp;.scroll-indicator {
+                            animation: none; }<br />}
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="section page-container section-reveal" id="tokens">
+                <h2 class="section-heading">Design Tokens</h2>
+                <p class="section-intro">
+                    Design tokens are the single source of truth for visual
+                    decisions. They exist in three layers — Global, Semantic,
+                    and Component — so that raw values, meaningful aliases, and
+                    scoped overrides each live at the right level of
+                    abstraction.
+                </p>
+
+                <div class="concept" id="global-tokens">
+                    <h3 class="concept-heading">Global Tokens</h3>
+                    <p class="concept-desc">
+                        Raw, primitive values that serve as the palette from
+                        which all other tokens derive. These are never used
+                        directly in components — they feed into semantic and
+                        component tokens instead.
+                    </p>
+                    <div class="concept-showcase">
+                        <table class="token-table">
+                            <tr>
+                                <th>Token</th>
+                                <th>Value</th>
+                            </tr>
+                            <tr>
+                                <td>--color-accent</td>
+                                <td>#ED722E</td>
+                            </tr>
+                            <tr>
+                                <td>--color-brand-dark</td>
+                                <td>#181617</td>
+                            </tr>
+                            <tr>
+                                <td>--color-brand-muted</td>
+                                <td>#71717A</td>
+                            </tr>
+                            <tr>
+                                <td>--color-brand-light</td>
+                                <td>#A1A1AA</td>
+                            </tr>
+                            <tr>
+                                <td>--color-brand-bg</td>
+                                <td>#F5F5F5</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="concept" id="semantic-tokens">
+                    <h3 class="concept-heading">Semantic Tokens</h3>
+                    <p class="concept-desc">
+                        Alias tokens that map global values to meaningful names,
+                        describing the purpose rather than the value. When the
+                        palette changes, only the mapping needs to update —
+                        components stay untouched.
+                    </p>
+                    <div class="concept-showcase">
+                        <table class="token-table">
+                            <tr>
+                                <th>Token</th>
+                                <th>Maps To</th>
+                            </tr>
+                            <tr>
+                                <td>--surface-primary</td>
+                                <td>--color-brand-bg</td>
+                            </tr>
+                            <tr>
+                                <td>--text-primary</td>
+                                <td>--color-brand-dark</td>
+                            </tr>
+                            <tr>
+                                <td>--text-secondary</td>
+                                <td>--color-brand-muted</td>
+                            </tr>
+                            <tr>
+                                <td>--text-tertiary</td>
+                                <td>--color-brand-light</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="concept" id="component-tokens">
+                    <h3 class="concept-heading">Component Tokens</h3>
+                    <p class="concept-desc">
+                        Component-scoped tokens that allow individual components
+                        to be themed without side effects. Each component owns
+                        its tokens, making overrides predictable and isolated.
+                    </p>
+                    <div class="concept-showcase">
+                        <table class="token-table">
+                            <tr>
+                                <th>Component</th>
+                                <th>Token</th>
+                            </tr>
+                            <tr>
+                                <td>Button</td>
+                                <td>--button-bg, --button-text</td>
+                            </tr>
+                            <tr>
+                                <td>Card</td>
+                                <td>--card-bg, --card-border</td>
+                            </tr>
+                            <tr>
+                                <td>Input</td>
+                                <td>--input-border, --input-focus</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+            <section
+                class="section page-container section-reveal"
+                id="components"
+            >
+                <h2 class="section-heading">Ready-to-use UI building blocks</h2>
+                <p class="section-intro">
+                    Components are self-contained, composable pieces of
+                    interface built on the foundations above. Each one ships
+                    with sensible defaults, accessible markup, and consistent
+                    interaction patterns — ready to drop into any page without
+                    additional styling.
+                </p>
+
+                <div class="concept" id="button">
+                    <h3 class="concept-heading">Button</h3>
+                    <p class="concept-desc">
+                        Primary actions, secondary options, and outlined
+                        alternatives. All three variants share the same sizing,
+                        pill shape, and smooth hover transitions to maintain
+                        visual consistency across every context.
+                    </p>
+                    <div class="concept-showcase">
+                        <div class="component-example">
+                            <div class="flex-row">
+                                <button class="btn btn-primary">
+                                    <span class="btn-inner">Primary</span>
+                                </button>
+                                <button class="btn btn-secondary">
+                                    <span class="btn-inner">Secondary</span>
+                                </button>
+                                <button class="btn btn-outlined">
+                                    <span class="btn-inner">Outlined</span>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="component-code">
+                            .btn .btn-primary / .btn-secondary / .btn-outlined
+                        </div>
+                    </div>
+                </div>
+
+                <div class="concept" id="input">
+                    <h3 class="concept-heading">Input</h3>
+                    <p class="concept-desc">
+                        Text input with clear placeholder styling, a focus ring
+                        that matches the brand, and smooth border transitions.
+                        The baseline for all form fields in the system.
+                    </p>
+                    <div class="concept-showcase">
+                        <div class="component-example">
+                            <input
+                                type="text"
+                                class="input"
+                                placeholder="Enter your email"
+                            />
+                        </div>
+                        <div class="component-code">
+                            .input — includes focus ring and transition
+                        </div>
+                    </div>
+                </div>
+
+                <div class="concept" id="select">
+                    <h3 class="concept-heading">Select</h3>
+                    <p class="concept-desc">
+                        Dropdown select that mirrors input styling for visual
+                        consistency. Native browser behavior enhanced with
+                        design tokens for borders, radius, and focus states.
+                    </p>
+                    <div class="concept-showcase">
+                        <div class="component-example">
+                            <select class="select">
+                                <option>Option 1</option>
+                                <option>Option 2</option>
+                                <option>Option 3</option>
+                            </select>
+                        </div>
+                        <div class="component-code">
+                            .select — matches input styling
+                        </div>
+                    </div>
+                </div>
+
+                <div class="concept" id="checkbox-radio-switch">
+                    <h3 class="concept-heading">Checkbox / Radio / Switch</h3>
+                    <p class="concept-desc">
+                        Form controls with custom appearance using
+                        <code>appearance: none</code>, providing full control
+                        over checked states, colors, and transitions while
+                        preserving native keyboard accessibility.
+                    </p>
+                    <div class="concept-showcase">
+                        <div class="component-example">
+                            <div
+                                style="
+                                    display: grid;
+                                    grid-template-columns: repeat(3, 1fr);
+                                    gap: 1.5rem;
+                                "
+                            >
+                                <div>
+                                    <div class="checkbox-wrapper">
+                                        <input
+                                            type="checkbox"
+                                            class="checkbox"
+                                            checked
+                                        />
+                                        <span class="body-text">Checkbox</span>
+                                    </div>
+                                    <div class="checkbox-wrapper">
+                                        <input
+                                            type="checkbox"
+                                            class="checkbox"
+                                        />
+                                        <span class="body-text">Unchecked</span>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div class="radio-wrapper">
+                                        <input
+                                            type="radio"
+                                            class="radio"
+                                            name="radio"
+                                            checked
+                                        />
+                                        <span class="body-text">Radio</span>
+                                    </div>
+                                    <div class="radio-wrapper">
+                                        <input
+                                            type="radio"
+                                            class="radio"
+                                            name="radio"
+                                        />
+                                        <span class="body-text"
+                                            >Unselected</span
+                                        >
+                                    </div>
+                                </div>
+                                <div>
+                                    <div
+                                        class="switch checked"
+                                        onclick="
+                                            this.classList.toggle('checked')
+                                        "
+                                    ></div>
+                                    <div
+                                        class="switch"
+                                        style="margin-top: 0.75rem"
+                                        onclick="
+                                            this.classList.toggle('checked')
+                                        "
+                                    ></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="component-code">
+                            .checkbox / .radio / .switch — custom appearance
+                            with appearance: none
+                        </div>
+                    </div>
+                </div>
+
+                <div class="concept" id="card">
+                    <h3 class="concept-heading">Card</h3>
+                    <p class="concept-desc">
+                        Flexible containers for grouped content. Cards combine
+                        border, radius, and shadow to create visually distinct
+                        content blocks without hover effects.
+                    </p>
+                    <div class="concept-showcase">
+                        <div class="component-example">
+                            <div
+                                style="
+                                    display: grid;
+                                    grid-template-columns: repeat(
+                                        auto-fit,
+                                        minmax(220px, 1fr)
+                                    );
+                                    gap: 1rem;
+                                "
+                            >
+                                <div class="card">
+                                    <div class="card-title">Basic Card</div>
+                                    <p class="card-desc">
+                                        A simple card with a title and
+                                        supporting description text.
+                                    </p>
+                                </div>
+                                <div class="card">
+                                    <div class="hierarchy-row">
+                                        <div class="icon-box">
+                                            <iconify-icon
+                                                icon="solar:star-bold-duotone"
+                                            ></iconify-icon>
+                                        </div>
+                                        <div
+                                            class="card-title"
+                                            style="margin-bottom: 0"
+                                        >
+                                            Feature Card
+                                        </div>
+                                    </div>
+                                    <p class="card-desc">
+                                        A card with a leading icon for feature
+                                        highlights or service descriptions.
+                                    </p>
+                                </div>
+                                <div class="card">
+                                    <div class="card-title">Action Card</div>
+                                    <p class="card-desc">
+                                        A card with an embedded action to drive
+                                        user engagement.
+                                    </p>
+                                    <button
+                                        class="btn btn-primary"
+                                        style="margin-top: 1rem"
+                                    >
+                                        <span class="btn-inner"
+                                            >Learn More</span
+                                        >
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="component-code">
+                            .card / .card-title / .card-desc — no hover effects,
+                            clean static containers
+                        </div>
+                    </div>
+                </div>
+
+                <div class="concept" id="table">
+                    <h3 class="concept-heading">Table</h3>
+                    <p class="concept-desc">
+                        Data display components for tabular content. Tables use
+                        bordered containers with consistent header styling and
+                        readable row formatting.
+                    </p>
+                    <div class="concept-showcase">
+                        <div class="component-example">
+                            <div
+                                class="label-text"
+                                style="margin-bottom: 0.75rem"
+                            >
+                                Basic Table
+                            </div>
+                            <div class="table-container">
+                                <table class="table">
+                                    <tr>
+                                        <th>Name</th>
+                                        <th>Role</th>
+                                        <th>Status</th>
+                                    </tr>
+                                    <tr>
+                                        <td>Alice Johnson</td>
+                                        <td>Designer</td>
+                                        <td>Active</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Bob Smith</td>
+                                        <td>Developer</td>
+                                        <td>Active</td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="component-example">
+                            <div
+                                class="label-text"
+                                style="margin-bottom: 0.75rem"
+                            >
+                                Striped Table
+                            </div>
+                            <div class="table-container">
+                                <table class="table">
+                                    <tr>
+                                        <th>Product</th>
+                                        <th>Price</th>
+                                        <th>Stock</th>
+                                    </tr>
+                                    <tr class="striped">
+                                        <td>Widget A</td>
+                                        <td>$29.00</td>
+                                        <td>In stock</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Widget B</td>
+                                        <td>$49.00</td>
+                                        <td>Low stock</td>
+                                    </tr>
+                                    <tr class="striped">
+                                        <td>Widget C</td>
+                                        <td>$19.00</td>
+                                        <td>Out of stock</td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="component-example">
+                            <div
+                                class="label-text"
+                                style="margin-bottom: 0.75rem"
+                            >
+                                Compact Table
+                            </div>
+                            <div class="table-container">
+                                <table class="table" style="font-size: 13px">
+                                    <tr>
+                                        <th>Token</th>
+                                        <th>Value</th>
+                                        <th>Usage</th>
+                                    </tr>
+                                    <tr>
+                                        <td>--radius-sm</td>
+                                        <td>4px</td>
+                                        <td>Inputs, inline</td>
+                                    </tr>
+                                    <tr>
+                                        <td>--radius-md</td>
+                                        <td>8px</td>
+                                        <td>Cards, panels</td>
+                                    </tr>
+                                    <tr>
+                                        <td>--radius-lg</td>
+                                        <td>12px</td>
+                                        <td>Modals, dialogs</td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="component-code">
+                            .table-container / .table — bordered containers with
+                            consistent padding
+                        </div>
+                    </div>
+                </div>
+
+                <div class="concept" id="list">
+                    <h3 class="concept-heading">List</h3>
+                    <p class="concept-desc">
+                        List components for sequential content with icons,
+                        badges, or actions. Lists use an inline format with
+                        dividers and consistent spacing.
+                    </p>
+                    <div class="concept-showcase">
+                        <div
+                            style="
+                                display: grid;
+                                grid-template-columns: repeat(3, 1fr);
+                                gap: 1rem;
+                            "
+                        >
+                            <div
+                                class="component-example"
+                                style="margin-bottom: 0"
+                            >
+                                <div
+                                    class="label-text"
+                                    style="margin-bottom: 0.75rem"
+                                >
+                                    Basic List
+                                </div>
+                                <ul class="list">
+                                    <li class="list-item">
+                                        <span class="list-item-icon">✓</span>
+                                        Task completed
+                                    </li>
+                                    <li class="list-item">
+                                        <span class="list-item-icon">→</span>
+                                        Task in progress
+                                    </li>
+                                    <li class="list-item">
+                                        <span class="list-item-icon">○</span>
+                                        Task pending
+                                    </li>
+                                </ul>
+                            </div>
+                            <div
+                                class="component-example"
+                                style="margin-bottom: 0"
+                            >
+                                <div
+                                    class="label-text"
+                                    style="margin-bottom: 0.75rem"
+                                >
+                                    Icon List
+                                </div>
+                                <ul class="list">
+                                    <li class="list-item">
+                                        <iconify-icon
+                                            icon="solar:home-smile-bold-duotone"
+                                            style="
+                                                font-size: 1.25rem;
+                                                color: var(--color-accent);
+                                            "
+                                        ></iconify-icon>
+                                        Dashboard
+                                    </li>
+                                    <li class="list-item">
+                                        <iconify-icon
+                                            icon="solar:settings-bold-duotone"
+                                            style="
+                                                font-size: 1.25rem;
+                                                color: var(--color-accent);
+                                            "
+                                        ></iconify-icon>
+                                        Settings
+                                    </li>
+                                    <li class="list-item">
+                                        <iconify-icon
+                                            icon="solar:user-rounded-bold-duotone"
+                                            style="
+                                                font-size: 1.25rem;
+                                                color: var(--color-accent);
+                                            "
+                                        ></iconify-icon>
+                                        Profile
+                                    </li>
+                                </ul>
+                            </div>
+                            <div
+                                class="component-example"
+                                style="margin-bottom: 0"
+                            >
+                                <div
+                                    class="label-text"
+                                    style="margin-bottom: 0.75rem"
+                                >
+                                    List with Badges
+                                </div>
+                                <ul class="list">
+                                    <li class="list-item list-item-spread">
+                                        Production<span
+                                            class="badge badge-success"
+                                            >Live</span
+                                        >
+                                    </li>
+                                    <li class="list-item list-item-spread">
+                                        Staging<span class="badge badge-warning"
+                                            >Review</span
+                                        >
+                                    </li>
+                                    <li class="list-item list-item-spread">
+                                        Development<span class="badge"
+                                            >Draft</span
+                                        >
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="component-code">
+                            .list / .list-item / .list-item-icon — bordered
+                            containers with dividers
+                        </div>
+                    </div>
+                </div>
+
+                <div class="concept" id="tabs">
+                    <h3 class="concept-heading">Tabs</h3>
+                    <p class="concept-desc">
+                        Horizontal navigation tabs with an active state
+                        indicator via bottom border. Tabs let users switch
+                        between views without leaving the page, maintaining
+                        context while reducing clutter.
+                    </p>
+                    <div class="concept-showcase">
+                        <div class="component-example">
+                            <div class="tabs" data-tab-group="demo-tabs">
+                                <div class="tab active" data-tab="overview">
+                                    Overview
+                                </div>
+                                <div class="tab" data-tab="details">
+                                    Details
+                                </div>
+                                <div class="tab" data-tab="settings">
+                                    Settings
+                                </div>
+                            </div>
+                            <div
+                                data-tab-panel="overview"
+                                style="padding: 1rem 0.75rem"
+                            >
+                                <p class="body-text">
+                                    This is the overview panel. It provides a
+                                    high-level summary of the content, giving
+                                    users a quick understanding of what this
+                                    section covers before diving into specifics.
+                                </p>
+                            </div>
+                            <div
+                                data-tab-panel="details"
+                                style="display: none; padding: 1rem 0.75rem"
+                            >
+                                <p class="body-text">
+                                    The details panel contains granular
+                                    information. Here you'd find specifications,
+                                    metadata, dates, and any supporting data
+                                    that supports the overview above.
+                                </p>
+                            </div>
+                            <div
+                                data-tab-panel="settings"
+                                style="display: none; padding: 1rem 0.75rem"
+                            >
+                                <p class="body-text">
+                                    Settings allow users to configure
+                                    preferences. This panel would typically
+                                    contain toggles, selects, and input fields
+                                    for customizing behavior.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="component-code">
+                            .tabs / .tab / .tab.active — bottom border
+                            indicator<br />data-tab on each tab matches
+                            data-tab-panel on the corresponding content div
+                        </div>
+                    </div>
+                </div>
+
+                <div class="concept" id="modal">
+                    <h3 class="concept-heading">Modal</h3>
+                    <p class="concept-desc">
+                        Dialog overlays with backdrop blur and slide-up
+                        animation. Modals capture focus, block interaction with
+                        the page behind them, and dismiss on outside click or
+                        explicit close action.
+                    </p>
+                    <div class="concept-showcase">
+                        <div class="component-example">
+                            <div class="flex-row">
+                                <button
+                                    class="btn btn-primary modal-trigger"
+                                    onclick="
+                                        document
+                                            .getElementById('demo-modal')
+                                            .classList.add('active')
+                                    "
+                                >
+                                    <span class="btn-inner">Basic Modal</span>
+                                </button>
+                                <button
+                                    class="btn btn-secondary modal-trigger"
+                                    onclick="
+                                        document
+                                            .getElementById('confirm-modal')
+                                            .classList.add('active')
+                                    "
+                                >
+                                    <span class="btn-inner">Confirmation</span>
+                                </button>
+                                <button
+                                    class="btn btn-outlined modal-trigger"
+                                    onclick="
+                                        document
+                                            .getElementById('form-modal')
+                                            .classList.add('active')
+                                    "
+                                >
+                                    <span class="btn-inner">Form Modal</span>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="component-code">
+                            .modal-overlay / .modal — click outside or close
+                            button to dismiss
+                        </div>
+                    </div>
+                </div>
+
+                <div class="concept" id="alert-toast">
+                    <h3 class="concept-heading">Alert / Toast</h3>
+                    <p class="concept-desc">
+                        Feedback components for user actions and system states.
+                        Alerts inline with content use semantic colors and Solar
+                        icons; toasts float above the surface as temporary
+                        notifications.
+                    </p>
+                    <div class="concept-showcase">
+                        <div class="component-example">
+                            <div class="alert alert-success">
+                                <iconify-icon
+                                    icon="solar:check-circle-bold-duotone"
+                                ></iconify-icon>
+                                <span>Operation completed successfully</span>
+                            </div>
+                            <div class="alert alert-warning">
+                                <iconify-icon
+                                    icon="solar:danger-triangle-bold-duotone"
+                                ></iconify-icon>
+                                <span>Please review before continuing</span>
+                            </div>
+                            <div class="alert alert-error">
+                                <iconify-icon
+                                    icon="solar:close-circle-bold-duotone"
+                                ></iconify-icon>
+                                <span>Something went wrong</span>
+                            </div>
+                            <div class="alert alert-info">
+                                <iconify-icon
+                                    icon="solar:info-circle-bold-duotone"
+                                ></iconify-icon>
+                                <span>Additional information available</span>
+                            </div>
+                            <div class="alert alert-neutral">
+                                <iconify-icon
+                                    icon="solar:minimalistic-magnifer-bold-duotone"
+                                ></iconify-icon>
+                                <span
+                                    >General note or reference information</span
+                                >
+                            </div>
+                            <div class="toast" style="margin-top: 1rem">
+                                <iconify-icon
+                                    icon="solar:check-circle-bold-duotone"
+                                    style="color: var(--color-success-500)"
+                                ></iconify-icon>
+                                <span>Notification message</span>
+                            </div>
+                        </div>
+                        <div class="component-code">
+                            .alert .alert-success/warning/error/info / .toast —
+                            uses Solar icons from our icon set
+                        </div>
+                    </div>
+                </div>
+
+                <div class="concept" id="badge-tooltip-avatar">
+                    <h3 class="concept-heading">Badge / Tooltip / Avatar</h3>
+                    <p class="concept-desc">
+                        Small, focused UI elements for labels, contextual hints,
+                        and user representation. Each is minimal by design —
+                        they carry information without competing with primary
+                        content.
+                    </p>
+                    <div class="concept-showcase">
+                        <div class="component-example">
+                            <div class="flex-row-center">
+                                <span class="badge">New</span>
+                                <div class="tooltip-container">
+                                    <span class="spacer-dot">Hover me</span>
+                                    <div class="tooltip">Tooltip text here</div>
+                                </div>
+                                <div class="avatar">JD</div>
+                                <div class="avatar">
+                                    <img
+                                        src="https://i.pravatar.cc/100?img=1"
+                                        alt="Avatar"
+                                    />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="component-code">
+                            .badge / .tooltip-container / .avatar
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section
+                class="section page-container section-reveal"
+                id="patterns"
+            >
+                <h2 class="section-heading">Reusable solutions</h2>
+                <p class="section-intro">
+                    Patterns are proven solutions to recurring interface
+                    problems. They combine foundations and components into
+                    ready-made layouts that solve real user tasks — so teams
+                    don't reinvent the wheel for forms, navigation, and state
+                    management.
+                </p>
+
+                <div class="concept" id="grid-layout">
+                    <h3 class="concept-heading">Grid & Layout</h3>
+                    <p class="concept-desc">
+                        Our grid is built on an 8px base unit. All spacing,
+                        sizing, and breakpoints derive from multiples of 8 —
+                        creating a consistent visual rhythm across every screen
+                        size and density.
+                    </p>
+                    <div class="concept-showcase">
+                        <div style="margin-bottom: 1.5rem">
+                            <div
+                                class="label-text"
+                                style="margin-bottom: 0.75rem"
+                            >
+                                Base Unit: 8px
+                            </div>
+                            <div class="base-unit-demo">
+                                <div
+                                    class="base-unit-block"
+                                    style="width: 8px; height: 8px"
+                                ></div>
+                                <span class="base-unit-label">8px = 1x</span>
+                                <div
+                                    class="base-unit-block base-unit-sep"
+                                    style="width: 16px; height: 16px"
+                                ></div>
+                                <span class="base-unit-label">16px = 2x</span>
+                                <div
+                                    class="base-unit-block base-unit-sep"
+                                    style="width: 24px; height: 24px"
+                                ></div>
+                                <span class="base-unit-label">24px = 3x</span>
+                                <div
+                                    class="base-unit-block base-unit-sep"
+                                    style="width: 32px; height: 32px"
+                                ></div>
+                                <span class="base-unit-label">32px = 4x</span>
+                            </div>
+                        </div>
+
+                        <div class="label-text" style="margin-bottom: 0.75rem">
+                            Breakpoints
+                        </div>
+                        <div
+                            class="table-container"
+                            style="margin-bottom: 1.25rem"
+                        >
+                            <table class="table" style="font-size: 13px">
+                                <tr>
+                                    <th>Breakpoint</th>
+                                    <th>Width</th>
+                                    <th>Columns</th>
+                                    <th>Margin</th>
+                                </tr>
+                                <tr>
+                                    <td>Mobile</td>
+                                    <td>&lt; 640px</td>
+                                    <td>4</td>
+                                    <td>24px</td>
+                                </tr>
+                                <tr>
+                                    <td>Tablet</td>
+                                    <td>640–1023px</td>
+                                    <td>8</td>
+                                    <td>32px</td>
+                                </tr>
+                                <tr>
+                                    <td>Desktop</td>
+                                    <td>1024–1399px</td>
+                                    <td>12</td>
+                                    <td>40px</td>
+                                </tr>
+                                <tr>
+                                    <td>Wide</td>
+                                    <td>≥ 1400px</td>
+                                    <td>12</td>
+                                    <td>auto</td>
+                                </tr>
+                            </table>
+                        </div>
+
+                        <div class="label-text" style="margin-bottom: 0.75rem">
+                            Rules
+                        </div>
+                        <div class="grid-rule">
+                            <div class="grid-rule-num">1</div>
+                            <div>
+                                Gutters are always
+                                <strong>8px or 16px</strong> (1x or 2x base
+                                unit). Never arbitrary values.
+                            </div>
+                        </div>
+                        <div class="grid-rule">
+                            <div class="grid-rule-num">2</div>
+                            <div>
+                                Page margin scales by breakpoint —
+                                <strong>24px → 32px → 40px</strong>. Content
+                                never touches the edge.
+                            </div>
+                        </div>
+                        <div class="grid-rule">
+                            <div class="grid-rule-num">3</div>
+                            <div>
+                                Max content width is <strong>1400px</strong>,
+                                centered. Beyond that, margins grow.
+                            </div>
+                        </div>
+                        <div class="grid-rule">
+                            <div class="grid-rule-num">4</div>
+                            <div>
+                                All component padding, gaps, and margins must be
+                                a multiple of the
+                                <strong>8px base unit</strong>. Half-step (4px)
+                                allowed for icon alignment only.
+                            </div>
+                        </div>
+                        <div class="grid-rule">
+                            <div class="grid-rule-num">5</div>
+                            <div>
+                                Use <strong>border-box</strong> sizing. Borders
+                                draw inward — never let a 1px border break your
+                                8px rhythm.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="concept" id="forms">
+                    <h3 class="concept-heading">Forms</h3>
+                    <p class="concept-desc">
+                        A complete form layout combining labels, inputs, and
+                        actions with consistent vertical rhythm. The gap-based
+                        spacing pattern ensures fields are visually grouped
+                        without manual margin calculations.
+                    </p>
+                    <div class="concept-showcase">
+                        <div class="component-example">
+                            <div class="form-stack">
+                                <div>
+                                    <label class="form-label">Email</label>
+                                    <input
+                                        type="email"
+                                        class="input"
+                                        placeholder="you@example.com"
+                                    />
+                                </div>
+                                <div>
+                                    <label class="form-label">Password</label>
+                                    <input
+                                        type="password"
+                                        class="input"
+                                        placeholder="••••••••"
+                                    />
+                                </div>
+                                <button
+                                    class="btn btn-primary"
+                                    style="margin-top: 0.5rem"
+                                >
+                                    <span class="btn-inner">Sign In</span>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="component-code">
+                            Use space-y pattern for vertical rhythm: gap: 1rem
+                            between form groups
+                        </div>
+                    </div>
+                </div>
+
+                <div class="concept" id="navigation">
+                    <h3 class="concept-heading">Navigation</h3>
+                    <p class="concept-desc">
+                        Fixed navbar with blur backdrop and scroll-triggered
+                        shadow. The backdrop filter creates a frosted-glass
+                        effect that keeps the page visible behind the nav while
+                        maintaining readability.
+                    </p>
+                    <div class="concept-showcase">
+                        <div class="component-code" style="margin-top: 0">
+                            .navbar {<br />
+                            &nbsp;&nbsp;position: fixed;<br />
+                            &nbsp;&nbsp;backdrop-filter: blur(16px);<br />
+                            }<br />
+                            .navbar.scrolled {<br />
+                            &nbsp;&nbsp;box-shadow: 0 1px 20px
+                            rgba(0,0,0,0.06);<br />
+                            }
+                        </div>
+                    </div>
+                </div>
+
+                <div class="concept" id="states">
+                    <h3 class="concept-heading">
+                        Loading / Empty / Error States
+                    </h3>
+                    <p class="concept-desc">
+                        Consistent patterns for moments when content is absent,
+                        loading, or broken. A centered layout with icon,
+                        heading, description, and CTA gives users clear next
+                        steps instead of dead ends.
+                    </p>
+                    <div class="concept-showcase">
+                        <div class="component-example">
+                            <div style="text-align: center; padding: 2rem">
+                                <div
+                                    style="
+                                        font-size: 2rem;
+                                        margin-bottom: 0.5rem;
+                                    "
+                                >
+                                    📭
+                                </div>
+                                <div
+                                    style="
+                                        font-family: var(--font-heading);
+                                        font-size: 1.125rem;
+                                        font-weight: 600;
+                                    "
+                                >
+                                    No items yet
+                                </div>
+                                <div
+                                    class="meta-text"
+                                    style="margin-top: 0.5rem"
+                                >
+                                    Get started by creating your first item
+                                </div>
+                                <button
+                                    class="btn btn-primary"
+                                    style="margin-top: 1rem"
+                                >
+                                    <span class="btn-inner">Create New</span>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="component-code">
+                            Use centered layout with icon, heading, description,
+                            and CTA
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="section page-container section-reveal" id="rules">
+                <h2 class="section-heading">Guidelines and requirements</h2>
+                <p class="section-intro">
+                    Rules are the non-negotiable constraints that keep the
+                    system consistent. They cover how space communicates
+                    hierarchy, how layouts adapt to different content needs,
+                    accessibility requirements, interaction states, and
+                    implementation standards.
+                </p>
+
+                <div class="concept" id="spatial-hierarchy">
+                    <h3 class="concept-heading">Spatial Hierarchy</h3>
+                    <p class="concept-desc">
+                        Space communicates importance. Dense spacing signals
+                        related content; generous spacing signals separation.
+                        Our hierarchy moves from tight micro-adjustments inside
+                        components to spacious breathing room between major page
+                        sections.
+                    </p>
+                    <div class="concept-showcase">
+                        <div class="info-box">
+                            <div class="hierarchy-row">
+                                <div
+                                    class="hierarchy-indicator"
+                                    style="--size: 8px"
+                                ></div>
+                                <span class="small-title"
+                                    >Micro (4px) — Inside components</span
+                                >
+                            </div>
+                            <div class="meta-text meta-text-indent">
+                                Icon-to-label gaps, inline badge padding,
+                                checkbox-to-text spacing.
+                            </div>
+                        </div>
+
+                        <div class="info-box">
+                            <div class="hierarchy-row">
+                                <div
+                                    class="hierarchy-indicator"
+                                    style="--size: 16px"
+                                ></div>
+                                <span class="small-title"
+                                    >Tight (8px) — Between sibling
+                                    elements</span
+                                >
+                            </div>
+                            <div class="meta-text meta-text-indent">
+                                Buttons in a row, list items, form fields in a
+                                group, tags in a set.
+                            </div>
+                        </div>
+
+                        <div class="info-box">
+                            <div class="hierarchy-row">
+                                <div
+                                    class="hierarchy-indicator"
+                                    style="--size: 24px"
+                                ></div>
+                                <span class="small-title"
+                                    >Standard (16px) — Within sections</span
+                                >
+                            </div>
+                            <div class="meta-text meta-text-indent">
+                                Card internal padding, label-to-input gap,
+                                paragraph spacing, component guts.
+                            </div>
+                        </div>
+
+                        <div class="info-box">
+                            <div class="hierarchy-row">
+                                <div
+                                    class="hierarchy-indicator"
+                                    style="--size: 32px"
+                                ></div>
+                                <span class="small-title"
+                                    >Comfortable (24px) — Between sections</span
+                                >
+                            </div>
+                            <div class="meta-text meta-text-indent">
+                                Between form groups, card-to-card in a grid,
+                                header to content.
+                            </div>
+                        </div>
+
+                        <div class="info-box" style="margin-bottom: 0">
+                            <div class="hierarchy-row">
+                                <div
+                                    class="hierarchy-indicator"
+                                    style="--size: 48px"
+                                ></div>
+                                <span class="small-title"
+                                    >Spacious (48px–80px) — Page sections</span
+                                >
+                            </div>
+                            <div class="meta-text meta-text-indent">
+                                Between major page sections. The whitespace that
+                                gives the page room to breathe.
+                            </div>
+                        </div>
+
+                        <div class="progressive-section">
+                            <button
+                                class="progressive-toggle"
+                                onclick="
+                                    this.classList.toggle('open');
+                                    this.nextElementSibling.classList.toggle(
+                                        'visible',
+                                    );
+                                "
+                            >
+                                Why does this matter?
+                            </button>
+                            <div class="progressive-content">
+                                <p class="callout">
+                                    Without a spatial hierarchy, every gap looks
+                                    arbitrary. Users perceive inconsistent
+                                    spacing as untrustworthy or "cheap." A
+                                    predictable rhythm — where related things
+                                    are close and separate things have room —
+                                    builds visual confidence. It also means any
+                                    designer or developer can pick up where
+                                    another left off without guessing.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="concept" id="layout-composition">
+                    <h3 class="concept-heading">Layout Composition</h3>
+                    <p class="concept-desc">
+                        Not all content should behave the same way at different
+                        screen sizes. Three layout strategies — responsive,
+                        adaptive, and strict — are chosen based on what the user
+                        needs from the content, not by personal preference.
+                    </p>
+                    <div class="concept-showcase">
+                        <div class="layout-grid">
+                            <div class="info-box-padded">
+                                <div class="label-accent">Responsive</div>
+                                <div
+                                    class="small-title"
+                                    style="margin-bottom: 0.25rem"
+                                >
+                                    Fluid columns
+                                </div>
+                                <div class="meta-text">
+                                    Content scales with the viewport. Column
+                                    count stays fixed, width stretches. Use for:
+                                    editorial pages, dashboards, hero sections.
+                                </div>
+                            </div>
+                            <div class="info-box-padded">
+                                <div class="label-accent">Adaptive</div>
+                                <div
+                                    class="small-title"
+                                    style="margin-bottom: 0.25rem"
+                                >
+                                    Fixed boxes that wrap
+                                </div>
+                                <div class="meta-text">
+                                    Items have a fixed size and tile across.
+                                    Count grows with width. Use for: card grids,
+                                    icon toolbars, product listings.
+                                </div>
+                            </div>
+                            <div class="info-box-padded">
+                                <div class="label-accent">Strict</div>
+                                <div
+                                    class="small-title"
+                                    style="margin-bottom: 0.25rem"
+                                >
+                                    No flex, scroll instead
+                                </div>
+                                <div class="meta-text">
+                                    Fixed dimensions that don't scale.
+                                    Horizontal scroll below a threshold. Use
+                                    for: data tables, code blocks, complex
+                                    forms.
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="progressive-section">
+                            <button
+                                class="progressive-toggle"
+                                onclick="
+                                    this.classList.toggle('open');
+                                    this.nextElementSibling.classList.toggle(
+                                        'visible',
+                                    );
+                                "
+                            >
+                                See the decision tree
+                            </button>
+                            <div class="progressive-content">
+                                <div class="code-block">
+                                    <strong
+                                        >Does the user need to see more items or
+                                        more content per item?</strong
+                                    ><br />
+                                    → More items → Adaptive (fixed boxes that
+                                    wrap)<br />
+                                    → More content → Responsive (fluid
+                                    columns)<br /><br />
+                                    <strong
+                                        >Would shrinking this below a certain
+                                        size harm legibility?</strong
+                                    ><br />
+                                    → Yes → Strict (scroll at breakpoint)<br />
+                                    → No → Responsive
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="concept" id="accessibility">
+                    <h3 class="concept-heading">Accessibility</h3>
+                    <p class="concept-desc">
+                        Every implementation must meet WCAG 2.1 Level AA
+                        minimum. Accessibility is not optional — it's a baseline
+                        requirement that ensures the interface works for
+                        everyone, regardless of ability or assistive technology.
+                    </p>
+                    <div class="concept-showcase">
+                        <ul class="styled-list">
+                            <li>
+                                Contrast ratio: 4.5:1 for normal text, 3:1 for
+                                large text
+                            </li>
+                            <li>
+                                Keyboard navigation for all interactive elements
+                            </li>
+                            <li>Focus-visible rings for keyboard users</li>
+                            <li>Skip navigation links</li>
+                            <li>Reduced motion support via media query</li>
+                            <li>Semantic HTML structure</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="concept" id="interaction-states">
+                    <h3 class="concept-heading">Interaction States</h3>
+                    <p class="concept-desc">
+                        Every interactive component must define five states so
+                        users always know what they can do, what they're doing,
+                        and what just happened. Missing states create confusion;
+                        consistent states build confidence.
+                    </p>
+                    <div class="concept-showcase">
+                        <ul class="styled-list">
+                            <li>
+                                <strong>Default</strong> — resting appearance
+                            </li>
+                            <li>
+                                <strong>Hover</strong> — transition:
+                                var(--duration-normal)
+                            </li>
+                            <li>
+                                <strong>Focus</strong> — outline, not box-shadow
+                                alone
+                            </li>
+                            <li>
+                                <strong>Active/pressed</strong> — visual
+                                feedback on interaction
+                            </li>
+                            <li>
+                                <strong>Disabled</strong> — opacity: 0.5,
+                                cursor: not-allowed
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="concept" id="usage-guidelines">
+                    <h3 class="concept-heading">Usage Guidelines</h3>
+                    <p class="concept-desc">
+                        Implementation standards that keep the codebase clean,
+                        maintainable, and free of surprises. These aren't
+                        suggestions — they're the contract between design and
+                        engineering.
+                    </p>
+                    <div class="concept-showcase">
+                        <ul class="styled-list">
+                            <li>
+                                Use vanilla CSS with custom properties in :root
+                            </li>
+                            <li>
+                                Semantic class names only (no utility strings)
+                            </li>
+                            <li>Zero external CSS dependencies</li>
+                            <li>Mobile-first responsive approach</li>
+                            <li>
+                                Longhand padding for sections (never shorthand
+                                with .page-container)
+                            </li>
+                            <li>60-30-10 color rule for visual balance</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="concept" id="design-principles">
+                    <h3 class="concept-heading">Design Principles</h3>
+                    <p class="concept-desc">
+                        The twelve core principles that guide every visual and
+                        interaction decision in this system. They provide a
+                        shared vocabulary for evaluating design choices and
+                        ensure that every screen communicates with clarity and
+                        purpose.
+                    </p>
+                    <div class="design-principles-grid">
+                        <div class="design-principle-card">
+                            <div class="design-principle-card-title">
+                                Balance
+                            </div>
+                            <div class="design-principle-card-row">
+                                <strong>Why:</strong> Stability & structure
+                            </div>
+                            <div class="design-principle-card-row">
+                                <strong>Purpose:</strong> Distribute visual
+                                weight evenly
+                            </div>
+                            <div class="design-principle-card-row">
+                                <strong>Goals:</strong> Symmetrical or
+                                asymmetrical equilibrium
+                            </div>
+                            <div class="design-principle-card-usage">
+                                Align elements on an invisible axis; pair heavy
+                                text blocks with ample white space to prevent
+                                visual tilt.
+                            </div>
+                        </div>
+                        <div class="design-principle-card">
+                            <div class="design-principle-card-title">
+                                Contrast
+                            </div>
+                            <div class="design-principle-card-row">
+                                <strong>Why:</strong> Visual interest &
+                                hierarchy
+                            </div>
+                            <div class="design-principle-card-row">
+                                <strong>Purpose:</strong> Make elements distinct
+                            </div>
+                            <div class="design-principle-card-row">
+                                <strong>Goals:</strong> Clear differentiation
+                                through opposition
+                            </div>
+                            <div class="design-principle-card-usage">
+                                Pair light and dark, large and small, bold and
+                                thin to guide the eye and establish reading
+                                order.
+                            </div>
+                        </div>
+                        <div class="design-principle-card">
+                            <div class="design-principle-card-title">
+                                Emphasis
+                            </div>
+                            <div class="design-principle-card-row">
+                                <strong>Why:</strong> Directs user attention
+                            </div>
+                            <div class="design-principle-card-row">
+                                <strong>Purpose:</strong> Create a single focal
+                                point
+                            </div>
+                            <div class="design-principle-card-row">
+                                <strong>Goals:</strong> One clear priority per
+                                view
+                            </div>
+                            <div class="design-principle-card-usage">
+                                Use size, color, or position to make CTAs and
+                                key info unmissable — only one hero per screen.
+                            </div>
+                        </div>
+                        <div class="design-principle-card">
+                            <div class="design-principle-card-title">
+                                Movement
+                            </div>
+                            <div class="design-principle-card-row">
+                                <strong>Why:</strong> Controls content
+                                consumption
+                            </div>
+                            <div class="design-principle-card-row">
+                                <strong>Purpose:</strong> Create a visual path
+                            </div>
+                            <div class="design-principle-card-row">
+                                <strong>Goals:</strong> Natural top-to-bottom
+                                flow
+                            </div>
+                            <div class="design-principle-card-usage">
+                                Use spacing, arrows, and progressive disclosure
+                                to lead users through content in a logical
+                                sequence.
+                            </div>
+                        </div>
+                        <div class="design-principle-card">
+                            <div class="design-principle-card-title">
+                                Pattern
+                            </div>
+                            <div class="design-principle-card-row">
+                                <strong>Why:</strong> Predictability & reduced
+                                cognitive load
+                            </div>
+                            <div class="design-principle-card-row">
+                                <strong>Purpose:</strong> Visual consistency
+                            </div>
+                            <div class="design-principle-card-row">
+                                <strong>Goals:</strong> Reusable structural
+                                motifs
+                            </div>
+                            <div class="design-principle-card-usage">
+                                Repeat button styles, card layouts, and spacing
+                                rhythms across pages so users learn once, apply
+                                everywhere.
+                            </div>
+                        </div>
+                        <div class="design-principle-card">
+                            <div class="design-principle-card-title">
+                                Proportion
+                            </div>
+                            <div class="design-principle-card-row">
+                                <strong>Why:</strong> Communicates hierarchy
+                            </div>
+                            <div class="design-principle-card-row">
+                                <strong>Purpose:</strong> Harmonious size
+                                relationships
+                            </div>
+                            <div class="design-principle-card-row">
+                                <strong>Goals:</strong> Elements sized by
+                                importance
+                            </div>
+                            <div class="design-principle-card-usage">
+                                Headings larger than body; icons proportional to
+                                text; containers sized to their content, not the
+                                viewport.
+                            </div>
+                        </div>
+                        <div class="design-principle-card">
+                            <div class="design-principle-card-title">
+                                Repetition
+                            </div>
+                            <div class="design-principle-card-row">
+                                <strong>Why:</strong> Reinforces brand identity
+                            </div>
+                            <div class="design-principle-card-row">
+                                <strong>Purpose:</strong> Unify through
+                                recurring elements
+                            </div>
+                            <div class="design-principle-card-row">
+                                <strong>Goals:</strong> Same styles everywhere
+                            </div>
+                            <div class="design-principle-card-usage">
+                                Reuse token values everywhere; never introduce
+                                new styles for one-off cases without updating
+                                the system.
+                            </div>
+                        </div>
+                        <div class="design-principle-card">
+                            <div class="design-principle-card-title">
+                                Rhythm
+                            </div>
+                            <div class="design-principle-card-row">
+                                <strong>Why:</strong> Predictable visual tempo
+                            </div>
+                            <div class="design-principle-card-row">
+                                <strong>Purpose:</strong> Consistent spacing
+                                intervals
+                            </div>
+                            <div class="design-principle-card-row">
+                                <strong>Goals:</strong> Even, natural intervals
+                            </div>
+                            <div class="design-principle-card-usage">
+                                Apply the 8px grid strictly; equal gaps between
+                                cards; consistent section padding across all
+                                pages.
+                            </div>
+                        </div>
+                        <div class="design-principle-card">
+                            <div class="design-principle-card-title">Unity</div>
+                            <div class="design-principle-card-row">
+                                <strong>Why:</strong> Cohesive visual whole
+                            </div>
+                            <div class="design-principle-card-row">
+                                <strong>Purpose:</strong> All elements belong
+                                together
+                            </div>
+                            <div class="design-principle-card-row">
+                                <strong>Goals:</strong> One system, one voice
+                            </div>
+                            <div class="design-principle-card-usage">
+                                Use shared tokens, consistent borders, and
+                                matching radii so every component feels like
+                                part of the same product.
+                            </div>
+                        </div>
+                        <div class="design-principle-card">
+                            <div class="design-principle-card-title">
+                                Hierarchy
+                            </div>
+                            <div class="design-principle-card-row">
+                                <strong>Why:</strong> Guides user understanding
+                            </div>
+                            <div class="design-principle-card-row">
+                                <strong>Purpose:</strong> Establish clear levels
+                                of importance
+                            </div>
+                            <div class="design-principle-card-row">
+                                <strong>Goals:</strong> Obvious visual priority
+                                at every level
+                            </div>
+                            <div class="design-principle-card-usage">
+                                Use size, weight, color, and position to create
+                                a clear reading order — users should instantly
+                                know where to look first, second, and third.
+                            </div>
+                        </div>
+                        <div class="design-principle-card">
+                            <div class="design-principle-card-title">
+                                Variety
+                            </div>
+                            <div class="design-principle-card-row">
+                                <strong>Why:</strong> Prevents monotony & visual
+                                fatigue
+                            </div>
+                            <div class="design-principle-card-row">
+                                <strong>Purpose:</strong> Introduce controlled
+                                diversity
+                            </div>
+                            <div class="design-principle-card-row">
+                                <strong>Goals:</strong> Thoughtful contrast
+                                within consistency
+                            </div>
+                            <div class="design-principle-card-usage">
+                                Alternate card orientations, mix image and text
+                                blocks, vary component density — keep layouts
+                                engaging without breaking the system.
+                            </div>
+                        </div>
+                        <div class="design-principle-card">
+                            <div class="design-principle-card-title">
+                                White Space
+                            </div>
+                            <div class="design-principle-card-row">
+                                <strong>Why:</strong> Content needs room to
+                                breathe
+                            </div>
+                            <div class="design-principle-card-row">
+                                <strong>Purpose:</strong> Separate & group by
+                                absence
+                            </div>
+                            <div class="design-principle-card-row">
+                                <strong>Goals:</strong> Generous, readable
+                                layouts
+                            </div>
+                            <div class="design-principle-card-usage">
+                                Don't fill every pixel. Use spacing tokens to
+                                create visual breathing room — margins are not
+                                wasted space.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <div
+            class="modal-overlay"
+            id="demo-modal"
+            onclick="
+                if (event.target === this) this.classList.remove('active');
+            "
+        >
+            <div class="modal">
+                <button
+                    class="modal-close"
+                    onclick="
+                        document
+                            .getElementById('demo-modal')
+                            .classList.remove('active')
+                    "
+                >
+                    ×
+                </button>
+                <div class="modal-title">Modal Title</div>
+                <p class="modal-desc">
+                    This is a basic modal dialog with backdrop blur and smooth
+                    slide-up animation. Click outside or press the close button
+                    to dismiss.
+                </p>
+                <div class="flex-row-end">
+                    <button
+                        class="btn btn-secondary"
+                        onclick="
+                            document
+                                .getElementById('demo-modal')
+                                .classList.remove('active')
+                        "
+                    >
+                        <span class="btn-inner">Cancel</span>
+                    </button>
+                    <button
+                        class="btn btn-primary"
+                        onclick="
+                            document
+                                .getElementById('demo-modal')
+                                .classList.remove('active')
+                        "
+                    >
+                        <span class="btn-inner">Confirm</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div
+            class="modal-overlay"
+            id="confirm-modal"
+            onclick="
+                if (event.target === this) this.classList.remove('active');
+            "
+        >
+            <div class="modal">
+                <button
+                    class="modal-close"
+                    onclick="
+                        document
+                            .getElementById('confirm-modal')
+                            .classList.remove('active')
+                    "
+                >
+                    ×
+                </button>
+                <div class="modal-centered-icon">
+                    <iconify-icon
+                        icon="solar:danger-triangle-bold-duotone"
+                        style="
+                            font-size: 2.5rem;
+                            color: var(--color-warning-500);
+                        "
+                    ></iconify-icon>
+                </div>
+                <div class="modal-title modal-center">Are you sure?</div>
+                <p class="modal-desc modal-center">
+                    This action cannot be undone. All associated data will be
+                    permanently removed.
+                </p>
+                <div class="flex-row-center-end">
+                    <button
+                        class="btn btn-secondary"
+                        onclick="
+                            document
+                                .getElementById('confirm-modal')
+                                .classList.remove('active')
+                        "
+                    >
+                        <span class="btn-inner">Cancel</span>
+                    </button>
+                    <button
+                        class="btn btn-primary btn-danger"
+                        onclick="
+                            document
+                                .getElementById('confirm-modal')
+                                .classList.remove('active')
+                        "
+                    >
+                        <span class="btn-inner">Delete</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div
+            class="modal-overlay"
+            id="form-modal"
+            onclick="
+                if (event.target === this) this.classList.remove('active');
+            "
+        >
+            <div class="modal">
+                <button
+                    class="modal-close"
+                    onclick="
+                        document
+                            .getElementById('form-modal')
+                            .classList.remove('active')
+                    "
+                >
+                    ×
+                </button>
+                <div class="modal-title">Create New Item</div>
+                <p class="modal-desc">
+                    Fill in the details below to add a new item to your
+                    collection.
+                </p>
+                <div class="form-stack">
+                    <div>
+                        <label class="form-label">Name</label>
+                        <input
+                            type="text"
+                            class="input"
+                            placeholder="Enter item name"
+                        />
+                    </div>
+                    <div>
+                        <label class="form-label">Category</label>
+                        <select class="select">
+                            <option>Select category</option>
+                            <option>Design</option>
+                            <option>Development</option>
+                        </select>
+                    </div>
+                    <div class="flex-row-end" style="margin-top: 0.5rem">
+                        <button
+                            class="btn btn-secondary"
+                            onclick="
+                                document
+                                    .getElementById('form-modal')
+                                    .classList.remove('active')
+                            "
+                        >
+                            <span class="btn-inner">Cancel</span>
+                        </button>
+                        <button
+                            class="btn btn-primary"
+                            onclick="
+                                document
+                                    .getElementById('form-modal')
+                                    .classList.remove('active')
+                            "
+                        >
+                            <span class="btn-inner">Create</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script src="script.js"></script>
+    </body>
+</html>
