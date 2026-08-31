@@ -1,0 +1,20 @@
+flowchart LR
+  classDef default fill:#E3DACC,stroke:#3D3D3A,stroke-width:1.5px
+  classDef highlight fill:#D97757,stroke:#B04A3F,stroke-width:2px,color:#fff
+  classDef subdued fill:#F0EEE6,stroke:#D1CFC5,color:#87867F
+  classDef special fill:#788C5D,stroke:#4A5C3A,color:#fff
+
+  A[Default]:::default
+  B[Highlight]:::highlight
+  C[Subdued]:::subdued
+  D[Special]:::special
+
+  A -->|emphasis| B
+  B -.->|dashed| C
+  C ==>|success| D
+  D -->|error| A
+
+  linkStyle 0 stroke-width:2.5px
+  linkStyle 1 stroke-dasharray:5,4
+  linkStyle 2 stroke:#788C5D
+  linkStyle 3 stroke:#B04A3F

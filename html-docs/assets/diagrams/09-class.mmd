@@ -1,0 +1,22 @@
+classDiagram
+  class User {
+    +String id
+    +String email
+    +String name
+    +login()
+    +logout()
+  }
+  class Session {
+    +String id
+    +String userId
+    +DateTime expiresAt
+    +isValid()
+  }
+  class Post {
+    +Int id
+    +String title
+    +String body
+    +publish()
+  }
+  User "1" --> "*" Session: has
+  User "1" --> "*" Post: creates

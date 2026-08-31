@@ -1,0 +1,17 @@
+flowchart LR
+  A[Click me]
+  B[Tooltip only]
+  C[Open GitHub]
+  D[Callback + tip]
+  E[Navigate]
+
+  A --> B
+  B --> C
+  C --> D
+  D --> E
+
+  click A callback "Triggers a callback"
+  click B "Tooltip only — no action"
+  click C href "https://github.com" "Opens github.com"
+  click D callback "Logs and shows tooltip"
+  click E href "https://mermaid.js.org" "Opens mermaid.js.org"

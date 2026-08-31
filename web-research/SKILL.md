@@ -37,16 +37,16 @@ For each subtopic in your plan:
 1. **Use the `task` tool** to spawn a research subagent with:
    - Clear, specific research question (no acronyms)
    - Instructions to write findings to a file: `research_[topic_name]/findings_[subtopic].md`
-   - Budget: 3-5 web searches maximum
+   - Budget: 2-3 web searches maximum
 
-2. **Run up to 3 subagents in parallel** for efficient research
+2. **Run up to 2 subagents in parallel** for efficient research (more concurrent searches trips search-engine rate limits)
 
 **Subagent Instructions Template:**
 ```
 Research [SPECIFIC TOPIC]. Use the web_search tool to gather information.
 After completing your research, use write_file to save your findings to research_[topic_name]/findings_[subtopic].md.
 Include key facts, relevant quotes, and source URLs.
-Use 3-5 web searches maximum.
+Use 2-3 web searches maximum. Each search hits two engines (SearXNG + DuckDuckGo); if you hit rate-limit errors, wait and retry once — don't fire more queries.
 ```
 
 ### Step 3: Synthesize Findings
@@ -68,10 +68,20 @@ After all subagents complete:
 
 **Note**: If you need to fetch additional information from URLs, use the `fetch_url` tool, not `read_file`.
 
+## Rate Budget (measured 2026-08-10)
+
+Every web search = 2 engine requests (SearXNG + DuckDuckGo). Both tolerated ~400 req/min bursts in testing with no 429, so these caps are safe margins, not discovered ceilings — but the shared SearXNG instance degrades for everyone under sustained load. Hard caps per research task:
+
+- **Max 10 searches total** (≈20 engine requests)
+- **Max 2 searches in parallel** across all subagents, **max 3 per minute**
+- On 429/503: wait ≥30s, then continue at half the rate
+- If a subagent reports rate-limit errors, don't fire more queries — wait and retry once
+
 ## Best Practices
 
 - **Plan before delegating** - Always write research_plan.md first
 - **Clear subtopics** - Ensure each subagent has distinct, non-overlapping scope
 - **File-based communication** - Have subagents save findings to files, not return them directly
 - **Systematic synthesis** - Read all findings files before creating final response
-- **Stop appropriately** - Don't over-research; 3-5 searches per subtopic is usually sufficient
+- **Stop appropriately** - Don't over-research; 2-3 searches per subtopic is usually sufficient
+- **Mind rate limits** - Every web search hits SearXNG + DuckDuckGo. Keep the whole research task under ~10 searches; on 429/rate-limit errors, wait and reduce query count

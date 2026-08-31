@@ -1,0 +1,87 @@
+{
+  "categories": [
+    {
+      "id": "exploration",
+      "name": "Exploration & Planning",
+      "templates": [
+        { "id": "01", "slug": "code-approaches", "file": "01-exploration-code-approaches.html", "description": "Side-by-side comparison of approaches with trade-offs" },
+        { "id": "02", "slug": "visual-designs", "file": "02-exploration-visual-designs.html", "description": "Visual direction exploration with live renders" },
+        { "id": "16", "slug": "implementation-plan", "file": "16-implementation-plan.html", "description": "Milestones, data-flow diagram, mockups, risk table" }
+      ]
+    },
+    {
+      "id": "code-review",
+      "name": "Code Review & Understanding",
+      "templates": [
+        { "id": "03", "slug": "pr-annotated", "file": "03-code-review-pr.html", "description": "Annotated diff with margin notes and severity tags" },
+        { "id": "17", "slug": "pr-writeup", "file": "17-pr-writeup.html", "description": "PR writeup for reviewers with motivation and file tour" },
+        { "id": "04", "slug": "module-map", "file": "04-code-understanding.html", "description": "Module architecture with boxes, arrows, hot path" }
+      ]
+    },
+    {
+      "id": "design",
+      "name": "Design",
+      "templates": [
+        { "id": "05", "slug": "design-system", "file": "05-design-system.html", "description": "Design tokens as swatches: colors, type, spacing" },
+        { "id": "06", "slug": "component-variants", "file": "06-component-variants.html", "description": "Component variant matrix with interactive controls" }
+      ]
+    },
+    {
+      "id": "prototyping",
+      "name": "Prototyping",
+      "templates": [
+        { "id": "07", "slug": "animation-sandbox", "file": "07-prototype-animation.html", "description": "Animation sandbox with duration/easing sliders" },
+        { "id": "08", "slug": "clickable-flow", "file": "08-prototype-interaction.html", "description": "Clickable multi-screen interaction prototype" }
+      ]
+    },
+    {
+      "id": "diagrams",
+      "name": "Illustrations & Diagrams",
+      "templates": [
+        { "id": "d01", "slug": "mermaid-nodes", "file": "../diagrams/01-nodes.mmd", "description": "Mermaid node shapes: rectangle, rounded, stadium, subroutine, cylindrical, circle, rhombus, hexagon, parallelogram, trapezoid" },
+        { "id": "d02", "slug": "mermaid-links", "file": "../diagrams/02-links.mmd", "description": "Mermaid link types: arrow, open, text, dotted, thick, invisible, circle, cross, chaining" },
+        { "id": "d03", "slug": "mermaid-subgraphs", "file": "../diagrams/03-subgraphs.mmd", "description": "Mermaid subgraphs with cross-group links and direction" },
+        { "id": "d04", "slug": "mermaid-styling", "file": "../diagrams/04-styling.mmd", "description": "Mermaid classDef styling: fill, stroke, color per node class; linkStyle per edge" },
+        { "id": "d05", "slug": "mermaid-interaction", "file": "../diagrams/05-interaction.mmd", "description": "Mermaid click events: callbacks, href links, tooltips on nodes" },
+        { "id": "d06", "slug": "mermaid-flowchart", "file": "../diagrams/06-full-flowchart.mmd", "description": "Full Mermaid flowchart: subgraphs, styled nodes, multi-type links" },
+        { "id": "d07", "slug": "mermaid-sequence", "file": "../diagrams/07-sequence.mmd", "description": "Mermaid sequence diagram: actors, participants, alt/else branches" },
+        { "id": "d08", "slug": "mermaid-state", "file": "../diagrams/08-state.mmd", "description": "Mermaid state diagram: states, transitions, composite states" },
+        { "id": "d09", "slug": "mermaid-class", "file": "../diagrams/09-class.mmd", "description": "Mermaid class diagram: classes, attributes, methods, relationships" },
+        { "id": "d10", "slug": "mermaid-er", "file": "../diagrams/10-er.mmd", "description": "Mermaid ER diagram: entities, relationships, cardinality" },
+        { "id": "10", "slug": "svg-figures", "file": "10-svg-illustrations.html", "description": "Hand-authored inline SVG figure sheet with standalone download" }
+      ]
+    },
+    {
+      "id": "decks",
+      "name": "Decks",
+      "templates": [
+        { "id": "09", "slug": "slide-deck", "file": "09-slide-deck.html", "description": "Arrow-key navigable slide deck" }
+      ]
+    },
+    {
+      "id": "research",
+      "name": "Research & Learning",
+      "templates": [
+        { "id": "14", "slug": "feature-explainer", "file": "14-research-feature-explainer.html", "description": "Feature explainer with collapsible steps, tabs, FAQ" },
+        { "id": "15", "slug": "concept-explainer", "file": "15-research-concept-explainer.html", "description": "Concept explainer with interactive demo, comparison table, glossary" }
+      ]
+    },
+    {
+      "id": "reports",
+      "name": "Reports",
+      "templates": [
+        { "id": "11", "slug": "status-report", "file": "11-status-report.html", "description": "Weekly status with shipped/slipped and metrics chart" },
+        { "id": "12", "slug": "incident-report", "file": "12-incident-report.html", "description": "Incident post-mortem with timeline and action items" }
+      ]
+    },
+    {
+      "id": "editors",
+      "name": "Custom Editing Interfaces",
+      "templates": [
+        { "id": "18", "slug": "triage-board", "file": "18-editor-triage-board.html", "description": "Drag-sort triage board with markdown export" },
+        { "id": "19", "slug": "flag-editor", "file": "19-editor-feature-flags.html", "description": "Feature flag toggles with dependency warnings" },
+        { "id": "20", "slug": "prompt-tuner", "file": "20-editor-prompt-tuner.html", "description": "Editable template with live preview and slot highlighting" }
+      ]
+    }
+  ]
+}

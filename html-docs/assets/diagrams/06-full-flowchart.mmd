@@ -1,0 +1,32 @@
+flowchart TB
+  classDef process fill:#E3DACC,stroke:#3D3D3A,stroke-width:1.5px
+  classDef decision fill:#F5E6D0,stroke:#D97757,stroke-width:1.5px
+  classDef terminator fill:#D1CFC5,stroke:#3D3D3A,stroke-width:1.5px
+  classDef data fill:#E3DACC,stroke:#3D3D3A,stroke-width:1.5px
+
+  subgraph auth [Auth Flow]
+    direction TB
+    Start([Start]):::terminator
+    Check{Valid token?}:::decision
+    Dashboard[Load dashboard]:::process
+    Login[Redirect to login]:::process
+    Start --> Check
+    Check -->|yes| Dashboard
+    Check -->|no| Login
+  end
+
+  subgraph api [API Layer]
+    direction TB
+    GetSession[/GET /api/session/]:::data
+    Verify[verifyToken]:::process
+    StoreGet[SessionStore.get]:::process
+    DB[(Postgres)]:::data
+    GetSession --> Verify
+    Verify --> StoreGet
+    StoreGet -.-> DB
+  end
+
+  Login -->|302| Return401([Return 401]):::terminator
+  Dashboard --> ReturnUser([Return user]):::terminator
+  StoreGet -->|session| ReturnUser
+  StoreGet -->|null/expired| Return401

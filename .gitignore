@@ -1,0 +1,9 @@
+# Local runtime state
+.work/
+
+# Accidental literal-tilde dir (nested ~/.skills clone)
+~/
+
+# OS
+.DS_Store
+tinyfish/.tinyfish-key

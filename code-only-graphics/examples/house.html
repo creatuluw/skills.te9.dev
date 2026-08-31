@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Code-Only 3D — Simple House</title>
+<style>
+  html,body{margin:0;height:100%;overflow:hidden;background:#15191f;font-family:system-ui,sans-serif;color:#e8edf5}
+  canvas{display:block}
+  #hud{position:fixed;top:14px;left:14px;background:rgba(0,0,0,.5);padding:12px 16px;border-radius:10px;max-width:380px}
+  #hud h1{margin:0;font-size:15px}
+  #hud p{margin:6px 0 0;font-size:12px;line-height:1.5;color:#a9b4c5}
+  #hint{position:fixed;bottom:12px;width:100%;text-align:center;font-size:11px;color:#6b7588}
+</style>
+<script type="importmap">
+{ "imports": {
+  "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
+  "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
+}}
+</script>
+</head>
+<body>
+<div id="hud">
+  <h1>Simple House</h1>
+  <p>Built entirely from code (Three.js primitives + canvas textures + shaders). <i>Gabled prism roof, glowing windows, shader chimney smoke.</i></p>
+</div>
+<div id="hint">drag to orbit · scroll to zoom</div>
+<script type="module">
+import * as THREE from 'three';
+import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+
+/* ---- scene / renderer / orthographic iso camera ---- */
+const scene = new THREE.Scene();
+scene.background = new THREE.Color(0x15191f);
+const renderer = new THREE.WebGLRenderer({ antialias:true });
+renderer.setPixelRatio(Math.min(devicePixelRatio,2));
+renderer.setSize(innerWidth, innerHeight);
+renderer.shadowMap.enabled = true;
+renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+renderer.toneMapping = THREE.ACESFilmicToneMapping;
+renderer.toneMappingExposure = 1.1;
+document.body.appendChild(renderer.domElement);
+
+const aspect = innerWidth/innerHeight, d = 6;
+const camera = new THREE.OrthographicCamera(-d*aspect, d*aspect, d, -d, 0.1, 1000);
+camera.position.set(9,7,9); camera.lookAt(0,1,0);
+const controls = new OrbitControls(camera, renderer.domElement);
+controls.enablePan = false; controls.minZoom = 0.6; controls.maxZoom = 2.4;
+controls.target.set(0,1,0); controls.autoRotate = true; controls.autoRotateSpeed = 0.6;
+
+/* ---- lights ---- */
+scene.add(new THREE.AmbientLight(0xffffff, 0.4));
+scene.add(new THREE.HemisphereLight(0xbfd4ff, 0x3a4a2a, 1.4));
+const sun = new THREE.DirectionalLight(0xfff2d8, 3.0);
+sun.position.set(8,16,7); sun.castShadow = true;
+sun.shadow.mapSize.set(2048,2048);
+const sc = sun.shadow.camera; sc.left=-8; sc.right=8; sc.top=8; sc.bottom=-8; sun.shadow.bias=-0.0005;
+scene.add(sun);
+
+/* ---- ground ---- */
+const ground = new THREE.Mesh(
+  new THREE.CylinderGeometry(7,7,0.4,48),
+  new THREE.MeshStandardMaterial({ color:0x4a5a36, roughness:1 }));
+ground.position.y = -0.2; ground.receiveShadow = true; scene.add(ground);
+
+/* ════════════════════════════════════════════════════════════════ */
+function buildObject(){
+  const object = new THREE.Group();
+  const m = (c,e={}) => new THREE.MeshStandardMaterial({color:c, roughness:0.8, metalness:0.1, ...e});
+  const mesh = (geo, mat, x,y,z) => { const p = new THREE.Mesh(geo, mat); p.position.set(x,y,z); p.castShadow = p.receiveShadow = true; object.add(p); return p; };
+
+  // foundation
+  mesh(new THREE.BoxGeometry(3.6, 0.25, 3.0), m(0x8b8578), 0, 0.12, 0);
+
+  // walls
+  mesh(new THREE.BoxGeometry(3.2, 1.8, 2.6), m(0xe8dcc0, {flatShading:true}), 0, 1.15, 0);
+
+  // gabled roof: triangular prism (Shape + Extrude), overhanging walls
+  const tri = new THREE.Shape();
+  tri.moveTo(-2.0, 0); tri.lineTo(2.0, 0); tri.lineTo(0, 1.2); tri.closePath();
+  const roofGeo = new THREE.ExtrudeGeometry(tri, { depth: 3.0, bevelEnabled: false });
+  roofGeo.translate(0, 0, -1.5);
+  mesh(roofGeo, m(0xa8362b, {flatShading:true}), 0, 2.05, 0);
+
+  // door
+  mesh(new THREE.BoxGeometry(0.65, 1.05, 0.08), m(0x6b4423), 0, 0.8, 1.34);
+  // door knob
+  mesh(new THREE.SphereGeometry(0.04, 8, 8), m(0xd8b04a, {metalness:0.6, roughness:0.35}), 0.2, 0.8, 1.4);
+
+  // windows (warm emissive, pulse)
+  const winMat = m(0xffc66a, { emissive: 0xffa53a, emissiveIntensity: 1.0 });
+  mesh(new THREE.BoxGeometry(0.7, 0.7, 0.08), winMat, -0.95, 1.3, 1.34);
+  mesh(new THREE.BoxGeometry(0.7, 0.7, 0.08), winMat,  0.95, 1.3, 1.34);
+  // window frames
+  const frameMat = m(0x5c4a33);
+  mesh(new THREE.BoxGeometry(0.84, 0.84, 0.04), frameMat, -0.95, 1.3, 1.3);
+  mesh(new THREE.BoxGeometry(0.84, 0.84, 0.04), frameMat,  0.95, 1.3, 1.3);
+
+  // chimney (intersects roof — fine)
+  mesh(new THREE.BoxGeometry(0.45, 1.3, 0.45), m(0x9a4a3a, {flatShading:true}), -1.1, 3.0, -0.4);
+  mesh(new THREE.BoxGeometry(0.6, 0.12, 0.6), m(0x777066), -1.1, 3.7, -0.4);
+
+  // bushes
+  const bushMat = m(0x3e6b2f, {flatShading:true});
+  const b1 = mesh(new THREE.SphereGeometry(0.45, 8, 6), bushMat, -1.7, 0.4, 1.5); b1.scale.y = 0.75;
+  const b2 = mesh(new THREE.SphereGeometry(0.35, 8, 6), bushMat,  1.7, 0.35, 1.4); b2.scale.y = 0.7;
+
+  /* ---- chimney smoke (techniques.md §4 noise-twist shader) ---- */
+  function makeNoiseTexture(){
+    const s=document.createElement('canvas'); s.width=s.height=16;
+    const sg=s.getContext('2d'), id=sg.createImageData(16,16);
+    for(let i=0;i<16*16;i++){ const v=Math.random()*255; id.data[i*4]=id.data[i*4+1]=id.data[i*4+2]=v; id.data[i*4+3]=255; }
+    sg.putImageData(id,0,0);
+    const c=document.createElement('canvas'); c.width=c.height=64;
+    const g=c.getContext('2d'); g.imageSmoothingEnabled=true;
+    g.drawImage(s,0,0,16,16,0,0,64,64);
+    const t=new THREE.CanvasTexture(c); t.wrapS=t.wrapT=THREE.RepeatWrapping; return t;
+  }
+  const smokeMat = new THREE.ShaderMaterial({
+    uniforms:{ uTime:{value:0}, uNoise:{value:makeNoiseTexture()} },
+    vertexShader:`uniform float uTime; uniform sampler2D uNoise; varying vec2 vUv;
+      void main(){
+        vUv=uv;
+        float n=texture2D(uNoise, vec2(0.5, uv.y*2.5 - uTime*0.35)).r;
+        vec2 wind=(vec2(texture2D(uNoise,vec2(0.25,uTime*0.25)).r, texture2D(uNoise,vec2(0.75,uTime*0.25)).r)-0.5)*pow(uv.y,2.0)*0.5;
+        vec3 p=position;
+        float a=n*1.5708, ca=cos(a*uv.y), sa=sin(a*uv.y);
+        p.xz=mat2(ca,-sa,sa,ca)*p.xz; p.xz+=wind;
+        gl_Position=projectionMatrix*modelViewMatrix*vec4(p,1.0);
+      }`,
+    fragmentShader:`uniform float uTime; uniform sampler2D uNoise; varying vec2 vUv;
+      void main(){
+        float n=texture2D(uNoise, vec2(0.5, vUv.y*2.0 - uTime*0.15)).r;
+        float a=smoothstep(0.15,0.7,n)*smoothstep(1.0,0.2,vUv.y)*smoothstep(0.0,0.15,vUv.y);
+        vec3 col=mix(vec3(0.55),vec3(0.85),vUv.y);
+        gl_FragColor=vec4(col,a*0.4);
+      }`,
+    transparent:true, depthWrite:false, side:THREE.DoubleSide
+  });
+  const smoke = new THREE.Mesh(new THREE.PlaneGeometry(0.9, 2.2, 8, 12), smokeMat);
+  smoke.position.set(-1.1, 4.9, -0.4); object.add(smoke);
+
+  return {
+    object,
+    update(t){
+      smokeMat.uniforms.uTime.value = t*0.001;
+      winMat.emissiveIntensity = 0.75 + 0.35*Math.sin(t*0.002);
+    }
+  };
+}
+
+const { object, update } = buildObject();
+scene.add(object);
+
+/* ---- animate ---- */
+function animate(t){
+  update(t);
+  controls.update();
+  renderer.render(scene, camera);
+  requestAnimationFrame(animate);
+}
+requestAnimationFrame(animate);
+
+addEventListener('resize', ()=>{
+  const a = innerWidth/innerHeight;
+  camera.left=-d*a; camera.right=d*a; camera.updateProjectionMatrix();
+  renderer.setSize(innerWidth, innerHeight);
+});
+</script>
+</body>
+</html>

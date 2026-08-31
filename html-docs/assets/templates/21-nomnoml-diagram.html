@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Diagram — [TITLE]</title>
+
+<!-- nomnoml — text-to-diagram, only these two script tags needed -->
+<script src="https://unpkg.com/graphre/dist/graphre.js"></script>
+<script src="https://unpkg.com/nomnoml/dist/nomnoml.js"></script>
+
+<style>
+  :root {
+    --ivory: #FAF9F5;
+    --slate: #141413;
+    --clay: #D97757;
+    --oat: #E3DACC;
+    --olive: #788C5D;
+    --indigo: #5B6ABF;
+    --gray-300: #D1CFC5;
+    --gray-500: #87867F;
+    --gray-700: #3D3D3A;
+    --sans: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+    --serif: ui-serif, Georgia, 'Times New Roman', serif;
+    --mono: ui-monospace, 'SF Mono', Menlo, Monaco, monospace;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --ivory: #1A1A18;
+      --slate: #EBE8DC;
+      --clay: #E8957A;
+      --oat: #2D2B25;
+      --olive: #9AB57D;
+      --indigo: #8B9AE0;
+      --gray-300: #454340;
+      --gray-500: #98968C;
+      --gray-700: #C9C7BD;
+    }
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--ivory);
+    color: var(--gray-700);
+    font-family: var(--sans);
+    font-size: 15px;
+    line-height: 1.65;
+    padding: 48px 24px 80px;
+  }
+
+  .page { max-width: 960px; margin: 0 auto; }
+
+  header { margin-bottom: 32px; }
+  h1 {
+    font-family: var(--serif);
+    font-weight: 500;
+    font-size: 28px;
+    color: var(--slate);
+    margin-bottom: 8px;
+  }
+  .summary {
+    font-size: 15px;
+    color: var(--gray-500);
+    max-width: 640px;
+  }
+
+  .diagram-wrap {
+    border: 1.5px solid var(--gray-300);
+    border-radius: 12px;
+    background: #fff;
+    padding: 24px;
+    margin-bottom: 32px;
+    overflow-x: auto;
+  }
+  @media (prefers-color-scheme: dark) {
+    .diagram-wrap { background: var(--ivory); }
+  }
+
+  .diagram-wrap canvas {
+    display: block;
+    max-width: 100%;
+    margin: 0 auto;
+  }
+
+  .info {
+    margin-top: 24px;
+    padding: 16px 20px;
+    background: var(--oat);
+    border-radius: 10px;
+  }
+  .info h2 {
+    font-family: var(--serif);
+    font-size: 18px;
+    color: var(--slate);
+    margin-bottom: 8px;
+  }
+  .info p { font-size: 14px; }
+  .info code {
+    font-family: var(--mono);
+    font-size: 12px;
+    background: rgba(0,0,0,0.06);
+    padding: 1px 5px;
+    border-radius: 3px;
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <header>
+    <h1>[DIAGRAM TITLE]</h1>
+    <p class="summary">[One-sentence description of what this diagram shows.]</p>
+  </header>
+
+  <div class="diagram-wrap">
+    <canvas id="diagram"></canvas>
+  </div>
+
+  <div class="info">
+    <h2>What you're looking at</h2>
+    <p>[Explain the diagram in prose — what each element represents, what the relationships mean.]</p>
+  </div>
+
+</div>
+
+<script>
+  (function() {
+    var source = [
+      '#direction: [right|down]',
+      '#fill: #FAF9F5',
+      '#stroke: #3D3D3A',
+      '#fontSize: 12',
+      '#spacing: 50',
+      '#padding: 10',
+      '',
+      '[DIAGRAM SOURCE — use nomnoml syntax: [Node] -> [Other]',
+      'See references/NOMNOML.md for full syntax]',
+    ].join('\n');
+
+    var canvas = document.getElementById('diagram');
+    nomnoml.draw(canvas, source);
+  })();
+</script>
+</body>
+</html>

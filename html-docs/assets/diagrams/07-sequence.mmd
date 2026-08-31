@@ -1,0 +1,17 @@
+sequenceDiagram
+  actor U as User
+  participant C as Client
+  participant A as API
+  participant D as Database
+
+  U->>C: Opens app
+  C->>A: GET /api/session
+  A->>D: SELECT session
+  D-->>A: session row
+  alt valid session
+    A-->>C: 200 { user }
+    C-->>U: Show dashboard
+  else expired
+    A-->>C: 401
+    C-->>U: Redirect to login
+  end

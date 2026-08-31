@@ -1,0 +1,20 @@
+erDiagram
+  USER ||--o{ SESSION : has
+  USER ||--o{ LMS_SESSION : creates
+  USER ||--o| LMS_USER_PROFILE : "has profile"
+  LMS_SESSION ||--o{ LMS_DIAGRAM_VERSION : snapshots
+  LMS_SESSION ||--o{ LMS_NODE_CHAT_HISTORY : contains
+  LMS_SESSION ||--o{ LMS_TIMELINE_EVENT : logs
+  LMS_SESSION ||--o{ LMS_DOCUMENT : owns
+  LMS_SESSION ||--o{ LMS_NODE_FACT : extracts
+  LMS_SESSION ||--o{ LMS_NODE_QUALITY : scores
+  LMS_SESSION ||--o| LMS_COURSE : "source of"
+  LMS_COURSE ||--o{ LMS_COURSE_MEMBER : has
+  LMS_COURSE ||--o{ LMS_COURSE_INVITE_TOKEN : issues
+  LMS_COURSE ||--o{ LMS_COURSE_CONTENT : contains
+  LMS_COURSE ||--o{ LMS_ENROLLMENT : enrolls
+  USER ||--o{ LMS_ENROLLMENT : student
+  USER ||--o{ LMS_COURSE_MEMBER : member
+  LMS_ENROLLMENT ||--o{ LMS_STUDENT_CONTENT_STATE : tracks
+  LMS_ENROLLMENT ||--o{ LMS_CONTENT_FOCUS_EVENT : logs
+  LMS_DOCUMENT ||--o{ LMS_DOCUMENT_BLOCK : "composed of"

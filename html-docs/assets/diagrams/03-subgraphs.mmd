@@ -1,0 +1,14 @@
+flowchart TB
+  subgraph one [Subgraph One]
+    direction LR
+    A --> B
+    B --> C
+  end
+  subgraph two [Subgraph Two]
+    direction LR
+    D --> E
+    E --> F
+  end
+  C --> D
+  F --> G[Outside]
+  G --> A

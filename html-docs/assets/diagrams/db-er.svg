@@ -1,0 +1,269 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1483.31 969.5" width="1483.31" height="969.5" style="--bg:#ffffff;--fg:#1f2328;--line:#d1d9e0;--accent:#0969da;--muted:#59636e;background:#ffffff">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&amp;display=swap');
+  text { font-family: 'Inter', system-ui, sans-serif; }
+  .mono { font-family: 'JetBrains Mono', 'SF Mono', 'Fira Code', ui-monospace, monospace; }
+</style>
+<defs>
+</defs>
+<polyline points="180,625.75 256.18,625.75 256.18,275 332.36,275" fill="none" stroke="#d1d9e0" stroke-width="0.75" />
+<polyline points="180,625.75 256.18,625.75 256.18,379 332.36,379" fill="none" stroke="#d1d9e0" stroke-width="0.75" />
+<polyline points="180,625.75 256.18,625.75 256.18,784.25 332.36,784.25" fill="none" stroke="#d1d9e0" stroke-width="0.75" />
+<polyline points="472.36,379 542.8199999999999,379 542.8199999999999,67 620.4300000000001,67" fill="none" stroke="#d1d9e0" stroke-width="0.75" />
+<polyline points="472.36,379 542.8199999999999,379 542.8199999999999,171 613.28,171" fill="none" stroke="#d1d9e0" stroke-width="0.75" />
+<polyline points="472.36,379 542.8199999999999,379 542.8199999999999,275 624.005,275" fill="none" stroke="#d1d9e0" stroke-width="0.75" />
+<polyline points="472.36,379 630.355,379" fill="none" stroke="#d1d9e0" stroke-width="0.75" />
+<polyline points="472.36,379 542.8199999999999,379 542.8199999999999,501.5 630.355,501.5" fill="none" stroke="#d1d9e0" stroke-width="0.75" />
+<polyline points="472.36,379 542.8199999999999,379 542.8199999999999,605.5 630.355,605.5" fill="none" stroke="#d1d9e0" stroke-width="0.75" />
+<polyline points="472.36,379 542.8199999999999,379 542.8199999999999,712 630.355,712" fill="none" stroke="#d1d9e0" stroke-width="0.75" />
+<polyline points="770.355,712 863.6099999999999,712 863.6099999999999,638 1034.0149999999999,638 1034.0149999999999,716" fill="none" stroke="#d1d9e0" stroke-width="0.75" />
+<polyline points="770.355,712 863.6099999999999,712 863.6099999999999,675 1034.0149999999999,675 1034.0149999999999,510" fill="none" stroke="#d1d9e0" stroke-width="0.75" />
+<polyline points="770.355,712 863.6099999999999,712 863.6099999999999,728 1034.0149999999999,728 1034.0149999999999,666" fill="none" stroke="#d1d9e0" stroke-width="0.75" />
+<polyline points="770.355,712 863.6099999999999,712 863.6099999999999,765 1034.0149999999999,765 1034.0149999999999,853.5" fill="none" stroke="#d1d9e0" stroke-width="0.75" />
+<polyline points="180,625.75 256.18,625.75 256.18,846.25 1034.0149999999999,846.25 1034.0149999999999,853.5" fill="none" stroke="#d1d9e0" stroke-width="0.75" />
+<polyline points="180,625.75 256.18,625.75 256.18,883.25 1034.0149999999999,883.25 1034.0149999999999,770" fill="none" stroke="#d1d9e0" stroke-width="0.75" />
+<polyline points="1104.0149999999999,880.5 1184.4,880.5 1184.4,798.5 1240.56,798.5" fill="none" stroke="#d1d9e0" stroke-width="0.75" />
+<polyline points="1104.0149999999999,880.5 1184.4,880.5 1184.4,902.5 1247.71,902.5" fill="none" stroke="#d1d9e0" stroke-width="0.75" />
+<polyline points="770.355,379 957.6649999999998,379" fill="none" stroke="#d1d9e0" stroke-width="0.75" />
+<rect x="40" y="598.75" width="140" height="54" rx="0" ry="0" fill="#f6f8fa" stroke="#d1d9e0" stroke-width="1" />
+<rect x="40" y="598.75" width="140" height="32" rx="0" ry="0" fill="#f6f8fa" stroke="#d1d9e0" stroke-width="1" />
+<text x="110" y="614.75" text-anchor="middle" dy="0.35em" font-size="13" font-weight="700" fill="#1f2328">USER</text>
+<line x1="40" y1="630.75" x2="180" y2="630.75" stroke="#d1d9e0" stroke-width="0.75" />
+<text x="110" y="641.75" text-anchor="middle" dy="0.35em" font-size="11" fill="#8b8e94" font-style="italic">(no attributes)</text>
+<rect x="332.36" y="248" width="140" height="54" rx="0" ry="0" fill="#f6f8fa" stroke="#d1d9e0" stroke-width="1" />
+<rect x="332.36" y="248" width="140" height="32" rx="0" ry="0" fill="#f6f8fa" stroke="#d1d9e0" stroke-width="1" />
+<text x="402.36" y="264" text-anchor="middle" dy="0.35em" font-size="13" font-weight="700" fill="#1f2328">SESSION</text>
+<line x1="332.36" y1="280" x2="472.36" y2="280" stroke="#d1d9e0" stroke-width="0.75" />
+<text x="402.36" y="291" text-anchor="middle" dy="0.35em" font-size="11" fill="#8b8e94" font-style="italic">(no attributes)</text>
+<rect x="332.36" y="352" width="140" height="54" rx="0" ry="0" fill="#f6f8fa" stroke="#d1d9e0" stroke-width="1" />
+<rect x="332.36" y="352" width="140" height="32" rx="0" ry="0" fill="#f6f8fa" stroke="#d1d9e0" stroke-width="1" />
+<text x="402.36" y="368" text-anchor="middle" dy="0.35em" font-size="13" font-weight="700" fill="#1f2328">LMS_SESSION</text>
+<line x1="332.36" y1="384" x2="472.36" y2="384" stroke="#d1d9e0" stroke-width="0.75" />
+<text x="402.36" y="395" text-anchor="middle" dy="0.35em" font-size="11" fill="#8b8e94" font-style="italic">(no attributes)</text>
+<rect x="332.36" y="757.25" width="140" height="54" rx="0" ry="0" fill="#f6f8fa" stroke="#d1d9e0" stroke-width="1" />
+<rect x="332.36" y="757.25" width="140" height="32" rx="0" ry="0" fill="#f6f8fa" stroke="#d1d9e0" stroke-width="1" />
+<text x="402.36" y="773.25" text-anchor="middle" dy="0.35em" font-size="13" font-weight="700" fill="#1f2328">LMS_USER_PROFILE</text>
+<line x1="332.36" y1="789.25" x2="472.36" y2="789.25" stroke="#d1d9e0" stroke-width="0.75" />
+<text x="402.36" y="800.25" text-anchor="middle" dy="0.35em" font-size="11" fill="#8b8e94" font-style="italic">(no attributes)</text>
+<rect x="620.4300000000001" y="40" width="159.85000000000002" height="54" rx="0" ry="0" fill="#f6f8fa" stroke="#d1d9e0" stroke-width="1" />
+<rect x="620.4300000000001" y="40" width="159.85000000000002" height="32" rx="0" ry="0" fill="#f6f8fa" stroke="#d1d9e0" stroke-width="1" />
+<text x="700.355" y="56" text-anchor="middle" dy="0.35em" font-size="13" font-weight="700" fill="#1f2328">LMS_DIAGRAM_VERSION</text>
+<line x1="620.4300000000001" y1="72" x2="780.2800000000001" y2="72" stroke="#d1d9e0" stroke-width="0.75" />
+<text x="700.355" y="83" text-anchor="middle" dy="0.35em" font-size="11" fill="#8b8e94" font-style="italic">(no attributes)</text>
+<rect x="613.28" y="144" width="174.15" height="54" rx="0" ry="0" fill="#f6f8fa" stroke="#d1d9e0" stroke-width="1" />
+<rect x="613.28" y="144" width="174.15" height="32" rx="0" ry="0" fill="#f6f8fa" stroke="#d1d9e0" stroke-width="1" />
+<text x="700.355" y="160" text-anchor="middle" dy="0.35em" font-size="13" font-weight="700" fill="#1f2328">LMS_NODE_CHAT_HISTORY</text>
+<line x1="613.28" y1="176" x2="787.43" y2="176" stroke="#d1d9e0" stroke-width="0.75" />
+<text x="700.355" y="187" text-anchor="middle" dy="0.35em" font-size="11" fill="#8b8e94" font-style="italic">(no attributes)</text>
+<rect x="624.005" y="248" width="152.70000000000002" height="54" rx="0" ry="0" fill="#f6f8fa" stroke="#d1d9e0" stroke-width="1" />
+<rect x="624.005" y="248" width="152.70000000000002" height="32" rx="0" ry="0" fill="#f6f8fa" stroke="#d1d9e0" stroke-width="1" />
+<text x="700.355" y="264" text-anchor="middle" dy="0.35em" font-size="13" font-weight="700" fill="#1f2328">LMS_TIMELINE_EVENT</text>
+<line x1="624.005" y1="280" x2="776.705" y2="280" stroke="#d1d9e0" stroke-width="0.75" />
+<text x="700.355" y="291" text-anchor="middle" dy="0.35em" font-size="11" fill="#8b8e94" font-style="italic">(no attributes)</text>
+<rect x="630.355" y="352" width="140" height="54" rx="0" ry="0" fill="#f6f8fa" stroke="#d1d9e0" stroke-width="1" />
+<rect x="630.355" y="352" width="140" height="32" rx="0" ry="0" fill="#f6f8fa" stroke="#d1d9e0" stroke-width="1" />
+<text x="700.355" y="368" text-anchor="middle" dy="0.35em" font-size="13" font-weight="700" fill="#1f2328">LMS_DOCUMENT</text>
+<line x1="630.355" y1="384" x2="770.355" y2="384" stroke="#d1d9e0" stroke-width="0.75" />
+<text x="700.355" y="395" text-anchor="middle" dy="0.35em" font-size="11" fill="#8b8e94" font-style="italic">(no attributes)</text>
+<rect x="630.355" y="474.5" width="140" height="54" rx="0" ry="0" fill="#f6f8fa" stroke="#d1d9e0" stroke-width="1" />
+<rect x="630.355" y="474.5" width="140" height="32" rx="0" ry="0" fill="#f6f8fa" stroke="#d1d9e0" stroke-width="1" />
+<text x="700.355" y="490.5" text-anchor="middle" dy="0.35em" font-size="13" font-weight="700" fill="#1f2328">LMS_NODE_FACT</text>
+<line x1="630.355" y1="506.5" x2="770.355" y2="506.5" stroke="#d1d9e0" stroke-width="0.75" />
+<text x="700.355" y="517.5" text-anchor="middle" dy="0.35em" font-size="11" fill="#8b8e94" font-style="italic">(no attributes)</text>
+<rect x="630.355" y="578.5" width="140" height="54" rx="0" ry="0" fill="#f6f8fa" stroke="#d1d9e0" stroke-width="1" />
+<rect x="630.355" y="578.5" width="140" height="32" rx="0" ry="0" fill="#f6f8fa" stroke="#d1d9e0" stroke-width="1" />
+<text x="700.355" y="594.5" text-anchor="middle" dy="0.35em" font-size="13" font-weight="700" fill="#1f2328">LMS_NODE_QUALITY</text>
+<line x1="630.355" y1="610.5" x2="770.355" y2="610.5" stroke="#d1d9e0" stroke-width="0.75" />
+<text x="700.355" y="621.5" text-anchor="middle" dy="0.35em" font-size="11" fill="#8b8e94" font-style="italic">(no attributes)</text>
+<rect x="630.355" y="685" width="140" height="54" rx="0" ry="0" fill="#f6f8fa" stroke="#d1d9e0" stroke-width="1" />
+<rect x="630.355" y="685" width="140" height="32" rx="0" ry="0" fill="#f6f8fa" stroke="#d1d9e0" stroke-width="1" />
+<text x="700.355" y="701" text-anchor="middle" dy="0.35em" font-size="13" font-weight="700" fill="#1f2328">LMS_COURSE</text>
+<line x1="630.355" y1="717" x2="770.355" y2="717" stroke="#d1d9e0" stroke-width="0.75" />
+<text x="700.355" y="728" text-anchor="middle" dy="0.35em" font-size="11" fill="#8b8e94" font-style="italic">(no attributes)</text>
+<rect x="961.2399999999999" y="716" width="145.55" height="54" rx="0" ry="0" fill="#f6f8fa" stroke="#d1d9e0" stroke-width="1" />
+<rect x="961.2399999999999" y="716" width="145.55" height="32" rx="0" ry="0" fill="#f6f8fa" stroke="#d1d9e0" stroke-width="1" />
+<text x="1034.0149999999999" y="732" text-anchor="middle" dy="0.35em" font-size="13" font-weight="700" fill="#1f2328">LMS_COURSE_MEMBER</text>
+<line x1="961.2399999999999" y1="748" x2="1106.79" y2="748" stroke="#d1d9e0" stroke-width="0.75" />
+<text x="1034.0149999999999" y="759" text-anchor="middle" dy="0.35em" font-size="11" fill="#8b8e94" font-style="italic">(no attributes)</text>
+<rect x="939.7899999999998" y="456" width="188.45000000000002" height="54" rx="0" ry="0" fill="#f6f8fa" stroke="#d1d9e0" stroke-width="1" />
+<rect x="939.7899999999998" y="456" width="188.45000000000002" height="32" rx="0" ry="0" fill="#f6f8fa" stroke="#d1d9e0" stroke-width="1" />
+<text x="1034.0149999999999" y="472" text-anchor="middle" dy="0.35em" font-size="13" font-weight="700" fill="#1f2328">LMS_COURSE_INVITE_TOKEN</text>
+<line x1="939.7899999999998" y1="488" x2="1128.2399999999998" y2="488" stroke="#d1d9e0" stroke-width="0.75" />
+<text x="1034.0149999999999" y="499" text-anchor="middle" dy="0.35em" font-size="11" fill="#8b8e94" font-style="italic">(no attributes)</text>
+<rect x="957.6649999999998" y="612" width="152.70000000000002" height="54" rx="0" ry="0" fill="#f6f8fa" stroke="#d1d9e0" stroke-width="1" />
+<rect x="957.6649999999998" y="612" width="152.70000000000002" height="32" rx="0" ry="0" fill="#f6f8fa" stroke="#d1d9e0" stroke-width="1" />
+<text x="1034.0149999999999" y="628" text-anchor="middle" dy="0.35em" font-size="13" font-weight="700" fill="#1f2328">LMS_COURSE_CONTENT</text>
+<line x1="957.6649999999998" y1="644" x2="1110.3649999999998" y2="644" stroke="#d1d9e0" stroke-width="0.75" />
+<text x="1034.0149999999999" y="655" text-anchor="middle" dy="0.35em" font-size="11" fill="#8b8e94" font-style="italic">(no attributes)</text>
+<rect x="964.0149999999999" y="853.5" width="140" height="54" rx="0" ry="0" fill="#f6f8fa" stroke="#d1d9e0" stroke-width="1" />
+<rect x="964.0149999999999" y="853.5" width="140" height="32" rx="0" ry="0" fill="#f6f8fa" stroke="#d1d9e0" stroke-width="1" />
+<text x="1034.0149999999999" y="869.5" text-anchor="middle" dy="0.35em" font-size="13" font-weight="700" fill="#1f2328">LMS_ENROLLMENT</text>
+<line x1="964.0149999999999" y1="885.5" x2="1104.0149999999999" y2="885.5" stroke="#d1d9e0" stroke-width="0.75" />
+<text x="1034.0149999999999" y="896.5" text-anchor="middle" dy="0.35em" font-size="11" fill="#8b8e94" font-style="italic">(no attributes)</text>
+<rect x="1240.56" y="771.5" width="202.75000000000003" height="54" rx="0" ry="0" fill="#f6f8fa" stroke="#d1d9e0" stroke-width="1" />
+<rect x="1240.56" y="771.5" width="202.75000000000003" height="32" rx="0" ry="0" fill="#f6f8fa" stroke="#d1d9e0" stroke-width="1" />
+<text x="1341.935" y="787.5" text-anchor="middle" dy="0.35em" font-size="13" font-weight="700" fill="#1f2328">LMS_STUDENT_CONTENT_STATE</text>
+<line x1="1240.56" y1="803.5" x2="1443.31" y2="803.5" stroke="#d1d9e0" stroke-width="0.75" />
+<text x="1341.935" y="814.5" text-anchor="middle" dy="0.35em" font-size="11" fill="#8b8e94" font-style="italic">(no attributes)</text>
+<rect x="1247.71" y="875.5" width="188.45000000000002" height="54" rx="0" ry="0" fill="#f6f8fa" stroke="#d1d9e0" stroke-width="1" />
+<rect x="1247.71" y="875.5" width="188.45000000000002" height="32" rx="0" ry="0" fill="#f6f8fa" stroke="#d1d9e0" stroke-width="1" />
+<text x="1341.935" y="891.5" text-anchor="middle" dy="0.35em" font-size="13" font-weight="700" fill="#1f2328">LMS_CONTENT_FOCUS_EVENT</text>
+<line x1="1247.71" y1="907.5" x2="1436.16" y2="907.5" stroke="#d1d9e0" stroke-width="0.75" />
+<text x="1341.935" y="918.5" text-anchor="middle" dy="0.35em" font-size="11" fill="#8b8e94" font-style="italic">(no attributes)</text>
+<rect x="957.6649999999998" y="352" width="152.70000000000002" height="54" rx="0" ry="0" fill="#f6f8fa" stroke="#d1d9e0" stroke-width="1" />
+<rect x="957.6649999999998" y="352" width="152.70000000000002" height="32" rx="0" ry="0" fill="#f6f8fa" stroke="#d1d9e0" stroke-width="1" />
+<text x="1034.0149999999999" y="368" text-anchor="middle" dy="0.35em" font-size="13" font-weight="700" fill="#1f2328">LMS_DOCUMENT_BLOCK</text>
+<line x1="957.6649999999998" y1="384" x2="1110.3649999999998" y2="384" stroke="#d1d9e0" stroke-width="0.75" />
+<text x="1034.0149999999999" y="395" text-anchor="middle" dy="0.35em" font-size="11" fill="#8b8e94" font-style="italic">(no attributes)</text>
+<line x1="184" y1="619.75" x2="184" y2="631.75" stroke="#d1d9e0" stroke-width="1" />
+<line x1="188" y1="619.75" x2="188" y2="631.75" stroke="#d1d9e0" stroke-width="1" />
+<line x1="328.36" y1="282" x2="316.36" y2="275" stroke="#d1d9e0" stroke-width="1" />
+<line x1="328.36" y1="275" x2="316.36" y2="275" stroke="#d1d9e0" stroke-width="1" />
+<line x1="328.36" y1="268" x2="316.36" y2="275" stroke="#d1d9e0" stroke-width="1" />
+<circle cx="312.36" cy="275" r="4" fill="#ffffff" stroke="#d1d9e0" stroke-width="1" />
+<line x1="184" y1="619.75" x2="184" y2="631.75" stroke="#d1d9e0" stroke-width="1" />
+<line x1="188" y1="619.75" x2="188" y2="631.75" stroke="#d1d9e0" stroke-width="1" />
+<line x1="328.36" y1="386" x2="316.36" y2="379" stroke="#d1d9e0" stroke-width="1" />
+<line x1="328.36" y1="379" x2="316.36" y2="379" stroke="#d1d9e0" stroke-width="1" />
+<line x1="328.36" y1="372" x2="316.36" y2="379" stroke="#d1d9e0" stroke-width="1" />
+<circle cx="312.36" cy="379" r="4" fill="#ffffff" stroke="#d1d9e0" stroke-width="1" />
+<line x1="184" y1="619.75" x2="184" y2="631.75" stroke="#d1d9e0" stroke-width="1" />
+<line x1="188" y1="619.75" x2="188" y2="631.75" stroke="#d1d9e0" stroke-width="1" />
+<line x1="328.36" y1="790.25" x2="328.36" y2="778.25" stroke="#d1d9e0" stroke-width="1" />
+<line x1="324.36" y1="790.25" x2="324.36" y2="778.25" stroke="#d1d9e0" stroke-width="1" />
+<circle cx="320.36" cy="784.25" r="4" fill="#ffffff" stroke="#d1d9e0" stroke-width="1" />
+<line x1="476.36" y1="373" x2="476.36" y2="385" stroke="#d1d9e0" stroke-width="1" />
+<line x1="480.36" y1="373" x2="480.36" y2="385" stroke="#d1d9e0" stroke-width="1" />
+<line x1="616.4300000000001" y1="74" x2="604.4300000000001" y2="67" stroke="#d1d9e0" stroke-width="1" />
+<line x1="616.4300000000001" y1="67" x2="604.4300000000001" y2="67" stroke="#d1d9e0" stroke-width="1" />
+<line x1="616.4300000000001" y1="60" x2="604.4300000000001" y2="67" stroke="#d1d9e0" stroke-width="1" />
+<circle cx="600.4300000000001" cy="67" r="4" fill="#ffffff" stroke="#d1d9e0" stroke-width="1" />
+<line x1="476.36" y1="373" x2="476.36" y2="385" stroke="#d1d9e0" stroke-width="1" />
+<line x1="480.36" y1="373" x2="480.36" y2="385" stroke="#d1d9e0" stroke-width="1" />
+<line x1="609.28" y1="178" x2="597.28" y2="171" stroke="#d1d9e0" stroke-width="1" />
+<line x1="609.28" y1="171" x2="597.28" y2="171" stroke="#d1d9e0" stroke-width="1" />
+<line x1="609.28" y1="164" x2="597.28" y2="171" stroke="#d1d9e0" stroke-width="1" />
+<circle cx="593.28" cy="171" r="4" fill="#ffffff" stroke="#d1d9e0" stroke-width="1" />
+<line x1="476.36" y1="373" x2="476.36" y2="385" stroke="#d1d9e0" stroke-width="1" />
+<line x1="480.36" y1="373" x2="480.36" y2="385" stroke="#d1d9e0" stroke-width="1" />
+<line x1="620.005" y1="282" x2="608.005" y2="275" stroke="#d1d9e0" stroke-width="1" />
+<line x1="620.005" y1="275" x2="608.005" y2="275" stroke="#d1d9e0" stroke-width="1" />
+<line x1="620.005" y1="268" x2="608.005" y2="275" stroke="#d1d9e0" stroke-width="1" />
+<circle cx="604.005" cy="275" r="4" fill="#ffffff" stroke="#d1d9e0" stroke-width="1" />
+<line x1="476.36" y1="373" x2="476.36" y2="385" stroke="#d1d9e0" stroke-width="1" />
+<line x1="480.36" y1="373" x2="480.36" y2="385" stroke="#d1d9e0" stroke-width="1" />
+<line x1="626.355" y1="386" x2="614.355" y2="379" stroke="#d1d9e0" stroke-width="1" />
+<line x1="626.355" y1="379" x2="614.355" y2="379" stroke="#d1d9e0" stroke-width="1" />
+<line x1="626.355" y1="372" x2="614.355" y2="379" stroke="#d1d9e0" stroke-width="1" />
+<circle cx="610.355" cy="379" r="4" fill="#ffffff" stroke="#d1d9e0" stroke-width="1" />
+<line x1="476.36" y1="373" x2="476.36" y2="385" stroke="#d1d9e0" stroke-width="1" />
+<line x1="480.36" y1="373" x2="480.36" y2="385" stroke="#d1d9e0" stroke-width="1" />
+<line x1="626.355" y1="508.5" x2="614.355" y2="501.5" stroke="#d1d9e0" stroke-width="1" />
+<line x1="626.355" y1="501.5" x2="614.355" y2="501.5" stroke="#d1d9e0" stroke-width="1" />
+<line x1="626.355" y1="494.5" x2="614.355" y2="501.5" stroke="#d1d9e0" stroke-width="1" />
+<circle cx="610.355" cy="501.5" r="4" fill="#ffffff" stroke="#d1d9e0" stroke-width="1" />
+<line x1="476.36" y1="373" x2="476.36" y2="385" stroke="#d1d9e0" stroke-width="1" />
+<line x1="480.36" y1="373" x2="480.36" y2="385" stroke="#d1d9e0" stroke-width="1" />
+<line x1="626.355" y1="612.5" x2="614.355" y2="605.5" stroke="#d1d9e0" stroke-width="1" />
+<line x1="626.355" y1="605.5" x2="614.355" y2="605.5" stroke="#d1d9e0" stroke-width="1" />
+<line x1="626.355" y1="598.5" x2="614.355" y2="605.5" stroke="#d1d9e0" stroke-width="1" />
+<circle cx="610.355" cy="605.5" r="4" fill="#ffffff" stroke="#d1d9e0" stroke-width="1" />
+<line x1="476.36" y1="373" x2="476.36" y2="385" stroke="#d1d9e0" stroke-width="1" />
+<line x1="480.36" y1="373" x2="480.36" y2="385" stroke="#d1d9e0" stroke-width="1" />
+<line x1="626.355" y1="718" x2="626.355" y2="706" stroke="#d1d9e0" stroke-width="1" />
+<line x1="622.355" y1="718" x2="622.355" y2="706" stroke="#d1d9e0" stroke-width="1" />
+<circle cx="618.355" cy="712" r="4" fill="#ffffff" stroke="#d1d9e0" stroke-width="1" />
+<line x1="774.355" y1="706" x2="774.355" y2="718" stroke="#d1d9e0" stroke-width="1" />
+<line x1="778.355" y1="706" x2="778.355" y2="718" stroke="#d1d9e0" stroke-width="1" />
+<line x1="1027.0149999999999" y1="712" x2="1034.0149999999999" y2="700" stroke="#d1d9e0" stroke-width="1" />
+<line x1="1034.0149999999999" y1="712" x2="1034.0149999999999" y2="700" stroke="#d1d9e0" stroke-width="1" />
+<line x1="1041.0149999999999" y1="712" x2="1034.0149999999999" y2="700" stroke="#d1d9e0" stroke-width="1" />
+<circle cx="1034.0149999999999" cy="696" r="4" fill="#ffffff" stroke="#d1d9e0" stroke-width="1" />
+<line x1="774.355" y1="706" x2="774.355" y2="718" stroke="#d1d9e0" stroke-width="1" />
+<line x1="778.355" y1="706" x2="778.355" y2="718" stroke="#d1d9e0" stroke-width="1" />
+<line x1="1041.0149999999999" y1="514" x2="1034.0149999999999" y2="526" stroke="#d1d9e0" stroke-width="1" />
+<line x1="1034.0149999999999" y1="514" x2="1034.0149999999999" y2="526" stroke="#d1d9e0" stroke-width="1" />
+<line x1="1027.0149999999999" y1="514" x2="1034.0149999999999" y2="526" stroke="#d1d9e0" stroke-width="1" />
+<circle cx="1034.0149999999999" cy="530" r="4" fill="#ffffff" stroke="#d1d9e0" stroke-width="1" />
+<line x1="774.355" y1="706" x2="774.355" y2="718" stroke="#d1d9e0" stroke-width="1" />
+<line x1="778.355" y1="706" x2="778.355" y2="718" stroke="#d1d9e0" stroke-width="1" />
+<line x1="1041.0149999999999" y1="670" x2="1034.0149999999999" y2="682" stroke="#d1d9e0" stroke-width="1" />
+<line x1="1034.0149999999999" y1="670" x2="1034.0149999999999" y2="682" stroke="#d1d9e0" stroke-width="1" />
+<line x1="1027.0149999999999" y1="670" x2="1034.0149999999999" y2="682" stroke="#d1d9e0" stroke-width="1" />
+<circle cx="1034.0149999999999" cy="686" r="4" fill="#ffffff" stroke="#d1d9e0" stroke-width="1" />
+<line x1="774.355" y1="706" x2="774.355" y2="718" stroke="#d1d9e0" stroke-width="1" />
+<line x1="778.355" y1="706" x2="778.355" y2="718" stroke="#d1d9e0" stroke-width="1" />
+<line x1="1027.0149999999999" y1="849.5" x2="1034.0149999999999" y2="837.5" stroke="#d1d9e0" stroke-width="1" />
+<line x1="1034.0149999999999" y1="849.5" x2="1034.0149999999999" y2="837.5" stroke="#d1d9e0" stroke-width="1" />
+<line x1="1041.0149999999999" y1="849.5" x2="1034.0149999999999" y2="837.5" stroke="#d1d9e0" stroke-width="1" />
+<circle cx="1034.0149999999999" cy="833.5" r="4" fill="#ffffff" stroke="#d1d9e0" stroke-width="1" />
+<line x1="184" y1="619.75" x2="184" y2="631.75" stroke="#d1d9e0" stroke-width="1" />
+<line x1="188" y1="619.75" x2="188" y2="631.75" stroke="#d1d9e0" stroke-width="1" />
+<line x1="1027.0149999999999" y1="849.5" x2="1034.0149999999999" y2="837.5" stroke="#d1d9e0" stroke-width="1" />
+<line x1="1034.0149999999999" y1="849.5" x2="1034.0149999999999" y2="837.5" stroke="#d1d9e0" stroke-width="1" />
+<line x1="1041.0149999999999" y1="849.5" x2="1034.0149999999999" y2="837.5" stroke="#d1d9e0" stroke-width="1" />
+<circle cx="1034.0149999999999" cy="833.5" r="4" fill="#ffffff" stroke="#d1d9e0" stroke-width="1" />
+<line x1="184" y1="619.75" x2="184" y2="631.75" stroke="#d1d9e0" stroke-width="1" />
+<line x1="188" y1="619.75" x2="188" y2="631.75" stroke="#d1d9e0" stroke-width="1" />
+<line x1="1041.0149999999999" y1="774" x2="1034.0149999999999" y2="786" stroke="#d1d9e0" stroke-width="1" />
+<line x1="1034.0149999999999" y1="774" x2="1034.0149999999999" y2="786" stroke="#d1d9e0" stroke-width="1" />
+<line x1="1027.0149999999999" y1="774" x2="1034.0149999999999" y2="786" stroke="#d1d9e0" stroke-width="1" />
+<circle cx="1034.0149999999999" cy="790" r="4" fill="#ffffff" stroke="#d1d9e0" stroke-width="1" />
+<line x1="1108.0149999999999" y1="874.5" x2="1108.0149999999999" y2="886.5" stroke="#d1d9e0" stroke-width="1" />
+<line x1="1112.0149999999999" y1="874.5" x2="1112.0149999999999" y2="886.5" stroke="#d1d9e0" stroke-width="1" />
+<line x1="1236.56" y1="805.5" x2="1224.56" y2="798.5" stroke="#d1d9e0" stroke-width="1" />
+<line x1="1236.56" y1="798.5" x2="1224.56" y2="798.5" stroke="#d1d9e0" stroke-width="1" />
+<line x1="1236.56" y1="791.5" x2="1224.56" y2="798.5" stroke="#d1d9e0" stroke-width="1" />
+<circle cx="1220.56" cy="798.5" r="4" fill="#ffffff" stroke="#d1d9e0" stroke-width="1" />
+<line x1="1108.0149999999999" y1="874.5" x2="1108.0149999999999" y2="886.5" stroke="#d1d9e0" stroke-width="1" />
+<line x1="1112.0149999999999" y1="874.5" x2="1112.0149999999999" y2="886.5" stroke="#d1d9e0" stroke-width="1" />
+<line x1="1243.71" y1="909.5" x2="1231.71" y2="902.5" stroke="#d1d9e0" stroke-width="1" />
+<line x1="1243.71" y1="902.5" x2="1231.71" y2="902.5" stroke="#d1d9e0" stroke-width="1" />
+<line x1="1243.71" y1="895.5" x2="1231.71" y2="902.5" stroke="#d1d9e0" stroke-width="1" />
+<circle cx="1227.71" cy="902.5" r="4" fill="#ffffff" stroke="#d1d9e0" stroke-width="1" />
+<line x1="774.355" y1="373" x2="774.355" y2="385" stroke="#d1d9e0" stroke-width="1" />
+<line x1="778.355" y1="373" x2="778.355" y2="385" stroke="#d1d9e0" stroke-width="1" />
+<line x1="953.6649999999998" y1="386" x2="941.6649999999998" y2="379" stroke="#d1d9e0" stroke-width="1" />
+<line x1="953.6649999999998" y1="379" x2="941.6649999999998" y2="379" stroke="#d1d9e0" stroke-width="1" />
+<line x1="953.6649999999998" y1="372" x2="941.6649999999998" y2="379" stroke="#d1d9e0" stroke-width="1" />
+<circle cx="937.6649999999998" cy="379" r="4" fill="#ffffff" stroke="#d1d9e0" stroke-width="1" />
+<rect x="243.6" y="441.875" width="25.16" height="17" rx="2" ry="2" fill="#ffffff" stroke="#e3e8ed" stroke-width="0.5" />
+<text x="256.18" y="450.375" text-anchor="middle" dy="0.35em" font-size="11" font-weight="400" fill="#59636e">has</text>
+<rect x="232.16" y="493.875" width="48.04" height="17" rx="2" ry="2" fill="#ffffff" stroke="#e3e8ed" stroke-width="0.5" />
+<text x="256.18" y="502.375" text-anchor="middle" dy="0.35em" font-size="11" font-weight="400" fill="#59636e">creates</text>
+<rect x="215" y="696.5" width="82.36" height="17" rx="2" ry="2" fill="#ffffff" stroke="#e3e8ed" stroke-width="0.5" />
+<text x="256.18" y="705" text-anchor="middle" dy="0.35em" font-size="11" font-weight="400" fill="#59636e">&quot;has profile&quot;</text>
+<rect x="513.0799999999999" y="210.9249999999999" width="59.480000000000004" height="17" rx="2" ry="2" fill="#ffffff" stroke="#e3e8ed" stroke-width="0.5" />
+<text x="542.8199999999999" y="219.4249999999999" text-anchor="middle" dy="0.35em" font-size="11" font-weight="400" fill="#59636e">snapshots</text>
+<rect x="515.9399999999999" y="266.49999999999994" width="53.760000000000005" height="17" rx="2" ry="2" fill="#ffffff" stroke="#e3e8ed" stroke-width="0.5" />
+<text x="542.8199999999999" y="274.99999999999994" text-anchor="middle" dy="0.35em" font-size="11" font-weight="400" fill="#59636e">contains</text>
+<rect x="527.3799999999999" y="313.13749999999993" width="30.880000000000003" height="17" rx="2" ry="2" fill="#ffffff" stroke="#e3e8ed" stroke-width="0.5" />
+<text x="542.8199999999999" y="321.63749999999993" text-anchor="middle" dy="0.35em" font-size="11" font-weight="400" fill="#59636e">logs</text>
+<rect x="535.9175" y="370.5" width="30.880000000000003" height="17" rx="2" ry="2" fill="#ffffff" stroke="#e3e8ed" stroke-width="0.5" />
+<text x="551.3575000000001" y="379" text-anchor="middle" dy="0.35em" font-size="11" font-weight="400" fill="#59636e">owns</text>
+<rect x="515.9399999999999" y="440.2875000000001" width="53.760000000000005" height="17" rx="2" ry="2" fill="#ffffff" stroke="#e3e8ed" stroke-width="0.5" />
+<text x="542.8199999999999" y="448.7875000000001" text-anchor="middle" dy="0.35em" font-size="11" font-weight="400" fill="#59636e">extracts</text>
+<rect x="521.66" y="492.2875000000001" width="42.32" height="17" rx="2" ry="2" fill="#ffffff" stroke="#e3e8ed" stroke-width="0.5" />
+<text x="542.8199999999999" y="500.7875000000001" text-anchor="middle" dy="0.35em" font-size="11" font-weight="400" fill="#59636e">scores</text>
+<rect x="507.35999999999996" y="545.5375000000001" width="70.92" height="17" rx="2" ry="2" fill="#ffffff" stroke="#e3e8ed" stroke-width="0.5" />
+<text x="542.8199999999999" y="554.0375000000001" text-anchor="middle" dy="0.35em" font-size="11" font-weight="400" fill="#59636e">&quot;source of&quot;</text>
+<rect x="891.6049999999999" y="629.5" width="25.16" height="17" rx="2" ry="2" fill="#ffffff" stroke="#e3e8ed" stroke-width="0.5" />
+<text x="904.185" y="638" text-anchor="middle" dy="0.35em" font-size="11" font-weight="400" fill="#59636e">has</text>
+<rect x="945.025" y="666.5" width="42.32" height="17" rx="2" ry="2" fill="#ffffff" stroke="#e3e8ed" stroke-width="0.5" />
+<text x="966.185" y="675" text-anchor="middle" dy="0.35em" font-size="11" font-weight="400" fill="#59636e">issues</text>
+<rect x="898.305" y="719.5" width="53.760000000000005" height="17" rx="2" ry="2" fill="#ffffff" stroke="#e3e8ed" stroke-width="0.5" />
+<text x="925.185" y="728" text-anchor="middle" dy="0.35em" font-size="11" font-weight="400" fill="#59636e">contains</text>
+<rect x="895.915" y="756.5" width="48.04" height="17" rx="2" ry="2" fill="#ffffff" stroke="#e3e8ed" stroke-width="0.5" />
+<text x="919.935" y="765" text-anchor="middle" dy="0.35em" font-size="11" font-weight="400" fill="#59636e">enrolls</text>
+<rect x="476.36249999999995" y="837.75" width="48.04" height="17" rx="2" ry="2" fill="#ffffff" stroke="#e3e8ed" stroke-width="0.5" />
+<text x="500.38249999999994" y="846.25" text-anchor="middle" dy="0.35em" font-size="11" font-weight="400" fill="#59636e">student</text>
+<rect x="513.7225" y="874.75" width="42.32" height="17" rx="2" ry="2" fill="#ffffff" stroke="#e3e8ed" stroke-width="0.5" />
+<text x="534.8824999999999" y="883.25" text-anchor="middle" dy="0.35em" font-size="11" font-weight="400" fill="#59636e">member</text>
+<rect x="1163.24" y="843.1125000000002" width="42.32" height="17" rx="2" ry="2" fill="#ffffff" stroke="#e3e8ed" stroke-width="0.5" />
+<text x="1184.4" y="851.6125000000002" text-anchor="middle" dy="0.35em" font-size="11" font-weight="400" fill="#59636e">tracks</text>
+<rect x="1168.96" y="874.4624999999999" width="30.880000000000003" height="17" rx="2" ry="2" fill="#ffffff" stroke="#e3e8ed" stroke-width="0.5" />
+<text x="1184.4" y="882.9624999999999" text-anchor="middle" dy="0.35em" font-size="11" font-weight="400" fill="#59636e">logs</text>
+<rect x="822.83" y="370.5" width="82.36" height="17" rx="2" ry="2" fill="#ffffff" stroke="#e3e8ed" stroke-width="0.5" />
+<text x="864.01" y="379" text-anchor="middle" dy="0.35em" font-size="11" font-weight="400" fill="#59636e">&quot;composed of&quot;</text>
+</svg>

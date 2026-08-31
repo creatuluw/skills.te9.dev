@@ -1,0 +1,12 @@
+erDiagram
+  USER ||--o{ SESSION : has
+  USER ||--o{ LMS_SESSION : creates
+  LMS_SESSION ||--o{ DIAGRAM_VERSION : has
+  LMS_SESSION ||--o{ NODE_CHAT : contains
+  LMS_SESSION ||--o{ DOCUMENT : owns
+  LMS_SESSION ||--o| COURSE : "source of"
+  COURSE ||--o{ ENROLLMENT : has
+  COURSE ||--o{ COURSE_CONTENT : contains
+  USER ||--o{ ENROLLMENT : enrolls
+  ENROLLMENT ||--o{ CONTENT_STATE : tracks
+  DOCUMENT ||--o{ DOCUMENT_BLOCK : "composed of"
