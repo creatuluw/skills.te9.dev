@@ -2,6 +2,25 @@
 
 Simplified workflow for software development with AI.
 
+## Install a skill
+
+Every skill in this repo is a folder with a `SKILL.md`. Three ways to install one (e.g. `dataset-to-planboard`):
+
+```bash
+# 1. skills CLI (auto-detects your agent: pi, Claude Code, Cursor, …)
+npx skills add creatuluw/skills.te9.dev/dataset-to-planboard
+
+# 2. plain git — copy the folder into your agent's skills directory
+git clone --depth 1 https://github.com/creatuluw/skills.te9.dev
+cp -r skills.te9.dev/dataset-to-planboard ~/.pi/agent/skills/   # pi
+# cp -r skills.te9.dev/dataset-to-planboard ~/.claude/skills/   # Claude Code
+
+# 3. single file — fetch SKILL.md raw and place it in a skill folder
+curl -o SKILL.md https://raw.githubusercontent.com/creatuluw/skills.te9.dev/main/dataset-to-planboard/SKILL.md
+```
+
+After installing, restart the agent (or start a new session) — the skill's description appears in the system prompt and triggers automatically on matching requests. Scripts inside a skill folder are referenced by the skill itself; keep the folder structure intact.
+
 ## Skills
 
 | Skill | Purpose |
@@ -20,6 +39,7 @@ Simplified workflow for software development with AI.
 | **modern-frontend-design** | Premium frontend design principles |
 | **svelte5-best-practices** | Svelte 5 runes and patterns |
 | **sveltekit-svelte5-tailwind-skill** | SvelteKit + Svelte 5 + Tailwind integration |
+| **dataset-to-planboard** | Reverse-engineer any dataset into a plan.pippeloi.nl breakdown board |
 
 ## Skill Descriptions
 
@@ -38,6 +58,8 @@ Simplified workflow for software development with AI.
 - **formbricks-mgr** — Formbricks survey creation and management. Use when creating surveys, managing survey structures, generating single-use links, exporting survey definitions, or implementing conditional question logic.
 
 ### Documentation & Analysis
+
+- **dataset-to-planboard** — Analyze any dataset or data file (xlsx, xlsm, csv, json) and reverse-engineer it into a plan.pippeloi.nl breakdown board: detect the distributed number and its unit, identify dimension columns, build the import JSON, validate it, upload via `POST /api/import`, return the share URLs. Use when the user provides a spreadsheet or dataset with a distribution/breakdown/planning structure (hours, revenue, km, capacity, workload) and wants it turned into an interactive decomposition diagram.
 
 - **codebase-context** — Document and structure codebases for LLM understanding using graph-based context. Use when working with large codebases, refactoring legacy code, onboarding to new projects, or optimizing LLM context.
 
