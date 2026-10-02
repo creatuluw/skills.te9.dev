@@ -1,3 +1,10 @@
+---
+type: Artifact
+title: File tree
+description: Complete project file listing with per-file descriptions.
+timestamp: "2026-09-14T20:17:20.271Z"
+---
+
 # File tree — generated 2026-08-31T13:21:38.809Z
 # Respects .wiki_ignore exclusions.
 # [description] — shorthand summary of each file's function

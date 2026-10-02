@@ -1,0 +1,158 @@
+{
+  "capturedAt": "2026-09-07T16:30:29.143923+00:00",
+  "reference": "reference.jpg",
+  "entry": "stone-giant.html",
+  "factory": "src/giant.ts:createStoneGiant",
+  "sourceRoot": "E:\\.neo-work\\gpt-6",
+  "verifiedOriginalCopy": true,
+  "rebundledByteIdentical": true,
+  "metrics": {
+    "modelMeshes": 47,
+    "instancedTriangles": 321784,
+    "countedVertexRecords": 933036,
+    "bounds": {
+      "min": [
+        -2.490999698638916,
+        -2.9802321721561503e-10,
+        -2.3399999141693115
+      ],
+      "max": [
+        2.4852988719940186,
+        10.09091567993164,
+        2.3399999141693115
+      ]
+    },
+    "offlineFileTest": {
+      "ready": true,
+      "geometry": true,
+      "frontControlWorks": true,
+      "externalAssets": 0,
+      "externalRequests": []
+    },
+    "numericFidelityScore": null
+  },
+  "files": [
+    {
+      "path": ".gitignore",
+      "bytes": 76,
+      "sha256": "1eff0f819dc07a1c79995b80263958221313abb249e1d727393e1faa96ce440c",
+      "copiedFrom": "E:\\.neo-work\\gpt-6\\.gitignore"
+    },
+    {
+      "path": ".specs/stone-giant/spec.md",
+      "bytes": 4275,
+      "sha256": "6d94ead398782a159436c26309cbfcb8b7f0c1f32d41c340acfbdaccf493b6ba",
+      "copiedFrom": "E:\\.neo-work\\gpt-6\\.specs\\stone-giant\\spec.md"
+    },
+    {
+      "path": "index.html",
+      "bytes": 612,
+      "sha256": "8f98ad94841cf243b3b8cd50d8c552a593db2ade12709e26b3406d441ce0f77f",
+      "copiedFrom": "E:\\.neo-work\\gpt-6\\index.html"
+    },
+    {
+      "path": "package-lock.json",
+      "bytes": 40540,
+      "sha256": "42ffdd24dc6baba6dd05fd29a41426267b934fcc2e1d0f7fa14fcc6de1830c2b",
+      "copiedFrom": "E:\\.neo-work\\gpt-6\\package-lock.json"
+    },
+    {
+      "path": "package.json",
+      "bytes": 448,
+      "sha256": "1f886fbc0e2182be34b3608abf2026b55b125875e2dee07a7bbbb9a8ffa20fff",
+      "copiedFrom": "E:\\.neo-work\\gpt-6\\package.json"
+    },
+    {
+      "path": "reference.jpg",
+      "bytes": 293173,
+      "sha256": "b6cc319772976ecba239c8f89733a9273d0f4d723bc213c500f49a07be24de62",
+      "copiedFrom": "E:\\.neo-work\\work040hq.jpg"
+    },
+    {
+      "path": "src/check.ts",
+      "bytes": 3699,
+      "sha256": "dce004ce4d1d7c6ec8f9cbdffcec986c0e456d1c8c256ea5427b521f48f38216",
+      "copiedFrom": "E:\\.neo-work\\gpt-6\\src\\check.ts"
+    },
+    {
+      "path": "src/giant.ts",
+      "bytes": 45071,
+      "sha256": "4a07fbb8084ce7958d23123b25dc7d643b38013659ca10cba64167466a4fee65",
+      "copiedFrom": "E:\\.neo-work\\gpt-6\\src\\giant.ts"
+    },
+    {
+      "path": "src/main.ts",
+      "bytes": 17633,
+      "sha256": "94e02cce4f84576386ecc6d63ad270f9ed62154d94e0ff5d5e898ba3c297c58a",
+      "copiedFrom": "E:\\.neo-work\\gpt-6\\src\\main.ts"
+    },
+    {
+      "path": "src/sculpt.ts",
+      "bytes": 10665,
+      "sha256": "a220a2d338c524fcc4fc51706860825af3b93bc697de8f63e6e8adfdc946a1ee",
+      "copiedFrom": "E:\\.neo-work\\gpt-6\\src\\sculpt.ts"
+    },
+    {
+      "path": "src/style.css",
+      "bytes": 3753,
+      "sha256": "660c2e0cbe7237a8f57174bf4492ee527b0117b27422e5c92d81a7cc41794ad3",
+      "copiedFrom": "E:\\.neo-work\\gpt-6\\src\\style.css"
+    },
+    {
+      "path": "stone-giant.html",
+      "bytes": 638017,
+      "sha256": "aee33e1b493db4914e62c550ad6b70a50af5e268b3a385b9f6c2756ec2557f57",
+      "copiedFrom": "E:\\.neo-work\\gpt-6\\stone-giant.html"
+    },
+    {
+      "path": "THREE-LICENSE.txt",
+      "bytes": 1081,
+      "sha256": "8b378ebe60e2fe500158cb0ac71cb5e8b7d92953c2abcc63a0eb90499653b5bc",
+      "copiedFrom": "E:\\.neo-work\\gpt-6\\node_modules\\three\\LICENSE"
+    },
+    {
+      "path": "tsconfig.json",
+      "bytes": 386,
+      "sha256": "267eb5c44e735d70029a5390ea727c7d57bcf9097be4a242cf1026c2bbe82d35",
+      "copiedFrom": "E:\\.neo-work\\gpt-6\\tsconfig.json"
+    }
+  ],
+  "historicalEvidence": [
+    {
+      "path": "assets/evidence/background-before.png",
+      "bytes": 194783,
+      "sha256": "e7341eef11aabe3c6ac85f04d6f551261ee99ae3550505004d2b94671a3865a6",
+      "provenance": "Recovered original visible session attachment, historical capture; see case study for stage."
+    },
+    {
+      "path": "assets/evidence/desktop-reviewed.png",
+      "bytes": 559434,
+      "sha256": "53b47ac8604fe1b993fde63b66d8b124aa2c4b8d26a2e4bc1c40916a473a9786",
+      "provenance": "Recovered original visible session attachment, historical capture; see case study for stage."
+    },
+    {
+      "path": "assets/evidence/mobile-reviewed.png",
+      "bytes": 184295,
+      "sha256": "fda67d5b6e7ad337231f9f4b85b114f62605ca8eab6c214708bd241ecae0fbe4",
+      "provenance": "Recovered original visible session attachment, historical capture; see case study for stage."
+    },
+    {
+      "path": "assets/evidence/worker-view-7.jpg",
+      "bytes": 84807,
+      "sha256": "2a55ec275aac4727aa9f8bb7548c9a7f00171403e86900480e508f6a2b286d91",
+      "provenance": "Recovered original visible session attachment, historical capture; see case study for stage."
+    },
+    {
+      "path": "assets/evidence/worker-view-8.jpg",
+      "bytes": 56574,
+      "sha256": "beb8ddb1150f4e6fa8f4510b4740ea497d848299b082754a07878cfd271bb830",
+      "provenance": "Recovered original visible session attachment, historical capture; see case study for stage."
+    }
+  ],
+  "limitations": [
+    "Single-reference procedural interpretation; unseen rear is inferred.",
+    "No completed automated reconstruction/rig/intersection gates or measured fidelity score.",
+    "Neck/head polish was not completed before user requested export.",
+    "User-supplied reference-photo redistribution rights are not established."
+  ]
+}

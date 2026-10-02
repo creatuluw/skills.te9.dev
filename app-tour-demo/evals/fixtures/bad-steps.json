@@ -1,0 +1,9 @@
+{
+	"titel": "Kapotte steps",
+	"badge": "Kapot",
+	"eindtekst": "Mag niet bouwen.",
+	"stappen": [
+		{ "f": "lijst", "cap": "Lijst", "tekst": "Verwijst naar een frame dat niet bestaat.", "anchor": "nieuwe-knop", "act": "click", "klaar": "Klik." },
+		{ "f": "bestaat-niet", "cap": "Spook", "tekst": "Dit frame ontbreekt in de assets." }
+	]
+}

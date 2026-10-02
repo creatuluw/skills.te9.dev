@@ -25,6 +25,7 @@ After installing, restart the agent (or start a new session) — the skill's des
 
 | Skill | Purpose |
 |-------|---------|
+| **fractal-research** | Fractal deep research via recursive sub-agents (ported from Cranot/deep-research) |
 | **te9-spec** | Spec-driven development with TDD workflow |
 | **skill-creator** | Create and package effective skills |
 | **spec-writer** | Write feature specifications |
@@ -42,6 +43,10 @@ After installing, restart the agent (or start a new session) — the skill's des
 | **dataset-to-planboard** | Reverse-engineer any dataset into a plan.pippeloi.nl breakdown board |
 
 ## Skill Descriptions
+
+### Research
+
+- **fractal-research** — Fractal exploration of any question through recursive sub-agents: decompose into angles, recurse until atomic, explore branches in parallel, synthesize back up into one report. Four strategies: recursive, socratic, perspective (with blind-spot detection), and web-grounded. Use for deep research, multi-angle analysis, question stress-testing, or fact-checked answers with citations.
 
 ### Development Workflows
 

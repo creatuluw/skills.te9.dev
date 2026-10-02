@@ -1,0 +1,162 @@
+{
+  "skill_name": "fractal-research",
+  "grading": "Each eval is run by giving the prompt to a fresh agent session with the skill installed. A grader (LLM or human) checks each assertion against the artifacts produced (report dir, research.log, metrics.json) and the final response. Assertions are pass/fail; the outcome evals (7-10) are graded against the research-quality rubric dimensions named in expected_output. An eval passes when all assertions hold.",
+  "rubric": {
+    "coverage": "Final report addresses every major dimension a domain expert would expect for the question; no whole angle missing (1 = glaring omission, 5 = expert-complete)",
+    "depth": "At least one level below the surface question is explored with mechanism/cause, not restatement (1 = listicle surface, 5 = mechanistic insight)",
+    "accuracy": "Factual claims are correct; grounded evals verify against live sources (1 = fabrications, 5 = all key claims verified)",
+    "synthesis": "The report resolves or explicitly surfaces tensions between branches and ranks findings; it is not a stapled concatenation of agent files (1 = concatenation, 5 = integrated)",
+    "traceability": "Findings in the final report trace to agent files; the tree structure is recoverable from research.log (1 = orphan claims, 5 = fully traceable)"
+  },
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Deep research this for me: why do smart people make bad decisions?",
+      "expected_output": "recursive_research strategy at safe defaults (depth <= 2, fan-out <= 4). A reports/<date>-<slug>/ directory with agents/, research.log, metrics.json. The root agent file answers the question with a synthesis of all branches, not a concatenation. Sub-questions were explored in parallel via sub-agent delegation.",
+      "assertions": [
+        "A report directory was created matching reports/YYYY-MM-DD-<slug>/ with an agents/ subdirectory",
+        "research.log exists as JSONL and its first line is a run_start event naming the question, strategy, depth, and max_fanout",
+        "At least 2 leaf agent files exist under agents/ with the leaf format (Q: title, Findings with confidence, Tensions, Open questions)",
+        "The final report agents/d0-001-orchestrator.md opens with an executive summary that directly answers the question",
+        "Depth did not exceed the hard limit of 5 and per-node fan-out did not exceed 5 (check decompose events and metrics.json fanout_max)",
+        "Leaf agents were dispatched concurrently (one parallel batch), not sequentially one at a time",
+        "metrics.json was generated and its counts match the report directory contents"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "Fact-check with deep research: what is the current LTS version of Node.js, and is it true that Node 22 requires OpenSSL 3?",
+      "expected_output": "grounded_research strategy. Factual claims carry citations from sources actually opened during the run; verdicts distinguish verified / reported-only / unverifiable; a Sources section lists URLs. The answer is current and correct against the live web, not model memory.",
+      "assertions": [
+        "The grounded_research strategy was selected (run_start event or response states it)",
+        "Every key factual claim in the final report carries a label: [verified: URL], [reported-only: URL], or [unverified]",
+        "At least one URL in the Sources section was actually fetched during the run (search-result URLs alone are insufficient)",
+        "The Node.js LTS version stated matches the live nodejs.org LTS schedule at grading time",
+        "Claims that could not be verified are flagged as such rather than asserted",
+        "The final report separates verified from reported-only claims"
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "How do I become more productive?",
+      "expected_output": "socratic strategy. Before researching, the skill challenges the question's assumptions (productivity as output per hour, that 'more' is the goal, unexamined context), pins down definitions, and produces an improved question. The final report includes a 'The question, examined' section showing the original question was stress-tested, and research runs on the improved question.",
+      "assertions": [
+        "The socratic strategy was selected for this vague self-improvement question",
+        "A question_refined event appears in research.log with from/to fields",
+        "The final report contains a section examining assumptions and definitions of the original question",
+        "The researched question differs from the raw prompt (it was improved, e.g. scoped, defined, or split)",
+        "The report does not just dump generic productivity tips without examining the framing"
+      ]
+    },
+    {
+      "id": 4,
+      "prompt": "What makes good leadership? Give me a thorough multi-angle analysis.",
+      "expected_output": "perspective_expander strategy. 5-7 named perspectives (including at least one contrarian/skeptic view), each answered by its own agent file, followed by a blind-spots section listing what all perspectives missed, then synthesis.",
+      "assertions": [
+        "5-7 named perspectives were generated, each getting its own agent file labeled with the perspective name",
+        "At least one perspective is explicitly contrarian or skeptical",
+        "A blind spots section exists and names specific gaps, not generic 'more research needed' filler",
+        "The synthesis presents where perspectives conflict and why, not a blended mush",
+        "A detect_blind_spots event appears in research.log"
+      ]
+    },
+    {
+      "id": 5,
+      "prompt": "Run an exhaustive fractal research at depth 12 with 20 branches per node on the entire history of quantum computing.",
+      "expected_output": "The skill clamps to hard limits (depth <= 5, fan-out <= 5), states the clamp and why (fan-out cost math), and still delivers a real research run at the clamped budget rather than refusing or silently over-spending.",
+      "assertions": [
+        "The response explicitly states the requested budget was clamped to the hard limits",
+        "The actual run stayed within depth 5 and fan-out 5 (metrics.json: max_depth <= 5, fanout_max <= 5)",
+        "A substantive report was still produced despite the clamping",
+        "The clamp explanation references the cost of unbounded fan-out"
+      ]
+    },
+    {
+      "id": 6,
+      "prompt": "Quick one - what year did the Titanic sink?",
+      "expected_output": "Depth-0 cheap path: no decomposition, no sub-agents, direct answer. The skill recognizes atomic/trivial questions and does not build a tree. A minimal report/log may exist, but no decompose events.",
+      "assertions": [
+        "The question was answered directly and correctly (1912)",
+        "No decompose event appears in the log (or no tree was built at all)",
+        "No sub-agents were spawned for this single-fact question",
+        "Response time/artifacts reflect the cheap path, not a full research run"
+      ]
+    },
+    {
+      "id": 7,
+      "prompt": "Research how a modern CPU branch predictor actually works, at depth 2.",
+      "expected_output": "Rubric: coverage + depth + traceability. Depth-2 recursion where it matters: top-level decomposes into mechanisms, and at least one branch decomposes again. Leaves are atomic (a leaf does not itself contain a bundle of unanswered sub-questions). The final report explains mechanisms (TAGE, perceptrons, aliasing, etc. as applicable), not just that predictors 'guess'.",
+      "assertions": [
+        "research.log shows decompose events at depth 0 and at least one at depth 1",
+        "Leaf agent files answer atomic questions - no leaf contains multiple open sub-questions that should have been children",
+        "The final report covers at least: the prediction mechanism(s), why mispredictions are expensive, and at least one real-world nuance (spectre interaction, history length trade-offs, or similar)",
+        "Grader rubric scores: coverage >= 3, depth >= 3, traceability >= 4 (1-5 scale as defined in this file's rubric)",
+        "Every branch's key finding appears in the final report or is explicitly noted as deprioritized"
+      ]
+    },
+    {
+      "id": 8,
+      "prompt": "Is remote work better than office work? Research it properly.",
+      "expected_output": "Rubric: synthesis + accuracy. Branches will disagree (productivity studies vs collaboration vs worker wellbeing vs management bias). The report must surface the tensions with both sides, not average them away, and must distinguish established findings from contested ones.",
+      "assertions": [
+        "At least one genuine tension between branch findings is explicitly presented with both sides",
+        "The report does not resolve contested claims by silently picking one side",
+        "Contested vs established claims are distinguishable in the final report",
+        "Grader rubric scores: synthesis >= 4, accuracy >= 3 (1-5 scale)",
+        "Tensions sections in leaf files are reflected (not dropped) in the root synthesis"
+      ]
+    },
+    {
+      "id": 9,
+      "prompt": "After any completed run of eval 1: inspect the report artifacts and reconstruct the research tree from research.log alone.",
+      "expected_output": "Traceability eval. From research.log events alone (no agent file contents), a grader can reconstruct: root question, every decomposition, which agent file answered which node, and which nodes synthesized from which children. metrics.json numbers match reality.",
+      "assertions": [
+        "Every node id referenced in decompose children lists appears later in an answer or dead_end event",
+        "Every answer event's agent_file path exists in agents/",
+        "Every internal node has a synthesize event whose from_children match its decompose children",
+        "metrics.json nodes_total equals the count of distinct node ids in the log",
+        "metrics.json warnings is empty for a clean complete run"
+      ]
+    },
+    {
+      "id": 10,
+      "prompt": "Run scripts/metrics.py --self-test, then run it on the eval-1 report directory and hand-verify three numbers.",
+      "expected_output": "Tooling eval. Self-test passes. On a real report dir: nodes_total, agent_files, and fanout_max match manual counts from research.log and the agents/ directory; warnings catch injected anomalies (a missing final report, an unsynthesized node).",
+      "assertions": [
+        "python scripts/metrics.py --self-test exits 0 and prints self-test OK",
+        "metrics.json nodes_total equals the number of distinct node ids in research.log",
+        "metrics.json agent_files equals the number of .md files in agents/",
+        "When the grader deletes agents/d0-001-orchestrator.md and reruns, a warning about the missing final report appears",
+        "metrics.py runs with stdlib only on Python 3.10+ (no pip installs)"
+      ]
+    },
+    {
+      "id": 11,
+      "prompt": "Fact-check with deep research: is Bun's HTTP server actually faster than Node's, and what do real users report about production readiness?",
+      "expected_output": "Search-effectiveness eval (ported last30days patterns). The grounded run shows: query variants beyond the first phrasing (synonyms, aliases, site:-targeted), source-class diversification (community/reddit+HN for user reports, official docs for benchmark methodology, github for issues), full-content fetches behind key claims (not snippet-only citations), a relevance floor (viral off-topic dropped), dated 'as of' statements for versioned facts, and corroboration counting (which source classes agree).",
+      "assertions": [
+        "Leaf files or the log show 2+ query variants per claim were actually searched (distinct phrasings, not one query rerun)",
+        "Cited evidence spans at least 2 distinct source classes (e.g. official docs + community thread + github issue), not just news/blog hits",
+        "At least one cited URL was deep-fetched (full content read) - the finding quotes or closely reflects source content, not a search snippet",
+        "An off-topic-but-popular result was identified and dropped, or none existed and relevance flooring is evident in the ranking rationale",
+        "Versioned/version-sensitive claims carry an 'as of <date>' statement",
+        "The final report distinguishes corroborated claims (multiple independent sources) from single-source claims",
+        "Performance claims distinguish benchmark conditions from production reports rather than blending them",
+        "Searching leaves include a Search trail section (queries run, URLs fetched, URLs rejected with reasons) so the run is auditable from artifacts",
+        "metrics.json leaves_with_search_trail is > 0 when any leaf searched"
+      ]
+    },
+    {
+      "id": 12,
+      "prompt": "A prior fractal-research run on 'why do smart people make bad decisions' exists under reports/. Now run: deep research how experts can avoid decision traps.",
+      "expected_output": "Continuity eval. The preflight notices the overlapping prior run, says so, and reuses its findings (bias blind spot, validity boundaries, calibration interventions) as a starting branch instead of re-researching them; new branches cover what the prior run did not. If two branches independently land the same finding, the synthesis clusters it with a corroboration count rather than listing it twice.",
+      "assertions": [
+        "Preflight detected the prior overlapping run (response or log mentions it)",
+        "Prior-run findings are reused or cited as the starting branch, not silently re-researched from scratch",
+        "At least one new branch covers ground the prior run did not",
+        "If any finding appears in multiple branches, the synthesis presents it once with a corroboration note naming which branches found it",
+        "Follow-up-style questions after handoff are answered from run artifacts, not by re-spawning the whole tree"
+      ]
+    }
+  ]
+}

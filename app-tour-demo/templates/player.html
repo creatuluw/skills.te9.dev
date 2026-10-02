@@ -1,0 +1,266 @@
+<!doctype html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>__PAGINATITEL__</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&family=Lekton:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet" />
+<script src="https://code.iconify.design/3/3.1.0/iconify.min.js"></script>
+<style>
+	body { margin: 0; font-family: "Lekton", sans-serif; background: #e7e5e4; height: 100vh; overflow: hidden; -webkit-font-smoothing: antialiased; }
+	h1,h2,h3 { font-family: "Bricolage Grotesque", sans-serif; }
+	#stage-wrap { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; }
+	#stage { width: 1440px; height: 900px; position: relative; transform-origin: center center; background: #fff; box-shadow: 0 20px 60px rgba(0,0,0,.25); border-radius: 8px; overflow: hidden; }
+	.frame { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; background: #fff; display: none; }
+	.frame.actief { display: block; }
+	#cursor { position: fixed; width: 22px; height: 22px; pointer-events: none; z-index: 10000; transition: left .45s cubic-bezier(.25,.46,.45,.94), top .45s cubic-bezier(.25,.46,.45,.94); }
+	#cursor svg { filter: drop-shadow(0 2px 4px rgba(0,0,0,.25)); transition: transform .12s; }
+	#cursor.klik svg { transform: scale(.82); }
+	.demo-badge { position: fixed; top: 16px; right: 16px; z-index: 9999; background: #18181b; color: #fff; padding: 8px 14px; border-radius: 10px; font-size: 12px; font-weight: 600; display: flex; align-items: center; gap: 10px; box-shadow: 0 4px 14px rgba(0,0,0,.25); }
+	.stap-dot { width: 6px; height: 6px; border-radius: 50%; background: rgba(255,255,255,.3); transition: all .3s ease; }
+	.stap-dot.actief { background: #FFA100; transform: scale(1.25); }
+	.stap-dot.klaar { background: #34d399; }
+	.demo-controls { position: fixed; bottom: 16px; right: 16px; z-index: 9999; display: flex; gap: 10px; background: #fff; padding: 10px 16px; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,.12); border: 1px solid #e4e4e7; align-items: center; }
+	.demo-controls button { font-family: inherit; }
+	#stap-cap { color: #a1a1aa; font-weight: 400; max-width: 240px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+	#eind { position: fixed; inset: 0; z-index: 9990; display: none; align-items: center; justify-content: center; background: rgba(255,255,255,.85); backdrop-filter: blur(12px); }
+	#eind.open { display: flex; }
+	#eind .kaart { background: #fff; border-radius: 20px; border: 1px solid #e4e4e7; box-shadow: 0 24px 60px rgba(0,0,0,.18); padding: 40px; max-width: 460px; text-align: center; animation: omhoog .5s cubic-bezier(.16,1,.3,1); }
+	@keyframes omhoog { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: none; } }
+</style>
+</head>
+<body>
+<div id="stage-wrap"><div id="stage"></div></div>
+<div id="ondertitel" style="position:fixed;left:50%;bottom:80px;transform:translateX(-50%);z-index:9995;max-width:min(880px,88vw);pointer-events:none"><div id="ondertitel-tekst" style="background:rgba(24,24,27,.93);color:#fff;padding:11px 20px;border-radius:12px;font-size:15px;line-height:1.5;text-align:center;box-shadow:0 6px 24px rgba(0,0,0,.28)"></div><div id="ondertitel-klaar" style="margin:8px auto 0;width:fit-content;background:rgba(52,211,153,.96);color:#06301f;padding:6px 14px;border-radius:10px;font-size:13.5px;font-weight:700;opacity:0;transition:opacity .3s"></div></div>
+<div id="cursor"><svg width="22" height="22" viewBox="0 0 24 24"><path d="M4 4L10.5 20L13 13L20 10.5L4 4Z" fill="#18181B" stroke="#fff" stroke-width="1.5"/></svg></div>
+<div class="demo-badge"><span>__BADGE__</span><div style="display:flex;gap:5px" id="dots"></div><span id="stap-cap"></span></div>
+<div class="demo-controls">
+	<button id="btn-restart" style="padding:8px 14px;background:#f4f4f5;border:0;border-radius:9px;font-size:13px;font-weight:600;cursor:pointer;display:flex;align-items:center;gap:6px"><span class="iconify" data-icon="mdi:restart"></span>Restart</button>
+	<button id="btn-pauze" style="padding:8px 14px;background:#18181b;color:#fff;border:0;border-radius:9px;font-size:13px;font-weight:600;cursor:pointer;display:flex;align-items:center;gap:6px"><span class="iconify" data-icon="mdi:pause"></span><span id="pauze-tekst">Pause</span></button>
+	<select id="snelheid" style="padding:8px;background:#f4f4f5;border:0;border-radius:9px;font-size:13px;font-weight:600;font-family:inherit;cursor:pointer;outline:none">
+		<option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="1.5">1.5x</option><option value="2">2x</option>
+	</select>
+</div>
+<div id="eind"><div class="kaart">
+	<div style="display:inline-flex;width:64px;height:64px;border-radius:18px;background:rgba(255,161,0,.15);align-items:center;justify-content:center;margin-bottom:14px"><span class="iconify" style="font-size:32px;color:#FFA100" data-icon="mdi:check-circle"></span></div>
+	<h2 style="margin:0 0 8px;font-size:24px">Demo voltooid</h2>
+	<p style="color:#71717a;font-size:14px;margin:0 0 20px" id="eind-tekst"></p>
+	<button id="btn-opnieuw" style="padding:10px 22px;background:#18181b;color:#fff;border:0;border-radius:11px;font-size:14px;font-weight:600;cursor:pointer;font-family:inherit">Opnieuw afspelen</button>
+</div></div>
+<script>
+const FRAMES = __FRAMES__;
+const CSS = __CSS__;
+const STAPPEN = __STAPPEN__;
+
+const stage = document.getElementById('stage');
+const wrap = document.getElementById('stage-wrap');
+const cursor = document.getElementById('cursor');
+
+// ---- frames als gestapelde iframes (srcdoc), alleen de actieve zichtbaar ----
+const iframes = [];
+let eerste = true;
+for (const f of FRAMES) {
+	const doc = f.html.replace(/<!--CSS(\d+)-->/, (_, i) => '<style>' + CSS[+i] + '</style>');
+	const ifr = document.createElement('iframe');
+	ifr.className = 'frame' + (eerste ? ' actief' : '');
+	ifr.srcdoc = doc;
+	stage.appendChild(ifr);
+	iframes.push(ifr);
+	eerste = false;
+	ifr.addEventListener('load', () => {
+		try {
+			herstelScroll(ifr, f.scrolls);
+			// voorkom dat een kijk-klik de frame wegnavigeert
+			ifr.contentDocument.addEventListener('click', (e) => {
+				const a = e.target.closest && e.target.closest('a');
+				if (a) e.preventDefault();
+			});
+		} catch (e) {}
+	});
+}
+function herstelScroll(ifr, scrolls) {
+	for (const s of scrolls || []) {
+		let el = ifr.contentDocument.body;
+		for (const idx of s.path) el = el.children[idx];
+		if (el) { el.scrollTop = s.top; el.scrollLeft = s.left; }
+	}
+}
+let actief = 0;
+function toonFrame(i) {
+	iframes[actief].classList.remove('actief');
+	actief = i;
+	iframes[actief].classList.add('actief');
+}
+
+// ---- schaal naar venster ----
+function schaal() {
+	const s = Math.min((innerWidth - 48) / 1440, (innerHeight - 48) / 900);
+	stage.style.transform = 'scale(' + Math.min(s, 1.05) + ')';
+}
+addEventListener('resize', schaal); schaal();
+
+// ---- cursor naar element in actieve frame ----
+function elementVoor(anchor) {
+	return iframes[actief].contentDocument.querySelector('[data-demo-anchor="' + anchor + '"]');
+}
+function doelPositie(el) {
+	const r = el.getBoundingClientRect();
+	const fr = iframes[actief].getBoundingClientRect();
+	const k = fr.width / (iframes[actief].offsetWidth || 1440) || 1;
+	return { x: fr.left + (r.left + r.width / 2) * k, y: fr.top + (r.top + r.height / 2) * k };
+}
+let glijdId = 0;
+async function cursorNaar(el) {
+	const doel = doelPositie(el);
+	const start = { x: parseFloat(cursor.style.left || String(innerWidth / 2)) + 11, y: parseFloat(cursor.style.top || String(innerHeight / 2)) + 11 };
+	const dx = doel.x - start.x, dy = doel.y - start.y;
+	const afstand = Math.hypot(dx, dy);
+	if (afstand < 2) { cursor.style.left = doel.x - 11 + 'px'; cursor.style.top = doel.y - 11 + 'px'; return; }
+	const duur = Math.min(1400, Math.max(550, afstand * 1.6));
+	const boog = (Math.random() - 0.5) * Math.min(70, afstand * 0.3);
+	const hoekpunt = { x: (start.x + doel.x) / 2 + boog * 0.6, y: (start.y + doel.y) / 2 - boog };
+	const id = ++glijdId;
+	let verstreken = 0, vorige = performance.now();
+	await new Promise((res) => {
+		function tik(t) {
+			if (id !== glijdId) return res();
+			if (!pauze) verstreken += Math.min(64, t - vorige) * snelheid;
+			vorige = t;
+			const p = Math.min(1, verstreken / duur);
+			const v = p < 0.5 ? 4 * p * p * p : 1 - Math.pow(-2 * p + 2, 3) / 2; // ease-in-out: traag op gang, uitrollen naar het doel
+			const qx = (1 - v) * (1 - v) * start.x + 2 * (1 - v) * v * hoekpunt.x + v * v * doel.x;
+			const qy = (1 - v) * (1 - v) * start.y + 2 * (1 - v) * v * hoekpunt.y + v * v * doel.y;
+			if (p < 1) {
+				cursor.style.left = qx - 11 + (Math.random() - 0.5) * 1.2 + 'px'; // lichte handbeef
+				cursor.style.top = qy - 11 + (Math.random() - 0.5) * 1.2 + 'px';
+				requestAnimationFrame(tik);
+			} else {
+				cursor.style.left = doel.x - 11 + 'px'; // laatste frame exact op het doel
+				cursor.style.top = doel.y - 11 + 'px';
+				res();
+			}
+		}
+		requestAnimationFrame(tik);
+	});
+}
+function flits(el) {
+	const oud = el.style.boxShadow;
+	el.style.boxShadow = '0 0 0 3px rgba(255,161,0,.9)';
+	el.style.borderRadius = el.style.borderRadius || '6px';
+	setTimeout(() => (el.style.boxShadow = oud), 380);
+}
+
+// ---- motor ----
+let runId = 0, pauze = false, snelheid = 1;
+const CANCEL = Symbol('cancel');
+function slaap(ms) {
+	const id = runId;
+	return new Promise((res, rej) => {
+		let gewacht = 0;
+		const tik = () => {
+			if (id !== runId) return rej(CANCEL);
+			if (gewacht >= ms) return res();
+			if (!pauze) gewacht += 50 * snelheid;
+			setTimeout(tik, 50);
+		};
+		tik();
+	});
+}
+async function klik(el) {
+	await cursorNaar(el);
+	await slaap(450);
+	cursor.classList.add('klik');
+	flits(el);
+	await slaap(200);
+	cursor.classList.remove('klik');
+	await slaap(500);
+}
+async function typIn(el, tekst) {
+	await cursorNaar(el);
+	await slaap(350);
+	cursor.classList.add('klik');
+	el.focus();
+	cursor.classList.remove('klik');
+	el.value = '';
+	for (const ch of tekst) {
+		if (runId !== myRunId) throw CANCEL;
+		el.value += ch;
+		await new Promise((r) => setTimeout(r, Math.max(24, (55 + Math.random() * 45) / snelheid)));
+	}
+}
+
+const dots = document.getElementById('dots');
+const cap = document.getElementById('stap-cap');
+STAPPEN.forEach(() => dots.appendChild(Object.assign(document.createElement('div'), { className: 'stap-dot' })));
+const dotEls = [...dots.children];
+function zetStap(i) {
+	dotEls.forEach((d, j) => (d.className = 'stap-dot' + (j < i ? ' klaar' : j === i ? ' actief' : '')));
+	cap.textContent = STAPPEN[i]?.cap ?? '';
+	document.getElementById('ondertitel-tekst').textContent = STAPPEN[i]?.tekst ?? '';
+	const kl = document.getElementById('ondertitel-klaar');
+	kl.textContent = '';
+	kl.style.opacity = '0';
+}
+function toonKlaar(tekst) {
+	const kl = document.getElementById('ondertitel-klaar');
+	kl.textContent = '✓ ' + tekst;
+	kl.style.opacity = '1';
+}
+
+let myRunId = 0;
+async function speel() {
+	const id = ++runId; myRunId = id;
+	pauze = false; document.getElementById('pauze-tekst').textContent = 'Pause';
+	document.getElementById('eind').classList.remove('open');
+	cursor.style.transition = 'none';
+	cursor.style.left = innerWidth / 2 + 'px'; cursor.style.top = innerHeight / 2 + 'px';
+	void cursor.offsetWidth; cursor.style.transition = 'none'; glijdId++;
+	toonFrame(0);
+	try {
+		for (let i = 0; i < STAPPEN.length; i++) {
+			const s = STAPPEN[i];
+			if (runId !== id) throw CANCEL;
+			zetStap(i);
+			toonFrame(FRAMES.findIndex((f) => f.name === s.f));
+			await slaap(1500);
+			if (s.tour) {
+				for (const a of s.tour) {
+					const el = elementVoor(a);
+					if (el) { await cursorNaar(el); await slaap(650); }
+				}
+			}
+			if (s.anchor) {
+				const el = elementVoor(s.anchor);
+				if (el) {
+					if (s.act === 'type') { await typIn(el, s.text); await slaap(600); }
+					else await klik(el);
+				}
+			}
+			if (s.klaar) toonKlaar(s.klaar);
+			await slaap(s.klaar ? 2200 : 1100);
+		}
+		zetStap(STAPPEN.length);
+		await slaap(900);
+		document.getElementById('eind-tekst').textContent = __EINDTEKST__;
+		document.getElementById('eind').classList.add('open');
+	} catch (e) {
+		if (e !== CANCEL) throw e;
+	}
+}
+document.getElementById('btn-restart').onclick = speel;
+document.getElementById('btn-opnieuw').onclick = speel;
+document.getElementById('btn-pauze').onclick = () => {
+	pauze = !pauze;
+	document.getElementById('pauze-tekst').textContent = pauze ? 'Resume' : 'Pause';
+};
+document.getElementById('snelheid').onchange = (e) => (snelheid = Number(e.target.value));
+// start pas als frame 0 geladen is
+const startZodraGeladen = setInterval(() => {
+	if (iframes[0]?.contentDocument?.readyState === 'complete') { clearInterval(startZodraGeladen); speel(); }
+}, 200);
+
+</script>
+</body>
+</html>

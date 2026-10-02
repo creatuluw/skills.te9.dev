@@ -1,0 +1,212 @@
+<!doctype html>
+<html lang="nl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>[Flow-naam] — hoe het werkt</title>
+<style>
+  /* simple-docs tokens — copy, don't restyle. Sizing & design language:
+     kees.pippeloi.nl docs/explainers/apps-declaraties (apps-declaraties-intro.html).
+     Structure: node tree panel + numbered walkthrough. */
+  :root {
+    --ivory: #FAF9F5;
+    --slate: #141413;
+    --clay: #FE6C2D;
+    --oat: #E3DACC;
+    --olive: #788C5D;
+    --rust: #B04A3F;
+    --gray-100: #F0EEE6;
+    --gray-300: #D1CFC5;
+    --gray-500: #87867F;
+    --gray-700: #3D3D3A;
+    --white: #FFFFFF;
+
+    --serif: ui-serif, Georgia, serif;
+    --sans: system-ui, -apple-system, sans-serif;
+    --mono: ui-monospace, 'SF Mono', Menlo, monospace;
+
+    --radius-panel: 12px;
+    --border: 1.5px solid var(--gray-300);
+  }
+
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; padding: 56px 24px 96px;
+    background: var(--ivory); color: var(--slate);
+    font-family: var(--sans); font-size: 20px; line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+  .page { max-width: 1080px; min-width: 1440px; margin: 0 auto; }
+
+  /* Kicker */
+  .kicker { display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap; }
+  .pill {
+    font-family: var(--mono); font-size: 14px; text-transform: uppercase;
+    letter-spacing: 0.06em; color: var(--gray-500); background: var(--gray-100);
+    border: var(--border); border-radius: 999px; padding: 5px 11px; white-space: nowrap;
+  }
+  .kicker-meta {
+    font-family: var(--mono); font-size: 14px; text-transform: uppercase;
+    letter-spacing: 0.18em; color: var(--gray-500);
+  }
+
+  /* Hero */
+  h1 {
+    font-family: var(--serif); font-weight: 500;
+    font-size: clamp(55px, 8vw, 110px); line-height: 1.05;
+    letter-spacing: -0.01em; margin: 20px 0 0;
+  }
+  h1 em { font-style: italic; color: var(--clay); }
+  .lede { margin: 30px 0 0; font-size: 27.5px; line-height: 1.6; color: var(--gray-700); max-width: 720px; }
+
+  /* Sections */
+  section { margin-top: 56px; padding-top: 40px; border-top: 1px solid var(--gray-300); }
+  .stap-label {
+    font-family: var(--mono); font-size: 12.5px; text-transform: uppercase;
+    letter-spacing: 0.18em; color: var(--clay);
+  }
+  .stap-label.neutraal { color: var(--gray-500); }
+  h2 { font-family: var(--serif); font-weight: 500; font-size: 40px; letter-spacing: -0.01em; margin: 8px 0 0; }
+  h3 { font-family: var(--serif); font-weight: 600; font-size: 27.5px; line-height: 1.25; margin: 4px 0 0; }
+  p  { margin: 10px 0 0; color: var(--gray-700); max-width: 680px; }
+
+  /* Node tree panel — same card treatment as the reference cards */
+  .panel {
+    background: var(--white); border: var(--border); border-radius: var(--radius-panel);
+    padding: 20px 22px 18px; overflow-x: auto; margin-top: 28px;
+  }
+  pre.tree {
+    margin: 0; font-family: var(--mono); font-size: 17px; line-height: 1.75;
+    color: var(--gray-700); white-space: pre;
+  }
+  .tree .node { color: var(--slate); font-weight: 600; }
+  .tree .hot  { color: var(--clay); }
+  .tree .ref  { color: var(--gray-500); }
+  .tree .note { color: var(--gray-700); }
+
+  /* Steps */
+  .step {
+    display: grid; grid-template-columns: 44px 1fr; gap: 18px;
+    padding: 22px 0; border-bottom: 1.5px solid var(--gray-100);
+  }
+  .step:last-of-type { border-bottom: none; }
+  .badge {
+    width: 34px; height: 34px; border-radius: 50%;
+    background: var(--oat); border: 1.5px solid var(--gray-300);
+    display: flex; align-items: center; justify-content: center;
+    font-family: var(--mono); font-weight: 600; font-size: 17.5px; color: var(--slate);
+  }
+  .step.hot .badge { background: rgba(254,108,45,0.12); border-color: var(--clay); color: var(--clay); }
+  .step .refs {
+    font-family: var(--mono); font-size: 16px; color: var(--gray-500);
+    margin-top: 8px; word-break: break-all;
+  }
+
+  /* Good to know */
+  .weetjes { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; margin-top: 28px; }
+  @media (max-width: 720px) { .weetjes { grid-template-columns: 1fr; } }
+  .weetje {
+    background: var(--white); border: var(--border);
+    border-radius: var(--radius-panel); padding: 20px 22px 18px;
+  }
+  .weetje p { margin: 6px 0 0; font-size: 19.5px; }
+
+  footer { margin-top: 64px; font-family: var(--mono); font-size: 14px; color: var(--gray-500); }
+
+  /* Links — mono clay, dotted underline (reference vind-link pattern) */
+  .vind-link {
+    display: inline-block; margin-top: 10px;
+    font-family: var(--mono); font-size: 17.5px;
+    color: var(--clay); text-decoration: none;
+    border-bottom: 1px dotted var(--clay);
+  }
+  .vind-link:hover { border-bottom-style: solid; }
+
+  @media print {
+    body { padding: 0; background: var(--white); }
+    section { break-inside: avoid; }
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --ivory: #191817; --slate: #F0EEE6; --gray-100: #232220;
+      --gray-300: #3D3D3A; --gray-500: #A5A39B; --gray-700: #D6D4CC;
+      --oat: #4A4438; --white: #201F1D;
+    }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <div class="kicker">
+    <span class="pill">[repo of app-naam]</span>
+    <span class="pill">[gebied, bijv. declaraties]</span>
+    <span class="kicker-meta">[datum]</span>
+  </div>
+
+  <h1>[Wat de flow doet] <em>[kernwoord in clay]</em></h1>
+  <p class="lede">Eén zin: wat er gebeurt vanaf [trigger] tot [eindresultaat], zonder jargon.</p>
+
+  <section>
+    <div class="stap-label">De kaart</div>
+    <h2>De flow als node tree</h2>
+    <p>Elke stap in gewone taal, met de plek in de code erachter.foutpaden zijn volwaardige takken.</p>
+    <div class="panel">
+<pre class="tree">[Trigger in gewone woorden]
+│
+├─ <span class="node">Stap in gewone taal</span>
+│     <span class="ref">pad/naar/Bestand.svelte → functieNaam()</span>
+│       <span class="note">· het scherpe detail (guard, gate, freeze)</span>
+├─ <span class="node">Tak: wat er gebeurt als een poortje dicht is</span>
+│     <span class="ref">pad/naar/service.ts → gateFunctie()</span>
+└─ <span class="node hot">Eindtoestand — hot path</span>
+      <span class="ref">pad/naar/ui.ts → afhandeling()</span></pre>
+    </div>
+  </section>
+
+  <section>
+    <div class="stap-label">Stap voor stap</div>
+    <h2>Wat er precies gebeurt</h2>
+
+    <div class="step hot">
+      <div class="badge">1</div>
+      <div>
+        <h3>[Stap in gewone taal]</h3>
+        <p>1–3 zinnen: wat er gebeurt en waarom. Geen jargon — de code loopt via de ref-regel.</p>
+        <div class="refs">src/pad/Bestand.svelte → functieNaam() · src/pad/service.ts → andereFunctie()</div>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="badge">2</div>
+      <div>
+        <h3>[Volgende stap]</h3>
+        <p>[Tekst.]</p>
+        <div class="refs">src/pad/route/+server.ts → POST</div>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="badge">3</div>
+      <div>
+        <h3>[Schrijfstap / eindtoestand]</h3>
+        <p>[Tekst.]</p>
+        <div class="refs">src/pad/service.ts → schrijfFunctie()</div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="stap-label">Goed om te weten</div>
+    <h2>Kanttekeningen</h2>
+    <div class="weetjes">
+      <div class="weetje"><h3>[Wat NIET gebeurt]</h3><p>Negatieve feiten voorkomen verkeerde aannames ("er wordt geen email verstuurd").</p></div>
+      <div class="weetje"><h3>[Limiet of dev-only pad]</h3><p>[Kanttekening.]</p></div>
+    </div>
+  </section>
+
+  <footer>[repo] · [pad van dit document] · Gegenereerd met simple-docs</footer>
+</div>
+</body>
+</html>

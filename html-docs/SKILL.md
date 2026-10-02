@@ -5,13 +5,13 @@ description: "Create richly interactive, self-contained HTML documents from user
 
 # html-docs
 
-Create self-contained `.html` documents from the 21 templates at [thariqs.github.io/html-effectiveness](https://thariqs.github.io/html-effectiveness/). Each template is a single file — no build step. Diagrams use [Pretty-Mermaid](https://github.com/imxv/Pretty-mermaid-skills) (Mermaid → themed SVG via Node.js); the final HTML has zero JS dependencies.
+Create self-contained `.html` documents from the 22 templates at [thariqs.github.io/html-effectiveness](https://thariqs.github.io/html-effectiveness/). Each template is a single file — no build step. Diagrams use [Pretty-Mermaid](https://github.com/imxv/Pretty-mermaid-skills) (Mermaid → themed SVG via Node.js); the final HTML has zero JS dependencies.
 
 ## Workflow
 
 ### 1. Classify the prompt
 
-Read `references/CATEGORIES.md` to map the user prompt to one of 9 categories and 21 document types. If the prompt clearly matches, proceed. If ambiguous, ask the user.
+Read `references/CATEGORIES.md` to map the user prompt to one of 9 categories and 22 document types. If the prompt clearly matches, proceed. If ambiguous, ask the user.
 
 ### 2. Load the template
 
@@ -86,4 +86,4 @@ Follow these for all output documents:
 
 ## Template Index
 
-The file `assets/templates/index.json` maps all 21 templates by category, slug, and filename. Use it for quick lookup.
+The file `assets/templates/index.json` maps all 22 templates by category, slug, and filename. Use it for quick lookup.

@@ -38,6 +38,12 @@
       "skillPath": "skills/book-illustrator/SKILL.md",
       "computedHash": "e7d00d6768a3db5330b1b7ab99a8311e44d72b3ec96765465546b425238c9272"
     },
+    "brainstorming": {
+      "source": "sickn33/agentic-awesome-skills",
+      "sourceType": "github",
+      "skillPath": "skills/brainstorming/SKILL.md",
+      "computedHash": "05d254c7ec4a515c64576f853bb33d4c5a611d90edc6bb033ec3625174a10bed"
+    },
     "caveman": {
       "source": "mattpocock/skills",
       "sourceType": "github",
@@ -90,6 +96,12 @@
       "source": "pbakaus/impeccable",
       "sourceType": "github",
       "computedHash": "1f6f4adee0b964e8344c0baef46b4e303ab3ba20932907bcbb1444ba7b3273b2"
+    },
+    "design-artifact": {
+      "source": "plannotator/effective-html",
+      "sourceType": "github",
+      "skillPath": "skills/design-artifact/SKILL.md",
+      "computedHash": "f50724c622b7df3d561dd24f6af11ed5bb50110007270dbeae3f9faf63982625"
     },
     "design-taste-frontend": {
       "source": "Leonxlnx/taste-skill",
@@ -168,6 +180,36 @@
       "source": "Leonxlnx/taste-skill",
       "sourceType": "github",
       "computedHash": "7db385e4c5370e5a7fca9704a1361b056e4504ea6a03924bb86f33a4f00b5c73"
+    },
+    "html": {
+      "source": "plannotator/effective-html",
+      "sourceType": "github",
+      "skillPath": "skills/html/SKILL.md",
+      "computedHash": "8deb96a6fb6092850eb82fcdb680a779d44d4848fbf920e7b9254befcb12c8e0"
+    },
+    "html-diagram": {
+      "source": "plannotator/effective-html",
+      "sourceType": "github",
+      "skillPath": "skills/html-diagram/SKILL.md",
+      "computedHash": "5b416575caefa8d655831790b61414d21b28328627589833b67f358e9b11fd31"
+    },
+    "html-plan": {
+      "source": "plannotator/effective-html",
+      "sourceType": "github",
+      "skillPath": "skills/html-plan/SKILL.md",
+      "computedHash": "d8eac897c3c70ec6d1017e937797ac9c745cc9a414be48c7c86d401f6ef777e0"
+    },
+    "html-prototype": {
+      "source": "plannotator/effective-html",
+      "sourceType": "github",
+      "skillPath": "skills/html-prototype/SKILL.md",
+      "computedHash": "604995f6e47730482cb7d5665aa55eab17f60b816677f00659a963f8daa49f3c"
+    },
+    "html-wireframe": {
+      "source": "plannotator/effective-html",
+      "sourceType": "github",
+      "skillPath": "skills/html-wireframe/SKILL.md",
+      "computedHash": "04a0317e209c63a9bda3a7a68cf61c55c0de1585fc8784e8df127d60b836719f"
     },
     "hyperframes-cli": {
       "source": "heygen-com/hyperframes",
@@ -254,6 +296,18 @@
       "sourceType": "github",
       "computedHash": "8edad33758f2461f51afdb51741bfcc4cc57d84ea42e2751a84be2c6a2d48f69"
     },
+    "slideops": {
+      "source": "glukicov/slideops",
+      "sourceType": "github",
+      "skillPath": "skills/slideops/SKILL.md",
+      "computedHash": "2644c2d51f8f0ea91f60bcbfafd5723b7622bcc570ec127fe81693cc0458c60e"
+    },
+    "slides-to-pdf": {
+      "source": "glukicov/slideops",
+      "sourceType": "github",
+      "skillPath": "skills/slides-to-pdf/SKILL.md",
+      "computedHash": "16570a9763392d31195157dda5e0b17379ee06790185b61fc043f35380f23640"
+    },
     "smell": {
       "source": "smallnest/goal-workflow",
       "sourceType": "github",
@@ -264,6 +318,12 @@
       "source": "Leonxlnx/taste-skill",
       "sourceType": "github",
       "computedHash": "3aa58992f0fd9673b975cd48cd4f8ae4b4976fd5cdd9f20e26d3d447aee317fb"
+    },
+    "tailwindcss-layout": {
+      "source": "fusengine/agents",
+      "sourceType": "github",
+      "skillPath": "plugins/tailwindcss/skills/tailwindcss-layout/SKILL.md",
+      "computedHash": "8cb180dfcecfd110db96bea3977eb62f9dc45152dec5b1785265380d76e57bea"
     },
     "tdd": {
       "source": "mattpocock/skills",
@@ -299,6 +359,12 @@
       "source": "pbakaus/impeccable",
       "sourceType": "github",
       "computedHash": "1cd76e560d1ba25b0bd5f7adfa2957a9f653a3ad0b031d467221154fcd1e0423"
+    },
+    "unslop": {
+      "source": "theclaymethod/unslop",
+      "sourceType": "github",
+      "skillPath": "SKILL.md",
+      "computedHash": "5ce98681a9faa27091f096050e8f3288e4f436177047c3c9c5e8282fe3f8d589"
     },
     "user-guide-writing": {
       "source": "akillness/oh-my-skills",

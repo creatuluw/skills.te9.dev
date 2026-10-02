@@ -1,0 +1,34 @@
+{
+	"titel": "Mini - rondleiding",
+	"badge": "Mini",
+	"eindtekst": "Mini-demo klaar.",
+	"stappen": [
+		{
+			"f": "lijst",
+			"cap": "Lijst",
+			"tekst": "Dit is de lijst: elke regel is een item. Nieuw toevoegen kan met de knop linksboven.",
+			"tour": ["eerste-rij", "nieuwe-knop"]
+		},
+		{
+			"f": "lijst",
+			"cap": "Nieuw",
+			"tekst": "Met deze knop start je een nieuw item - daarna stelt de app de vragen.",
+			"anchor": "nieuwe-knop",
+			"act": "click",
+			"klaar": "Nieuw item gestart."
+		},
+		{
+			"f": "lijst",
+			"cap": "Openen",
+			"tekst": "Klik op een regel om het item te openen en de onderdelen te bekijken.",
+			"anchor": "eerste-rij",
+			"act": "click",
+			"klaar": "Item geopend - alle onderdelen staan bij elkaar."
+		},
+		{
+			"f": "detail",
+			"cap": "Detail",
+			"tekst": "Binnen het item wissel je via de tabbladen tussen de onderdelen."
+		}
+	]
+}

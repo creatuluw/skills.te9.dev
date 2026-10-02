@@ -7,3 +7,10 @@
 # OS
 .DS_Store
 tinyfish/.tinyfish-key
+
+# Session-local state and one-off outputs
+.pi/
+reports/
+
+# Large packed artifacts (extracted copies are committed)
+three-js-advanced-gpt-6.zip

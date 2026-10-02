@@ -1,0 +1,45 @@
+{
+	"skill_name": "te9-writing",
+	"_usage": "Instruction-level cases in the agentskills.io format. Run each prompt with AND without the skill loaded; grade each output against the assertions (PASS/FAIL + quoted evidence in grading.json). Assertions are countable and verifiable from the output alone. Add new cases only from observed misses; prune assertions that pass both with and without the skill.",
+	"evals": [
+		{
+			"id": 1,
+			"prompt": "Rewrite this paragraph for my blog in Patrick's style: \"In today's fast-paced landscape, it's worth noting that data dashboards are not just visualization tools, but rather a testament to the transformative power of analytics. Organizations that leverage robust, seamless BI platforms delve into insights that were previously hidden, showcasing the pivotal role of data-driven decision-making.\"",
+			"expected_output": "A short, friendly, tutorial-voiced rewrite: question or personal hook, concrete plain words, active voice, no AI tells, warm encouraging close or a concrete next step for the reader.",
+			"files": [],
+			"assertions": [
+				"Contains none of these strings (case-insensitive): 'landscape', 'worth noting', 'not just', 'testament', 'leverage', 'robust', 'seamless', 'delve', 'showcasing', 'pivotal', 'In today's'",
+				"Uses direct reader address: contains 'you' (case-insensitive) at least twice",
+				"First paragraph is 1-4 sentences and ends the piece with either an encouraging closing (e.g. 'Have fun!'-style sign-off) or a concrete action the reader can take",
+				"Average sentence length is at most 22 words and at least one sentence is 8 words or shorter",
+				"Adds no facts, numbers, product names, or claims that are not derivable from the source paragraph"
+			]
+		},
+		{
+			"id": 2,
+			"prompt": "Write a short blog intro (2-3 paragraphs) for a post titled \"How I fixed our slow nightly ETL job\" — first person, about a batch job that went from 6 hours to 40 minutes after adding incremental loads. Casual, practical tone.",
+			"expected_output": "An intro written in the Patrick voice even though the topic (ETL) is outside his usual dashboard domain: personal hook ('A while ago…' / 'Lately I've been…' style), first person, short paragraphs, sets up the practical steps to come, zero AI tells.",
+			"files": [],
+			"assertions": [
+				"Opens with a personal or question hook in the first sentence (references the author's own experience or poses a concrete question), not a definition of ETL",
+				"Keeps both stated facts intact: 6 hours before, 40 minutes after, incremental loads as the fix",
+				"Contains no sentence-initial 'Interestingly,'/'Importantly,'/'Crucially,' and no 'Let's dive in' or 'Here's the thing'",
+				"Every paragraph is 1-4 sentences",
+				"Invents no additional metrics, tool names, or team details beyond the prompt"
+			]
+		},
+		{
+			"id": 3,
+			"prompt": "Rewrite this in Patrick's style: \"Last week I redesigned a sales dashboard for our regional team. The old version had 23 charts and took 4 clicks to filter. Now it has 9 charts, filters in 1 click, and the team says onboarding went from 2 days to 3 hours. I couldn't have done it without Priya's wireframes. See you soon!\"",
+			"expected_output": "The source is already close to the target style with concrete facts. A correct result is a light touch: keep every number, name, and claim exactly; improve flow/voice only; no invented anecdotes or metrics.",
+			"files": [],
+			"assertions": [
+				"Preserves every fact: 23 charts, 4 clicks, 9 charts, 1 click, 2 days, 3 hours, the name Priya, and her wireframes contribution",
+				"Adds no new numbers, dates, names, or events",
+				"Keeps an encouraging closing line (the source's 'See you soon!' or an equivalent warm sign-off)",
+				"Contains no em-dash (U+2014) in the body text",
+				"Changes fewer than half of the source's sentences in structure beyond light touch-ups (a wholesale restructuring of all sentences is a fail)"
+			]
+		}
+	]
+}

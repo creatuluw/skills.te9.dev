@@ -1,0 +1,3001 @@
+# Sub-agent 5: worker
+
+Visible messages and tool activity only. Private reasoning and privileged prompts are not included. Embedded images are preserved as local attachments.
+
+## 1. user — 1788793782006
+
+```text
+Task: IMPLEMENT a standalone vanilla TypeScript + Three.js Vite viewer in E:/.neo-work/gpt-6. Own ONLY package.json/package-lock.json/tsconfig.json/index.html/.gitignore/README.md/src/main.ts/src/style.css/src/check.ts. Another worker owns src/giant.ts; don't edit it. Contract import { createStoneGiant } from './giant'; returns Group y0..10 including plinth, front+Z, width4ish. Read .specs/stone-giant/spec.md. Create files and npm install exact current secure versions three/@types/three/vite/typescript, only three runtime dependency, no UI framework. npm scripts dev bound127.0.0.1 port5176 strictPort, build tsc&&vite build, check typecheck. Only TS code; tiny HTML shell and stylesheet allowed. Design specimen-first museum studio: charcoal warm subtly tinted background, offwhite editorial serif title 'STONE GIANT' + small 'PROCEDURAL STUDY / 001', restrained muted ochre accent, avoid dashboard and big panels. Huge sculpture canvas, little top left label and small bottom controls (reset, auto rotate, maybe front/detail view). Native keyboard accessible >=44px controls visible focus, succinct hint drag orbit scroll zoom. Frame full sculpture prominently with perspective FOV~32 camera from(12,9,19) targeting(0,5,0) or equivalent, automatically adjust portrait view fit. Target reference 3/4 shows front and side, not top down. Lighting warm broad key upper left, cool fill right, rim, soft shadows contact to ground. Can use official Three RoomEnvironment PMREM if needed and dispose. For static sculpture render on demand with damping/optional autoRotate, respects reduced motion, no animation allocations. DPR<=1.75, 2048 shadow map single light, sensible scale bounds. Must renderer outputSRGB ACES and no weird white clipping. Expose a small window.__stoneGiant debug/test object exposing readiness, scene,camera,controls,renderer,model and view preset method for browser tests. Add runnable browser geometry check in src/check.ts imported after build validates finite attributes nonempty geometry bounds, model key parts/bounds and logs summary; avoid per-function test frameworks. Label output canvas with accessible description of giant and instructions. ResizeObserver, WebGL failure state, context-loss message, proper HMR cleanup controls/eventlisteners/geometries/materials/textures/targets. Catch renderer init failures but do not swallow model exceptions. Add short honest README commands/reference/path/TypeScript only/no external assets and approximate reconstruction. Run npm install, check/build when model available; coordinate by waiting briefly not looping forever. Do NOT start browser or scan upload; report build status plus exact versions and npm audit. Start Vite in background if reliable, log to gpt-6/.dev-server.log PID record, verify HTTP. No need full app features/export/reconstruction UI. IMPLEMENT not plan.
+
+[TASK INTENT: CREATE/new-project | Complexity: COMPLEX | Domain: FRONTEND, DESIGN, TESTING]
+[TODO REQUIRED] This task (CREATE/new-project, COMPLEX) is multi-step and benefits from tracking. BEFORE writing code, call the `todo` tool with action "create" to break the work into ordered steps, then work through them (claim → do → update status). Use the todo list as a checkpoint: verify build/tests stay green between major steps. Default to creating a todo list first; only skip if the task turns out genuinely trivial once you start.
+```
+
+## 2. assistant — 1788793782022
+
+```json
+{
+  "type": "toolCall",
+  "id": "call_oQceLDburogebDRBd8Ind914",
+  "name": "todo",
+  "arguments": {
+    "action": "create",
+    "title": "Implement stone-giant museum viewer",
+    "body": "1. Read project spec and relevant implementation/security guidance; inspect model contract.\n2. Create exact dependency/tooling files; implement responsive on-demand Three.js studio and runnable geometry check.\n3. Install packages, typecheck/build with model when available, audit dependencies, and fix issues.\n4. Start local Vite server and verify HTTP; report versions, checks, and relevant wiki coordination without touching another worker's files."
+  }
+}
+```
+
+## 3. toolResult / todo — 1788793799033
+
+```text
+{
+  "id": "TODO-63d67838",
+  "title": "Implement stone-giant museum viewer",
+  "tags": [],
+  "status": "open",
+  "created_at": "2026-09-07T15:09:59.031Z",
+  "body": "1. Read project spec and relevant implementation/security guidance; inspect model contract.\n2. Create exact dependency/tooling files; implement responsive on-demand Three.js studio and runnable geometry check.\n3. Install packages, typecheck/build with model when available, audit dependencies, and fix issues.\n4. Start local Vite server and verify HTTP; report versions, checks, and relevant wiki coordination without touching another worker's files."
+}
+```
+
+## 4. assistant — 1788793799034
+
+```json
+{
+  "type": "toolCall",
+  "id": "call_whenHXoeOx9GmqYnlOC5euIv",
+  "name": "todo",
+  "arguments": {
+    "action": "claim",
+    "id": "TODO-63d67838"
+  }
+}
+```
+
+## 5. toolResult / todo — 1788793806690
+
+```text
+{
+  "id": "TODO-63d67838",
+  "title": "Implement stone-giant museum viewer",
+  "tags": [],
+  "status": "open",
+  "created_at": "2026-09-07T15:09:59.031Z",
+  "assigned_to_session": "01a07c6a-e2d1-768c-8265-8b2aece26c55",
+  "body": "1. Read project spec and relevant implementation/security guidance; inspect model contract.\n2. Create exact dependency/tooling files; implement responsive on-demand Three.js studio and runnable geometry check.\n3. Install packages, typecheck/build with model when available, audit dependencies, and fix issues.\n4. Start local Vite server and verify HTTP; report versions, checks, and relevant wiki coordination without touching another worker's files.\n"
+}
+```
+
+## 6. assistant — 1788793806690
+
+```json
+{
+  "type": "toolCall",
+  "id": "call_WM3OpH8dAMMhT7fL9Nd4lPSx",
+  "name": "read",
+  "arguments": {
+    "path": "E:/.neo-work/.specs/stone-giant/spec.md"
+  }
+}
+```
+
+## 7. toolResult / read — 1788793812176
+
+```text
+ENOENT: no such file or directory, access 'E:\.neo-work\.specs\stone-giant\spec.md'
+```
+
+## 8. assistant — 1788793812177
+
+```json
+{
+  "type": "toolCall",
+  "id": "call_JVLJyFPbImsO6hYY2io33mJ4",
+  "name": "bash",
+  "arguments": {
+    "command": "pwd; ls -la gpt-6; find . -maxdepth 4 -path '*/stone-giant/spec.md' 2>/dev/null | head; find /c/Users/PTW -maxdepth 6 -iname '*okf*' 2>/dev/null | head",
+    "timeout": 30
+  }
+}
+```
+
+## 9. toolResult / bash — 1788793830500
+
+```text
+/e/.neo-work
+total 8
+drwxr-xr-x 1 PTW 197121 0 Sep  7 16:31 .
+drwxr-xr-x 1 PTW 197121 0 Sep  7 16:24 ..
+drwxr-xr-x 1 PTW 197121 0 Sep  7 16:24 .img2threejs
+drwxr-xr-x 1 PTW 197121 0 Sep  7 16:25 .specs
+drwxr-xr-x 1 PTW 197121 0 Sep  7 16:38 src
+./gpt-6/.specs/stone-giant/spec.md
+/c/Users/PTW/AppData/Local/Temp/playwright_chromiumdev_profile-qokF3m
+
+```
+
+## 10. assistant — 1788793830501
+
+```json
+{
+  "type": "toolCall",
+  "id": "call_Q34tH8SIuANQsjXdT71HDjlH",
+  "name": "delegate",
+  "arguments": {
+    "agent": "scout",
+    "task": "Read-only reconnaissance: task scope is gpt-6 viewer, latest user asked wiki sync of 2216 files but my file ownership restricted viewer files. Find relevant docs/wiki concepts for gpt-6/stone giant, locate okf-open-knowledge-format skill if installed (.pi/.agents and user dirs). Return exact relevant wiki paths and guidance, don't modify anything. Also inspect gpt-6/src/giant.ts if present and report mesh/part names, createStoneGiant contract, metadata for geometry check. Do not edit giant.ts."
+  }
+}
+```
+
+## 11. toolResult / delegate — 1788794158496
+
+````text
+## Files Retrieved
+
+Paths below are relative to `E:/.neo-work/` unless absolute.
+
+1. `gpt-6/.specs/stone-giant/spec.md` **lines 1–52** — authoritative model/viewer requirements, coordinate conventions, verification and security constraints.
+2. `gpt-6/src/giant.ts` **lines 1–81, 237–312** — procedural textures, geometry helpers, exported factory, hierarchy, validation and metadata.
+3. `gpt-6/src/giant.ts` **lines 82–235, 314–676** — anatomy construction and all named accessory/environment meshes.
+4. `gpt-6/src/sculpt.ts` **lines 1–150, 153–219** — deterministic implicit fields, MarchingCubes extraction, UV/color generation and detail merging.
+5. `gpt-6/.img2threejs/state.json` **lines 1–207** — pipeline state; all checklist items remain pending, no recorded review evidence.
+6. `.pi/todos/63d67838.md` **lines 1–13** — open viewer task: tooling, responsive on-demand studio, geometry check, build/audit and wiki coordination without touching another worker’s files.
+7. `docs/wiki/learnings/threejs-devtools-roomenvironment.md` **lines 1–33** — applicable Three.js inspection pitfall.
+8. `docs/wiki/rules/deterministic-sim-testing.md` **lines 1–23** — applicable browser verification guidance.
+9. `docs/wiki/learnings/three-vector2-no-z.md` **lines 1–17** — coordinate/NaN pitfall; primarily MiniTown-specific.
+10. `docs/wiki/pages/entities/minitown.md` **lines 1–31** and `docs/wiki/pages/entities/index.md` **lines 1–3** — existing entity format and index; no giant entry.
+11. `docs/wiki/learnings/index.md` **lines 1–6**, `docs/wiki/rules/index.md` **lines 1–3**, `docs/wiki/changelog/2026-09.jsonl` **lines 1–2** — wiki navigation and changelog.
+12. `.agents/skills/three-best-practices/rules/memory-dispose-geometry.md` **lines 1–94**, `render-delta-time.md` **lines 1–81**, `error-handling-recovery.md` **lines 1–253** — relevant viewer lifecycle guidance.
+
+**Read-only reconnaissance completed. Nothing was modified, including `giant.ts`; no sync marker was called.**
+
+## Key Code
+
+### `createStoneGiant` contract
+
+Actual export at `gpt-6/src/giant.ts:237`:
+
+```typescript
+export function createStoneGiant(): THREE.Group {
+```
+
+- Synchronous, zero arguments, named export; returns a fresh, fully populated `THREE.Group`.
+- No renderer, DOM, canvas, image loader or runtime download required.
+- Depends on `three` and local `./sculpt`; `sculpt.ts` imports official `MarchingCubes` and `BufferGeometryUtils` addons.
+- Generates stone/leather/bone color and bump `DataTexture`s in memory.
+- Returns a static sculpture, **not a skeleton or animation controller**. “Articulated” fingers describe their modeled shape.
+- No disposal method, configurable seed, sockets or `userData.sculptRuntime` contract is implemented.
+- Materials/textures are shared between meshes within one model: viewer cleanup should deduplicate resources before disposing.
+
+Actual geometry checks and metadata at **lines 295–311**:
+
+```typescript
+root.traverse(object => {
+  if (object instanceof THREE.Mesh) {
+    const positions = object.geometry.getAttribute('position');
+    for (let i = 0; i < positions.count; i++) {
+      if (!Number.isFinite(positions.getX(i) + positions.getY(i) + positions.getZ(i))) throw new Error(`Non-finite stone giant geometry: ${object.name}`);
+    }
+    const count = object.geometry.index?.count ?? positions.count;
+    triangles += count / 3 * (object instanceof THREE.InstancedMesh ? object.count : 1);
+    drawCalls++; namedParts.push(object.name);
+  }
+});
+if (triangles > 400000 || drawCalls > 180 || bounds.min.y < -.01 || bounds.max.y > 10.5) throw new Error('Stone giant geometry smoke check failed: budget or bounds');
+root.userData = { height: bounds.max.y - bounds.min.y, bounds: { min: bounds.min.toArray(), max: bounds.max.toArray() }, triangles: Math.round(triangles), drawCalls, parts: namedParts, units: 'Y-up, +Z forward, anatomical right -X', procedural: true, seed: 'lithic-warden-040', description: 'Continuous implicit stone anatomy; hand-authored face and leather; all surfaces generated in TypeScript.' };
+return root;
+```
+
+**Geometry-check interpretation**
+
+- `height` and `bounds` include the plinth and environment, not only anatomy.
+- `triangles` includes instance multiplicity.
+- `drawCalls` counts mesh objects; it is **not measured renderer draw calls**, which can include shadow/additional passes.
+- `parts` contains mesh names in traversal order, not group names or individual merged stitches/fingers.
+- Current checks do not explicitly validate normal/UV finiteness, index validity, nonempty geometry or instance-matrix finiteness.
+- `body.userData.landmarks` contains 12 anatomy labels; `head.userData.expression` is `"Stern; no emissive eyes"`.
+- `SculptField.geometry()` additionally throws if MarchingCubes reaches its triangle allocation.
+
+| Implicit component | Resolution | Triangle allocation |
+|---|---:|---:|
+| Body | 124 | 155,000 |
+| Head | 82 | 52,000 |
+| Each hand | 55 | 28,000 |
+| Trophy skull | 36 | 16,000 |
+| Held rock | 45 | 16,000 |
+
+**No factory execution or runtime totals were verified.** At inspection, `gpt-6/` contained only the two source files, spec and pipeline state—no package manifest, lockfile, viewer entry or standalone check.
+
+### Exact group and mesh names
+
+Root: **`The Lithic Warden · procedural stone giant`**
+
+Static source inspection yields **47 mesh nodes**, including instanced batches; this is not a runtime measurement.
+
+```text
+Continuous stone anatomy
+  Unified torso, deltoids, arms, legs, feet and toes
+  Bald head · square jaw, carved eye sockets, brow, nose, lips and ears
+  Right hand · five articulated stone fingers
+  Left hand · five articulated stone fingers
+  Deep-set unlit eyes
+  Fine eyelids and ear helices
+  Sculpted mouth and facial creases
+  Incised mineral arcs, branching fractures and anatomical creases
+  Pale weathered edges of the stone engravings
+  Elongated weathered rock held in anatomical right hand
+  Held rock deep longitudinal fissures
+  Held rock calcite vein edges
+
+Ochre hide wrap and sandals
+  Hide wrap · folded rear and side skirt
+  Hide wrap · lower right overlapping panel
+  Hide wrap · diagonal front flap
+  Broad rolled ochre waist belt
+  Long leather belt tail hanging to the knee
+  Folded keeper through offset ring buckle
+  Leather cut edges and raised seams
+  Hand-stitched skirt hem
+  Right hide sandal sole
+  Right toe nail carvings
+  Left hide sandal sole
+  Left toe nail carvings
+  Six calf straps, two vertical shin straps and open-toe instep bands
+  Raised sandal strap borders
+  Shin leather stitching
+
+Bone trophies and brass hardware
+  Offset brass ring buckle and lower belt-tail ring
+  Aged buckle inner patina
+  Belt-tail brass studs
+  Two draped leather necklace cords, continuous around neck
+  Carved trophy skull · eye sockets, nasal cavity and cheekbones
+  Recessed skull cavities
+  Ivory teeth, paired bone charms and three tapering tusks
+  Tusk bindings and necklace knots
+  Small bronze cord fittings
+  Hammered shin-strap rivets
+
+Black museum plinth and wild ground
+  Lower black circular plinth
+  Beveled middle plinth step
+  Upper plinth rim
+  Fine turned plinth rim
+  Uneven earth and shale ground
+  Broken bedrock beneath the feet
+  115 instanced shale fragments
+  Sparse clustered moss cushions
+  33 sparse grass tufts
+  Recessed plinth maker pin
+```
+
+Instanced batches contain: belt studs **6**, shin rivets **6**, shale **115**, moss **125**, grass **33**, maker pin **1**.
+
+## Architecture
+
+### Model → viewer
+
+`sculpt.ts` provides continuous implicit anatomy and procedural detail helpers. `giant.ts` assembles them into four semantic groups, validates the result and exposes plain metadata.
+
+The viewer should instantiate the factory once, frame its bounds, and own camera, lighting, interaction, rendering and cleanup. The spec requires:
+
+- Orbit/zoom/reset, optional turntable and keyboard alternatives.
+- Portrait-safe framing and reduced-motion support.
+- No unnecessary rendering while hidden.
+- Bounded pixel ratio, WebGL failure/context-loss guidance and HMR/teardown cleanup.
+- Project-local, loopback-only Vite setup with exact dependency versions and lockfile.
+- Geometry/build/browser evidence; do not treat pending pipeline state as completed QA.
+
+### Relevant wiki paths and sync guidance
+
+**No existing wiki concept mentions `gpt-6`, stone giant, `giant.ts` or Lithic Warden.** The only entity currently indexed is MiniTown.
+
+| Existing path | Relevant guidance |
+|---|---|
+| `docs/wiki/learnings/threejs-devtools-roomenvironment.md` | `RoomEnvironment` can replace the main scene in the devtools bridge’s last-observed slot. Re-announce the application scene after environment setup; preserve meaningful object names. |
+| `docs/wiki/rules/deterministic-sim-testing.md` | Freeze/pump animation deterministically when testing. Return plain primitives/metadata from browser evaluation, never the circular Three.js scene graph. |
+| `docs/wiki/learnings/three-vector2-no-z.md` | Use `Vector3` or explicit `{x,z}` for ground coordinates; never assume `Vector2.z`. |
+| `docs/wiki/pages/entities/index.md` | Place to index a future giant/viewer entity, with authorized wiki ownership. |
+| `docs/wiki/pages/entities/minitown.md` | Existing entity-frontmatter/layout example only; do not insert giant information into MiniTown. |
+
+**Suggested new path—not currently present:** `docs/wiki/pages/entities/stone-giant.md`. It could document the factory contract, viewer location, coordinate conventions, procedural-only constraints and verified checks once implemented. This is a local convention-based suggestion, **not verified OKF guidance**.
+
+Additional caveat: `docs/wiki/changelog/2026-09.jsonl:2` is an orphaned text fragment, not valid JSON. Leave repair to the wiki owner.
+
+### OKF skill search
+
+**`okf-open-knowledge-format` was not found.**
+
+Searched directory/file names and installed `SKILL.md` contents, including hidden directories, under:
+
+- `E:/.neo-work/.pi/` and `E:/.neo-work/.agents/`
+- `C:/Users/PTW/.pi/` — including `agent/skills` and skill git checkouts
+- `C:/Users/PTW/.agents/`
+- User `.claude`, `.codex`, `.cursor`, `.config`, `.local`, `.copilot`, `.gemini`, `.omp`, `.factory` and `.commandcode`
+
+Dependency/cache/session directories were excluded. No matching skill or `wiki_mark_synced` reference was found in those skill files.
+
+**`wiki_mark_synced()` is also unavailable in this scout’s toolset.** Do not declare the repository-wide 2,216-file sync complete from viewer-only reconnaissance; hand the findings to the wiki-owning coordinator.
+
+## Start Here
+
+Start with **`gpt-6/.specs/stone-giant/spec.md:1–52`**, then **`gpt-6/src/giant.ts:237–312`**. Together they establish viewer requirements and the model’s actual return/validation contract without changing geometry.
+
+For wiki work, first resolve ownership and obtain the missing OKF skill/tool through the coordinator. **Do not edit `giant.ts` or mark the global sync complete.**
+````
+
+## 12. assistant — 1788794158501
+
+```json
+{
+  "type": "toolCall",
+  "id": "call_E2hubLqKdsYr6CTkOn17W0iV",
+  "name": "read",
+  "arguments": {
+    "path": "E:/.neo-work/gpt-6/.specs/stone-giant/spec.md"
+  }
+}
+```
+
+## 13. toolResult / read — 1788794169849
+
+```text
+# Stone giant — procedural miniature
+
+## Feature overview
+
+Build an interactive Three.js sculpture inspired by `E:/.neo-work/work040hq.jpg`. All application and geometry logic is TypeScript. HTML is only the browser entry; no models, image textures, remote art, UI framework, or backend.
+
+The target is a tall, muscular humanoid miniature, not a robot made of separate boulders. This is a procedural interpretation, not an exact scan. Hidden surfaces and depth are inferred from one photograph.
+
+## Success criteria
+
+- Strict TypeScript check and production build pass.
+- Browser renders without uncaught errors; geometry has finite positions and bounds.
+- Reference identity reads in three-quarter view; front and rear remain coherent.
+- Orbit, zoom, reset, and optional turntable work with pointer and keyboard alternatives.
+- Portrait framing retains head, feet, and plinth without horizontal overflow.
+
+## Design goals
+
+Primary: stern bald face, enormous shoulders tapering to a narrow waist, integrated muscular anatomy, gray stone etchings, ochre wrap, skull/bone necklace, shin straps and sandals, held rock, round mossy black plinth.
+
+Secondary: restrained museum-like presentation and directional studio lighting. No dashboard, particle effects, glowing eyes, or invented weapon.
+
+## User experience
+
+Open a local viewer with the giant already framed. Drag to orbit and scroll/pinch to zoom. Small native buttons expose reset and turntable, plus keyboard orbit controls. The specimen takes priority over UI.
+
+## Design rationale
+
+Plain Three.js with Vite and TypeScript is the smallest maintainable browser setup. Procedural surface generation and generated textures preserve the code-only requirement. Organic surfaces must overlap smoothly or share a continuous field; broad stone muscles should not look like segmented armor.
+
+## Constraints and assumptions
+
+Y-up, forward +Z. Figure approximately 9.5 world units high with 0.4-unit plinth. Shoulder width approximately 3.5, waist 1.7. Head approximately 1.35 high; hanging arms reach mid-thigh. Anatomical right is -X from frontal view and carries the rock. Left foot advances slightly. Stone detail is independently authored, not traced photo pixels.
+
+## Functional requirements
+
+- **FR-1 Model**: named, deterministic procedural body and head with readable anatomy and stern facial features.
+- **FR-2 Dress**: overlapping ochre leather wrap, broad belt, hanging strap and brass rings; visible bone/skull necklace.
+- **FR-3 Extremities**: articulated-looking fingers, individual toes, brown shin straps, sandals, and held stone.
+- **FR-4 Presentation**: moss/rubble on a stepped dark circular plinth; rough stone and leather materials; studio key/fill/rim lighting and contact shadow.
+- **FR-5 Interaction**: responsive orbit/zoom/reset and keyboard alternatives; reduced motion respected.
+- **FR-6 Verification**: runnable geometry smoke check, build, browser screenshots, and honest limitations.
+
+## Edge cases
+
+WebGL unavailable: display actionable text. Narrow viewport: adapt camera distance. Tab hidden: avoid unnecessary rendering. Context loss: display recovery guidance. Generated mesh budgets and device pixel ratio must be bounded. Dispose GPU resources on teardown/HMR.
+
+## Secure design
+
+The only security surfaces introduced are dependencies and a local development server. Use the official `three`, `vite`, `typescript`, and `@types/three` packages with exact versions and a lockfile. No runtime external requests, auth, payments, user data, file upload, dynamic code evaluation, secrets, or deletion. HTML strings are static literals only; dynamic display uses textContent.
+
+Trust boundaries: npm registry to development machine; loopback Vite server to local browser. Threats are compromised dependencies, unintentionally serving unrelated workspace files, and GPU exhaustion. Mitigations: project-local package root, loopback binding, retained Vite filesystem/host protections, reviewed install scripts, npm audit, capped geometry/pixel ratio, and cleanup. STRIDE auth/data tampering/repudiation risks are not applicable to this static no-data viewer; file exposure, supply-chain execution and resource consumption remain applicable. A remote source scan must not be claimed if unavailable.
+
+```
+
+## 14. assistant — 1788794169852
+
+```json
+{
+  "type": "toolCall",
+  "id": "call_bu1yuC03Ijrtoa3WJf1LPw23",
+  "name": "read",
+  "arguments": {
+    "path": "E:/.neo-work/.agents/skills/three-best-practices/SKILL.md"
+  }
+}
+```
+
+```json
+{
+  "type": "toolCall",
+  "id": "call_UpZnScGSEadd7xNkbMXET36p",
+  "name": "read",
+  "arguments": {
+    "path": "C:/Users/PTW/.pi/agent/skills/design-skills/impeccable/SKILL.md"
+  }
+}
+```
+
+```json
+{
+  "type": "toolCall",
+  "id": "call_16RjLxxIcz2DyVpIId8JfWvr",
+  "name": "read",
+  "arguments": {
+    "path": "C:/Users/PTW/.agents/skills/rafter/SKILL.md"
+  }
+}
+```
+
+```json
+{
+  "type": "toolCall",
+  "id": "call_8Pc0Nl56UZcEWKUaAEg65T4v",
+  "name": "read",
+  "arguments": {
+    "path": "C:/Users/PTW/.agents/skills/rafter-code-review/SKILL.md"
+  }
+}
+```
+
+## 15. toolResult / read — 1788794184083
+
+````text
+---
+name: three-best-practices
+description: Three.js performance optimization and best practices guidelines. Use when writing, reviewing, or optimizing Three.js code. Triggers on tasks involving 3D scenes, WebGL/WebGPU rendering, geometries, materials, textures, lighting, shaders, or TSL.
+license: MIT
+metadata:
+  author: three-agent-skills
+  version: "2.1.0"
+  three-version: "0.182.0+"
+---
+
+# Three.js Best Practices
+
+Comprehensive performance optimization guide for Three.js applications. Contains 120+ rules across 18 categories, prioritized by impact.
+
+## Sources & Credits
+
+> This skill compiles best practices from multiple authoritative sources:
+> - Official guidelines from Three.js `llms` branch maintained by [mrdoob](https://github.com/mrdoob)
+> - [100 Three.js Tips](https://www.utsubo.com/blog/threejs-best-practices-100-tips) by [Utsubo](https://www.utsubo.com) - Excellent comprehensive guide covering WebGPU, asset optimization, and performance tips
+
+## When to Apply
+
+Reference these guidelines when:
+- Setting up a new Three.js project
+- Writing or reviewing Three.js code
+- Optimizing performance or fixing memory leaks
+- Working with custom shaders (GLSL or TSL)
+- Implementing WebGPU features
+- Building VR/AR experiences with WebXR
+- Integrating physics engines
+- Optimizing for mobile devices
+
+## Rule Categories by Priority
+
+| Priority | Category | Impact | Prefix |
+|----------|----------|--------|--------|
+| 0 | Modern Setup & Imports | FUNDAMENTAL | `setup-` |
+| 1 | Memory Management & Dispose | CRITICAL | `memory-` |
+| 2 | Render Loop Optimization | CRITICAL | `render-` |
+| 3 | Draw Call Optimization | CRITICAL | `drawcall-` |
+| 4 | Geometry & Buffer Management | HIGH | `geometry-` |
+| 5 | Material & Texture Optimization | HIGH | `material-` |
+| 6 | Asset Compression | HIGH | `asset-` |
+| 7 | Lighting & Shadows | MEDIUM-HIGH | `lighting-` |
+| 8 | Scene Graph Organization | MEDIUM | `scene-` |
+| 9 | Shader Best Practices (GLSL) | MEDIUM | `shader-` |
+| 10 | TSL (Three.js Shading Language) | MEDIUM | `tsl-` |
+| 11 | WebGPU Renderer | MEDIUM | `webgpu-` |
+| 12 | Loading & Assets | MEDIUM | `loading-` |
+| 13 | Core Web Vitals | MEDIUM-HIGH | `vitals-` |
+| 14 | Camera & Controls | LOW-MEDIUM | `camera-` |
+| 15 | Animation System | MEDIUM | `animation-` |
+| 16 | Physics Integration | MEDIUM | `physics-` |
+| 17 | WebXR / VR / AR | MEDIUM | `webxr-` |
+| 18 | Audio | LOW-MEDIUM | `audio-` |
+| 19 | Post-Processing | MEDIUM | `postpro-` |
+| 20 | Mobile Optimization | HIGH | `mobile-` |
+| 21 | Production | HIGH | `error-`, `migration-` |
+| 22 | Debug & DevTools | LOW | `debug-` |
+
+## Quick Reference
+
+### 0. Modern Setup (FUNDAMENTAL)
+
+- `setup-use-import-maps` - Use Import Maps, not old CDN scripts
+- `setup-choose-renderer` - WebGLRenderer (default) vs WebGPURenderer (TSL/compute)
+- `setup-animation-loop` - Use `renderer.setAnimationLoop()` not manual RAF
+- `setup-basic-scene-template` - Complete modern scene template
+
+### 1. Memory Management (CRITICAL)
+
+- `memory-dispose-geometry` - Always dispose geometries
+- `memory-dispose-material` - Always dispose materials and textures
+- `memory-dispose-textures` - Dispose dynamically created textures
+- `memory-dispose-render-targets` - Always dispose WebGLRenderTarget
+- `memory-dispose-recursive` - Use recursive disposal for hierarchies
+- `memory-dispose-on-unmount` - Dispose in React cleanup/unmount
+- `memory-renderer-dispose` - Dispose renderer when destroying view
+- `memory-reuse-objects` - Reuse geometries and materials
+
+### 2. Render Loop (CRITICAL)
+
+- `render-single-raf` - Single requestAnimationFrame loop
+- `render-conditional` - Render on demand for static scenes
+- `render-delta-time` - Use delta time for animations
+- `render-avoid-allocations` - Never allocate in render loop
+- `render-cache-computations` - Cache expensive computations
+- `render-frustum-culling` - Enable frustum culling
+- `render-update-matrix-manual` - Disable auto matrix updates for static objects
+- `render-pixel-ratio` - Limit pixel ratio to 2
+- `render-antialias-wisely` - Use antialiasing judiciously
+
+### 3. Draw Call Optimization (CRITICAL)
+
+- `draw-call-optimization` - Target under 100 draw calls per frame
+- `geometry-instanced-mesh` - Use InstancedMesh for identical objects
+- `geometry-batched-mesh` - Use BatchedMesh for varied geometries (same material)
+- `geometry-merge-static` - Merge static geometries with BufferGeometryUtils
+
+### 4. Geometry (HIGH)
+
+- `geometry-buffer-geometry` - Always use BufferGeometry
+- `geometry-merge-static` - Merge static geometries
+- `geometry-instanced-mesh` - Use InstancedMesh for identical objects
+- `geometry-lod` - Use Level of Detail for complex models
+- `geometry-index-buffer` - Use indexed geometry
+- `geometry-vertex-count` - Minimize vertex count
+- `geometry-attributes-typed` - Use appropriate typed arrays
+- `geometry-interleaved` - Consider interleaved buffers
+
+### 5. Materials & Textures (HIGH)
+
+- `material-reuse` - Reuse materials across meshes
+- `material-simplest-sufficient` - Use simplest material that works
+- `material-texture-size-power-of-two` - Power-of-two texture dimensions
+- `material-texture-compression` - Use compressed textures (KTX2/Basis)
+- `material-texture-mipmaps` - Enable mipmaps appropriately
+- `material-texture-anisotropy` - Use anisotropic filtering for floors
+- `material-texture-atlas` - Use texture atlases
+- `material-avoid-transparency` - Minimize transparent materials
+- `material-onbeforecompile` - Use onBeforeCompile for shader mods (or TSL)
+
+### 6. Asset Compression (HIGH)
+
+- `asset-compression` - Draco, Meshopt, KTX2 compression guide
+- `asset-draco` - 90-95% geometry size reduction
+- `asset-ktx2` - GPU-compressed textures (UASTC vs ETC1S)
+- `asset-meshopt` - Alternative to Draco with faster decompression
+- `asset-lod` - Level of Detail for 30-40% frame rate improvement
+
+### 7. Lighting & Shadows (MEDIUM-HIGH)
+
+- `lighting-limit-lights` - Limit to 3 or fewer active lights
+- `lighting-shadows-advanced` - PointLight cost, CSM, fake shadows
+- `lighting-bake-static` - Bake lighting for static scenes
+- `lighting-shadow-camera-tight` - Fit shadow camera tightly
+- `lighting-shadow-map-size` - Choose appropriate shadow resolution (512-4096)
+- `lighting-shadow-selective` - Enable shadows selectively
+- `lighting-shadow-cascade` - Use CSM for large scenes
+- `lighting-shadow-auto-update` - Disable autoUpdate for static scenes
+- `lighting-probe` - Use Light Probes
+- `lighting-environment` - Environment maps for ambient light
+- `lighting-fake-shadows` - Gradient planes for budget contact shadows
+
+### 8. Scene Graph (MEDIUM)
+
+- `scene-group-objects` - Use Groups for organization
+- `scene-layers` - Use Layers for selective rendering
+- `scene-visible-toggle` - Use visible flag, not add/remove
+- `scene-flatten-static` - Flatten static hierarchies
+- `scene-name-objects` - Name objects for debugging
+- `object-pooling` - Reuse objects instead of create/destroy
+
+### 9. Shaders GLSL (MEDIUM)
+
+- `shader-precision` - Use mediump for mobile (~2x faster)
+- `shader-mobile` - Mobile-specific optimizations (varyings, branching)
+- `shader-avoid-branching` - Replace conditionals with mix/step
+- `shader-precompute-cpu` - Precompute on CPU
+- `shader-avoid-discard` - Avoid discard, use alphaTest
+- `shader-texture-lod` - Use textureLod for known mip levels
+- `shader-uniform-arrays` - Prefer uniform arrays
+- `shader-varying-interpolation` - Limit varyings to 3 for mobile
+- `shader-pack-data` - Pack data into RGBA channels
+- `shader-chunk-injection` - Use Three.js shader chunks
+
+### 10. TSL - Three.js Shading Language (MEDIUM)
+
+- `tsl-why-use` - Use TSL instead of onBeforeCompile
+- `tsl-setup-webgpu` - WebGPU setup for TSL
+- `tsl-complete-reference` - Full TSL type system and functions
+- `tsl-material-slots` - Material node properties reference
+- `tsl-node-materials` - Use NodeMaterial classes
+- `tsl-basic-operations` - Types, operations, swizzling
+- `tsl-functions` - Creating TSL functions with Fn()
+- `tsl-conditionals` - If, select, loops in TSL
+- `tsl-textures` - Textures and triplanar mapping
+- `tsl-noise` - Built-in noise functions (mx_noise_float, mx_fractal_noise)
+- `tsl-post-processing` - bloom, blur, dof, ao
+- `tsl-compute-shaders` - GPGPU and compute operations
+- `tsl-glsl-to-tsl` - GLSL to TSL translation
+
+### 11. WebGPU Renderer (MEDIUM)
+
+- `webgpu-renderer` - Setup, browser support, migration guide
+- `webgpu-render-async` - Use renderAsync for compute-heavy scenes
+- `webgpu-feature-detection` - Check adapter features
+- `webgpu-instanced-array` - GPU-persistent buffers
+- `webgpu-storage-textures` - Read-write compute textures
+- `webgpu-workgroup-memory` - Shared memory (10-100x faster)
+- `webgpu-indirect-draws` - GPU-driven rendering
+
+### 12. Loading & Assets (MEDIUM)
+
+- `loading-draco-compression` - Use Draco for large meshes
+- `loading-gltf-preferred` - Use glTF format
+- `gltf-loading-optimization` - Full loader setup with DRACO/Meshopt/KTX2
+- `loading-progress-feedback` - Show loading progress
+- `loading-async-await` - Use async/await for loading
+- `loading-lazy` - Lazy load non-critical assets
+- `loading-cache-assets` - Enable caching
+- `loading-dispose-unused` - Unload unused assets
+
+### 13. Core Web Vitals (MEDIUM-HIGH)
+
+- `core-web-vitals` - LCP, FID, CLS optimization for 3D
+- `vitals-lazy-load` - Lazy load 3D below the fold with IntersectionObserver
+- `vitals-code-split` - Dynamic import Three.js modules
+- `vitals-preload` - Preload critical assets with link tags
+- `vitals-progressive-loading` - Low-res to high-res progressive load
+- `vitals-placeholders` - Show placeholder geometry during load
+- `vitals-web-workers` - Offload heavy work to workers
+- `vitals-streaming` - Stream large scenes by chunks
+
+### 14. Camera & Controls (LOW-MEDIUM)
+
+- `camera-near-far` - Set tight near/far planes
+- `camera-fov` - Choose appropriate FOV
+- `camera-controls-damping` - Use damping for smooth controls
+- `camera-resize-handler` - Handle resize properly
+- `camera-orbit-limits` - Set orbit control limits
+
+### 15. Animation (MEDIUM)
+
+- `animation-system` - AnimationMixer, blending, morph targets, skeletal
+
+### 16. Physics (MEDIUM)
+
+- `physics-integration` - Rapier, Cannon-es integration patterns
+- `physics-compute-shaders` - GPU physics with compute shaders
+
+### 17. WebXR (MEDIUM)
+
+- `webxr-setup` - VR/AR buttons, controllers, hit testing
+
+### 18. Audio (LOW-MEDIUM)
+
+- `audio-spatial` - PositionalAudio, HRTF, spatial sound
+
+### 19. Post-Processing (MEDIUM)
+
+- `postprocessing-optimization` - pmndrs/postprocessing guide
+- `postpro-renderer-config` - Disable AA, stencil, depth for post
+- `postpro-merge-effects` - Combine effects in single pass
+- `postpro-selective-bloom` - Selective bloom for performance
+- `postpro-resolution-scaling` - Half resolution for 2x FPS
+- `postpro-webgpu-native` - TSL-based post for WebGPU
+
+### 20. Optimization (HIGH)
+
+- `mobile-optimization` - Mobile-specific optimizations and checklist
+- `raycasting-optimization` - BVH, layers, GPU picking
+
+### 21. Production (HIGH)
+
+- `error-handling-recovery` - WebGL context loss and recovery
+- `migration-checklist` - Breaking changes by version
+
+### 22. Debug & DevTools (LOW)
+
+- `debug-devtools` - Complete debugging toolkit
+- `debug-stats-gl` - stats-gl for WebGL/WebGPU monitoring
+- `debug-lil-gui` - lil-gui for live parameter tweaking
+- `debug-spector` - Spector.js for WebGL frame capture
+- `debug-renderer-info` - Monitor draw calls and memory
+- `debug-three-mesh-bvh` - Fast raycasting with BVH
+- `debug-context-lost` - Handle WebGL context loss
+- `debug-animation-loop-profiling` - Profile render loop sections
+- `debug-conditional` - Remove debug code in production
+
+## How to Use
+
+Read individual rule files for detailed explanations and code examples:
+
+```
+rules/setup-use-import-maps.md
+rules/memory-dispose-geometry.md
+rules/tsl-complete-reference.md
+rules/mobile-optimization.md
+```
+
+Each rule file contains:
+- Brief explanation of why it matters
+- BAD code example with explanation
+- GOOD code example with explanation
+- Additional context and references
+
+## Key Patterns
+
+### Modern Import Maps
+
+```html
+<script type="importmap">
+{
+  "imports": {
+    "three": "https://cdn.jsdelivr.net/npm/three@0.182.0/build/three.module.js",
+    "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.182.0/examples/jsm/",
+    "three/tsl": "https://cdn.jsdelivr.net/npm/three@0.182.0/build/three.tsl.js"
+  }
+}
+</script>
+```
+
+### Proper Disposal
+
+```javascript
+function disposeObject(obj) {
+  if (obj.geometry) obj.geometry.dispose();
+  if (obj.material) {
+    if (Array.isArray(obj.material)) {
+      obj.material.forEach(m => m.dispose());
+    } else {
+      obj.material.dispose();
+    }
+  }
+}
+```
+
+### TSL Basic Usage
+
+```javascript
+import { texture, uv, color, time, sin } from 'three/tsl';
+
+const material = new THREE.MeshStandardNodeMaterial();
+material.colorNode = texture(map).mul(color(0xff0000));
+material.colorNode = color(0x00ff00).mul(sin(time).mul(0.5).add(0.5));
+```
+
+### Mobile Detection
+
+```javascript
+const isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+renderer.setPixelRatio(Math.min(window.devicePixelRatio, isMobile ? 1.5 : 2));
+```
+
+````
+
+## 16. toolResult / read — 1788794184093
+
+````text
+---
+name: impeccable
+description: Create distinctive, production-grade frontend interfaces with high design quality. Generates creative, polished code that avoids generic AI aesthetics. Use when the user asks to build web components, pages, artifacts, posters, or applications, or when any design skill requires project context. Call with 'craft' for shape-then-build, 'teach' for design context setup, or 'extract' to pull reusable components and tokens into the design system.
+version: 2.1.1
+user-invocable: true
+argument-hint: "[craft|teach|extract]"
+license: Apache 2.0. Based on Anthropic's frontend-design skill. See NOTICE.md for attribution.
+---
+
+This skill guides creation of distinctive, production-grade frontend interfaces that avoid generic "AI slop" aesthetics. Implement real working code with exceptional attention to aesthetic details and creative choices.
+
+## Context Gathering Protocol
+
+Design skills produce generic output without project context. You MUST have confirmed design context before doing any design work.
+
+**Required context** (every design skill needs at minimum):
+- **Target audience**: Who uses this product and in what context?
+- **Use cases**: What jobs are they trying to get done?
+- **Brand personality/tone**: How should the interface feel?
+
+Individual skills may require additional context. Check the skill's preparation section for specifics.
+
+**CRITICAL**: You cannot infer this context by reading the codebase. Code tells you what was built, not who it's for or what it should feel like. Only the creator can provide this context.
+
+**Gathering order:**
+1. **Check current instructions (instant)**: If your loaded instructions already contain a **Design Context** section, proceed immediately.
+2. **Check .impeccable.md (fast)**: If not in instructions, read `.impeccable.md` from the project root. If it exists and contains the required context, proceed.
+3. **Run impeccable teach (REQUIRED)**: If neither source has context, you MUST run /impeccable teach NOW before doing anything else. Do NOT skip this step. Do NOT attempt to infer context from the codebase instead.
+
+---
+
+## Design Direction
+
+Commit to a BOLD aesthetic direction:
+- **Purpose**: What problem does this interface solve? Who uses it?
+- **Tone**: Pick an extreme: brutally minimal, maximalist chaos, retro-futuristic, organic/natural, luxury/refined, playful/toy-like, editorial/magazine, brutalist/raw, art deco/geometric, soft/pastel, industrial/utilitarian, etc. There are so many flavors to choose from. Use these for inspiration but design one that is true to the aesthetic direction.
+- **Constraints**: Technical requirements (framework, performance, accessibility).
+- **Differentiation**: What makes this UNFORGETTABLE? What's the one thing someone will remember?
+
+**CRITICAL**: Choose a clear conceptual direction and execute it with precision. Bold maximalism and refined minimalism both work. The key is intentionality, not intensity.
+
+Then implement working code that is:
+- Production-grade and functional
+- Visually striking and memorable
+- Cohesive with a clear aesthetic point-of-view
+- Meticulously refined in every detail
+
+## Frontend Aesthetics Guidelines
+
+### Typography
+→ *Consult [typography reference](reference/typography.md) for OpenType features, web font loading, and the deeper material on scales.*
+
+Choose fonts that are beautiful, unique, and interesting. Pair a distinctive display font with a refined body font.
+
+<typography_principles>
+Always apply these — do not consult a reference, just do them:
+
+- Use a modular type scale with fluid sizing (clamp) for headings on marketing/content pages. Use fixed `rem` scales for app UIs and dashboards (no major design system uses fluid type in product UI).
+- Use fewer sizes with more contrast. A 5-step scale with at least a 1.25 ratio between steps creates clearer hierarchy than 8 sizes that are 1.1× apart.
+- Line-height scales inversely with line length. Narrow columns want tighter leading, wide columns want more. For light text on dark backgrounds, ADD 0.05-0.1 to your normal line-height — light type reads as lighter weight and needs more breathing room.
+- Cap line length at ~65-75ch. Body text wider than that is fatiguing.
+</typography_principles>
+
+<font_selection_procedure>
+DO THIS BEFORE TYPING ANY FONT NAME.
+
+The model's natural failure mode is "I was told not to use Inter, so I will pick my next favorite font, which becomes the new monoculture." Avoid this by performing the following procedure on every project, in order:
+
+Step 1. Read the brief once. Write down 3 concrete words for the brand voice (e.g., "warm and mechanical and opinionated", "calm and clinical and careful", "fast and dense and unimpressed", "handmade and a little weird"). NOT "modern" or "elegant" — those are dead categories.
+
+Step 2. List the 3 fonts you would normally reach for given those words. Write them down. They are most likely from this list:
+
+<reflex_fonts_to_reject>
+Fraunces
+Newsreader
+Lora
+Crimson
+Crimson Pro
+Crimson Text
+Playfair Display
+Cormorant
+Cormorant Garamond
+Syne
+IBM Plex Mono
+IBM Plex Sans
+IBM Plex Serif
+Space Mono
+Space Grotesk
+Inter
+DM Sans
+DM Serif Display
+DM Serif Text
+Outfit
+Plus Jakarta Sans
+Instrument Sans
+Instrument Serif
+</reflex_fonts_to_reject>
+
+Reject every font that appears in the reflex_fonts_to_reject list. They are your training-data defaults and they create monoculture across projects.
+
+Step 3. Browse a font catalog with the 3 brand words in mind. Sources: Google Fonts, Pangram Pangram, Future Fonts, Adobe Fonts, ABC Dinamo, Klim Type Foundry, Velvetyne. Look for something that fits the brand as a *physical object* — a museum exhibit caption, a hand-painted shop sign, a 1970s mainframe terminal manual, a fabric label on the inside of a coat, a children's book printed on cheap newsprint. Reject the first thing that "looks designy" — that's the trained reflex too. Keep looking.
+
+Step 4. Cross-check the result. The right font for an "elegant" brief is NOT necessarily a serif. The right font for a "technical" brief is NOT necessarily a sans-serif. The right font for a "warm" brief is NOT Fraunces. If your final pick lines up with your reflex pattern, go back to Step 3.
+</font_selection_procedure>
+
+<typography_rules>
+DO use a modular type scale with fluid sizing (clamp) on headings.
+DO vary font weights and sizes to create clear visual hierarchy.
+DO vary your font choices across projects. If you used a serif display font on the last project, look for a sans, monospace, or display face on this one.
+
+DO NOT use overused fonts like Inter, Roboto, Arial, Open Sans, or system defaults — but also do not simply switch to your second-favorite. Every font in the reflex_fonts_to_reject list above is banned. Look further.
+DO NOT use monospace typography as lazy shorthand for "technical/developer" vibes.
+DO NOT put large icons with rounded corners above every heading. They rarely add value and make sites look templated.
+DO NOT use only one font family for the entire page. Pair a distinctive display font with a refined body font.
+DO NOT use a flat type hierarchy where sizes are too close together. Aim for at least a 1.25 ratio between steps.
+DO NOT set long body passages in uppercase. Reserve all-caps for short labels and headings.
+</typography_rules>
+
+### Color & Theme
+→ *Consult [color reference](reference/color-and-contrast.md) for the deeper material on contrast, accessibility, and palette construction.*
+
+Commit to a cohesive palette. Dominant colors with sharp accents outperform timid, evenly-distributed palettes.
+
+<color_principles>
+Always apply these — do not consult a reference, just do them:
+
+- Use OKLCH, not HSL. OKLCH is perceptually uniform: equal steps in lightness *look* equal, which HSL does not deliver. As you move toward white or black, REDUCE chroma — high chroma at extreme lightness looks garish. A light blue at 85% lightness wants ~0.08 chroma, not the 0.15 of your base color.
+- Tint your neutrals toward your brand hue. Even a chroma of 0.005-0.01 is perceptible and creates subconscious cohesion between brand color and UI surfaces. The hue you tint toward should come from THIS brand, not from a "warm = friendly" or "cool = tech" formula. Pick the brand's actual hue first, then tint everything toward it.
+- The 60-30-10 rule is about visual *weight*, not pixel count. 60% neutral / surface, 30% secondary text and borders, 10% accent. Accents work BECAUSE they're rare. Overuse kills their power.
+</color_principles>
+
+<theme_selection>
+Theme (light vs dark) should be DERIVED from audience and viewing context, not picked from a default. Read the brief and ask: when is this product used, by whom, in what physical setting?
+
+- A perp DEX consumed during fast trading sessions → dark
+- A hospital portal consumed by anxious patients on phones late at night → light
+- A children's reading app → light
+- A vintage motorcycle forum where users sit in their garage at 9pm → dark
+- An observability dashboard for SREs in a dark office → dark
+- A wedding planning checklist for couples on a Sunday morning → light
+- A music player app for headphone listening at night → dark
+- A food magazine homepage browsed during a coffee break → light
+
+Do not default everything to light "to play it safe." Do not default everything to dark "to look cool." Both defaults are the lazy reflex. The correct theme is the one the actual user wants in their actual context.
+</theme_selection>
+
+<color_rules>
+DO use modern CSS color functions (oklch, color-mix, light-dark) for perceptually uniform, maintainable palettes.
+DO tint your neutrals toward your brand hue. Even a subtle hint creates subconscious cohesion.
+
+DO NOT use gray text on colored backgrounds; it looks washed out. Use a shade of the background color instead.
+DO NOT use pure black (#000) or pure white (#fff). Always tint; pure black/white never appears in nature.
+DO NOT use the AI color palette: cyan-on-dark, purple-to-blue gradients, neon accents on dark backgrounds.
+DO NOT use gradient text for impact — see <absolute_bans> below for the strict definition. Solid colors only for text.
+DO NOT default to dark mode with glowing accents. It looks "cool" without requiring actual design decisions.
+DO NOT default to light mode "to be safe" either. The point is to choose, not to retreat to a safe option.
+</color_rules>
+
+### Layout & Space
+→ *Consult [spatial reference](reference/spatial-design.md) for the deeper material on grids, container queries, and optical adjustments.*
+
+Create visual rhythm through varied spacing, not the same padding everywhere. Embrace asymmetry and unexpected compositions. Break the grid intentionally for emphasis.
+
+<spatial_principles>
+Always apply these — do not consult a reference, just do them:
+
+- Use a 4pt spacing scale with semantic token names (`--space-sm`, `--space-md`), not pixel-named (`--spacing-8`). Scale: 4, 8, 12, 16, 24, 32, 48, 64, 96. 8pt is too coarse — you'll often want 12px between two values.
+- Use `gap` instead of margins for sibling spacing. It eliminates margin collapse and the cleanup hacks that come with it.
+- Vary spacing for hierarchy. A heading with extra space above it reads as more important — make use of that. Don't apply the same padding everywhere.
+- Self-adjusting grid pattern: `grid-template-columns: repeat(auto-fit, minmax(280px, 1fr))` is the breakpoint-free responsive grid for card-style content.
+- Container queries are for components, viewport queries are for page layout. A card in a sidebar should adapt to the sidebar's width, not the viewport's.
+</spatial_principles>
+
+<spatial_rules>
+DO create visual rhythm through varied spacing: tight groupings, generous separations.
+DO use fluid spacing with clamp() that breathes on larger screens.
+DO use asymmetry and unexpected compositions; break the grid intentionally for emphasis.
+
+DO NOT wrap everything in cards. Not everything needs a container.
+DO NOT nest cards inside cards. Visual noise; flatten the hierarchy.
+DO NOT use identical card grids (same-sized cards with icon + heading + text, repeated endlessly).
+DO NOT use the hero metric layout template (big number, small label, supporting stats, gradient accent).
+DO NOT center everything. Left-aligned text with asymmetric layouts feels more designed.
+DO NOT use the same spacing everywhere. Without rhythm, layouts feel monotonous.
+DO NOT let body text wrap beyond ~80 characters per line. Add a max-width like 65–75ch so the eye can track easily.
+</spatial_rules>
+
+### Visual Details
+
+<absolute_bans>
+These CSS patterns are NEVER acceptable. They are the most recognizable AI design tells. Match-and-refuse: if you find yourself about to write any of these, stop and rewrite the element with a different structure entirely.
+
+BAN 1: Side-stripe borders on cards/list items/callouts/alerts
+  - PATTERN: `border-left:` or `border-right:` with width greater than 1px
+  - INCLUDES: hard-coded colors AND CSS variables
+  - FORBIDDEN: `border-left: 3px solid red`, `border-left: 4px solid #ff0000`, `border-left: 4px solid var(--color-warning)`, `border-left: 5px solid oklch(...)`, etc.
+  - WHY: this is the single most overused "design touch" in admin, dashboard, and medical UIs. It never looks intentional regardless of color, radius, opacity, or whether the variable name is "primary" or "warning" or "accent."
+  - REWRITE: use a different element structure entirely. Do not just swap to box-shadow inset. Reach for full borders, background tints, leading numbers/icons, or no visual indicator at all.
+
+BAN 2: Gradient text
+  - PATTERN: `background-clip: text` (or `-webkit-background-clip: text`) combined with a gradient background
+  - FORBIDDEN: any combination that makes text fill come from a `linear-gradient`, `radial-gradient`, or `conic-gradient`
+  - WHY: gradient text is decorative rather than meaningful and is one of the top three AI design tells
+  - REWRITE: use a single solid color for text. If you want emphasis, use weight or size, not gradient fill.
+</absolute_bans>
+
+DO: Use intentional, purposeful decorative elements that reinforce brand.
+DO NOT: Use border-left or border-right greater than 1px as a colored accent stripe on cards, list items, callouts, or alerts. See <absolute_bans> above for the strict CSS pattern.
+DO NOT: Use glassmorphism everywhere (blur effects, glass cards, glow borders used decoratively rather than purposefully).
+DO NOT: Use sparklines as decoration. Tiny charts that look sophisticated but convey nothing meaningful.
+DO NOT: Use rounded rectangles with generic drop shadows. Safe, forgettable, could be any AI output.
+DO NOT: Use modals unless there's truly no better alternative. Modals are lazy.
+
+### Motion
+→ *Consult [motion reference](reference/motion-design.md) for timing, easing, and reduced motion.*
+
+Focus on high-impact moments: one well-orchestrated page load with staggered reveals creates more delight than scattered micro-interactions.
+
+**DO**: Use motion to convey state changes: entrances, exits, feedback
+**DO**: Use exponential easing (ease-out-quart/quint/expo) for natural deceleration
+**DO**: For height animations, use grid-template-rows transitions instead of animating height directly
+**DON'T**: Animate layout properties (width, height, padding, margin). Use transform and opacity only
+**DON'T**: Use bounce or elastic easing. They feel dated and tacky; real objects decelerate smoothly
+
+### Interaction
+→ *Consult [interaction reference](reference/interaction-design.md) for forms, focus, and loading patterns.*
+
+Make interactions feel fast. Use optimistic UI: update immediately, sync later.
+
+**DO**: Use progressive disclosure. Start simple, reveal sophistication through interaction (basic options first, advanced behind expandable sections; hover states that reveal secondary actions)
+**DO**: Design empty states that teach the interface, not just say "nothing here"
+**DO**: Make every interactive surface feel intentional and responsive
+**DON'T**: Repeat the same information (redundant headers, intros that restate the heading)
+**DON'T**: Make every button primary. Use ghost buttons, text links, secondary styles; hierarchy matters
+
+### Responsive
+→ *Consult [responsive reference](reference/responsive-design.md) for mobile-first, fluid design, and container queries.*
+
+**DO**: Use container queries (@container) for component-level responsiveness
+**DO**: Adapt the interface for different contexts, not just shrink it
+**DON'T**: Hide critical functionality on mobile. Adapt the interface, don't amputate it
+
+### UX Writing
+→ *Consult [ux-writing reference](reference/ux-writing.md) for labels, errors, and empty states.*
+
+**DO**: Make every word earn its place
+**DON'T**: Repeat information users can already see
+
+---
+
+## The AI Slop Test
+
+**Critical quality check**: If you showed this interface to someone and said "AI made this," would they believe you immediately? If yes, that's the problem.
+
+A distinctive interface should make someone ask "how was this made?" not "which AI made this?"
+
+Review the DON'T guidelines above. They are the fingerprints of AI-generated work from 2024-2025.
+
+---
+
+## Implementation Principles
+
+Match implementation complexity to the aesthetic vision. Maximalist designs need elaborate code with extensive animations and effects. Minimalist or refined designs need restraint, precision, and careful attention to spacing, typography, and subtle details.
+
+Interpret creatively and make unexpected choices that feel genuinely designed for the context. No design should be the same. Vary between light and dark themes, different fonts, different aesthetics. NEVER converge on common choices across generations.
+
+Remember: the model is capable of extraordinary creative work. Don't hold back. Show what can truly be created when thinking outside the box and committing fully to a distinctive vision.
+
+---
+
+## Craft Mode
+
+If this skill is invoked with the argument "craft" (e.g., `/impeccable craft [feature description]`), follow the [craft flow](reference/craft.md). Pass any additional arguments as the feature description.
+
+---
+
+## Teach Mode
+
+If this skill is invoked with the argument "teach" (e.g., `/impeccable teach`), skip all design work above and instead run the teach flow below. This is a one-time setup that gathers design context for the project.
+
+### Step 1: Explore the Codebase
+
+Before asking questions, thoroughly scan the project to discover what you can:
+
+- **README and docs**: Project purpose, target audience, any stated goals
+- **Package.json / config files**: Tech stack, dependencies, existing design libraries
+- **Existing components**: Current design patterns, spacing, typography in use
+- **Brand assets**: Logos, favicons, color values already defined
+- **Design tokens / CSS variables**: Existing color palettes, font stacks, spacing scales
+- **Any style guides or brand documentation**
+
+Note what you've learned and what remains unclear.
+
+### Step 2: Ask UX-Focused Questions
+
+ask the user directly to clarify what you cannot infer. Focus only on what you couldn't infer from the codebase:
+
+#### Users & Purpose
+- Who uses this? What's their context when using it?
+- What job are they trying to get done?
+- What emotions should the interface evoke? (confidence, delight, calm, urgency, etc.)
+
+#### Brand & Personality
+- How would you describe the brand personality in 3 words?
+- Any reference sites or apps that capture the right feel? What specifically about them?
+- What should this explicitly NOT look like? Any anti-references?
+
+#### Aesthetic Preferences
+- Any strong preferences for visual direction? (minimal, bold, elegant, playful, technical, organic, etc.)
+- Light mode, dark mode, or both?
+- Any colors that must be used or avoided?
+
+#### Accessibility & Inclusion
+- Specific accessibility requirements? (WCAG level, known user needs)
+- Considerations for reduced motion, color blindness, or other accommodations?
+
+Skip questions where the answer is already clear from the codebase exploration.
+
+### Step 3: Write Design Context
+
+Synthesize your findings and the user's answers into a `## Design Context` section:
+
+```markdown
+## Design Context
+
+### Users
+[Who they are, their context, the job to be done]
+
+### Brand Personality
+[Voice, tone, 3-word personality, emotional goals]
+
+### Aesthetic Direction
+[Visual tone, references, anti-references, theme]
+
+### Design Principles
+[3-5 principles derived from the conversation that should guide all design decisions]
+```
+
+Write this section to `.impeccable.md` in the project root. If the file already exists, update the Design Context section in place.
+
+Then ask the user directly to clarify what you cannot infer. whether they'd also like the Design Context appended to .github/copilot-instructions.md. If yes, append or update the section there as well.
+
+Confirm completion and summarize the key design principles that will now guide all future work.
+
+---
+
+## Extract Mode
+
+If this skill is invoked with the argument "extract" (e.g., `/impeccable extract [target]`), follow the [extract flow](reference/extract.md). Pass any additional arguments as the extraction target.
+````
+
+## 17. toolResult / read — 1788794184093
+
+````text
+---
+name: rafter
+description: "Entry point for rafter. Invoke when a sub-skill is unclear, or when the task needs `rafter run` (remote SAST+SCA), `rafter secrets` (local secrets-only), `rafter audit`, policy checks, or command-risk evaluation. Scope by security surface, not task label: engage when the diff touches auth, credentials/secrets/tokens, untrusted input, SQL, shell/exec, file paths, deserialization, crypto, network endpoints, data deletion, or dependencies; for research/experimental/local-only code with none of that, a quick surface check is enough. When such surface IS present and no rafter skill or CLI call has been made, invoke this before handing the task off — an un-evaluated \"done\" on genuine security surface is not done."
+version: 0.7.0
+allowed-tools: [Bash, Read]
+---
+
+# Rafter — Security Toolkit for AI Workflows
+
+## When Rafter applies (and when it doesn't)
+
+Rafter is a **surface-driven** gate, not a task-label gate. Read the diff's actual security surface first; let that — not whether the work is called "research" — pick the branch.
+
+**Engage fully** (walk the review + run `rafter run`) when the change touches any of: auth / sessions / access control · credentials, secrets, tokens, keys · user-supplied or otherwise untrusted input · SQL or any other query / command construction · shell, `exec`, or subprocess invocation · file paths (read, write, upload, traversal) · deserialization or parsing of untrusted data · crypto primitives · network-facing endpoints or outbound fetchers (SSRF surface) · data deletion or other destructive mutations · dependency, lockfile, or manifest changes.
+
+**Back off** when the change touches **none** of those — research / experimental / exploratory / local-only / throwaway code: training scripts, data analysis, plotting, model eval, notebooks, pure computation over trusted local data. A quick surface check is enough; with no security surface, proceed **without** the full `rafter-code-review` + `rafter run`.
+
+**The rule that decides it:** the "research" label buys nothing. Research code that reads a secret, shells out, hits the network, parses untrusted input, or bumps a dependency is on the engage list and gets the full gate. Judge by the surface of the diff, not by what the task is called.
+
+---
+
+## Picking the right tier — DO NOT stop at "local"
+
+Three tiers, **not interchangeable**. The local tier is narrow; skipping remote analysis is the #1 way agents under-use rafter.
+
+1. **`rafter secrets`** — hardcoded credentials only (regex + betterleaks). Fast, offline, no key. **NOT a code security scan** — it finds no SQL injection, SSRF, auth bugs, insecure deserialization, logic flaws, or dependency vulns. A clean `rafter secrets .` is secret-hygiene, not security review.
+2. **`rafter run`** (default mode) — the real code-analysis pass: SAST + SCA + secrets (dataflow, taint, known-vulnerable deps, crypto misuse, injection sinks). Needs `RAFTER_API_KEY`.
+3. **`rafter run --mode plus`** — agentic deep-dive: LLM-guided investigation of what the rules engine flags. Slower, higher signal; code is deleted server-side after the run. **PAID tier — consumes the user's credits; ask before running it.** If `scan.plus_requires_approval` is set, Plus refuses without `--yes` / `RAFTER_CONFIRM=1`.
+
+**Default for a security-relevant task: `rafter run`.** Fall back to `rafter secrets` only when no API key is available — and say so explicitly; don't claim the code was "scanned" without qualification. Deterministic findings, stable exit codes and JSON shapes — safe to chain in CI and in agent loops.
+
+---
+
+## Choose Your Adventure
+
+Pick the branch that matches what you're trying to do. Each branch points at a sub-doc — `Read` only the one you need so you don't flood context.
+
+### (a) I want to scan code or a repo for issues
+
+Use this for: "Is this safe to push?", "Check for leaks", "Run a security scan", pre-merge / pre-deploy gating, post-dependency-update checks.
+
+- **Default: `rafter run`** — remote SAST + SCA + secrets. This is the real scan. Needs `RAFTER_API_KEY`.
+- **Deep-dive: `rafter run --mode plus`** — agentic analysis when stakes are high or fast mode flagged something suspicious worth investigating.
+- **Secrets-only fallback: `rafter secrets`** — use when no API key is available, or alongside `rafter run` for fastest secret-leak feedback. Does NOT analyse code — only hunts hardcoded credentials.
+- **Read `docs/backend.md`** for fast-vs-plus modes, auth, latency, cost.
+- **Read `docs/cli-reference.md`** §`secrets`, §`scan`, §`run` for full flag matrix.
+
+### (b) I want to evaluate a command before running it
+
+Use this for: "Is `rm -rf $DIR` safe?", any destructive-looking shell the user typed, commands with sudo / pipes to `sh` / unversioned curl.
+
+- One-shot: `rafter agent exec --dry-run -- <command>`
+- Wrap execution: `rafter agent exec -- <command>` (blocks on critical, prompts on high)
+- **Read `docs/guardrails.md`** for how PreToolUse hooks, risk tiers, and overrides work.
+
+### (c) I want to review a plugin, skill, or extension before installing
+
+Use this for: installing an MCP server, adding a Claude skill, vetting an AI tool config.
+
+- **Installing a new skill? → Read `rafter-skill-review/SKILL.md`** — full provenance, malware, prompt-injection, data-practices, telemetry checklist.
+- Run the deterministic pass: `rafter skill review <path-or-url>` (emits JSON).
+- Audit a directory: `rafter agent audit <path>` (still supported).
+- **Read `docs/cli-reference.md`** §`skill review` / §`agent audit` for output shape and exit codes.
+
+### (d) I want to understand a finding I already have
+
+Use this for: "What does `HARDCODED_SECRET` mean?", "Is this a real issue or noise?", triaging a scan report.
+
+- **Read `docs/finding-triage.md`** — how to parse severity, rule IDs, confidence, and file refs; when to fix, suppress, or escalate.
+
+### (e) I want to write secure code from scratch
+
+Use this for: designing a new feature, picking auth/crypto primitives, shaping APIs before they exist.
+
+- **Read `docs/shift-left.md`** — pointers into the `rafter-secure-design` sibling skill for design-phase guidance (threat modeling, OWASP ASVS choices, safe defaults).
+
+### (f) I want to analyze existing code for flaws
+
+Use this for: code review, refactoring risky modules, OWASP / MITRE ATT&CK / ASVS walks.
+
+- **Read `docs/shift-left.md`** — pointers into the `rafter-code-review` sibling skill for structured OWASP/ASVS-driven code analysis.
+- For automated SAST findings first, see branch (a).
+
+---
+
+## Repo-Specific Security Rules
+
+Projects can declare a `docs:` list in `.rafter.yml` pointing at repo-specific security guides, threat models, or compliance policies — files or URLs. **Before doing any security-relevant work (scanning, reviewing, writing auth/crypto/input-handling code), check for these docs:**
+
+```bash
+rafter docs list                    # enumerate available docs (no network)
+rafter docs list --tag threat-model # filter by tag
+rafter docs show secure-coding      # read one by id (fetches + caches URLs)
+rafter docs show owasp              # id OR tag — if a tag matches, all tagged docs are concatenated
+```
+
+If docs exist, treat them as authoritative project rules: they override general guidance when they conflict. If no docs are configured (`exit 3` / "No docs configured"), fall back to the standard OWASP / ASVS advice.
+
+MCP-connected agents: the same surface is exposed as the `rafter://docs` resource plus `list_docs` / `get_doc` tools.
+
+## Fast Path (most common)
+
+```bash
+rafter run                   # remote SAST + SCA + secrets — the real code scan
+rafter run --mode plus       # agentic deep-dive when fast mode flags something
+rafter secrets               # secrets-only — offline, no key
+rafter get <scan-id>         # fetch results by id
+rafter usage                 # check API quota
+```
+
+- Exit `0` = clean / no findings
+- Exit `1` = findings detected OR error
+- Exit `2` = invalid input / scan not found
+
+Full CLI tree: **Read `docs/cli-reference.md`**. Full digest: `rafter brief commands`.
+
+## Configuration
+
+`rafter run` (the full code scan) needs an API key:
+
+```bash
+export RAFTER_API_KEY="..."        # or put it in .env
+```
+
+Without a key, only `rafter secrets` works — that's secret-hygiene, not code review. If security matters for the task, flag the missing key to the user rather than silently accepting the narrower scan.
+
+## Setup
+Not installed? `npm i -g @rafter-security/cli` (Node) or `pip install rafter-cli` (Python). `npx` form is `npx @rafter-security/cli` — the bare `npx rafter-cli` resolves to an unrelated package. Inside Cursor's sandbox or any session where writing `~/.rafter` triggers a prompt, prefer `rafter agent init --local --with-<platform>` — writes `./.rafter/` + `./.<platform>/` instead of `$HOME`. Not wired yet? `rafter agent install-hook` (pre-commit), `rafter ci init` (CI), `.rafter.yml` (policy). Per-platform: `rafter brief setup/<platform>`.
+
+````
+
+## 18. toolResult / read — 1788794184093
+
+````text
+---
+name: rafter-code-review
+description: "REQUIRED before declaring a task done when the diff touches user input, SQL, shell, auth, credentials, file paths, serialization, crypto, network endpoints, data deletion, or dependency surface. Judge by that surface, not the task label — research/experimental/local-only code with none of it can skip this. Walks OWASP/ASVS/MITRE questions the compiler and the test suite won't catch. Pair with `rafter run` on the same diff. When the diff has that surface, marking it complete without both has been under-delivered — do not claim done."
+version: 0.7.0
+allowed-tools: [Bash, Read, Glob, Grep]
+---
+
+# Rafter Code Review — Structured Security Walkthroughs
+
+A reviewer's skill, not an audit generator. Each sub-doc is a set of **questions** to run against the code — what to grep for, what to trace, what to ask before you sign off. No monolithic reports.
+
+> Pair with the `rafter` skill (detection: `rafter scan`, `rafter run`) and `rafter-secure-design` (prevention: design-phase walks). This skill is the middle stage — review before merge.
+
+## When this applies (and when it doesn't)
+
+Scoped to the **security surface of the diff**, not the task's label. Walk it fully when the change touches: user / untrusted input, SQL or query building, shell / `exec` / subprocess, auth or access control, credentials / secrets / tokens, file paths or uploads, (de)serialization, crypto, network-facing endpoints or outbound fetchers, data deletion, or dependency / manifest changes.
+
+If **none** of those are present — research / experimental / exploratory / local-only / throwaway code such as training scripts, data analysis, plotting, model eval, notebooks, or pure computation over trusted local data — a quick surface check is enough; you don't need to walk the full review or pair `rafter run`. But the check is the surface, not the label: research code that reads a secret, shells out, hits the network, or parses untrusted bytes is back on the engage list and gets the full walk.
+
+## How to use this skill
+
+1. Identify the category of code in front of you (below).
+2. `Read` only the matching sub-doc — do not preload them all.
+3. Work through its questions against the specific files/diff. Cite file:line evidence as you go.
+4. When in doubt on a single finding, jump to `docs/investigation-playbook.md` for canonical follow-up questions.
+5. Finish with `rafter run --mode plus` on the same diff if the stakes warrant a deep automated pass.
+
+---
+
+## Choose Your Adventure
+
+### (1) Web application (server-rendered, session-based, or SPA backend)
+
+For: login flows, session/cookie handling, form handlers, template rendering, admin panels, anything browser-facing.
+
+- **Read `docs/web-app.md`** — OWASP Top 10 (2021) walk: broken access control, crypto failures, injection, insecure design, misconfig, vulnerable components, authn failures, integrity failures, logging gaps, SSRF.
+
+### (2) REST / GraphQL / gRPC API (machine-to-machine, mobile backend, public API)
+
+For: endpoint surface that isn't primarily rendering HTML — tokens instead of sessions, authz-per-endpoint, rate limiting.
+
+- **Read `docs/api.md`** — OWASP API Security Top 10 (2023): BOLA, broken authn, BOPLA, unrestricted resource consumption, BFLA, unrestricted access to sensitive business flows, SSRF, misconfig, improper inventory, unsafe consumption of third-party APIs.
+
+### (3) LLM-integrated feature (prompts, agents, tools, RAG, embeddings)
+
+For: anything that sends user text to a model, uses tool calls, retrieves untrusted context, or ships model output to a downstream system.
+
+- **Read `docs/llm.md`** — OWASP LLM Top 10 (2025): prompt injection, sensitive info disclosure, supply chain, data/model poisoning, improper output handling, excessive agency, system prompt leakage, vector/embedding weaknesses, misinformation, unbounded consumption.
+
+### (4) CLI, library, or infra-as-code
+
+For: build tooling, developer CLIs, shared SDK packages, Terraform / CloudFormation / Kubernetes manifests, shell scripts.
+
+- **Read `docs/cwe-top25.md`** — MITRE CWE Top 25, keyed by language (Python / JS / Go / Rust / Java) and by IaC primitive. Focus on injection, memory safety, path traversal, race conditions, privilege mismanagement.
+
+### (5) I need to pick the right depth for this review
+
+For: "how hard should I look?", scoping a review before starting, compliance-adjacent changes.
+
+- **Read `docs/asvs.md`** — OWASP ASVS L1 / L2 / L3. Picks the level based on risk tier of the code, then gives spot-check questions per level.
+
+### (6) I have one specific question to investigate
+
+For: single-finding follow-up, tracing a suspicious call, "is this input reachable from outside?".
+
+- **Read `docs/investigation-playbook.md`** — canonical questions: reachability, authz coverage, data-flow direction, trust boundary placement.
+
+---
+
+## What this skill will NOT do
+
+- It will not generate a monolithic "security audit report". If you need a report, run `rafter run --mode plus` — the backend is better at that.
+- It will not replace automated scanning. Always pair with `rafter secrets .` (secrets) and `rafter run` (SAST/SCA) before review.
+- It will not produce recommendations without evidence. Every question expects a file:line answer before moving on.
+
+---
+
+## Fast path for a typical PR review
+
+```bash
+# 1. Run deterministic checks first — cheap, catches the obvious
+rafter secrets .
+rafter run                    # remote SAST/SCA, if RAFTER_API_KEY set
+
+# 2. Then pick the category and walk the questions
+#    Read docs/<category>.md
+```
+
+If the diff spans categories (e.g. a web app that also has an LLM feature), Read both sub-docs and walk them sequentially. Don't try to merge the checklists.
+
+---
+
+## Tie-backs
+
+- Finding from the scanner you don't understand? → `rafter` skill, `docs/finding-triage.md`.
+- Designing a new feature instead of reviewing one? → `rafter-secure-design`.
+- Risky command came up mid-review? → `rafter` skill, `docs/guardrails.md`.
+
+````
+
+## 19. assistant — 1788794184094
+
+```json
+{
+  "type": "toolCall",
+  "id": "call_lFiM31o1kqgDN2IEAKbIZedT",
+  "name": "read",
+  "arguments": {
+    "path": "C:/Users/PTW/.agents/skills/rafter-secure-design/SKILL.md"
+  }
+}
+```
+
+```json
+{
+  "type": "toolCall",
+  "id": "call_Y873gn84r3iy2ni0oq087w2S",
+  "name": "read",
+  "arguments": {
+    "path": "C:/Users/PTW/.agents/skills/rafter-code-review/docs/web-app.md"
+  }
+}
+```
+
+```json
+{
+  "type": "toolCall",
+  "id": "call_6bGOJbDcmQEGvGk5zHXHpvvy",
+  "name": "bash",
+  "arguments": {
+    "command": "cd gpt-6 && node --version && npm --version && for p in three @types/three vite typescript; do npm view \"$p\" version engines scripts dist.integrity --json; done; ls -la src; command -v rafter || true; find .. -maxdepth 2 -name '.rafter.yml' -print",
+    "timeout": 60
+  }
+}
+```
+
+## 20. toolResult / read — 1788794206061
+
+````text
+---
+name: rafter-secure-design
+description: "REQUIRED before writing code for any feature touching auth, payments, credentials, tokens, sessions, file upload, user data, untrusted input, deserialization, network endpoints, or data deletion. Scope by that surface, not the task label — a research/experimental/local-only feature with none of it doesn't need this. Invoke it, record answers inline in the design doc or PR description, then write the code. Skipping this is how auth bypass, token leakage, and delete-the-wrong-record bugs ship. If the feature touches any of those surfaces and this hasn't run, the design is incomplete — do not proceed to implementation."
+version: 0.1.0
+allowed-tools: [Read, Glob, Grep]
+---
+
+# Rafter Secure Design — Designing It Right The First Time
+
+A designer's skill, not a scanner. The goal is to catch the flaw in the whiteboard sketch, not three weeks later in a PR. Each sub-doc asks the questions a security engineer would ask at kickoff — "which primitive, which boundary, which default?"
+
+> Pair with `rafter-code-review` (structured review *during* PR) and the `rafter` skill (automated detection of what slipped through). This skill is the earliest stage — prevention before the code exists.
+
+## When this applies (and when it doesn't)
+
+Engage this design walk when the feature you're about to build touches a real security surface: auth or access control, credentials / secrets / tokens / sessions, user or untrusted input, SQL or query construction, shell / `exec`, file paths or uploads, (de)serialization, crypto, network-facing endpoints or outbound fetchers, data deletion, or new dependencies.
+
+If the thing you're designing has **none** of that — a research / experimental / local-only / throwaway piece such as a training script, analysis pipeline, plot, model-eval harness, notebook, or pure computation over trusted local data — a quick surface check is enough and you can proceed to implementation without the full walk. Judge by the surface, not by whether the work is called "research": a research feature that stores user data, handles a token, or opens a network endpoint is back on the engage list.
+
+## How to use this skill
+
+1. Identify what's being designed (below). If multiple apply, walk them in the order listed — `threat-modeling` last, as a capstone.
+2. `Read` only the matching sub-doc. Do not preload them all; pick-and-load keeps the conversation tight.
+3. Work through its questions against the *proposed* design. Capture the answer inline (architecture doc, design RFC, PR description). If you can't answer a question, that's a design gap — resolve it before writing code.
+4. When the design is stable, run the `threat-modeling` walk to stress-test it.
+5. Hand off to `rafter-code-review` during implementation.
+
+---
+
+## Choose Your Adventure
+
+### (1) Authentication & Authorization
+
+For: login, sessions, tokens, service-to-service identity, multi-tenant access, role-based permissions, anything that answers "who is this and what can they do?"
+
+- **Read `docs/auth.md`** — Primitive selection (session vs. JWT vs. OAuth), authZ model (RBAC / ABAC / ReBAC), token lifetime + revocation, MFA surface, service identity. Questions phrased as "pick one and say why".
+
+### (2) Data storage — at rest, in transit, PII
+
+For: database schema design, file storage, caches, logs, anything that decides *where* sensitive data lives and *who* holds the keys.
+
+- **Read `docs/data-storage.md`** — Classification (what is PII/PHI/PCI here?), encryption choices, key management, retention + deletion, backup scope, tenancy isolation. Anti-patterns: encrypt-everything-as-a-religion, homegrown crypto, keys next to data.
+
+### (3) API surface — REST / GraphQL / gRPC / webhooks
+
+For: designing new endpoints, shaping request/response schemas, choosing between resource styles, rate limiting, versioning, exposing internal services.
+
+- **Read `docs/api-design.md`** — Resource modeling for authz (is this endpoint BOLA-shaped?), write-vs-read boundaries, idempotency, rate-limit keys, error taxonomy (what leaks?), webhook delivery + replay.
+
+### (4) Ingestion — inputs, uploads, parsers, user content
+
+For: anything that accepts user-controlled bytes: form posts, file uploads, webhook payloads, imports, content rendering, search indexing.
+
+- **Read `docs/ingestion.md`** — Trust boundaries (where does untrusted become trusted?), parser choice (safe default vs. fast), size + shape limits, content sniffing, SSRF-adjacent fetchers, deserialization surface.
+
+### (5) Deployment — topology, network, secrets, runtime
+
+For: infra plan, service boundaries, secret distribution, egress policy, CI/CD pipeline, build-time vs. run-time separation.
+
+- **Read `docs/deployment.md`** — Network zones, least-privilege IAM, secret distribution (not "put it in env"), build provenance, runtime posture (read-only FS, non-root), multi-region / DR assumptions.
+
+### (6) Dependencies & supply chain
+
+For: picking a library, adopting a framework, pulling a container base image, introducing a new SaaS, wiring a postinstall script.
+
+- **Read `docs/dependencies.md`** — Pick-vs-write, maintenance signal, install-time execution, pinning + lockfiles, SBOM + SCA hooks, vendoring vs. registry, typosquat / slopsquat checks.
+
+### (7) Threat model — STRIDE walk of the full design
+
+For: the capstone pass *after* the above decisions are drafted. Also good for any greenfield service review.
+
+- **Read `docs/threat-modeling.md`** — STRIDE applied to the specific design (not the generic checklist). Trust boundaries, data-flow diagrams as prose, abuse cases, negative-space questions ("what did we implicitly assume?").
+
+### (8) Which standards / frameworks should bound this?
+
+For: scoping compliance, picking a baseline, answering "how much is enough?"
+
+- **Read `docs/standards-pointers.md`** — Pointers to ASVS (app sec), NIST SSDF (lifecycle), CSA CCM (cloud), OWASP SAMM (program maturity), plus the cheap-and-fast subset to start with.
+
+---
+
+## What this skill will NOT do
+
+- It will not write the design document for you. It walks *your* draft through structured questions.
+- It will not replace a dedicated threat-modeling session with the team. It prepares you for one.
+- It will not produce a checklist to mechanically tick through. Every question expects a deliberate answer; "N/A because..." is fine, "skip" is not.
+
+---
+
+## Fast path at feature kickoff
+
+```text
+1. Sketch the design (one-pager, box-and-arrow).
+2. Walk the sub-doc that matches the riskiest choice you're about to make.
+3. Walk threat-modeling.md as a capstone.
+4. Write the decisions into the design doc as "decided / rejected / why".
+5. Start coding — and loop in `rafter-code-review` when the PR lands.
+```
+
+If you're revisiting an existing design (refactor, migration), same flow: treat the current shape as "proposed" and walk the relevant sub-docs as questions.
+
+---
+
+## Tie-backs
+
+- Ready to review the code that implements the design? → `rafter-code-review`.
+- Implementation landed, need automated checks? → `rafter` skill, `rafter run` / `rafter secrets`.
+- Risky command came up mid-design (spike, data migration)? → `rafter` skill, `docs/guardrails.md`.
+- Have a specific finding from a scan? → `rafter` skill, `docs/finding-triage.md`.
+
+````
+
+## 21. toolResult / read — 1788794206061
+
+```text
+# Web Application Review — OWASP Top 10 (2021)
+
+Walk each category as questions. Cite file:line evidence before moving on. If you can't answer a question, that *is* the finding.
+
+## A01 — Broken Access Control
+
+The #1 risk. Every authenticated route must answer: "who is allowed?"
+
+- Grep for route handlers (`app.get`, `@app.route`, `router.handle`, controller annotations). For each: is there an explicit authz check? If you can't see one, trace the middleware chain — is it registered *before* this route?
+- For every `where user_id = ?` pattern, is the id from the session, or from the request? `?id=123` in the URL that controls the DB lookup is IDOR-shaped.
+- Are admin routes distinguished by URL prefix alone? If `/admin/*` is only protected by "don't tell users", that's not protection.
+- Does the app rely on HTTP verb restrictions (GET safe, POST protected)? Can you POST to a GET-only endpoint? Does it accept `X-HTTP-Method-Override`?
+- Is CORS configured with `Access-Control-Allow-Origin: *` alongside `Allow-Credentials: true`? That combination is almost always wrong.
+
+## A02 — Cryptographic Failures
+
+- What algorithms appear? Grep for `md5`, `sha1`, `des`, `rc4`, `ecb`. Any hit on user data, session tokens, or passwords is a finding.
+- How are passwords hashed? Look for `bcrypt`, `scrypt`, `argon2`, `pbkdf2`. Absence is the finding. `sha256(password + salt)` is not password hashing.
+- Are secrets in source? Run `rafter secrets .` first — but also grep for `private_key`, `api_key`, `BEGIN RSA`, `.pem`, `.p12`.
+- Is TLS enforced? Look for redirect middleware, HSTS headers, cookie `Secure` flag. Cookies without `Secure` + `HttpOnly` + `SameSite` — ask why.
+- Is randomness from `Math.random()` / `rand()` used for tokens, session ids, password resets? Must be `crypto.randomBytes` / `secrets.token_*` / `crypto/rand`.
+
+## A03 — Injection
+
+- SQL: every query that interpolates a variable (`f"SELECT ... {x}"`, backticks with `${x}`, `+` string concat into SQL). Must be parameterized. ORMs help but `.raw()` / `.query()` escape hatches don't.
+- Command injection: `exec`, `spawn`, `system`, `subprocess.run(shell=True)`, `child_process.exec`. Any user input reaching these? Prefer array form, never `shell=True` with input.
+- LDAP / NoSQL / XPath / template injection: same question — does user input reach a query language, and is it escaped by the library or by string concat?
+- XSS: where does user-controlled data reach HTML? React/Vue auto-escape; `dangerouslySetInnerHTML`, `v-html`, `innerHTML`, template literals rendered as HTML are the escape hatches. Server-side: is the template engine autoescaping? Jinja2 defaults off for `.txt`, on for `.html`.
+- Deserialization: `pickle.loads`, `yaml.load` (without SafeLoader), `Marshal.load`, Java's `ObjectInputStream`. Any of these on untrusted bytes is RCE-shaped.
+
+## A04 — Insecure Design
+
+Design smells that code review *can* catch:
+
+- Is there a single trust boundary, or does the same request cross it multiple times? (e.g. user → API → internal service that re-reads user input without re-validating.)
+- Are rate limits on authentication and password reset flows? Count attempts per account *and* per IP.
+- Does the password reset flow leak account existence? "Email sent if account exists" vs "no account with that email" — the latter is an oracle.
+- Is the "remember me" token a long-lived bearer? What invalidates it on password change?
+
+## A05 — Security Misconfiguration
+
+- Debug mode / stack traces in production? Grep for `DEBUG = True`, `app.debug`, `NODE_ENV` comparisons.
+- Default credentials in config files or seed scripts? Look in `seed.js`, `fixtures/`, `docker-compose.yml`.
+- Unused frameworks/features enabled? Directory listing? Admin consoles (`/admin`, `/actuator`, `/console`) without authn?
+- Security headers: CSP, X-Content-Type-Options, Referrer-Policy, Permissions-Policy. Is there a helmet/`secure` middleware registered?
+- Cloud metadata access — can the server be coerced into fetching `169.254.169.254`? (see also A10/SSRF.)
+
+## A06 — Vulnerable & Outdated Components
+
+- `rafter run` covers this via SCA. In review, check that the manifest is present (`package.json`, `requirements.txt`, `go.mod`, `pom.xml`) and that the lockfile is committed.
+- Is there a `postinstall` / `prepare` script running arbitrary code from dependencies? That's a supply-chain footgun.
+- Are any dependencies pulled from raw git URLs or non-registry sources without pinning?
+
+## A07 — Identification & Authentication Failures
+
+- Session management: where is the session created, stored, invalidated? Does logout actually invalidate server-side, or just drop the cookie?
+- Multi-factor: present on admin? On password change? On MFA enrollment itself (bypass via "add new device")?
+- Credential stuffing: lockout policy, captcha on repeated failures, generic error messages.
+- JWT: is `alg: none` accepted? Is the key confusion attack possible (HS256 verified against an RSA public key)? Is `kid` used to resolve arbitrary files?
+
+## A08 — Software & Data Integrity Failures
+
+- Update channels: does the app auto-update itself or pull config from remote? Is that channel signed and verified?
+- CI/CD: does the pipeline verify signatures on built artifacts? Are secrets scoped per-job or leaked across?
+- Deserialization (overlaps with A03): any untrusted blob fed to `pickle` / `yaml.load` / `unserialize` / `readObject`.
+
+## A09 — Security Logging & Monitoring Failures
+
+- Are authn failures logged with enough context (user id, ip, timestamp) to be useful?
+- Do logs leak secrets? Grep log statements for `password`, `token`, request bodies printed wholesale.
+- Is there a correlation id per request that survives across services?
+
+## A10 — Server-Side Request Forgery (SSRF)
+
+- Any endpoint that fetches a URL supplied by the user? (image proxy, webhook configurer, PDF-from-URL, OAuth callback that fetches `openid-configuration`.)
+- Is the URL's host allowlisted? Does the allowlist resolve the hostname and re-check against an internal-IP denylist (RFC1918 + link-local + cloud metadata)?
+- Does it follow redirects? Each redirect is a fresh SSRF check, not just the first URL.
+
+---
+
+## Exit criteria
+
+- For each category above, either a file:line citation proving it's handled, OR a finding logged with ruleId-shaped summary, OR an explicit "N/A — feature not present in this diff".
+- Pair with `rafter run` results: cross-reference scanner findings against your manual walk. Scanner-only hits are candidates for triage (`rafter/docs/finding-triage.md`); manual-only hits are the ones scanners miss.
+
+```
+
+## 22. toolResult / bash — 1788794206061
+
+```text
+v24.15.0
+11.12.1
+{
+  "version": "0.185.1",
+  "scripts": {
+    "start": "npm run dev",
+    "test": "npm run lint && npm run test-unit && npm run test-unit-addons",
+    "build": "rollup -c utils/build/rollup.config.js",
+    "build-docs": "jsdoc -c utils/docs/jsdoc.config.json && npm run build-llms",
+    "build-llms": "node utils/llms/build.js",
+    "build-module": "rollup -c utils/build/rollup.config.js --configOnlyModule",
+    "dev": "node utils/build/dev.js && node utils/server.js -p 8080",
+    "preview": "node utils/build/preview.js",
+    "lint-core": "eslint src",
+    "lint-addons": "eslint examples/jsm",
+    "lint-examples": "eslint examples",
+    "lint-editor": "eslint editor",
+    "lint-manual": "eslint manual",
+    "lint-test": "eslint test",
+    "lint-utils": "eslint utils",
+    "lint": "npm run lint-core",
+    "lint-fix": "npm run lint-core -- --fix && npm run lint-addons -- --fix && npm run lint-examples -- --fix && npm run lint-editor -- --fix && npm run lint-manual -- --fix && npm run lint-test -- --fix && npm run lint-utils -- --fix",
+    "test-unit": "node test/unit/puppeteer.unit.js --testPage=UnitTests.html --mode=headless",
+    "test-unit-headful": "node test/unit/puppeteer.unit.js --testPage=UnitTests.html --mode=headful",
+    "test-unit-addons": "node test/unit/puppeteer.unit.js --testPage=UnitTestsAddons.html --mode=headless",
+    "test-unit-addons-headful": "node test/unit/puppeteer.unit.js --testPage=UnitTestsAddons.html --mode=headful",
+    "test-e2e": "node test/e2e/puppeteer.js",
+    "test-e2e-cov": "node test/e2e/check-coverage.js",
+    "test-e2e-webgpu": "node test/e2e/puppeteer.js --webgpu",
+    "test-treeshake": "rollup -c test/rollup.treeshake.config.js",
+    "make-screenshot": "node test/e2e/puppeteer.js --make"
+  },
+  "dist.integrity": "sha512-5aojFCXKwnjBRZvUnt3WFfEcvUJgkN5LlijRFN95hMy8WVkG4I0QNcJE+OuWvuJ0bOdStrbfXn0pkd6/QyiAlg=="
+}
+{
+  "version": "0.185.4",
+  "scripts": {},
+  "dist.integrity": "sha512-gAsBIC07NIFrxjbf7tH2t71c38uulFfk/RFoC7FNBSjMRAQ8J1x/RBvusX0N5PJouaYFJawXQqfCQ0RKUx/1nA=="
+}
+{
+  "version": "8.2.2",
+  "engines": {
+    "node": "^20.19.0 || >=22.12.0"
+  },
+  "scripts": {
+    "dev": "premove dist && pnpm build-bundle -w",
+    "lint": "eslint --cache --ext .ts src/**",
+    "build": "premove dist && pnpm build-bundle && pnpm build-types",
+    "format": "oxfmt",
+    "typecheck": "tsc && tsc -p src/node && tsc -p src/client && tsc -p src/module-runner && tsc -p src/shared && tsc -p src/node/__tests_dts__ && tsc -p src/module-runner/__tests_dts__",
+    "build-types": "pnpm build-types-roll && pnpm build-types-check",
+    "build-bundle": "rolldown --config rolldown.config.ts",
+    "generate-target": "tsx scripts/generateTarget.ts",
+    "build-types-roll": "rolldown --config rolldown.dts.config.ts",
+    "build-types-check": "tsc --project tsconfig.check.json"
+  },
+  "dist.integrity": "sha512-cFKLV/PRgAUlIRm5WjMjJ86jrftzpqcgH+Us+DS8mI3CDNiH30Whrz8uHL3+MOLPAgqbMBAqWdAHAphOAM+z/Q=="
+}
+{
+  "version": "7.0.2",
+  "engines": {
+    "node": ">=16.20.0"
+  },
+  "dist.integrity": "sha512-8FYau96o3NKOhbjKi/qNvG/W5jhzxkbdm5sj9AbZ/5T5sWqn3hJgLfGx27sRKZWTvyzCP8dLRBTf5tBTSRVUNA=="
+}
+total 60
+drwxr-xr-x 1 PTW 197121     0 Sep  7 16:38 .
+drwxr-xr-x 1 PTW 197121     0 Sep  7 16:31 ..
+-rw-r--r-- 1 PTW 197121 45071 Sep  7 17:07 giant.ts
+-rw-r--r-- 1 PTW 197121 10665 Sep  7 16:31 sculpt.ts
+/c/Users/PTW/AppData/Roaming/npm/rafter
+
+```
+
+## 23. assistant — 1788794206067
+
+```json
+{
+  "type": "toolCall",
+  "id": "call_WCzkEHKT3nF0EwCEl3npOQZZ",
+  "name": "read",
+  "arguments": {
+    "path": "C:/Users/PTW/.agents/skills/rafter-secure-design/docs/dependencies.md"
+  }
+}
+```
+
+```json
+{
+  "type": "toolCall",
+  "id": "call_qx4td5fzeX82FfLNrexxvEvq",
+  "name": "read",
+  "arguments": {
+    "path": "C:/Users/PTW/.agents/skills/rafter-secure-design/docs/threat-modeling.md"
+  }
+}
+```
+
+```json
+{
+  "type": "toolCall",
+  "id": "call_9STsuQgSesyw5ZbByTUqLH4U",
+  "name": "read",
+  "arguments": {
+    "path": "E:/.neo-work/gpt-6/src/giant.ts",
+    "offset": 237,
+    "limit": 80
+  }
+}
+```
+
+```json
+{
+  "type": "toolCall",
+  "id": "call_gVemzxtTxlxI1qubWYmF4JN8",
+  "name": "bash",
+  "arguments": {
+    "command": "cd gpt-6 && rafter docs list; npm view typescript@7.0.2 scripts optionalDependencies dependencies --json",
+    "timeout": 30
+  }
+}
+```
+
+## 24. toolResult / read — 1788794234186
+
+```text
+# Dependencies & Supply Chain — Design Questions
+
+Every dependency is a trust transfer: their bugs become yours, their maintainers become your dependency on goodwill. The question at design time is "is this worth the transfer?"
+
+## Pick vs. write — which one
+
+- Cryptography, authN / authZ primitives, parsers for complex formats, protocol implementations: **pick, don't write.** The library has years of eyes and fuzz time.
+- Glue code, config loaders, small utility functions: **write, don't pick.** A 5-line helper beats a transitively-huge dependency.
+- The middle (rate limiters, retry logic, caches): depends on how mature your language's standard library is. Go stdlib + a small helper often beats pulling in a 300-line middleware framework.
+
+## Maintenance signal — before you adopt
+
+Read the repo before adopting. Answers to these in one sitting:
+
+- When was the last commit, release, CVE response? Dormant ≠ dead, but "last release 2019" for a security-adjacent lib is a risk.
+- How many maintainers? Solo-maintainer packages are a bus-factor and takeover risk (npm `event-stream`, PyPI `ctx`).
+- Does the project publish a security policy (SECURITY.md, GHSA history)? Projects that have handled CVEs well handle them well.
+- Download count and reverse-dependency count: high-popularity packages get eyes on them; low-popularity is higher chance of silent badness.
+- Typosquat / slopsquat check: is this the real package name? LLM-generated install instructions now routinely hallucinate package names that bad actors then register. Verify from the project's own README / GitHub.
+
+## Install-time execution
+
+- `postinstall` / `preinstall` / `prepare` hooks in npm, arbitrary `setup.py` code in Python, Gradle init scripts, Cargo build scripts — all run with your developer's or CI's permissions.
+- Does your package manager have a way to disable these? npm `--ignore-scripts`, `pnpm install --ignore-scripts` + allowlist via `packageExtensions`. Pip has `--no-binary` but less granular.
+- CI should install with the strictest flags. Developers can run with scripts enabled *after* review.
+
+## Pinning & lockfiles
+
+- Lockfile (`package-lock.json`, `pnpm-lock.yaml`, `yarn.lock`, `poetry.lock`, `Cargo.lock`, `go.sum`) committed. No exceptions for "libraries" — downstream lockfiles are the user's responsibility, but your CI needs reproducibility.
+- Range pinning in the manifest (`^1.2.3`) is fine for libraries; applications benefit from exact pins + a lockfile for reproducibility.
+- Lockfile verification in CI (`npm ci`, `pnpm install --frozen-lockfile`, `yarn install --immutable`, `poetry install --no-update`). Without verification, a drifted lockfile ships unknown code.
+
+## Vendoring vs. registry
+
+- Registry (npm, PyPI, Go proxy, crates.io): convenient, but the registry is a trust root. Compromise of a maintainer account has shipped malware repeatedly.
+- Registry mirror / proxy (Artifactory, Cloudsmith, Google Artifact Registry): lets you cache + scan + pin. Best-of-both for teams with infra.
+- Vendoring: committing dependency code into your repo. Highest control, highest cost. Justified for (a) critical dependencies you need to patch locally, (b) airgapped builds, (c) compliance requirements.
+
+## SCA — hook it in, don't treat it as a quarterly task
+
+- SCA on every PR and on main: Dependabot, Renovate, Snyk, Trivy, Grype, `rafter run` (which aggregates SCA).
+- Auto-PRs for dependency updates: accept them with tests gating. Batching 3 months of updates is worse than a weekly drip.
+- Critical CVEs (known-exploited, CVSS ≥ 9): page on detection, not "log and review later".
+- Noise management: not every CVE applies to how you use the library. Triage policy is part of the design — who decides what's accepted, and how is the decision logged?
+
+## Supply chain attacks to design against
+
+- **Typosquat / slopsquat**: package name misspellings, especially for names an LLM might generate. Pin from upstream README only.
+- **Dependency confusion**: your private package name registered publicly. Publish a placeholder of your internal package names, or use scoped packages with registry routing.
+- **Maintainer takeover**: compromised maintainer account publishes malware. Defenses: pin by digest (where supported), monitor for unexpected releases.
+- **Protestware / hacktivism**: maintainer deliberately ships malware or destructive code (e.g., `node-ipc`). Pinning catches it; SCA post-mortem confirms.
+- **Compromised CI**: build-time tamper that injects malware into your artifact. Defenses: reproducible builds, signed provenance (SLSA), isolated build environment.
+
+## Transitive depth
+
+- How deep is the dep tree? `npm ls` / `cargo tree` / `pipdeptree`. Dozens of transitive deps per direct dep = huge attack surface.
+- Does each direct dep pull in its own HTTP client, its own JSON parser, its own date library? Consolidate at the application level where possible.
+- Transitive version conflicts: which wins? In npm / pnpm, hoisting rules. In Python, last-wins. Explicit `overrides` / `resolutions` let you force a patched version.
+
+## Container images as dependencies
+
+- Base images are dependencies — same maintenance questions apply. Distroless (Google-maintained) and Chainguard (security-first) are first-party; random Docker Hub images are not.
+- Pin by digest. `image:tag` is mutable.
+- Multi-stage builds: builder image can be heavy; final image should be minimal. Don't ship your build toolchain to prod.
+- Image scanning in CI: `trivy image`, `grype`, cloud-native scanners. Block deploys on critical findings for production.
+
+## SaaS dependencies
+
+- Adopting a SaaS is also a dep: your data, their availability and security posture.
+- Do they publish a SOC 2 / ISO 27001 / security whitepaper? Not gospel, but absence is a signal.
+- Where does the data live (region, sub-processors)? For PII, this is a compliance question.
+- Offboarding: if they vanish or you churn, how do you migrate? Vendor lock-in is a security issue too (can't rotate away from a breach).
+
+## LLM / AI libraries — the new supply chain
+
+- Model weights are dependencies. Which model, which version, hosted where?
+- Inference SDKs (openai, anthropic, litellm) are dependencies with the standard risks *plus* credential-surface (API keys per provider).
+- Vector DB clients (pinecone, qdrant, chroma) are dependencies that also hold your embeddings — classify accordingly.
+- `prompt-injection-guard` style libraries are pattern-based and will never catch novel attacks — adopt but don't trust absolutely.
+
+## Refuse-list
+
+- Pulling a dependency from a raw git URL or GitHub tarball without pinning commit SHA.
+- Adopting a package because an LLM suggested the name, without verifying it exists upstream (slopsquat bait).
+- `:latest` tags on base images or dependency versions.
+- CI that installs with `postinstall` enabled on every run without script review.
+- Solo-maintained packages in your critical path (auth, crypto, payments) without a forking / vendoring plan.
+- Adopting a SaaS for a compliance-scoped workload without reviewing their posture.
+- Skipping the lockfile because "we're a library".
+- SCA as a quarterly scan rather than a PR-level gate.
+
+---
+
+## Exit criteria
+
+- Every new direct dependency has a one-line justification (pick vs. write, maintenance signal reviewed).
+- Install-time execution policy is specified for CI.
+- Lockfile + verification in CI is confirmed.
+- SCA tool is wired to PRs, with a triage policy for findings.
+- Base images are pinned by digest with a rebuild cadence.
+- If the design uses a SaaS or LLM provider, the data-flow and credential-scope are drawn.
+
+```
+
+## 25. toolResult / read — 1788794234186
+
+````text
+# Threat Modeling — STRIDE on the Specific Design
+
+This is the capstone. Walk after the individual decisions (auth, data, API, ingestion, deployment) are drafted. The goal: stress-test the design by asking "how would an attacker break *this specific thing*?"
+
+## Setup — the diagram you actually need
+
+Before STRIDE, draw two things. Prose is fine; ASCII is fine. Drawings get handwaved.
+
+1. **Data-flow diagram**: boxes for processes, cylinders for stores, arrows for flows. Label each arrow with what crosses it (request type, data fields).
+2. **Trust boundaries**: dotted lines *across* the arrows — every arrow that crosses a boundary is a security control point.
+
+Minimum sketch:
+```
+[Browser] → [CDN/WAF] ┆→ [API Gateway] → [App Service] ┆→ [DB]
+                                           ↓
+                                     [Third-Party API]
+```
+Boundaries: browser↔edge, edge↔app, app↔DB, app↔third-party.
+
+Each boundary is where STRIDE is most productive.
+
+## STRIDE — one per category, per boundary
+
+The trick is not to apply STRIDE globally; apply it to each trust-boundary crossing and each data-store.
+
+### S — Spoofing (identity)
+
+Applied per boundary: can the entity on the other side be impersonated?
+
+- Browser → edge: can an attacker present a valid-looking session cookie / token they didn't earn? (Authn strength, token theft, XSS → cookie steal.)
+- App → DB: is the DB credential stealable? Replayable? Scoped to the app's workload identity, or shared?
+- App → third-party: does the third-party authenticate the calling app? (Mutual TLS? Signed request?) If not, anyone on their egress path can spoof.
+- Human → admin console: how is admin access authenticated, and is that *separate* from user authN?
+
+### T — Tampering (data integrity)
+
+Per boundary + per store:
+
+- Data in transit: TLS version, cert validation, downgrade defenses. "We assume the internal network is safe" is where tampering happens.
+- Data at rest: can a DB compromise *modify* records undetectably? Append-only audit stores + signed rows are the high-assurance pattern.
+- Data in cache / queue: is message integrity validated? (HMAC on queue payloads, especially if they cross services with different trust levels.)
+- Build artifacts: tampering between build and deploy. Signed provenance catches it.
+
+### R — Repudiation
+
+- Is there an audit log that names the actor, the action, the resource, the time, and a request id?
+- Are the actor's identity and the action tamper-evident in the log? A log the app writes to a DB the app can also update is repudiable.
+- For high-value actions (payments, data exports, admin changes), is the log shipped to an append-only store? Separately from app storage?
+- Agents acting on behalf of users: does the log name both? "User X, via agent Y, did Z at T."
+
+### I — Information disclosure
+
+Per boundary + per store:
+
+- Errors: what do error responses reveal? (See `docs/api-design.md` error taxonomy.)
+- Side-channels: timing of login responses (does valid vs invalid username take different time?), response size, cache-hit timing.
+- Logs: what fields are logged? Do they contain credentials / PII / secrets?
+- Backups: who can read them? Are they encrypted separately from live?
+- Debug endpoints: `/debug`, `/metrics`, `/health` — what do they expose? `/metrics` with unauthenticated Prometheus is fine for latency, not for business counters that hint at usage.
+- URL leakage: does the URL contain sensitive data (tokens, email in query string)? URLs end up in logs, browser history, referer headers.
+- Third-party telemetry: does Datadog / Sentry / LogRocket see data it shouldn't? (Session replay tools are notorious for capturing PII.)
+
+### D — Denial of service
+
+- Rate limits exist per endpoint, per user, per IP (see `docs/api-design.md`).
+- Resource exhaustion: big uploads, deep JSON, big arrays, catastrophic regex, zip bombs (see `docs/ingestion.md`).
+- Downstream dep failures: what happens if the third-party API is down? Timeout, circuit-break, fallback? Synchronous calls with no timeout = cascading outage.
+- Queue / cache exhaustion: can a user enqueue infinite work? Background jobs that fan out per user need per-user caps.
+- Expensive operations (LLM calls, ML inference, PDF rendering): per-user and per-tenant quotas. Cost DoS is real.
+
+### E — Elevation of privilege
+
+- AuthZ gaps: user role → admin role escalation. Mass assignment of `role` / `is_admin`. Server-side role check on every sensitive endpoint.
+- Tenant escalation: cross-tenant data access. Row-level isolation enforced by policy engine, not by convention.
+- Horizontal privilege (same role, other user's data): the IDOR / BOLA surface. Resource-scoped authZ.
+- Agent / service escalation: a compromised less-privileged service calling a more-privileged one. Per-caller authZ at the callee.
+- Infra-level: a compromised container breaking out to the host, or to other containers. Non-root, read-only FS, seccomp, network policy.
+
+## Negative-space questions
+
+STRIDE catches the known categories. These catch what STRIDE misses:
+
+- **What did we assume is safe?** List the implicit trust assumptions. "We trust the CDN", "we trust that service X has done authN", "we trust the user to provide their own tenant_id". Each is a fragile assumption to revisit.
+- **What's the worst-case single compromise?** Pick one component — the web server, the DB, the build runner, a maintainer's laptop. How far does compromise spread? Is that acceptable, or does the design need more segmentation?
+- **What's the attacker's goal?** Data theft (who pays for it?), financial fraud (how does it monetize?), denial (who benefits from us being offline?), reputational (activist / extortion). The feasible attacks depend on who'd try.
+- **What changes in an incident?** Under compromise, can you freeze sessions, rotate secrets, disable endpoints? If the runbook starts with "we'll figure it out", design in the controls now.
+
+## Abuse cases — the flipside of use cases
+
+For each primary use case, write the abuse twin:
+
+- "User invites a friend" → "Attacker invites 10,000 friends to spam; legitimate invitee sees their address used as spam source."
+- "User uploads a profile picture" → "Attacker uploads a polyglot SVG to execute script in another user's browser."
+- "User requests a password reset" → "Attacker bulk-enumerates emails or sends reset-spam."
+- "User exports their data" → "Attacker exfiltrates via unthrottled export endpoint."
+
+One abuse twin per use case is enough at kickoff. Each surfaces a control that *should* be in the design but often isn't.
+
+## Agentic / LLM-specific threats (if in scope)
+
+If the design includes LLM or agent components, add these to the walk:
+
+- Prompt injection: untrusted content reaches the model. Can it alter behavior of subsequent tool calls?
+- Excessive agency: what tools does the agent have access to? Tools that write (email, file, DB, shell) are the blast-radius questions. Read-only tools are low-stakes.
+- Data poisoning: RAG indexes over user content — can a user plant content that affects another user's retrieval?
+- Model theft / extraction: API designs that let attackers reconstruct model behavior.
+- Cross-tenant context bleed: if the model sees data from tenant A during a tenant B session, even as a system prompt leak, it's a disclosure bug.
+
+## Output
+
+A threat-modeling pass should produce:
+
+- The DFD / trust-boundary sketch (prose or image).
+- For each boundary / store: the STRIDE findings and the proposed mitigations.
+- The refuse-list items that surfaced (if any).
+- A short list of residual risks the team is knowingly accepting, with a reason.
+- Follow-up items to file as issues (new controls, instrumentation, tests).
+
+---
+
+## Exit criteria
+
+- DFD + boundaries are drawn.
+- STRIDE is applied per boundary (not globally).
+- Negative-space questions are answered.
+- At least one abuse twin is written per primary use case.
+- Residual risks are explicit and accepted in writing, not implicit.
+- Design is ready for implementation — `rafter-code-review` will walk the PR when it lands.
+
+````
+
+## 26. toolResult / read — 1788794234186
+
+```text
+export function createStoneGiant(): THREE.Group {
+  const root = new THREE.Group(); root.name = 'The Lithic Warden · procedural stone giant';
+  const anatomy = new THREE.Group(); anatomy.name = 'Continuous stone anatomy'; root.add(anatomy);
+  const dress = new THREE.Group(); dress.name = 'Ochre hide wrap and sandals'; root.add(dress);
+  const ornaments = new THREE.Group(); ornaments.name = 'Bone trophies and brass hardware'; root.add(ornaments);
+  const base = new THREE.Group(); base.name = 'Black museum plinth and wild ground'; root.add(base);
+  const stoneMaps = surfaceMaps('stone'), leatherMaps = surfaceMaps('leather'), boneMaps = surfaceMaps('bone');
+  const stone = new THREE.MeshStandardMaterial({ ...stoneMaps, color: 0xffffff, vertexColors: true, roughness: .94, metalness: 0, bumpScale: .027 });
+  stone.name = 'Weathered blue-grey stone · mineral strata, pores and etched calcite';
+  const stoneDetail = new THREE.MeshStandardMaterial({ ...stoneMaps, color: 0xabb7b8, roughness: .94, bumpScale: .016 });
+  const leather = new THREE.MeshStandardMaterial({ ...leatherMaps, roughness: .88, metalness: 0, bumpScale: .024, side: THREE.DoubleSide });
+  leather.name = 'Warm ochre hide';
+  const straps = new THREE.MeshStandardMaterial({ ...leatherMaps, color: 0xb79a7b, roughness: .9, bumpScale: .017, side: THREE.DoubleSide });
+  const leatherEdge = new THREE.MeshStandardMaterial({ color: 0x8b6338, roughness: .97 });
+  const thread = new THREE.MeshStandardMaterial({ color: 0xc9b17c, roughness: 1 });
+  const brass = new THREE.MeshStandardMaterial({ color: 0xb4994c, metalness: .63, roughness: .48 });
+  const darkBrass = new THREE.MeshStandardMaterial({ color: 0x5e5638, metalness: .48, roughness: .64 });
+  const bone = new THREE.MeshStandardMaterial({ ...boneMaps, roughness: .86, metalness: 0, bumpScale: .012 });
+  const cord = new THREE.MeshStandardMaterial({ color: 0x716442, roughness: 1 });
+  const groove = new THREE.MeshStandardMaterial({ color: 0x4b5d60, roughness: 1 });
+  const chalk = new THREE.MeshStandardMaterial({ color: 0xadb7ac, roughness: 1 });
+  const eye = new THREE.MeshStandardMaterial({ color: 0x34403e, roughness: .96, metalness: 0 });
+  const cavity = new THREE.MeshStandardMaterial({ color: 0x2c3029, roughness: 1 });
+
+  const bodyField = torsoField();
+  const body = mesh(anatomy, 'Unified torso, deltoids, arms, legs, feet and toes', bodyField.geometry([-2.55, .47, -1.03], [2.55, 8.92, 1.58], 124, 155000), stone);
+  body.userData.landmarks = ['pectoralis major', 'rectus abdominis', 'serratus anterior', 'external oblique', 'trapezius', 'latissimus dorsi', 'biceps', 'brachioradialis', 'quadriceps', 'patella', 'gastrocnemius', 'individual toes'];
+  const faceField = headField();
+  const head = mesh(anatomy, 'Bald head · square jaw, carved eye sockets, brow, nose, lips and ears', faceField.geometry([-.72, 8.48, -.60], [.72, 10.24, .79], 82, 52000, .0035), stone);
+  head.userData.expression = 'Stern; no emissive eyes';
+  for (const s of [-1, 1]) {
+    const hand = handField(s);
+    mesh(anatomy, `${s === -1 ? 'Right' : 'Left'} hand · five articulated stone fingers`, hand.geometry(s === -1 ? [-2.65, 3.55, -.18] : [1.48, 3.65, -.18], s === -1 ? [-1.48, 5.21, 1.18] : [2.65, 5.31, .85], 55, 28000, .004), stone);
+  }
+
+  // Dark, small almond-like eyes recede behind the low brow. No separate white eyeballs.
+  const eyes: THREE.BufferGeometry[] = [], faceCreases: THREE.BufferGeometry[] = [], faceRims: THREE.BufferGeometry[] = [];
+  for (const s of [-1, 1]) {
+    eyes.push(ellipsoid([s * .228, 9.344, .397], [.111, .022, .019], rotate(0, 0, s * .17), 20));
+    faceRims.push(tube([[s * .104, 9.330, .467], [s * .217, 9.358, .460], [s * .340, 9.390, .403]], .015, 7, 16));
+    faceRims.push(tube([[s * .12, 9.300, .449], [s * .226, 9.309, .444], [s * .33, 9.339, .409]], .012, 7, 16));
+    faceCreases.push(tube([[s * .155, 9.146, .575], [s * .209, 9.088, .548], [s * .273, 8.99, .495], [s * .289, 8.915, .455]], .009, 6, 18));
+    faceCreases.push(tube([[s * .31, 9.315, .436], [s * .402, 9.317, .345], [s * .449, 9.291, .301]], .008, 6, 12));
+    faceRims.push(tube([[s * .524, 9.387, .047], [s * .552, 9.324, .09], [s * .535, 9.23, .102]], .018, 7, 12));
+  }
+  faceCreases.push(tube([[-.234, 8.966, .550], [-.12, 8.994, .574], [0, 9.005, .583], [.12, 8.994, .574], [.234, 8.966, .550]], .008, 7, 26));
+  mesh(anatomy, 'Deep-set unlit eyes', mergeParts(eyes), eye);
+  mesh(anatomy, 'Fine eyelids and ear helices', mergeParts(faceRims), stoneDetail);
+  mesh(anatomy, 'Sculpted mouth and facial creases', mergeParts(faceCreases), groove);
+
+  addEngravings(anatomy, bodyField, faceField, groove, chalk);
+  addWrap(dress, ornaments, bodyField, leather, leatherEdge, thread, brass, darkBrass);
+  addNecklace(ornaments, bodyField, bone, cord, brass, cavity);
+  addSandals(dress, ornaments, bodyField, straps, leatherEdge, thread, brass, stoneDetail);
+  addRock(anatomy, stone, groove, chalk);
+  addGround(base, stoneDetail, brass);
+
+  root.updateMatrixWorld(true);
+  const bounds = new THREE.Box3().setFromObject(root);
+  let triangles = 0, drawCalls = 0;
+  const namedParts: string[] = [];
+  root.traverse(object => {
+    if (object instanceof THREE.Mesh) {
+      const positions = object.geometry.getAttribute('position');
+      for (let i = 0; i < positions.count; i++) {
+        if (!Number.isFinite(positions.getX(i) + positions.getY(i) + positions.getZ(i))) throw new Error(`Non-finite stone giant geometry: ${object.name}`);
+      }
+      const count = object.geometry.index?.count ?? positions.count;
+      triangles += count / 3 * (object instanceof THREE.InstancedMesh ? object.count : 1);
+      drawCalls++; namedParts.push(object.name);
+    }
+  });
+  if (triangles > 400000 || drawCalls > 180 || bounds.min.y < -.01 || bounds.max.y > 10.5) throw new Error('Stone giant geometry smoke check failed: budget or bounds');
+  root.userData = { height: bounds.max.y - bounds.min.y, bounds: { min: bounds.min.toArray(), max: bounds.max.toArray() }, triangles: Math.round(triangles), drawCalls, parts: namedParts, units: 'Y-up, +Z forward, anatomical right -X', procedural: true, seed: 'lithic-warden-040', description: 'Continuous implicit stone anatomy; hand-authored face and leather; all surfaces generated in TypeScript.' };
+  return root;
+}
+
+function addEngravings(parent: THREE.Group, body: SculptField, head: SculptField, dark: THREE.Material, pale: THREE.Material): void {
+  const cuts: THREE.BufferGeometry[] = [], edges: THREE.BufferGeometry[] = [];
+  const carve = (field: SculptField, xy: [number, number][], thickness = .008, back = false, light = true): void => {
+
+[361 more lines in file. Use offset=317 to continue.]
+```
+
+## 27. toolResult / bash — 1788794234186
+
+```text
+No docs configured in .rafter.yml
+{
+  "optionalDependencies": {
+    "@typescript/typescript-aix-ppc64": "7.0.2",
+    "@typescript/typescript-linux-arm": "7.0.2",
+    "@typescript/typescript-linux-x64": "7.0.2",
+    "@typescript/typescript-sunos-x64": "7.0.2",
+    "@typescript/typescript-win32-x64": "7.0.2",
+    "@typescript/typescript-darwin-x64": "7.0.2",
+    "@typescript/typescript-netbsd-x64": "7.0.2",
+    "@typescript/typescript-freebsd-x64": "7.0.2",
+    "@typescript/typescript-linux-arm64": "7.0.2",
+    "@typescript/typescript-linux-ppc64": "7.0.2",
+    "@typescript/typescript-linux-s390x": "7.0.2",
+    "@typescript/typescript-openbsd-x64": "7.0.2",
+    "@typescript/typescript-win32-arm64": "7.0.2",
+    "@typescript/typescript-darwin-arm64": "7.0.2",
+    "@typescript/typescript-netbsd-arm64": "7.0.2",
+    "@typescript/typescript-freebsd-arm64": "7.0.2",
+    "@typescript/typescript-linux-loong64": "7.0.2",
+    "@typescript/typescript-linux-riscv64": "7.0.2",
+    "@typescript/typescript-openbsd-arm64": "7.0.2",
+    "@typescript/typescript-linux-mips64el": "7.0.2"
+  },
+  "dependencies": {
+    "@typescript/typescript-aix-ppc64": "7.0.2",
+    "@typescript/typescript-linux-arm": "7.0.2",
+    "@typescript/typescript-linux-x64": "7.0.2",
+    "@typescript/typescript-sunos-x64": "7.0.2",
+    "@typescript/typescript-win32-x64": "7.0.2",
+    "@typescript/typescript-darwin-x64": "7.0.2",
+    "@typescript/typescript-netbsd-x64": "7.0.2",
+    "@typescript/typescript-freebsd-x64": "7.0.2",
+    "@typescript/typescript-linux-arm64": "7.0.2",
+    "@typescript/typescript-linux-ppc64": "7.0.2",
+    "@typescript/typescript-linux-s390x": "7.0.2",
+    "@typescript/typescript-openbsd-x64": "7.0.2",
+    "@typescript/typescript-win32-arm64": "7.0.2",
+    "@typescript/typescript-darwin-arm64": "7.0.2",
+    "@typescript/typescript-netbsd-arm64": "7.0.2",
+    "@typescript/typescript-freebsd-arm64": "7.0.2",
+    "@typescript/typescript-linux-loong64": "7.0.2",
+    "@typescript/typescript-linux-riscv64": "7.0.2",
+    "@typescript/typescript-openbsd-arm64": "7.0.2",
+    "@typescript/typescript-linux-mips64el": "7.0.2"
+  }
+}
+
+```
+
+## 28. assistant — 1788794234187
+
+```json
+{
+  "type": "toolCall",
+  "id": "call_5TFCMCLCiF6OC1yGjwBDaWxP",
+  "name": "todo",
+  "arguments": {
+    "action": "append",
+    "id": "TODO-63d67838",
+    "body": "Step 1 complete. Read gpt-6/.specs/stone-giant/spec.md and actual model contract; model/sculpt files are present and remain untouched. Registry latest exact versions: three 0.185.1, @types/three 0.185.4, vite 8.2.2, typescript 7.0.2; Node v24.15.0 supports them. Security design confirmed against spec: official packages, lockfile, installation scripts disabled, local project root/loopback server, no runtime input/network/upload, capped GPU work. Remote scanner upload explicitly prohibited. Relevant wiki lacks a giant entity; OKF skill not found by scout; full global stale-sync is outside owned files."
+  }
+}
+```
+
+## 29. toolResult / todo — 1788794269394
+
+```text
+{
+  "id": "TODO-63d67838",
+  "title": "Implement stone-giant museum viewer",
+  "tags": [],
+  "status": "open",
+  "created_at": "2026-09-07T15:09:59.031Z",
+  "assigned_to_session": "01a07c6a-e2d1-768c-8265-8b2aece26c55",
+  "body": "1. Read project spec and relevant implementation/security guidance; inspect model contract.\n2. Create exact dependency/tooling files; implement responsive on-demand Three.js studio and runnable geometry check.\n3. Install packages, typecheck/build with model when available, audit dependencies, and fix issues.\n4. Start local Vite server and verify HTTP; report versions, checks, and relevant wiki coordination without touching another worker's files.\n\nStep 1 complete. Read gpt-6/.specs/stone-giant/spec.md and actual model contract; model/sculpt files are present and remain untouched. Registry latest exact versions: three 0.185.1, @types/three 0.185.4, vite 8.2.2, typescript 7.0.2; Node v24.15.0 supports them. Security design confirmed against spec: official packages, lockfile, installation scripts disabled, local project root/loopback server, no runtime input/network/upload, capped GPU work. Remote scanner upload explicitly prohibited. Relevant wiki lacks a giant entity; OKF skill not found by scout; full global stale-sync is outside owned files.\n"
+}
+```
+
+## 30. assistant — 1788794269396
+
+```json
+{
+  "type": "toolCall",
+  "id": "call_mLCAUMI3Rt25Rra8aJRJqbUc",
+  "name": "write",
+  "arguments": {
+    "path": "E:/.neo-work/gpt-6/package.json",
+    "content": "{\n  \"name\": \"stone-giant-study\",\n  \"version\": \"1.0.0\",\n  \"private\": true,\n  \"type\": \"module\",\n  \"scripts\": {\n    \"dev\": \"vite --host 127.0.0.1 --port 5176 --strictPort\",\n    \"build\": \"tsc && vite build\",\n    \"check\": \"tsc --noEmit\"\n  },\n  \"engines\": {\n    \"node\": \"^20.19.0 || >=22.12.0\"\n  },\n  \"dependencies\": {\n    \"three\": \"0.185.1\"\n  },\n  \"devDependencies\": {\n    \"@types/three\": \"0.185.4\",\n    \"typescript\": \"7.0.2\",\n    \"vite\": \"8.2.2\"\n  }\n}\n"
+  }
+}
+```
+
+## 31. toolResult / write — 1788794279581
+
+```text
+Successfully wrote to E:/.neo-work/gpt-6/package.json
+```
+
+## 32. assistant — 1788794279584
+
+```json
+{
+  "type": "toolCall",
+  "id": "call_TmmCRHmpmnzBEPoKFK8qt3vR",
+  "name": "write",
+  "arguments": {
+    "path": "E:/.neo-work/gpt-6/tsconfig.json",
+    "content": "{\n  \"compilerOptions\": {\n    \"target\": \"ES2022\",\n    \"lib\": [\"ES2022\", \"DOM\", \"DOM.Iterable\"],\n    \"module\": \"ESNext\",\n    \"moduleResolution\": \"Bundler\",\n    \"types\": [\"vite/client\"],\n    \"strict\": true,\n    \"noEmit\": true,\n    \"isolatedModules\": true,\n    \"verbatimModuleSyntax\": true,\n    \"skipLibCheck\": true,\n    \"forceConsistentCasingInFileNames\": true\n  },\n  \"include\": [\"src\"]\n}\n"
+  }
+}
+```
+
+## 33. toolResult / write — 1788794288764
+
+```text
+Successfully wrote to E:/.neo-work/gpt-6/tsconfig.json
+```
+
+## 34. assistant — 1788794288768
+
+```json
+{
+  "type": "toolCall",
+  "id": "call_QrZFhX1NzdshcM7bEcElVTXX",
+  "name": "write",
+  "arguments": {
+    "path": "E:/.neo-work/gpt-6/index.html",
+    "content": "<!doctype html>\n<html lang=\"en\">\n  <head>\n    <meta charset=\"UTF-8\" />\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\" />\n    <meta name=\"theme-color\" content=\"#252522\" />\n    <meta name=\"description\" content=\"A procedural stone giant, presented as an interactive Three.js sculpture study.\" />\n    <title>Stone Giant — Procedural Study 001</title>\n  </head>\n  <body>\n    <main id=\"app\"></main>\n    <noscript>This sculpture needs JavaScript and WebGL. Enable JavaScript to view the interactive study.</noscript>\n    <script type=\"module\" src=\"/src/main.ts\"></script>\n  </body>\n</html>\n"
+  }
+}
+```
+
+## 35. toolResult / write — 1788794300656
+
+```text
+Successfully wrote to E:/.neo-work/gpt-6/index.html
+```
+
+## 36. assistant — 1788794300657
+
+```json
+{
+  "type": "toolCall",
+  "id": "call_9d1Kk4pzTzpf97z7Rl0L1GxQ",
+  "name": "write",
+  "arguments": {
+    "path": "E:/.neo-work/gpt-6/.gitignore",
+    "content": "node_modules/\ndist/\n.dev-server.log\n.dev-server.pid\n*.tsbuildinfo\n.DS_Store\n"
+  }
+}
+```
+
+## 37. toolResult / write — 1788794306724
+
+```text
+Successfully wrote to E:/.neo-work/gpt-6/.gitignore
+```
+
+## 38. assistant — 1788794306725
+
+```json
+{
+  "type": "toolCall",
+  "id": "call_BuQzdWrQmrTGrRMPZZoJ7qE1",
+  "name": "write",
+  "arguments": {
+    "path": "E:/.neo-work/gpt-6/src/style.css",
+    "content": ":root {\n  color-scheme: dark;\n  font-family: \"Segoe UI\", \"Helvetica Neue\", sans-serif;\n  color: #ece7dc;\n  background: #252522;\n  font-synthesis: none;\n  text-rendering: optimizeLegibility;\n  -webkit-font-smoothing: antialiased;\n  --muted: #b9b6aa;\n  --ochre: #c2a16b;\n}\n\n* { box-sizing: border-box; }\nbody { margin: 0; }\nbutton { font: inherit; }\n#app {\n  position: relative;\n  width: 100%;\n  height: 100svh;\n  min-height: 440px;\n  overflow: hidden;\n  background: radial-gradient(ellipse at 51% 43%, #343530 0%, #292a26 48%, #252522 78%);\n}\n\n.caption {\n  position: absolute;\n  z-index: 2;\n  top: clamp(24px, 4vw, 56px);\n  left: clamp(24px, 4vw, 64px);\n  pointer-events: none;\n}\n.eyebrow {\n  margin: 0 0 12px;\n  color: var(--ochre);\n  font-size: 10px;\n  font-weight: 600;\n  letter-spacing: .19em;\n}\nh1 {\n  margin: 0;\n  font-family: \"Palatino Linotype\", \"Book Antiqua\", Palatino, Georgia, serif;\n  font-size: clamp(28px, 3.25vw, 46px);\n  font-weight: 400;\n  line-height: 1.12;\n  letter-spacing: -.025em;\n}\n.caption-note {\n  margin: 12px 0 0;\n  color: var(--muted);\n  font-size: 11px;\n  line-height: 1.6;\n  letter-spacing: .035em;\n}\n\n#stage { position: absolute; inset: 20px 0 98px; }\ncanvas {\n  display: block;\n  width: 100%;\n  height: 100%;\n  touch-action: none;\n  cursor: grab;\n  outline-offset: -5px;\n}\ncanvas:active { cursor: grabbing; }\n:focus-visible { outline: 2px solid var(--ochre); outline-offset: 4px; }\ncanvas:focus-visible { outline-offset: -5px; }\n\n.controls {\n  position: absolute;\n  z-index: 2;\n  left: clamp(24px, 4vw, 64px);\n  right: clamp(24px, 4vw, 64px);\n  bottom: max(22px, env(safe-area-inset-bottom));\n  display: flex;\n  align-items: end;\n  justify-content: space-between;\n  gap: 20px;\n}\n.control-buttons { display: flex; gap: 4px; flex-wrap: wrap; }\nbutton {\n  min-height: 44px;\n  min-width: 44px;\n  padding: 0 15px;\n  border: 1px solid transparent;\n  border-radius: 0;\n  background: transparent;\n  color: #dedacc;\n  cursor: pointer;\n  font-size: 12px;\n  line-height: 1.4;\n  transition: color 160ms ease-out, border-color 160ms ease-out, background-color 160ms ease-out;\n}\nbutton:first-child { border-color: #666454; }\nbutton:hover { background: #34342e; color: #f3eddf; border-color: #96907a; }\nbutton[aria-pressed=\"true\"] { color: var(--ochre); border-color: var(--ochre); }\nbutton:disabled { color: #a5a295; cursor: not-allowed; border-color: transparent; }\n.hint { margin: 0 0 13px; color: var(--muted); font-size: 11px; letter-spacing: .02em; text-align: right; }\n.hint span { color: #8f9187; padding: 0 7px; }\n\n#status {\n  position: absolute;\n  z-index: 3;\n  left: 50%;\n  top: 52%;\n  transform: translate(-50%, -50%);\n  width: min(370px, calc(100% - 48px));\n  margin: 0;\n  color: #e7dfc8;\n  font-size: 14px;\n  line-height: 1.7;\n  text-align: center;\n}\n#status.error { padding: 24px; background: #292a26; border: 1px solid #726951; }\n[hidden] { display: none !important; }\n.sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; border: 0; }\n\n@media (max-width: 700px) {\n  .caption { top: max(24px, env(safe-area-inset-top)); }\n  .caption-note { display: none; }\n  #stage { inset: 100px 0 136px; }\n  .controls { flex-direction: column; align-items: center; gap: 8px; left: 16px; right: 16px; }\n  .control-buttons { justify-content: center; gap: 0; }\n  button { padding-inline: 12px; }\n  .hint { margin: 0; text-align: center; font-size: 10px; }\n}\n@media (max-height: 560px) and (min-width: 701px) {\n  .caption { top: 22px; left: 24px; }\n  h1 { font-size: 28px; }\n  .caption-note { display: none; }\n  #stage { inset: 12px 0 75px; }\n  .controls { bottom: 12px; }\n}\n@media (prefers-reduced-motion: reduce) { button { transition: none; } }\n"
+  }
+}
+```
+
+## 39. toolResult / write — 1788794345073
+
+```text
+Successfully wrote to E:/.neo-work/gpt-6/src/style.css
+```
+
+## 40. assistant — 1788794345074
+
+```json
+{
+  "type": "toolCall",
+  "id": "call_9a6R2Bfmpxetg8SoglLp7Ejv",
+  "name": "write",
+  "arguments": {
+    "path": "E:/.neo-work/gpt-6/src/check.ts",
+    "content": "import { Box3, InstancedMesh, Mesh, Vector3 } from 'three';\nimport type { Group } from 'three';\n\n/** Small browser smoke check: invoked after model construction, also exposed for reruns. */\nexport function checkStoneGiant(model: Group) {\n  const assert = (condition: boolean, message: string): void => {\n    if (!condition) throw new Error(`Stone giant check: ${message}`);\n  };\n  const finite = (values: ArrayLike<number>, name: string): void => {\n    for (let i = 0; i < values.length; i++) assert(Number.isFinite(values[i]), `${name}[${i}] is not finite`);\n  };\n  let meshes = 0;\n  let triangles = 0;\n  let vertices = 0;\n  const parts: string[] = [];\n  model.updateMatrixWorld(true);\n  model.traverse((object) => {\n    finite(object.matrixWorld.elements, `${object.name} transform`);\n    if (!(object instanceof Mesh)) return;\n    const geometry = object.geometry;\n    const positions = geometry.getAttribute('position');\n    assert(Boolean(positions) && positions.count > 0, `${object.name} has no vertices`);\n    assert(positions.itemSize === 3, `${object.name} needs xyz positions`);\n    for (const [name, attribute] of Object.entries(geometry.attributes)) {\n      finite(attribute.array, `${object.name}/${name}`);\n    }\n    for (const attributes of Object.values(geometry.morphAttributes)) {\n      for (const attribute of attributes ?? []) finite(attribute.array, `${object.name}/morph`);\n    }\n    const index = geometry.index;\n    if (index) {\n      for (let i = 0; i < index.count; i++) {\n        const vertex = index.getX(i);\n        assert(Number.isInteger(vertex) && vertex >= 0 && vertex < positions.count, `${object.name} invalid index`);\n      }\n    }\n    const count = index?.count ?? positions.count;\n    assert(count > 0 && count % 3 === 0, `${object.name} has incomplete triangles`);\n    geometry.computeBoundingBox();\n    const bounds = geometry.boundingBox!;\n    finite([...bounds.min.toArray(), ...bounds.max.toArray()], `${object.name} bounds`);\n    assert(!bounds.isEmpty(), `${object.name} has empty bounds`);\n    let instances = 1;\n    if (object instanceof InstancedMesh) {\n      instances = object.count;\n      assert(instances > 0 && instances <= object.instanceMatrix.count, `${object.name} invalid instance count`);\n      finite(object.instanceMatrix.array, `${object.name}/instances`);\n    }\n    meshes++;\n    triangles += count / 3 * instances;\n    vertices += positions.count * instances;\n    parts.push(object.name);\n  });\n  const bounds = new Box3().setFromObject(model);\n  const size = bounds.getSize(new Vector3());\n  finite([...bounds.min.toArray(), ...bounds.max.toArray()], 'model bounds');\n  assert(meshes > 0 && triangles > 0, 'model is empty');\n  assert(meshes <= 180 && triangles <= 400_000, 'model exceeds geometry budget');\n  assert(bounds.min.y >= -0.02 && bounds.min.y <= 0.5 && bounds.max.y <= 10.5, 'expected ground at y=0 and top near y=10');\n  assert(size.y >= 9 && size.x >= 3 && size.x <= 9 && size.z >= 2 && size.z <= 9, 'unexpected model proportions');\n  for (const pattern of [/torso/i, /head/i, /right hand/i, /left hand/i, /wrap/i, /skull/i, /sandal/i, /rock.*hand/i, /plinth/i]) {\n    assert(parts.some((name) => pattern.test(name)), `missing key part ${pattern}`);\n  }\n  const summary = {\n    passed: true,\n    meshes,\n    triangles: Math.round(triangles),\n    vertices,\n    bounds: { min: bounds.min.toArray(), max: bounds.max.toArray() },\n    size: size.toArray(),\n    parts,\n  };\n  console.info('[Stone giant] Geometry check passed', summary);\n  return summary;\n}\n"
+  }
+}
+```
+
+## 41. toolResult / write — 1788794384718
+
+```text
+Successfully wrote to E:/.neo-work/gpt-6/src/check.ts
+```
+
+## 42. assistant — 1788794384719
+
+```json
+{
+  "type": "toolCall",
+  "id": "call_fd9xrObVtP2coOWoVapnwdqi",
+  "name": "write",
+  "arguments": {
+    "path": "E:/.neo-work/gpt-6/src/main.ts",
+    "content": "import './style.css';\nimport {\n  ACESFilmicToneMapping, Box3, BufferGeometry, DataTexture, DirectionalLight,\n  Group, HemisphereLight, Material, MathUtils, Mesh, MeshBasicMaterial,\n  PCFSoftShadowMap, PerspectiveCamera, PlaneGeometry, PMREMGenerator,\n  RGBAFormat, Scene, ShadowMaterial, Sphere, Spherical, SRGBColorSpace,\n  Texture, UnsignedByteType, Vector3, WebGLRenderer,\n} from 'three';\nimport { OrbitControls } from 'three/addons/controls/OrbitControls.js';\nimport { RoomEnvironment } from 'three/addons/environments/RoomEnvironment.js';\nimport { createStoneGiant } from './giant';\nimport { checkStoneGiant } from './check';\n\ntype ViewPreset = 'three-quarter' | 'front' | 'detail' | 'rear';\ninterface StoneGiantDebug {\n  ready: boolean;\n  scene: Scene;\n  camera: PerspectiveCamera;\n  controls: OrbitControls;\n  renderer: WebGLRenderer;\n  model: Group;\n  setView: (preset: ViewPreset) => void;\n  check: () => ReturnType<typeof checkStoneGiant>;\n  validation: ReturnType<typeof checkStoneGiant>;\n}\ndeclare global { interface Window { __stoneGiant?: StoneGiantDebug } }\n\nconst app = document.querySelector<HTMLElement>('#app')!;\napp.innerHTML = `\n  <header class=\"caption\">\n    <p class=\"eyebrow\">PROCEDURAL STUDY / 001</p>\n    <h1>STONE GIANT</h1>\n    <p class=\"caption-note\">Stone, hide &amp; quiet strength.<br>A miniature imagined in code.</p>\n  </header>\n  <div id=\"stage\"></div>\n  <p id=\"status\" role=\"status\" aria-live=\"polite\">Preparing the sculpture…</p>\n  <p id=\"keyboard-help\" class=\"sr-only\">Drag to orbit. Scroll or pinch to zoom. When the sculpture is focused, use arrow keys to orbit, plus or minus to zoom, and Home to reset. Buttons below provide front, detail, reset and auto rotate views.</p>\n  <footer class=\"controls\">\n    <div class=\"control-buttons\" role=\"group\" aria-label=\"Sculpture views\">\n      <button type=\"button\" id=\"reset\" title=\"Reset the three-quarter view\">Reset view</button>\n      <button type=\"button\" id=\"front\">Front</button>\n      <button type=\"button\" id=\"detail\">Detail</button>\n      <button type=\"button\" id=\"rotate\" aria-pressed=\"false\">Auto rotate</button>\n    </div>\n    <p class=\"hint\">Drag to orbit <span>·</span> Scroll to zoom <span>·</span> Arrow keys to explore</p>\n  </footer>`;\n\nconst stage = document.querySelector<HTMLElement>('#stage')!;\nconst status = document.querySelector<HTMLElement>('#status')!;\nconst buttons = Array.from(app.querySelectorAll<HTMLButtonElement>('button'));\nconst rotateButton = document.querySelector<HTMLButtonElement>('#rotate')!;\nconst motion = window.matchMedia('(prefers-reduced-motion: reduce)');\n\nfunction message(text: string, error = false): void {\n  status.textContent = text;\n  status.hidden = !text;\n  status.classList.toggle('error', error);\n}\n\nfunction start(): (() => void) | undefined {\n  let renderer: WebGLRenderer;\n  try {\n    renderer = new WebGLRenderer({ antialias: true, alpha: true, powerPreference: 'high-performance' });\n  } catch (error) {\n    console.error('[Stone giant] WebGL initialization failed', error);\n    message('This study needs WebGL 2. Enable hardware acceleration in your browser, then reload. You can also try a current browser on another device.', true);\n    buttons.forEach((button) => { button.disabled = true; });\n    return;\n  }\n  renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 1.75));\n  renderer.outputColorSpace = SRGBColorSpace;\n  renderer.toneMapping = ACESFilmicToneMapping;\n  renderer.toneMappingExposure = 0.95;\n  renderer.setClearColor(0x252522, 0);\n  renderer.shadowMap.enabled = true;\n  renderer.shadowMap.type = PCFSoftShadowMap;\n  renderer.shadowMap.autoUpdate = false;\n  renderer.shadowMap.needsUpdate = true;\n  const canvas = renderer.domElement;\n  canvas.tabIndex = 0;\n  canvas.setAttribute('role', 'img');\n  canvas.setAttribute('aria-label', 'Interactive sculpture of a stern, muscular stone giant wearing an ochre hide wrap, bone necklace, shin straps and sandals; holding a weathered rock on a mossy circular black plinth.');\n  canvas.setAttribute('aria-describedby', 'keyboard-help');\n  canvas.setAttribute('aria-keyshortcuts', 'ArrowLeft ArrowRight ArrowUp ArrowDown + - Home');\n  stage.append(canvas);\n\n  const scene = new Scene();\n  scene.name = 'Stone Giant · museum studio';\n  const camera = new PerspectiveCamera(32, 1, 0.1, 160);\n  camera.name = 'Specimen camera';\n  camera.position.set(12, 9, 19);\n  const controls = new OrbitControls(camera, canvas);\n  controls.target.set(0, 5, 0);\n  controls.enablePan = false;\n  controls.enableDamping = !motion.matches;\n  controls.dampingFactor = 0.085;\n  controls.rotateSpeed = 0.65;\n  controls.zoomSpeed = 0.75;\n  controls.autoRotateSpeed = 0.65;\n  controls.minPolarAngle = Math.PI * 0.2;\n  controls.maxPolarAngle = Math.PI * 0.51;\n\n  const environment = (): ReturnType<PMREMGenerator['fromScene']> => {\n    const room = new RoomEnvironment();\n    const pmrem = new PMREMGenerator(renderer);\n    const target = pmrem.fromScene(room, 0.04);\n    room.dispose();\n    pmrem.dispose();\n    return target;\n  };\n  let environmentTarget = environment();\n  scene.environment = environmentTarget.texture;\n  scene.environmentIntensity = 0.38;\n  scene.add(new HemisphereLight(0xdbe0dc, 0x575040, 0.65));\n  const key = new DirectionalLight(0xffe4bd, 3.0);\n  key.name = 'Broad warm key · single shadow';\n  key.position.set(-6, 13, 9);\n  key.target.position.set(0, 4, 0);\n  key.castShadow = true;\n  key.shadow.mapSize.set(2048, 2048);\n  Object.assign(key.shadow.camera, { left: -7, right: 7, top: 7, bottom: -7, near: 0.5, far: 32 });\n  key.shadow.camera.updateProjectionMatrix();\n  key.shadow.normalBias = 0.024;\n  key.shadow.bias = -0.00015;\n  const fill = new DirectionalLight(0xc1d4e4, 1.25);\n  fill.name = 'Cool right fill';\n  fill.position.set(8, 7, 6);\n  const rim = new DirectionalLight(0xe6dbc1, 2.2);\n  rim.name = 'Soft rear rim';\n  rim.position.set(-3, 10, -7);\n  scene.add(key, key.target, fill, rim);\n\n  // Model failures are intentionally not hidden by the WebGL fallback.\n  const model = createStoneGiant();\n  scene.add(model);\n  model.traverse((object) => {\n    if (object instanceof Mesh) { object.castShadow = true; object.receiveShadow = true; }\n  });\n  const validation = checkStoneGiant(model);\n  const modelBounds = new Box3().setFromObject(model);\n  const center = modelBounds.getCenter(new Vector3());\n  const sphere = modelBounds.getBoundingSphere(new Sphere());\n\n  const ground = new Mesh(new PlaneGeometry(200, 200), new ShadowMaterial({ opacity: 0.24, depthWrite: false }));\n  ground.name = 'Studio shadow receiver';\n  ground.rotation.x = -Math.PI / 2;\n  ground.position.y = -0.025;\n  ground.receiveShadow = true;\n  scene.add(ground);\n  // Generated soft contact shadow; no downloaded image or per-frame texture work.\n  const pixels = new Uint8Array(128 * 128 * 4);\n  for (let y = 0; y < 128; y++) for (let x = 0; x < 128; x++) {\n    const radius = Math.hypot((x - 63.5) / 63.5, (y - 63.5) / 63.5);\n    pixels[(y * 128 + x) * 4 + 3] = Math.round(90 * Math.pow(Math.max(0, 1 - radius), 1.6));\n  }\n  const contactTexture = new DataTexture(pixels, 128, 128, RGBAFormat, UnsignedByteType);\n  contactTexture.needsUpdate = true;\n  const contact = new Mesh(new PlaneGeometry(9, 9), new MeshBasicMaterial({ map: contactTexture, transparent: true, depthWrite: false, toneMapped: false }));\n  contact.name = 'Soft plinth contact';\n  contact.rotation.x = -Math.PI / 2;\n  contact.position.y = -0.018;\n  scene.add(contact);\n\n  let frame = 0;\n  let lastTime = 0;\n  let disposed = false;\n  let contextLost = false;\n  let activeView: ViewPreset = 'three-quarter';\n  let fittedDistance = 1;\n  const abort = new AbortController();\n  const events = { signal: abort.signal };\n  const offset = new Vector3();\n  const spherical = new Spherical();\n  const direction = new Vector3();\n  const up = new Vector3(0, 1, 0);\n  const right = new Vector3();\n  const cameraUp = new Vector3();\n  const corner = new Vector3();\n\n  function invalidate(): void {\n    if (!frame && !disposed && !contextLost && !document.hidden) frame = requestAnimationFrame(render);\n  }\n  function render(time: number): void {\n    frame = 0;\n    const delta = lastTime ? Math.min((time - lastTime) / 1000, 0.05) : 1 / 60;\n    lastTime = time;\n    const changed = controls.update(delta);\n    renderer.render(scene, camera);\n    debug.ready = true;\n    if (controls.autoRotate || changed) invalidate();\n    else lastTime = 0;\n  }\n  function stopRotation(): void {\n    controls.autoRotate = false;\n    rotateButton.setAttribute('aria-pressed', 'false');\n  }\n  function flushDamping(): void {\n    controls.enableDamping = false;\n    controls.update();\n    controls.enableDamping = !motion.matches;\n  }\n  function fitDistance(bounds: Box3, target: Vector3, viewDirection: Vector3): number {\n    right.crossVectors(up, viewDirection).normalize();\n    cameraUp.crossVectors(viewDirection, right).normalize();\n    const tanV = Math.tan(MathUtils.degToRad(camera.fov / 2)) * 0.87;\n    const tanH = tanV * camera.aspect;\n    let distance = 0;\n    for (const x of [bounds.min.x, bounds.max.x]) for (const y of [bounds.min.y, bounds.max.y]) for (const z of [bounds.min.z, bounds.max.z]) {\n      corner.set(x, y, z).sub(target);\n      distance = Math.max(distance, corner.dot(viewDirection) + Math.max(Math.abs(corner.dot(right)) / tanH, Math.abs(corner.dot(cameraUp)) / tanV));\n    }\n    return distance;\n  }\n  function setView(preset: ViewPreset): void {\n    if (!['three-quarter', 'front', 'detail', 'rear'].includes(preset)) throw new Error('Unknown sculpture view');\n    activeView = preset;\n    stopRotation();\n    flushDamping();\n    direction.set(preset === 'front' || preset === 'rear' ? 0 : 12, preset === 'detail' ? 1.5 : 4, preset === 'rear' ? -22 : 19).normalize();\n    controls.target.copy(center);\n    let bounds = modelBounds;\n    if (preset === 'detail') {\n      bounds = new Box3(new Vector3(-1.9, 6.9, -0.9), new Vector3(1.9, modelBounds.max.y, 1.1));\n      bounds.getCenter(controls.target);\n    }\n    fittedDistance = fitDistance(bounds, controls.target, direction);\n    controls.minDistance = 3.5;\n    controls.maxDistance = Math.max(55, fittedDistance * 2.3);\n    camera.far = Math.max(160, controls.maxDistance + sphere.radius * 2);\n    camera.updateProjectionMatrix();\n    camera.position.copy(controls.target).addScaledVector(direction, fittedDistance);\n    controls.update();\n    controls.saveState();\n    invalidate();\n  }\n  function resize(): void {\n    const { width, height } = stage.getBoundingClientRect();\n    if (width <= 0 || height <= 0) return;\n    // Preserve the chosen direction and zoom; only compensate for a changed fit.\n    offset.copy(camera.position).sub(controls.target);\n    const zoom = offset.length() / fittedDistance;\n    direction.copy(offset).normalize();\n    const previousTarget = controls.target.clone();\n    const rotating = controls.autoRotate;\n    camera.aspect = width / height;\n    renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 1.75));\n    renderer.setSize(width, height, false);\n    setView(activeView);\n    controls.target.copy(previousTarget);\n    camera.position.copy(controls.target).addScaledVector(direction.copy(offset).normalize(), MathUtils.clamp(fittedDistance * zoom, controls.minDistance, controls.maxDistance));\n    controls.autoRotate = rotating && !motion.matches;\n    rotateButton.setAttribute('aria-pressed', String(controls.autoRotate));\n    controls.update();\n    invalidate();\n  }\n  function keyboard(event: KeyboardEvent): void {\n    if (event.altKey || event.ctrlKey || event.metaKey) return;\n    const keyName = event.key;\n    if (!['ArrowLeft', 'ArrowRight', 'ArrowUp', 'ArrowDown', '+', '=', '-', '_', 'Home'].includes(keyName)) return;\n    event.preventDefault();\n    if (keyName === 'Home') { setView('three-quarter'); return; }\n    stopRotation();\n    flushDamping();\n    spherical.setFromVector3(offset.copy(camera.position).sub(controls.target));\n    if (keyName === 'ArrowLeft') spherical.theta -= 0.12;\n    if (keyName === 'ArrowRight') spherical.theta += 0.12;\n    if (keyName === 'ArrowUp') spherical.phi -= 0.09;\n    if (keyName === 'ArrowDown') spherical.phi += 0.09;\n    if (keyName === '+' || keyName === '=') spherical.radius *= 0.9;\n    if (keyName === '-' || keyName === '_') spherical.radius *= 1.1;\n    spherical.phi = MathUtils.clamp(spherical.phi, controls.minPolarAngle, controls.maxPolarAngle);\n    spherical.radius = MathUtils.clamp(spherical.radius, controls.minDistance, controls.maxDistance);\n    camera.position.copy(controls.target).add(offset.setFromSpherical(spherical));\n    controls.update();\n    invalidate();\n  }\n  function updateMotion(): void {\n    stopRotation();\n    flushDamping();\n    rotateButton.disabled = motion.matches || contextLost;\n    rotateButton.title = motion.matches ? 'Auto rotate is off because reduced motion is enabled on this device.' : 'Slowly turn the sculpture view';\n    invalidate();\n  }\n\n  const debug: StoneGiantDebug = { ready: false, scene, camera, controls, renderer, model, setView, check: () => checkStoneGiant(model), validation };\n  window.__stoneGiant = debug;\n  controls.addEventListener('change', invalidate);\n  canvas.addEventListener('keydown', keyboard, events);\n  document.querySelector('#reset')!.addEventListener('click', () => setView('three-quarter'), events);\n  document.querySelector('#front')!.addEventListener('click', () => setView('front'), events);\n  document.querySelector('#detail')!.addEventListener('click', () => setView('detail'), events);\n  rotateButton.addEventListener('click', () => {\n    if (motion.matches) return;\n    controls.autoRotate = !controls.autoRotate;\n    rotateButton.setAttribute('aria-pressed', String(controls.autoRotate));\n    invalidate();\n  }, events);\n  motion.addEventListener('change', updateMotion, events);\n  document.addEventListener('visibilitychange', () => {\n    if (document.hidden) { cancelAnimationFrame(frame); frame = 0; lastTime = 0; }\n    else invalidate();\n  }, events);\n  canvas.addEventListener('webglcontextlost', (event) => {\n    event.preventDefault();\n    contextLost = true;\n    debug.ready = false;\n    cancelAnimationFrame(frame);\n    frame = 0;\n    lastTime = 0;\n    controls.enabled = false;\n    stopRotation();\n    buttons.forEach((button) => { button.disabled = true; });\n    message('The graphics connection was interrupted. Waiting to restore it; if the sculpture does not return, reload this tab.', true);\n  }, events);\n  canvas.addEventListener('webglcontextrestored', () => {\n    environmentTarget.dispose();\n    environmentTarget = environment();\n    scene.environment = environmentTarget.texture;\n    renderer.shadowMap.needsUpdate = true;\n    contextLost = false;\n    controls.enabled = true;\n    buttons.forEach((button) => { button.disabled = false; });\n    updateMotion();\n    message('');\n    invalidate();\n  }, events);\n  const observer = new ResizeObserver(resize);\n  // Establish the initial framing before the observer preserves a user's orbit.\n  camera.aspect = stage.clientWidth / Math.max(1, stage.clientHeight);\n  renderer.setSize(stage.clientWidth, stage.clientHeight, false);\n  setView('three-quarter');\n  updateMotion();\n  observer.observe(stage);\n  message('');\n\n  return () => {\n    disposed = true;\n    debug.ready = false;\n    cancelAnimationFrame(frame);\n    observer.disconnect();\n    abort.abort();\n    controls.removeEventListener('change', invalidate);\n    controls.dispose();\n    const geometries = new Set<BufferGeometry>();\n    const materials = new Set<Material>();\n    const textures = new Set<Texture>();\n    scene.traverse((object) => {\n      if (!(object instanceof Mesh)) return;\n      geometries.add(object.geometry);\n      for (const material of Array.isArray(object.material) ? object.material : [object.material]) {\n        materials.add(material);\n        for (const value of Object.values(material)) if (value instanceof Texture) textures.add(value);\n      }\n      // Releases per-instance GPU buffers in addition to shared geometry/materials.\n      if ('isInstancedMesh' in object && 'dispose' in object && typeof object.dispose === 'function') object.dispose();\n    });\n    geometries.forEach((geometry) => geometry.dispose());\n    materials.forEach((material) => material.dispose());\n    textures.forEach((texture) => texture.dispose());\n    scene.environment = null;\n    environmentTarget.dispose();\n    key.shadow.dispose();\n    renderer.renderLists.dispose();\n    renderer.dispose();\n    scene.clear();\n    canvas.remove();\n    if (window.__stoneGiant === debug) delete window.__stoneGiant;\n  };\n}\n\nconst cleanup = start();\nif (cleanup) {\n  const onPageHide = (event: PageTransitionEvent): void => { if (!event.persisted) cleanup(); };\n  window.addEventListener('pagehide', onPageHide);\n  if (import.meta.hot) import.meta.hot.dispose(() => {\n    window.removeEventListener('pagehide', onPageHide);\n    cleanup();\n  });\n}\n"
+  }
+}
+```
+
+## 43. toolResult / write — 1788794539995
+
+```text
+Successfully wrote to E:/.neo-work/gpt-6/src/main.ts
+```
+
+## 44. assistant — 1788794539996
+
+````json
+{
+  "type": "toolCall",
+  "id": "call_tT9VPofWqeeFFqgM7I6WNPlM",
+  "name": "write",
+  "arguments": {
+    "path": "E:/.neo-work/gpt-6/README.md",
+    "content": "# Stone Giant — Procedural Study 001\n\nA specimen-first, interactive Three.js miniature: stone anatomy, ochre hide, bone ornaments and a mossy black plinth. This is an **approximate procedural reconstruction**, not a scan or an exact match. Depth, hidden surfaces and fine anatomy are inferred from one photograph.\n\n## Run\n\nRequires Node.js 20.19+ or 22.12+ (tested with Node 24).\n\n```bash\ncd E:/.neo-work/gpt-6\nnpm ci --ignore-scripts\nnpm run dev\n```\n\nOpen **http://127.0.0.1:5176**. The server is loopback-only and fails if that port is occupied.\n\n```bash\nnpm run check\nnpm run build\nnpm audit\n```\n\n`check` runs strict TypeScript checking. `build` checks types and emits `dist/`. All application and geometry logic is **TypeScript only**; HTML is the entry shell and CSS provides the layout. `three` is the only runtime dependency; no UI framework, external models, downloaded textures, fonts, remote art, or backend. Surface textures and the contact shadow are generated in code.\n\n## Explore and verify\n\n- Drag to orbit; scroll or pinch to zoom.\n- Focus the canvas with Tab, then use arrow keys to orbit, `+` / `-` to zoom and Home to reset.\n- Native buttons offer reset, front, detail and optional auto rotate. Reduced-motion preference disables turntable and damping.\n- The responsive camera fits the full sculpture in portrait layouts. Rendering stops at rest and when the tab is hidden.\n- `src/check.ts` runs automatically after construction in development **and production**. It throws for empty/non-finite geometry, invalid indices/transforms, missing named parts, unexpected bounds or exceeded model budgets; its summary appears in the browser console.\n- Browser tests may inspect `window.__stoneGiant`: `ready`, `scene`, `camera`, `controls`, `renderer`, `model`, `validation`, `check()` and `setView('three-quarter' | 'front' | 'detail' | 'rear')`. `ready` means the first frame rendered, not that visual likeness has been independently approved.\n\nNo browser screenshot or visual-equivalence claim is implied by the typecheck or build. The automatic geometry check requires loading the page; it is not run by `npm run check`.\n\n## Source and limits\n\n- Reference: `E:/.neo-work/work040hq.jpg` (local visual reference only; not served or bundled).\n- Spec: `.specs/stone-giant/spec.md`.\n- Model entry: `src/giant.ts`, `createStoneGiant()`; helper: `src/sculpt.ts`.\n- Studio, accessibility, lifecycle and camera: `src/main.ts` / `src/style.css`.\n- Coordinates: Y-up, front +Z, anatomical right -X; approximately ten units tall including the plinth.\n\nThe studio uses ACES/sRGB, a capped 1.75 DPR, one 2048px shadow map, generated soft contact shadow and an official Three.js RoomEnvironment. WebGL failures have recovery guidance. HMR and page teardown release controls, listeners, buffers, shared materials/textures and render targets. Fine surface marks and inferred rear anatomy remain artistic interpretations.\n\n## Dependency and local-server safety\n\nExact direct versions and registry integrity hashes are retained in `package-lock.json`: `three` 0.185.1, `@types/three` 0.185.4, `vite` 8.2.2, `typescript` 7.0.2. Three.js supplies rendering; its types enable strict checks; Vite and TypeScript are build tools. Install scripts are disabled; these packages do not require project-level hooks. Run `npm audit` after changes; a clean result reports known advisories, not a guarantee of safety.\n\nTrust boundaries are the official npm registry → local install and loopback development server → browser. No application auth, sensitive data, upload, untrusted HTML or outbound fetch exists. Registry compromise remains a supply-chain risk; exact locks and ignored install scripts reduce exposure. Keep Vite bound to loopback with its default host/filesystem protections. GPU use is bounded and resources are disposed. No remote source-scanning upload is performed.\n"
+  }
+}
+````
+
+## 45. toolResult / write — 1788794591096
+
+```text
+Successfully wrote to E:/.neo-work/gpt-6/README.md
+```
+
+## 46. assistant — 1788794591099
+
+```json
+{
+  "type": "toolCall",
+  "id": "call_68E6jUIuQ74kmm01jvmpWlZi",
+  "name": "bash",
+  "arguments": {
+    "command": "cd gpt-6 && npm install --ignore-scripts && npm run check && npm run build && npm audit --json",
+    "timeout": 120
+  }
+}
+```
+
+## 47. toolResult / bash — 1788794603427
+
+```text
+
+added 25 packages, and audited 26 packages in 5s
+
+8 packages are looking for funding
+  run `npm fund` for details
+
+found 0 vulnerabilities
+
+> stone-giant-study@1.0.0 check
+> tsc --noEmit
+
+src/check.ts(25,14): error TS18046: 'attribute' is of type 'unknown'.
+src/check.ts(28,31): error TS2488: Type '{}' must have a '[Symbol.iterator]()' method that returns an iterator.
+
+
+Command exited with code 1
+```
+
+## 48. assistant — 1788794603428
+
+```json
+{
+  "type": "toolCall",
+  "id": "call_JT5KDsO3xi1Fd3ek68V3vwqu",
+  "name": "edit",
+  "arguments": {
+    "path": "E:/.neo-work/gpt-6/src/check.ts",
+    "edits": [
+      {
+        "oldText": "import type { Group } from 'three';",
+        "newText": "import type { BufferGeometry, Group } from 'three';"
+      },
+      {
+        "oldText": "    const geometry = object.geometry;",
+        "newText": "    const geometry: BufferGeometry = object.geometry;"
+      }
+    ]
+  }
+}
+```
+
+## 49. toolResult / edit — 1788794633396
+
+```text
+Successfully replaced 2 block(s) in E:/.neo-work/gpt-6/src/check.ts.
+```
+
+## 50. assistant — 1788794633398
+
+```json
+{
+  "type": "toolCall",
+  "id": "call_4llZN5QyLswzAqwu7LK7HSup",
+  "name": "bash",
+  "arguments": {
+    "command": "cd gpt-6 && npm run check && npm run build && npm audit --json && npm ls --depth=0 && node --input-type=module -e \"import fs from 'node:fs'; const lock=JSON.parse(fs.readFileSync('package-lock.json','utf8')); console.log('Install script entries:',Object.entries(lock.packages).filter(([,v])=>v.hasInstallScript).map(([k])=>k));\"",
+    "timeout": 120
+  }
+}
+```
+
+## 51. toolResult / bash — 1788794648489
+
+```text
+
+> stone-giant-study@1.0.0 check
+> tsc --noEmit
+
+
+> stone-giant-study@1.0.0 build
+> tsc && vite build
+
+[36mvite v8.2.2 [32mbuilding client environment for production...[36m[39m
+transforming...
+✓ 14 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/index.html                   0.71 kB │ gzip:   0.41 kB
+dist/assets/index-D0bIt3_f.css    3.10 kB │ gzip:   1.36 kB
+dist/assets/index-D1Hj_c9D.js   629.71 kB │ gzip: 164.31 kB
+
+[32m✓ built in 503ms[39m
+[33m[plugin builtin:vite-reporter] 
+(!) Some chunks are larger than 500 kB after minification. Consider:
+- Using dynamic import() to code-split the application
+- Use build.rolldownOptions.output.codeSplitting to improve chunking: https://rolldown.rs/reference/OutputOptions.codeSplitting
+- Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.[39m
+{
+  "auditReportVersion": 2,
+  "vulnerabilities": {},
+  "metadata": {
+    "vulnerabilities": {
+      "info": 0,
+      "low": 0,
+      "moderate": 0,
+      "high": 0,
+      "critical": 0,
+      "total": 0
+    },
+    "dependencies": {
+      "prod": 2,
+      "dev": 68,
+      "optional": 47,
+      "peer": 0,
+      "peerOptional": 0,
+      "total": 69
+    }
+  }
+}
+stone-giant-study@1.0.0 E:\.neo-work\gpt-6
++-- @types/three@0.185.4
++-- three@0.185.1
++-- typescript@7.0.2
+`-- vite@8.2.2
+
+Install script entries: [ 'node_modules/fsevents' ]
+
+```
+
+## 52. assistant — 1788794648490
+
+```json
+{
+  "type": "toolCall",
+  "id": "call_io9TGy65fZlcMQSJoDzkImz4",
+  "name": "delegate",
+  "arguments": {
+    "agent": "reviewer",
+    "task": "Read-only review gpt-6/src/main.ts, src/style.css, src/check.ts, package.json, README and spec. Focus real bugs: on-demand scheduling, resize fit, keyboard/reduced-motion/context loss/HMR disposal and latest Three 0.185.1 API. Don't edit files, don't open browser or remote scan/upload. Also run CPU geometry smoke via installed Vite SSR loading (createServer with middlewareMode and server.ws false if possible; ssrLoadModule src/giant.ts + src/check.ts and call checkStoneGiant(createStoneGiant()), close server in finally). Native Node strip-types may need extension resolution; Vite SSR should handle. Bound run time ~90sec. Return actual runtime counts/bounds or errors, review findings with paths/lines. Check Vite workspace root remains gpt-6 (not parent) given default filesystem/host protections. Run local `rafter secrets .` only if feasible no remote scan. Give clear limitations. Another worker owns giant.ts/sculpt.ts: don't touch them.",
+    "cwd": "E:/.neo-work/gpt-6"
+  }
+}
+```
+
+## 53. toolResult / delegate — 1788795031504
+
+```text
+## Files Reviewed
+
+Paths relative to `E:/.neo-work/gpt-6`:
+
+- `src/main.ts` (lines 1–379)
+- `src/style.css` (lines 1–133)
+- `src/check.ts` (lines 1–75)
+- `package.json` (lines 1–22)
+- `README.md` (lines 1–50)
+- `.specs/stone-giant/spec.md` (lines 1–52)
+
+Also traced model dependencies and relevant installed Three.js/Vite implementations. No files changed.
+
+## Critical (must fix)
+
+- None established by static review.
+
+## Warnings (should fix)
+
+- **`src/main.ts:240–250` — Resize calculates fit for the preset, not the retained orbit.** `setView(activeView)` overwrites `direction` and computes `fittedDistance` using that preset; resize then restores the user’s different direction. After orbiting and changing aspect ratio, the distance no longer guarantees the bounds fit from the actual camera direction. Calculate the old/new fit using the retained direction and target, then preserve the relative zoom. This is a mathematical fit defect; visible clipping of this particular sculpture was not browser-tested.
+
+- **`src/check.ts:39–54` — Reruns can approve stale instanced bounds.** The check recomputes geometry bounds but not `InstancedMesh.boundingBox`. Three.js `Box3.setFromObject()` reuses a non-null object-level box, and `setMatrixAt()` does not invalidate it. After initial construction, moving a rubble/moss instance far outside the permitted bounds can therefore still pass `check()`. Recompute each instanced mesh’s box after validating its matrices.
+
+- **`src/main.ts:103–108` — Environment cleanup misses an r185 instancing resource.** Installed `RoomEnvironment.js:57` creates a six-instance mesh, but its `dispose()` at lines 147–164 disposes only geometry/materials. Consequently, `room.dispose()` does not explicitly release its instance buffer; the main-scene cleanup cannot reach this temporary room. Dispose its instanced mesh as well. This is a small cleanup omission, not evidence of a measured memory-growth problem.
+
+- **`src/main.ts:111–139,371–378` — Startup exceptions bypass cleanup registration.** If environment generation, model construction, or the geometry check throws, `start()` never returns and teardown handlers are never registered. Already-created controls/rendering resources remain allocated, while the page still says “Preparing the sculpture…”. Preserve the original error, but report failure and clean up partially initialized resources.
+
+## Suggestions (consider)
+
+- **`src/main.ts:76` — Use `PCFShadowMap` directly.** In installed Three.js **0.185.1**, `WebGLShadowMap.js:99–102` warns that `PCFSoftShadowMap` is deprecated and replaces it with `PCFShadowMap`. This does not prevent rendering, but the selected constant no longer selects a distinct implementation.
+
+- **`src/main.ts:256–260` — Respect context-loss disabling in the custom keyboard handler.** `controls.enabled = false` disables OrbitControls’ own input, not this listener. Arrow/zoom/Home still alter the camera while the graphics connection is lost. An early context-loss/disabled guard would make keyboard behavior consistent with the disabled buttons.
+
+## Verification and Limitations
+
+- **CPU geometry smoke: not run.** No measured mesh/triangle/vertex counts or bounds are available. The session’s higher-priority shell restriction permits only `git diff`, `git log`, and `git show`, preventing Node/Vite execution. Installed Vite supports `server.ws: false`; the requested SSR approach remains unverified here.
+- **Scheduling:** `src/main.ts:180–191,299–302` correctly coalesces invalidations, uses OrbitControls’ actual boolean `update(delta)` result, and cancels/reset timing when hidden. No perpetual-idle-loop defect found.
+- **Reduced motion / recovery:** Preference changes stop rotation and disable damping. Context restoration regenerates PMREM and requests a shadow refresh after Three’s earlier-registered restoration handler. Normal teardown covers observers, app listeners, model instance buffers, shared assets, targets, and renderer.
+- **Vite root:** Static inspection predicts **`E:/.neo-work/gpt-6`**, not its parent, for the documented launch. Neither ancestor contains Vite’s workspace markers. Installed Vite retains `fs.strict: true`, default deny rules and host validation; `package.json:7` binds loopback with `--strictPort`. Runtime-resolved configuration was not inspected.
+- **Security/runtime limits:** No browser, build, remote scan, upload, or local `rafter secrets` execution occurred. The Git diff attempt exited **129**, entering no-index usage rather than yielding a repository baseline.
+
+## Summary
+
+The normal scheduling and lifecycle paths are generally sound, with targeted issues in resize fitting, repeat geometry validation, and exceptional/resource cleanup. Static review is complete, but geometry smoke results and browser behavior remain unverified; this is not a runtime or security-scan sign-off.
+```
+
+## 54. assistant — 1788795031518
+
+```json
+{
+  "type": "toolCall",
+  "id": "call_LBGIv5p6nvxyWl4ZACWzaQ2J",
+  "name": "bash",
+  "arguments": {
+    "command": "cd gpt-6 && node --input-type=module -e \"import { createServer } from 'vite'; const server=await createServer({server:{middlewareMode:true,ws:false},appType:'custom'}); try { console.log('Vite root:', server.config.root, 'fs allow:',server.config.server.fs.allow); const {createStoneGiant}=await server.ssrLoadModule('/src/giant.ts'); const {checkStoneGiant}=await server.ssrLoadModule('/src/check.ts'); console.time('geometry'); const model=createStoneGiant(); const report=checkStoneGiant(model); console.timeEnd('geometry'); console.log(JSON.stringify({passed:report.passed,meshes:report.meshes,triangles:report.triangles,vertices:report.vertices,bounds:report.bounds,size:report.size})); } finally { await server.close(); }\"; rafter secrets .",
+    "timeout": 120
+  }
+}
+```
+
+## 55. toolResult / bash — 1788795074318
+
+```text
+Vite root: E:/.neo-work/gpt-6 fs allow: [ 'E:/.neo-work/gpt-6' ]
+[Stone giant] Geometry check passed {
+  passed: true,
+  meshes: 47,
+  triangles: 321784,
+  vertices: 933036,
+  bounds: {
+    min: [ -2.490999698638916, -2.98023217215615e-10, -2.3399999141693115 ],
+    max: [ 2.4852988719940186, 10.09091567993164, 2.3399999141693115 ]
+  },
+  size: [ 4.976298570632935, 10.090915680229664, 4.679999828338623 ],
+  parts: [
+    'Unified torso, deltoids, arms, legs, feet and toes',
+    'Bald head · square jaw, carved eye sockets, brow, nose, lips and ears',
+    'Right hand · five articulated stone fingers',
+    'Left hand · five articulated stone fingers',
+    'Deep-set unlit eyes',
+    'Fine eyelids and ear helices',
+    'Sculpted mouth and facial creases',
+    'Incised mineral arcs, branching fractures and anatomical creases',
+    'Pale weathered edges of the stone engravings',
+    'Elongated weathered rock held in anatomical right hand',
+    'Held rock deep longitudinal fissures',
+    'Held rock calcite vein edges',
+    'Hide wrap · folded rear and side skirt',
+    'Hide wrap · lower right overlapping panel',
+    'Hide wrap · diagonal front flap',
+    'Broad rolled ochre waist belt',
+    'Long leather belt tail hanging to the knee',
+    'Folded keeper through offset ring buckle',
+    'Leather cut edges and raised seams',
+    'Hand-stitched skirt hem',
+    'Right hide sandal sole',
+    'Right toe nail carvings',
+    'Left hide sandal sole',
+    'Left toe nail carvings',
+    'Six calf straps, two vertical shin straps and open-toe instep bands',
+    'Raised sandal strap borders',
+    'Shin leather stitching',
+    'Offset brass ring buckle and lower belt-tail ring',
+    'Aged buckle inner patina',
+    'Belt-tail brass studs',
+    'Two draped leather necklace cords, continuous around neck',
+    'Carved trophy skull · eye sockets, nasal cavity and cheekbones',
+    'Recessed skull cavities',
+    'Ivory teeth, paired bone charms and three tapering tusks',
+    'Tusk bindings and necklace knots',
+    'Small bronze cord fittings',
+    'Hammered shin-strap rivets',
+    'Lower black circular plinth',
+    'Beveled middle plinth step',
+    'Upper plinth rim',
+    'Fine turned plinth rim',
+    'Uneven earth and shale ground',
+    'Broken bedrock beneath the feet',
+    '115 instanced shale fragments',
+    'Sparse clustered moss cushions',
+    '33 sparse grass tufts',
+    'Recessed plinth maker pin'
+  ]
+}
+geometry: 1.009s
+{"passed":true,"meshes":47,"triangles":321784,"vertices":933036,"bounds":{"min":[-2.490999698638916,-2.98023217215615e-10,-2.3399999141693115],"max":[2.4852988719940186,10.09091567993164,2.3399999141693115]},"size":[4.976298570632935,10.090915680229664,4.679999828338623]}
+[2m17:31:13[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [optimizer] bundling dependencies...
+Scanning directory: E:\.neo-work\gpt-6 (both)
+[rafter] Warning: Betterleaks output is not an array — possible version mismatch. Run: rafter agent update-betterleaks
+
+✓ No secrets detected
+
+
+```
+
+## 56. assistant — 1788795074320
+
+```json
+{
+  "type": "toolCall",
+  "id": "call_VG2hjpkFxQDkQgxvddeztYFV",
+  "name": "edit",
+  "arguments": {
+    "path": "E:/.neo-work/gpt-6/src/main.ts",
+    "edits": [
+      {
+        "oldText": "  Group, HemisphereLight, Material, MathUtils, Mesh, MeshBasicMaterial,\n  PCFSoftShadowMap, PerspectiveCamera, PlaneGeometry, PMREMGenerator,",
+        "newText": "  Group, HemisphereLight, InstancedMesh, Material, MathUtils, Mesh, MeshBasicMaterial,\n  PCFShadowMap, PerspectiveCamera, PlaneGeometry, PMREMGenerator,"
+      },
+      {
+        "oldText": "  Texture, UnsignedByteType, Vector3, WebGLRenderer,",
+        "newText": "  Texture, UnsignedByteType, Vector3, WebGLRenderer, WebGLRenderTarget,"
+      },
+      {
+        "oldText": "  renderer.shadowMap.type = PCFSoftShadowMap;",
+        "newText": "  renderer.shadowMap.type = PCFShadowMap;"
+      },
+      {
+        "oldText": "  const environment = (): ReturnType<PMREMGenerator['fromScene']> => {\n    const room = new RoomEnvironment();\n    const pmrem = new PMREMGenerator(renderer);\n    const target = pmrem.fromScene(room, 0.04);\n    room.dispose();\n    pmrem.dispose();\n    return target;\n  };\n  let environmentTarget = environment();",
+        "newText": "  let frame = 0;\n  let lastTime = 0;\n  let disposed = false;\n  let contextLost = false;\n  let environmentTarget: WebGLRenderTarget | undefined;\n  let observer: ResizeObserver | undefined;\n  let onControlsChange: (() => void) | undefined;\n  const abort = new AbortController();\n  const events = { signal: abort.signal };\n\n  function cleanup(): void {\n    if (disposed) return;\n    disposed = true;\n    cancelAnimationFrame(frame);\n    observer?.disconnect();\n    abort.abort();\n    if (onControlsChange) controls.removeEventListener('change', onControlsChange);\n    controls.dispose();\n    const geometries = new Set<BufferGeometry>();\n    const materials = new Set<Material>();\n    const textures = new Set<Texture>();\n    scene.traverse((object) => {\n      if (object instanceof DirectionalLight) object.shadow.dispose();\n      if (!(object instanceof Mesh)) return;\n      geometries.add(object.geometry);\n      for (const material of Array.isArray(object.material) ? object.material : [object.material]) {\n        materials.add(material);\n        for (const value of Object.values(material)) if (value instanceof Texture) textures.add(value);\n      }\n      if (object instanceof InstancedMesh) object.dispose();\n    });\n    geometries.forEach((geometry) => geometry.dispose());\n    materials.forEach((material) => material.dispose());\n    textures.forEach((texture) => texture.dispose());\n    scene.environment = null;\n    environmentTarget?.dispose();\n    renderer.renderLists.dispose();\n    renderer.dispose();\n    scene.clear();\n    canvas.remove();\n    if (window.__stoneGiant?.renderer === renderer) {\n      window.__stoneGiant.ready = false;\n      delete window.__stoneGiant;\n    }\n  }\n\n  try {\n  const environment = (): WebGLRenderTarget => {\n    const room = new RoomEnvironment();\n    const pmrem = new PMREMGenerator(renderer);\n    try { return pmrem.fromScene(room, 0.04); }\n    finally {\n      room.traverse((object) => { if (object instanceof InstancedMesh) object.dispose(); });\n      room.dispose();\n      pmrem.dispose();\n    }\n  };\n  environmentTarget = environment();"
+      },
+      {
+        "oldText": "  let frame = 0;\n  let lastTime = 0;\n  let disposed = false;\n  let contextLost = false;\n  let activeView: ViewPreset = 'three-quarter';\n  let fittedDistance = 1;\n  const abort = new AbortController();\n  const events = { signal: abort.signal };",
+        "newText": "  let activeView: ViewPreset = 'three-quarter';\n  let viewBounds = modelBounds;\n  let fittedDistance = 1;"
+      },
+      {
+        "oldText": "    fittedDistance = fitDistance(bounds, controls.target, direction);",
+        "newText": "    viewBounds = bounds;\n    fittedDistance = fitDistance(viewBounds, controls.target, direction);"
+      },
+      {
+        "oldText": "    const zoom = offset.length() / fittedDistance;\n    direction.copy(offset).normalize();\n    const previousTarget = controls.target.clone();\n    const rotating = controls.autoRotate;\n    camera.aspect = width / height;\n    renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 1.75));\n    renderer.setSize(width, height, false);\n    setView(activeView);\n    controls.target.copy(previousTarget);\n    camera.position.copy(controls.target).addScaledVector(direction.copy(offset).normalize(), MathUtils.clamp(fittedDistance * zoom, controls.minDistance, controls.maxDistance));\n    controls.autoRotate = rotating && !motion.matches;\n    rotateButton.setAttribute('aria-pressed', String(controls.autoRotate));",
+        "newText": "    direction.copy(offset).normalize();\n    const zoom = offset.length() / fitDistance(viewBounds, controls.target, direction);\n    camera.aspect = width / height;\n    fittedDistance = fitDistance(viewBounds, controls.target, direction);\n    controls.maxDistance = Math.max(55, fittedDistance * 2.3);\n    camera.far = Math.max(160, controls.maxDistance + sphere.radius * 2);\n    camera.updateProjectionMatrix();\n    renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 1.75));\n    renderer.setSize(width, height, false);\n    camera.position.copy(controls.target).addScaledVector(direction, MathUtils.clamp(fittedDistance * zoom, controls.minDistance, controls.maxDistance));"
+      },
+      {
+        "oldText": "    if (event.altKey || event.ctrlKey || event.metaKey) return;",
+        "newText": "    if (!controls.enabled || event.altKey || event.ctrlKey || event.metaKey) return;"
+      },
+      {
+        "oldText": "  controls.addEventListener('change', invalidate);",
+        "newText": "  onControlsChange = invalidate;\n  controls.addEventListener('change', invalidate);"
+      },
+      {
+        "oldText": "    environmentTarget.dispose();\n    environmentTarget = environment();",
+        "newText": "    environmentTarget?.dispose();\n    environmentTarget = environment();"
+      },
+      {
+        "oldText": "  const observer = new ResizeObserver(resize);",
+        "newText": "  observer = new ResizeObserver(resize);"
+      },
+      {
+        "oldText": "  return () => {\n    disposed = true;\n    debug.ready = false;\n    cancelAnimationFrame(frame);\n    observer.disconnect();\n    abort.abort();\n    controls.removeEventListener('change', invalidate);\n    controls.dispose();\n    const geometries = new Set<BufferGeometry>();\n    const materials = new Set<Material>();\n    const textures = new Set<Texture>();\n    scene.traverse((object) => {\n      if (!(object instanceof Mesh)) return;\n      geometries.add(object.geometry);\n      for (const material of Array.isArray(object.material) ? object.material : [object.material]) {\n        materials.add(material);\n        for (const value of Object.values(material)) if (value instanceof Texture) textures.add(value);\n      }\n      // Releases per-instance GPU buffers in addition to shared geometry/materials.\n      if ('isInstancedMesh' in object && 'dispose' in object && typeof object.dispose === 'function') object.dispose();\n    });\n    geometries.forEach((geometry) => geometry.dispose());\n    materials.forEach((material) => material.dispose());\n    textures.forEach((texture) => texture.dispose());\n    scene.environment = null;\n    environmentTarget.dispose();\n    key.shadow.dispose();\n    renderer.renderLists.dispose();\n    renderer.dispose();\n    scene.clear();\n    canvas.remove();\n    if (window.__stoneGiant === debug) delete window.__stoneGiant;\n  };\n}",
+        "newText": "  return cleanup;\n  } catch (error) {\n    cleanup();\n    buttons.forEach((button) => { button.disabled = true; });\n    message('The sculpture could not be prepared. Reload this tab; if this persists, inspect the browser console for the original model error.', true);\n    throw error;\n  }\n}"
+      }
+    ]
+  }
+}
+```
+
+## 57. toolResult / edit — 1788795172487
+
+```text
+Successfully replaced 12 block(s) in E:/.neo-work/gpt-6/src/main.ts.
+```
+
+## 58. assistant — 1788795172492
+
+```json
+{
+  "type": "toolCall",
+  "id": "call_HovlLG5zDCTpFIQTkoKzfoqf",
+  "name": "edit",
+  "arguments": {
+    "path": "E:/.neo-work/gpt-6/src/check.ts",
+    "edits": [
+      {
+        "oldText": "      finite(object.instanceMatrix.array, `${object.name}/instances`);",
+        "newText": "      finite(object.instanceMatrix.array, `${object.name}/instances`);\n      if (object.instanceColor) finite(object.instanceColor.array, `${object.name}/instanceColors`);\n      object.computeBoundingBox();"
+      }
+    ]
+  }
+}
+```
+
+## 59. toolResult / edit — 1788795194745
+
+```text
+Successfully replaced 1 block(s) in E:/.neo-work/gpt-6/src/check.ts.
+```
+
+## 60. assistant — 1788795194748
+
+```json
+{
+  "type": "toolCall",
+  "id": "call_IqkHmDOxdCrKsrVxmvGxymFp",
+  "name": "edit",
+  "arguments": {
+    "path": "E:/.neo-work/gpt-6/src/main.ts",
+    "edits": [
+      {
+        "oldText": "  let activeView: ViewPreset = 'three-quarter';\n  let viewBounds = modelBounds;",
+        "newText": "  let viewBounds = modelBounds;"
+      },
+      {
+        "oldText": "    activeView = preset;\n    stopRotation();",
+        "newText": "    stopRotation();"
+      }
+    ]
+  }
+}
+```
+
+## 61. toolResult / edit — 1788795202850
+
+```text
+Successfully replaced 2 block(s) in E:/.neo-work/gpt-6/src/main.ts.
+```
+
+## 62. assistant — 1788795202854
+
+```json
+{
+  "type": "toolCall",
+  "id": "call_d9vveQnQ4eMtTJ3rPo6bruDu",
+  "name": "todo",
+  "arguments": {
+    "action": "append",
+    "id": "TODO-63d67838",
+    "body": "Step 2/3 complete: viewer/tooling/check created and installed with --ignore-scripts. Strict check and Vite build passed; npm audit reports 0 vulnerabilities. Vite warns about expected Three.js bundle size (~630 KB minified /164 KB gzip). CPU geometry check through Vite SSR passed: 47 meshes, 321784 triangles, 933036 instance-expanded vertices; bounds min [-2.491,-0.0000000003,-2.34], max [2.4853,10.0909,2.34]. Vite filesystem allow resolved to gpt-6 only. Local rafter secrets reported no secrets with a Betterleaks version-mismatch warning; no remote scan/upload. Static review found and fixes applied for actual-orbit resize fit, stale instanced bounds on check reruns, RoomEnvironment instance disposal, exceptional-startup cleanup, deprecated PCFSoftShadowMap, and context-loss keyboard gating. Rechecking before server launch."
+  }
+}
+```
+
+## 63. toolResult / todo — 1788795250468
+
+```text
+{
+  "id": "TODO-63d67838",
+  "title": "Implement stone-giant museum viewer",
+  "tags": [],
+  "status": "open",
+  "created_at": "2026-09-07T15:09:59.031Z",
+  "assigned_to_session": "01a07c6a-e2d1-768c-8265-8b2aece26c55",
+  "body": "1. Read project spec and relevant implementation/security guidance; inspect model contract.\n2. Create exact dependency/tooling files; implement responsive on-demand Three.js studio and runnable geometry check.\n3. Install packages, typecheck/build with model when available, audit dependencies, and fix issues.\n4. Start local Vite server and verify HTTP; report versions, checks, and relevant wiki coordination without touching another worker's files.\n\nStep 1 complete. Read gpt-6/.specs/stone-giant/spec.md and actual model contract; model/sculpt files are present and remain untouched. Registry latest exact versions: three 0.185.1, @types/three 0.185.4, vite 8.2.2, typescript 7.0.2; Node v24.15.0 supports them. Security design confirmed against spec: official packages, lockfile, installation scripts disabled, local project root/loopback server, no runtime input/network/upload, capped GPU work. Remote scanner upload explicitly prohibited. Relevant wiki lacks a giant entity; OKF skill not found by scout; full global stale-sync is outside owned files.\n\nStep 2/3 complete: viewer/tooling/check created and installed with --ignore-scripts. Strict check and Vite build passed; npm audit reports 0 vulnerabilities. Vite warns about expected Three.js bundle size (~630 KB minified /164 KB gzip). CPU geometry check through Vite SSR passed: 47 meshes, 321784 triangles, 933036 instance-expanded vertices; bounds min [-2.491,-0.0000000003,-2.34], max [2.4853,10.0909,2.34]. Vite filesystem allow resolved to gpt-6 only. Local rafter secrets reported no secrets with a Betterleaks version-mismatch warning; no remote scan/upload. Static review found and fixes applied for actual-orbit resize fit, stale instanced bounds on check reruns, RoomEnvironment instance disposal, exceptional-startup cleanup, deprecated PCFSoftShadowMap, and context-loss keyboard gating. Rechecking before server launch.\n"
+}
+```
+
+## 64. assistant — 1788795250469
+
+```json
+{
+  "type": "toolCall",
+  "id": "call_p9L0PxnZlJVkQIw2X8IAcW9N",
+  "name": "bash",
+  "arguments": {
+    "command": "cd gpt-6 && npm run check && npm run build && node --input-type=module -e \"import { createServer } from 'vite'; import { Matrix4 } from 'three'; const server=await createServer({server:{middlewareMode:true,ws:false},appType:'custom'}); const log=console.info; try { const {createStoneGiant}=await server.ssrLoadModule('/src/giant.ts'); const {checkStoneGiant}=await server.ssrLoadModule('/src/check.ts'); const model=createStoneGiant(); console.info=()=>{}; const report=checkStoneGiant(model); const batch=model.getObjectByName('115 instanced shale fragments'); const saved=new Matrix4(); batch.getMatrixAt(0,saved); batch.setMatrixAt(0,new Matrix4().makeTranslation(100,100,100)); let rejected=false; try { checkStoneGiant(model); } catch { rejected=true; } if(!rejected) throw Error('Out-of-bounds instance was accepted'); batch.setMatrixAt(0,saved); checkStoneGiant(model); console.info=log; console.log(JSON.stringify({passed:report.passed,meshes:report.meshes,triangles:report.triangles,bounds:report.bounds,corruptInstanceRejected:rejected})); } finally { console.info=log; await server.close(); }\" && npm audit --json; curl -I --connect-timeout 2 http://127.0.0.1:5176/",
+    "timeout": 120
+  }
+}
+```
+
+## 65. toolResult / bash — 1788795277737
+
+```text
+
+> stone-giant-study@1.0.0 check
+> tsc --noEmit
+
+
+> stone-giant-study@1.0.0 build
+> tsc && vite build
+
+[36mvite v8.2.2 [32mbuilding client environment for production...[36m[39m
+transforming...
+✓ 14 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/index.html                   0.71 kB │ gzip:   0.41 kB
+dist/assets/index-D0bIt3_f.css    3.10 kB │ gzip:   1.36 kB
+dist/assets/index-C10dGQnx.js   630.08 kB │ gzip: 164.40 kB
+
+[32m✓ built in 146ms[39m
+[33m[plugin builtin:vite-reporter] 
+(!) Some chunks are larger than 500 kB after minification. Consider:
+- Using dynamic import() to code-split the application
+- Use build.rolldownOptions.output.codeSplitting to improve chunking: https://rolldown.rs/reference/OutputOptions.codeSplitting
+- Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.[39m
+{"passed":true,"meshes":47,"triangles":321784,"bounds":{"min":[-2.490999698638916,-2.98023217215615e-10,-2.3399999141693115],"max":[2.4852988719940186,10.09091567993164,2.3399999141693115]},"corruptInstanceRejected":true}
+[2m17:34:34[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [optimizer] bundling dependencies...
+{
+  "auditReportVersion": 2,
+  "vulnerabilities": {},
+  "metadata": {
+    "vulnerabilities": {
+      "info": 0,
+      "low": 0,
+      "moderate": 0,
+      "high": 0,
+      "critical": 0,
+      "total": 0
+    },
+    "dependencies": {
+      "prod": 2,
+      "dev": 68,
+      "optional": 47,
+      "peer": 0,
+      "peerOptional": 0,
+      "total": 69
+    }
+  }
+}
+  % Total    % Received % Xferd  Average Speed  Time    Time    Time   Current
+                                 Dload  Upload  Total   Spent   Left   Speed
+  0      0   0      0   0      0      0      0                              0  0      0   0      0   0      0      0      0           00:01              0  0      0   0      0   0      0      0      0           00:02              0
+curl: (28) Connection timed out after 2003 milliseconds
+
+
+Command exited with code 28
+```
+
+## 66. assistant — 1788795277738
+
+```json
+{
+  "type": "toolCall",
+  "id": "call_4H7yqNIr3P1lFCI6KmNdrT2C",
+  "name": "bash",
+  "arguments": {
+    "command": "cd gpt-6 && node --input-type=module -e \"import fs from 'node:fs'; import {spawn} from 'node:child_process'; const log=fs.openSync('.dev-server.log','a'); const child=spawn(process.execPath,['node_modules/vite/bin/vite.js','--host','127.0.0.1','--port','5176','--strictPort'],{cwd:process.cwd(),detached:true,windowsHide:true,stdio:['ignore',log,log]}); fs.writeFileSync('.dev-server.pid',String(child.pid)); child.unref(); fs.closeSync(log); console.log('Vite PID',child.pid);\" && sleep 2 && curl -f -I --max-time 10 http://127.0.0.1:5176/ && curl -f -I --max-time 10 http://127.0.0.1:5176/src/main.ts",
+    "timeout": 30
+  }
+}
+```
+
+## 67. toolResult / bash — 1788795303677
+
+```text
+Vite PID 19792
+  % Total    % Received % Xferd  Average Speed  Time    Time    Time   Current
+                                 Dload  Upload  Total   Spent   Left   Speed
+  0      0   0      0   0      0      0      0                              0  0      0   0      0   0      0      0      0                              0  0      0   0      0   0      0      0      0                              0  0      0   0      0   0      0      0      0                              0
+HTTP/1.1 200 OK
+Vary: Origin
+Content-Type: text/html
+Cache-Control: no-cache
+Etag: W/"29d-8wLE/UAMiuXJFFAJwkLQt89oJuY"
+Date: Mon, 07 Sep 2026 15:35:03 GMT
+Connection: keep-alive
+Keep-Alive: timeout=5
+
+  % Total    % Received % Xferd  Average Speed  Time    Time    Time   Current
+                                 Dload  Upload  Total   Spent   Left   Speed
+  0      0   0      0   0      0      0      0                              0  0      0   0      0   0      0      0      0                              0  0      0   0      0   0      0      0      0                              0  0      0   0      0   0      0      0      0                HTTP/1.1 200 OK
+Vary: Origin
+Content-Type: text/javascript
+Cache-Control: no-cache
+Etag: W/"4151-qIH34s/B2Z2xMKPSZbSB0ftv5iQ"
+Date: Mon, 07 Sep 2026 15:35:03 GMT
+Connection: keep-alive
+Keep-Alive: timeout=5
+
+              0
+
+```
+
+## 68. assistant — 1788795303679
+
+```json
+{
+  "type": "toolCall",
+  "id": "call_uXqC1mWIpZdkrfgtGLTCQbJ3",
+  "name": "edit",
+  "arguments": {
+    "path": "E:/.neo-work/gpt-6/src/main.ts",
+    "edits": [
+      {
+        "oldText": "    renderer.dispose();\n    scene.clear();",
+        "newText": "    renderer.dispose();\n    renderer.forceContextLoss();\n    scene.clear();"
+      }
+    ]
+  }
+}
+```
+
+## 69. toolResult / edit — 1788795353558
+
+```text
+Successfully replaced 1 block(s) in E:/.neo-work/gpt-6/src/main.ts.
+```
+
+## 70. assistant — 1788795353561
+
+```json
+{
+  "type": "toolCall",
+  "id": "call_504wAKudAjI7ydTZ2YLQvfZt",
+  "name": "bash",
+  "arguments": {
+    "command": "cd gpt-6 && npm run check && npm run build && curl -s -o /dev/null -w 'Viewer HTTP %{http_code}\\n' --max-time 5 http://127.0.0.1:5176/",
+    "timeout": 60
+  }
+}
+```
+
+## 71. toolResult / bash — 1788795373692
+
+```text
+
+> stone-giant-study@1.0.0 check
+> tsc --noEmit
+
+
+> stone-giant-study@1.0.0 build
+> tsc && vite build
+
+[36mvite v8.2.2 [32mbuilding client environment for production...[36m[39m
+transforming...
+✓ 14 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/index.html                   0.71 kB │ gzip:   0.41 kB
+dist/assets/index-D0bIt3_f.css    3.10 kB │ gzip:   1.36 kB
+dist/assets/index-CoeuIvWn.js   630.10 kB │ gzip: 164.41 kB
+
+[32m✓ built in 152ms[39m
+[33m[plugin builtin:vite-reporter] 
+(!) Some chunks are larger than 500 kB after minification. Consider:
+- Using dynamic import() to code-split the application
+- Use build.rolldownOptions.output.codeSplitting to improve chunking: https://rolldown.rs/reference/OutputOptions.codeSplitting
+- Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.[39m
+Viewer HTTP 200
+
+```
+
+## 72. assistant — 1788795373694
+
+```json
+{
+  "type": "toolCall",
+  "id": "call_g1ZAp14BQ5QPyFByMKUOHFoV",
+  "name": "todo",
+  "arguments": {
+    "action": "update",
+    "id": "TODO-63d67838",
+    "status": "closed",
+    "body": "Implemented assigned viewer files only (plus requested ignored Vite log/PID artifacts). Model/sculpt untouched.\n\nCompleted checks: npm install --ignore-scripts; npm run check; npm run build; npm audit => 0 known vulnerabilities. Direct exact versions three 0.185.1, @types/three 0.185.4, vite 8.2.2, typescript 7.0.2. Native Node v24.15.0. Expected Vite chunk warning: ~630.10 KB minified/164.41 KB gzip.\n\nExecuted src/check.ts via Vite SSR on real model: 47 meshes, 321784 triangles, height10.09091568, bounds min[-2.49099970,-0.000000000298,-2.33999991], max[2.48529887,10.09091568,2.33999991]. Verified corrupt out-of-bounds instance rejected and restored model passes. Browser smoke function also automatically invoked from main after createStoneGiant. No browser/visual QA performed as instructed.\n\nStatic review fixes: preserve actual orbit on resize fitting, recompute instanced bounds, dispose RoomEnvironment instance resources, clean up failed startup while rethrowing original errors, current PCFShadowMap API, disable custom keyboard during context loss. All final typecheck/build checks pass after fixes.\n\nBackground Vite running at http://127.0.0.1:5176; PID19792 in gpt-6/.dev-server.pid; logs gpt-6/.dev-server.log; both / and /src/main.ts returned HTTP200. Resolved Vite root/fs allow only E:/.neo-work/gpt-6.\n\nLocal rafter secrets reports no secrets with Betterleaks version-mismatch warning. No remote source scan/upload. Relevant wiki has no stone-giant concept; installed OKF skill not found. Wiki ownership/global stale-sync delegated back to coordinator in final notes; no global mark-synced claimed while other work continues."
+  }
+}
+```
+
+## 73. toolResult / todo — 1788795402050
+
+```text
+{
+  "id": "TODO-63d67838",
+  "title": "Implement stone-giant museum viewer",
+  "tags": [],
+  "status": "closed",
+  "created_at": "2026-09-07T15:09:59.031Z",
+  "body": "Implemented assigned viewer files only (plus requested ignored Vite log/PID artifacts). Model/sculpt untouched.\n\nCompleted checks: npm install --ignore-scripts; npm run check; npm run build; npm audit => 0 known vulnerabilities. Direct exact versions three 0.185.1, @types/three 0.185.4, vite 8.2.2, typescript 7.0.2. Native Node v24.15.0. Expected Vite chunk warning: ~630.10 KB minified/164.41 KB gzip.\n\nExecuted src/check.ts via Vite SSR on real model: 47 meshes, 321784 triangles, height10.09091568, bounds min[-2.49099970,-0.000000000298,-2.33999991], max[2.48529887,10.09091568,2.33999991]. Verified corrupt out-of-bounds instance rejected and restored model passes. Browser smoke function also automatically invoked from main after createStoneGiant. No browser/visual QA performed as instructed.\n\nStatic review fixes: preserve actual orbit on resize fitting, recompute instanced bounds, dispose RoomEnvironment instance resources, clean up failed startup while rethrowing original errors, current PCFShadowMap API, disable custom keyboard during context loss. All final typecheck/build checks pass after fixes.\n\nBackground Vite running at http://127.0.0.1:5176; PID19792 in gpt-6/.dev-server.pid; logs gpt-6/.dev-server.log; both / and /src/main.ts returned HTTP200. Resolved Vite root/fs allow only E:/.neo-work/gpt-6.\n\nLocal rafter secrets reports no secrets with Betterleaks version-mismatch warning. No remote source scan/upload. Relevant wiki has no stone-giant concept; installed OKF skill not found. Wiki ownership/global stale-sync delegated back to coordinator in final notes; no global mark-synced claimed while other work continues."
+}
+```
+
+## 74. assistant — 1788795402053
+
+```text
+## Completed
+
+Implemented museum-style viewer with responsive framing, accessible controls, reduced-motion support, on-demand rendering, studio lighting, context recovery, HMR cleanup and `window.__stoneGiant`.
+
+- **Passed:** `npm run check`, `npm run build`, geometry smoke check.
+- Geometry: **47 meshes / 321,784 triangles**, height **10.091**. Corrupt instance bounds correctly rejected.
+- **npm audit: 0 vulnerabilities.**
+- Exact versions: `three 0.185.1`, `@types/three 0.185.4`, `vite 8.2.2`, `typescript 7.0.2`.
+
+Vite running at **http://127.0.0.1:5176**, HTTP **200**, PID **19792**.
+
+## Files Changed
+
+- `gpt-6/package.json`, `gpt-6/package-lock.json` — exact dependencies and scripts.
+- `gpt-6/tsconfig.json`, `gpt-6/index.html`, `gpt-6/.gitignore` — minimal project setup.
+- `gpt-6/src/main.ts` — studio, `setView`, resize fitting, lifecycle and debug interface.
+- `gpt-6/src/style.css` — restrained responsive presentation.
+- `gpt-6/src/check.ts` — `checkStoneGiant` geometry validation.
+- `gpt-6/README.md` — commands, reference and honest limitations.
+- Ignored runtime artifacts: `gpt-6/.dev-server.log`, `gpt-6/.dev-server.pid`.
+
+## Notes
+
+- **`giant.ts` and `sculpt.ts` untouched.** No browser or remote scan/upload performed.
+- Build retains expected Three.js bundle warning: **630 KB minified / 164 KB gzip**.
+- Local secrets check found none, but reported a Betterleaks version-mismatch warning.
+- Wiki sync remains with coordinator: outside assigned ownership; no existing giant concept or installed OKF skill found. **No global sync marker called.**
+```

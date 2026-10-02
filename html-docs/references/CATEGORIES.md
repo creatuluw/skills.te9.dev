@@ -68,6 +68,7 @@ Used for explainers, feature deep-dives, and educational content.
 |------|----------|-------------|
 | **feature-explainer** | `14-research-feature-explainer.html` | "Explain how X works in this codebase", collapsible steps, tabs, FAQ |
 | **concept-explainer** | `15-research-concept-explainer.html` | "Teach me about X concept", interactive demo, comparison table, glossary |
+| **feature-introduction** | `22-feature-introduction.html` | "Introduce feature X to users", pillars, timeline, achievement cards |
 
 ### 8. Reports
 Used for status updates, incident post-mortems, and recurring reports.

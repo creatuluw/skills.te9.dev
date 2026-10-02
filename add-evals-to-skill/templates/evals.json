@@ -1,0 +1,29 @@
+{
+	"skill_name": "__SKILLNAAM__",
+	"_gebruik": "Prompt-cases in het agentskills.io-formaat. Vervang de voorbeeldcases door 2-3 ECHTE cases: varieer formulering en detail, dek één randgeval af, gebruik realistische context (paden, namen). Assertions voeg je toe NADAT een eerste run liet zien wat goede output is. Draai elke case met en zonder het skill; grade per output in grading.json (PASS/FAIL + bewijs); aggregeer met grade.mjs.",
+	"evals": [
+		{
+			"id": 1,
+			"prompt": "TODO: realistische gebruikersprompt — zoals iemand hem echt zou typen (informeel of precies)",
+			"expected_output": "TODO: leesbare beschrijving van wat succes is",
+			"files": [],
+			"assertions": [
+				"TODO: objectief verifieerbaar vanuit de output alleen (bijv. 'de output bevat een geldig JSON-bestand met ten minste 3 items')"
+			]
+		},
+		{
+			"id": 2,
+			"prompt": "TODO: tweede formulering van dezelfde taak — andere toon of detailniveau",
+			"expected_output": "TODO",
+			"files": [],
+			"assertions": ["TODO"]
+		},
+		{
+			"id": 3,
+			"prompt": "TODO: randgeval — onvolledige/ambigue/vreemde invoer waar het skill niet stil op mag crashen of verdwalen",
+			"expected_output": "TODO: bijvoorbeeld nette afhandeling of heldere vraag om verduidelijking",
+			"files": [],
+			"assertions": ["TODO"]
+		}
+	]
+}

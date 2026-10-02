@@ -1,0 +1,15 @@
+{
+	"frames": [
+		{
+			"naam": "lijst",
+			"html": "<html><head><title>Mini - lijst</title><!--CSS0--></head><body><main><h1>Mini-lijst</h1><button data-demo-anchor=\"nieuwe-knop\">Nieuw</button><ul><li data-demo-anchor=\"eerste-rij\">Regel een</li></ul></main></body></html>",
+			"scrolls": []
+		},
+		{
+			"naam": "detail",
+			"html": "<html><head><title>Mini - detail</title><!--CSS0--></head><body><main><h1>Mini-detail</h1><p data-demo-anchor=\"tab-stappen\">Stappen komen hier. Let op: de tekst </script> moet ge-escapet blijven in de speler.</p></main></body></html>",
+			"scrolls": []
+		}
+	],
+	"css": "h1 { color: #18181b; }"
+}
