@@ -216,18 +216,31 @@ per-type compilation.
 _Avoid_: guideline (advisory — contracts bind), reference (the Concern spec
 informs; the contract binds)
 
-### Templates and mechanics
+### Types and mechanics (v2 compose edition)
 
 **Template**:
-A complete, finished, polished HTML document with realistic placeholder content —
-not a skeleton, not a component kit. The unit of the suite.
-_Avoid_: skeleton, starter, boilerplate
+_Retired at 3.0.0._ The v1 unit: a finished, polished HTML document with
+realistic placeholder content, copied and content-swapped. The founding trio
+survive as `assets/examples/` exemplars; the other 27 live only in git history
+(tag `v2.7.0-template-suite`).
+_Avoid_: treating as current (superseded by Type, ADR-0011)
 
 **Template instance**:
-A Document produced by copying a Template and swapping placeholder content for real
-content while preserving layout, interactions, and visual design. The core production
-mechanic — adopted as-is from html-docs.
-_Avoid_: generate, build from scratch
+_Superseded at 3.0.0_ by Compose (ADR-0011).
+_Avoid_: using as the production mechanic
+
+**Type**:
+The unit of the v2 suite: a catalog entry (`assets/index.json` + a numbered
+section in `references/TYPES.md`) naming a document kind with a frozen section
+order, a block grammar, and a composition contract.
+_Avoid_: template (retired), kind
+
+**Compose**:
+The v2 production mechanic: copy `references/BASE-CSS.md` verbatim, add the
+type's own blocks per its contract in TYPES.md, write the body in the type's
+frozen section order, restate the contract in a head comment. The LLM
+assembles; it does not redesign the grammar.
+_Avoid_: generate, build from scratch, instance
 
 **House palette**:
 The single color token set shared by every template, expressed as CSS custom

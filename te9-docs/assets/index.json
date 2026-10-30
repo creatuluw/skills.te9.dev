@@ -1,0 +1,120 @@
+{
+  "suite-version": "3.0.0",
+  "edition": "v2 compose edition",
+  "design-system": "Clay Explainer",
+  "note": "Machine-readable type catalog. Normative for discovery: every production run grounds its type decision here and in references/TYPES.md (the per-type composition contracts). Types are COMPOSED, not instanced — there are no template files. Regenerate on extension; never hand-edit entries.",
+  "types": [
+    {
+      "slug": "brief",
+      "description": "Decision brief: one sheet on ivory — options with kill rules, weighted matrix, risk pairs, verdict; the founding brief layout"
+    },
+    {
+      "slug": "dossier",
+      "description": "Evidence dossier: TOC pills, TL;DR pillars, findings with fold-out receipts, citation map, ink verdict; the founding dossier layout"
+    },
+    {
+      "slug": "deck",
+      "description": "Presentation deck: cover hero, numbered cards, journey SVG, timeline, rec figure; arrow-key navigation (the one sanctioned script)"
+    },
+    {
+      "slug": "introduction-of-concepts",
+      "description": "Introduction of concepts: concept panels with definitions, why-it-matters, fold-out worked examples, cross-link chips, relationship figure; for orienting a reader in a new concept set"
+    },
+    {
+      "slug": "concept-breakdown",
+      "description": "Concept breakdown: the anatomy of ONE concept — subject double ring, 4-6 part panels with definition/behavior/boundary, composition figure"
+    },
+    {
+      "slug": "top-down-explainer",
+      "description": "Top-down explainer: the whole in one breath, then drill-down levels — statement band, pillar grid, per-pillar detail"
+    },
+    {
+      "slug": "i-am-12-explainer",
+      "description": "I-am-12 explainer: real facts in 12-year-old words — short sentences, everyday metaphors, story-step panels, big-picture close"
+    },
+    {
+      "slug": "feature-breakdown",
+      "description": "Feature breakdown: capability cards, pipeline figure, a real source-to-plate proof pair, options table, honest limits"
+    },
+    {
+      "slug": "what-how-why-who-when",
+      "description": "Five-lens explainer: one subject through WHAT/HOW/WHY/WHO/WHEN — giant interrogative stamps, perfectly equal lenses"
+    },
+    {
+      "slug": "decisions-log",
+      "description": "Decisions log: a ruled, append-ordered ledger of decisions — ID/date/status rail, always-visible one-liner, reversible/irreversible marking"
+    },
+    {
+      "slug": "research-report",
+      "description": "Research report: question, method band, numbered findings with root-cause/fix/status, conclusion contract, recommendations"
+    },
+    {
+      "slug": "directional-report",
+      "description": "Directional report: current position, chosen direction with BECAUSE rows, cluster markers timeline, explicit anti-goals"
+    },
+    {
+      "slug": "management-report",
+      "description": "Management report: BLUF verdict, KPI tiles, cluster progress bars, highlights/lowlights, decisions needed — scannable in sixty seconds"
+    },
+    {
+      "slug": "data-report",
+      "description": "Data report: dataset + method, pele pie and xychart charts in clay series colors, metrics table with real byte counts"
+    },
+    {
+      "slug": "annual-report",
+      "description": "Annual report: publication-grade yearly summary — cover numeral, year-at-a-glance tiles, signed lead's letter, cluster sections, asks"
+    },
+    {
+      "slug": "project-plan",
+      "description": "Project plan: objective band, scope in/out, five phase panels with deliverables/exit-criteria/status, milestone tracks, risk register"
+    },
+    {
+      "slug": "high-level-timelines-and-steps",
+      "description": "High-level timelines and steps: the suite's four core processes as step tracks — numbered circles on hairlines, per-step owners"
+    },
+    {
+      "slug": "workflow-template",
+      "description": "Workflow template: roles strip, do/verify step rows with role chips, decision-point callouts, per-phase checklists"
+    },
+    {
+      "slug": "meeting-notes",
+      "description": "Meeting notes: attendees, agenda, per-topic discussion, decisions made as chip-led rows, action table with owners and due dates"
+    },
+    {
+      "slug": "interview-transcript",
+      "description": "Interview transcript: turn-taking Q&A in four themes — speaker chips, clay-ruled answers, ink pull quotes; trust notes preserved"
+    },
+    {
+      "slug": "standard-operating-procedure",
+      "description": "Standard operating procedure: doc-control table, numbered clauses with MUST/SHALL, verification, records, revision history"
+    },
+    {
+      "slug": "api-documentation",
+      "description": "API documentation: precision reference for the build-time CLI — signatures, parameter tables, real captured examples"
+    },
+    {
+      "slug": "request-for-proposal",
+      "description": "Request for proposal: outbound solicitation — background, objectives, scope in/out, mandatory/desirable requirements, process"
+    },
+    {
+      "slug": "request-for-information",
+      "description": "Request for information: the light inquiry — control table, not-a-solicitation strip, four numbered question groups"
+    },
+    {
+      "slug": "business-case",
+      "description": "Business case: retrospective validation of the founding investment — three options with cost models, cost-benefit verdict"
+    },
+    {
+      "slug": "rolling-forecast",
+      "description": "Rolling forecast: window band with the re-roll rule, forecast-vs-actuals ledger with variance chips, cumulative chart, assumptions band"
+    },
+    {
+      "slug": "cashflow-statement",
+      "description": "Cashflow statement: the build economy in effort hours — inflows/outflows by activity, per-period columns, double-ruled net"
+    },
+    {
+      "slug": "2d-quadrant-overview",
+      "description": "2D quadrant overview: items plotted by two axes across four quadrants — native pele quadrantChart, corner-meaning sections"
+    }
+  ]
+}

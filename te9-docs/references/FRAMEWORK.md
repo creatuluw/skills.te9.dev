@@ -3,7 +3,7 @@
 The te9-docs suite is **spec-driven**: every document is produced and judged
 through four parallel concerns, each owned by one Concern spec and bound by one
 Concern contract. This file is the canon. The suite's six-step workflow
-(intake → index-first → instance → figures → playback gate → storage menu) is
+(intake → TYPES-first → compose → figures → playback gate → storage menu) is
 the fixed context; the concern specs are its variation points.
 
 Decisions: ADR-0008 (lenses, not stages) · ADR-0009 (composition canon) ·
@@ -64,7 +64,7 @@ Contracts load **per touchpoint** — never all up front:
 
 | Touchpoint | Contract source |
 |---|---|
-| Production run (instance a template) | The template's own head comment — BLOCK GRAMMAR + SECTION ORDER (composition), COLORS (style), navigation requirements (wayfinding), IRON RULES (content) are the four contracts compiled per type. **Zero extra reading.** |
+| Production run (compose a type) | The type's contract block in `TYPES.md` — TASK/FORMAT + BLOCK GRAMMAR + SECTION ORDER (composition), the shared palette here and in CLAY-STYLE (style), navigation requirements (wayfinding), IRON RULES (content) are the four contracts per type. **One file.** |
 | Extension run (build a new template) | Load this file's contracts + the four specs as needed |
 | Review gate (every document, every run) | The four-lens, four-contract pass — see below |
 

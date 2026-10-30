@@ -7,11 +7,16 @@ table; CRAP (contrast, repetition, alignment, proximity) survives only as a
 teaching mnemonic for the core four (ADR-0009).
 
 The keywords MUST / SHOULD / MAY are used as in RFC 2119. Every CAN example is
-quoted from a real template in `assets/templates/`; every CANNOT example cites
-a documented failure mode or house decision. Nothing here is invented fresh.
+quoted from a real v1 template (see the v2 note below); every CANNOT example
+cites a documented failure mode or house decision. Nothing here is invented
+fresh.
 
 Anatomy per principle: the principle in one sentence → **CAN** → **CANNOT** →
 **Gate check** (the one-line check the review gate runs).
+
+> **v2 note:** the CAN examples were quoted from the v1 template files, which
+> the compose edition retired — recover at git tag `v2.7.0-template-suite`.
+> The rules stand; the snippets are ground truth.
 
 ---
 

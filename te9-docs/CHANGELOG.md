@@ -11,6 +11,19 @@ All notable suite changes. Autonomous extensions append their own entries
 > from verifiable disk evidence (the template index, ADRs, and template
 > colophons). Lesson recorded: commit the tree; verify every write.
 
+## [3.0.0] - 2026-10-30
+
+- **BREAKING (MAJOR): v2 "compose edition" (ADR-0011)** — the suite ships no
+  templates. Documents are composed from `references/TYPES.md` (28-type
+  catalog + selection heuristics + per-type contracts, mined verbatim from the
+  28 v1 template head comments), `references/BASE-CSS.md` (the canonical shared
+  Clay layer, extracted once from the most refined template), and the founding
+  trio kept as worked exemplars at `assets/examples/`. Workflow: intake →
+  TYPES-first → compose → figures → four-lens gate → storage. Supersedes the
+  template-instance mechanic and index-only discovery; quality for the 25
+  non-exemplar types is now caught at the gate instead of guaranteed by file.
+  Catalog: `assets/index.json` (types, not files). Suite drops 1.4 MB → ~340 KB.
+
 ## [2.7.0] - 2026-10-30
 
 - Convention (MINOR): the four-concern framework — every document is produced
@@ -67,4 +80,5 @@ All notable suite changes. Autonomous extensions append their own entries
   autonomous extension proven (ADR-0006). Templates 04–24 landed across the
   explainer, analysis, plans-and-process and formal clusters — the landing
   sequence and per-entry details of this span are the portion lost with the
-  original file; counts are verifiable in assets/templates/index.json.
+  original file; counts are verifiable in the type catalog (assets/index.json
+  since 3.0.0 — originally assets/templates/index.json).

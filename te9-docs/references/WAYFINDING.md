@@ -7,8 +7,9 @@ derived from the settled structure and touched last (`FRAMEWORK.md`). "Index"
 elsewhere in the suite means the template registry; never document navigation.
 
 The keywords MUST / SHOULD / MAY follow RFC 2119. CAN examples are quoted from
-real templates in `assets/templates/`; CANNOT examples cite documented rules
-or findings. Anatomy: rule → CAN → CANNOT → Gate check.
+real v1 templates (retired by the compose edition — recover at git tag
+`v2.7.0-template-suite`); CANNOT examples cite documented rules or findings.
+Anatomy: rule → CAN → CANNOT → Gate check.
 
 ---
 

@@ -5,8 +5,9 @@ placeholder content documents THESE facts — no template may assert anything ab
 the suite that contradicts this brief. Update this file whenever the suite itself
 changes, then refresh affected template content. Stamped with the suite version.
 
-Suite version: **2.7.0** (28 of 36 launch-taxonomy types landed; v2.7 adds
-the four-concern framework — see references/FRAMEWORK.md)
+Suite version: **3.0.0** — the **v2 compose edition**: the suite ships no
+templates; documents are composed from the type catalog (TYPES.md), BASE-CSS
+and the concern specs (ADR-0011). 28 types in the catalog.
 
 ## What te9-docs is
 
@@ -39,10 +40,13 @@ a te9 signature.
 
 1. **Intake** — before any writing, ask for the document's goal and acceptance
    criteria; state the skill's own recommendation (type + approach) from context.
-2. **Index-first** — read the suite index (`assets/templates/index.json`) and
-   ground the type decision in it; confirm with the user if two types could match.
-3. **Instance** — copy the Template, swap self-describing placeholders for real
-   facts, preserving layout, interactions, and Clay tokens.
+2. **TYPES-first** — ground the type decision in `references/TYPES.md` (the
+   catalog + selection heuristics) and `assets/index.json`; confirm with the
+   user if two types could match.
+3. **Compose** — on `references/BASE-CSS.md` (copied verbatim), build the
+   body in the type's frozen section order per its contract block in TYPES.md,
+   with real facts from SUITE-BRIEF; restate the type's contract in a head
+   comment (ADR-0010).
 4. **Figures** — Mermaid → pele render (build-time, Node) → inline SVG in Clay
    variables, fenced plate, FIG caption.
 5. **Playback** — show the document in the browser; fold in feedback.
@@ -52,7 +56,7 @@ a te9 signature.
 
 ## The suite
 
-- **Launch taxonomy**: 36 templates — the three founding documents plus 33
+- **Launch taxonomy**: 36 types — the three founding documents plus 33
   additional types: introduction of concepts, concept breakdown, link/dependency
   analysis, before-and-after showcase (visual + textual), what/how/why/who/when,
   decisions log, interview transcript, research report, directional report,
@@ -64,14 +68,15 @@ a te9 signature.
   proposal, request for information, rolling forecast, cashflow statement,
   tutorial.
 - **Founding documents**: `brief.html` (decision brief), `dossier.html`
-  (evidence dossier), `deck.html` (presentation deck) — converted from the
-  examples, placeholders rewritten about the suite.
-- **Index**: single machine-readable registry at `assets/templates/index.json`,
-  generated from the template directory, normative for discovery. No keyword
-  heuristics file.
+  (evidence dossier), `deck.html` (presentation deck) — kept as worked
+  exemplars at `assets/examples/`.
+- **Catalog**: machine-readable registry at `assets/index.json` (slug +
+  description per type) alongside the selection heuristics and per-type
+  contracts in `references/TYPES.md` — normative for discovery (v2 restores
+  heuristics; ADR-0011).
 - **Extension protocol**: fully autonomous. A session needing an unlisted type
   builds it to the same conventions (Clay, self-describing content, whitelist
-  compliance, quality gates), saves it to `assets/templates/`, registers it in
+  compliance, quality gates), registers the type in TYPES.md and the catalog,
   the index, bumps the suite version, and writes its own changelog line. The
   user discovers new types in the index next session.
 - **Versioning**: semver `MAJOR.MINOR.PATCH`, stamped here and in the manifest.
@@ -80,8 +85,9 @@ a te9 signature.
 
 ## Vocabulary (use these words in placeholder content)
 
-Template (finished full-HTML document with realistic placeholders) ·
-Template instance (copy + content swap) · Document (the produced artifact) ·
+Type (a catalog entry with a composition contract) · Composed document
+(the produced artifact; the founding trio in assets/examples/ are worked
+exemplars) ·
 Founding documents · Suite brief (this file) · Index · Intake ·
 Review gate (browser approval after each build) · Storage menu ·
 Clay discipline · Script whitelist · Figure · Pele · Suite version ·
