@@ -1,5 +1,5 @@
 {
-  "suite-version": "3.0.0",
+  "suite-version": "3.1.0",
   "edition": "v2 compose edition",
   "design-system": "Clay Explainer",
   "note": "Machine-readable type catalog. Normative for discovery: every production run grounds its type decision here and in references/TYPES.md (the per-type composition contracts). Types are COMPOSED, not instanced — there are no template files. Regenerate on extension; never hand-edit entries.",
@@ -115,6 +115,46 @@
     {
       "slug": "2d-quadrant-overview",
       "description": "2D quadrant overview: items plotted by two axes across four quadrants — native pele quadrantChart, corner-meaning sections"
+    },
+    {
+      "slug": "status-report",
+      "description": "Status report: recurring period report for a team/workstream — RAG health strip, shipped list, in-progress rows, blockers with explicit asks, look-ahead"
+    },
+    {
+      "slug": "post-mortem",
+      "description": "Post-mortem: blameless reconstruction of ONE incident/project — ink outcome band, timestamped timeline, root-cause chain, quantified impact, owned actions"
+    },
+    {
+      "slug": "comparison-matrix",
+      "description": "Comparison matrix: 2+ options across one fixed weighted criteria set — scored matrix, per-option readings, sensitivity under alternative weightings; no forced winner"
+    },
+    {
+      "slug": "roadmap",
+      "description": "Roadmap: NOW/NEXT/LATER horizon bands with themed lanes — outcome statements, committed-vs-proposed confidence dots, the explicit not-on-the-roadmap list"
+    },
+    {
+      "slug": "okr-sheet",
+      "description": "OKR sheet: ONE period's objectives & key results — SET (confidence per KR) or GRADED (scores from metrics); grading scale stated before any KR"
+    },
+    {
+      "slug": "case-study",
+      "description": "Case study: ONE story end to end — before state with numbers, what was actually done, before→after proof metrics with MEASURED/REPORTED/MODEL chips, honest limits"
+    },
+    {
+      "slug": "one-pager",
+      "description": "One-pager: everything essential about ONE initiative on a single sheet — ink pitch band, how strip, three facts that matter, status row, one specific ask"
+    },
+    {
+      "slug": "faq",
+      "description": "FAQ: jump-linked question index, themed groups, folds whose answers lead with the answer, freshness chips, still-stuck route"
+    },
+    {
+      "slug": "tutorial",
+      "description": "Tutorial: teach ONE task to completion — end state shown first, testable prerequisites, steps with observable expected results, verification, troubleshooting"
+    },
+    {
+      "slug": "blogpost",
+      "description": "Blogpost: ONE editorial article — TL;DR box, cold-open hook, quotable thesis, one-move sections, ink pull quote, steel-manned counterpoint"
     }
   ]
 }

@@ -11,6 +11,13 @@ All notable suite changes. Autonomous extensions append their own entries
 > from verifiable disk evidence (the template index, ADRs, and template
 > colophons). Lesson recorded: commit the tree; verify every write.
 
+## [3.1.0] - 2026-10-30
+
+- Extension (MINOR): 10 new business/knowledge-work types — status-report,
+  post-mortem, comparison-matrix, roadmap, okr-sheet, case-study, one-pager,
+  faq, tutorial, blogpost. Full composition contracts in TYPES.md (29–38),
+  heuristics rows, catalog entries. Catalog now 38 types.
+
 ## [3.0.0] - 2026-10-30
 
 - **BREAKING (MAJOR): v2 "compose edition" (ADR-0011)** — the suite ships no

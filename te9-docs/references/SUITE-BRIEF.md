@@ -5,9 +5,10 @@ placeholder content documents THESE facts — no template may assert anything ab
 the suite that contradicts this brief. Update this file whenever the suite itself
 changes, then refresh affected template content. Stamped with the suite version.
 
-Suite version: **3.0.0** — the **v2 compose edition**: the suite ships no
+Suite version: **3.1.0** — the **v2 compose edition**: the suite ships no
 templates; documents are composed from the type catalog (TYPES.md), BASE-CSS
-and the concern specs (ADR-0011). 28 types in the catalog.
+and the concern specs (ADR-0011). 38 types in the catalog (28 founding +
+10 business/knowledge-work additions of 3.1.0).
 
 ## What te9-docs is
 

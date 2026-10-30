@@ -1,11 +1,11 @@
 ---
 name: te9-docs
-description: "Produce polished, shareable, single-file HTML documents in the Clay Explainer design system, composed from a 28-type catalog with selection heuristics. Use when the user wants: a decision brief, evidence dossier, presentation deck, explainer, concept breakdown, research/management/data/annual report, project plan, meeting notes, business case, SOP, API documentation, RFP/RFI, forecast, cashflow statement, tutorial, blogpost, wikipage, decisions log, or any visual document for humans. Triggers: make a document, create a report, write a brief, build a deck, document this, explain visually. Also use when the user names a te9-docs type directly."
+description: "Produce polished, shareable, single-file HTML documents in the Clay Explainer design system, composed from a 38-type catalog with selection heuristics. Use when the user wants: a decision brief, evidence dossier, presentation deck, explainer, concept breakdown, research/management/data/annual report, project plan, meeting notes, business case, SOP, API documentation, RFP/RFI, forecast, cashflow statement, tutorial, blogpost, wikipage, decisions log, or any visual document for humans. Triggers: make a document, create a report, write a brief, build a deck, document this, explain visually. Also use when the user names a te9-docs type directly."
 license: Proprietary. LICENSE at repo root has complete terms.
 compatibility: "Build-time figure rendering requires Node.js and the pele npm package (scripts/). Documents themselves are offline, zero-JS single files."
 metadata:
   author: te9
-  suite-version: "3.0.0"
+  suite-version: "3.1.0"
   edition: "v2 compose edition"
   design-system: "Clay Explainer"
   repo: "skills.te9.dev"
@@ -30,7 +30,7 @@ the context you already have. Wait for confirmation of the type.
 
 ### 2. TYPES-first classification
 
-Read `references/TYPES.md` — the type catalog with selection heuristics. Ground
+Read `references/TYPES.md` — the 38-type catalog with selection heuristics. Ground
 the type decision in its signals table; never assume a type from memory. If two
 types could match, ask. If none match, go to Extension (below).
 

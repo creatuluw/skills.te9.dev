@@ -74,6 +74,16 @@ rolling forecast, cashflow); when it is decision-forcing, prefer `brief` over
 | Project a living number forward — re-roll rule, variance | `rolling-forecast` |
 | State an economy as cash in/out by period, net | `cashflow-statement` |
 | Position items on two axes across four quadrants | `2d-quadrant-overview` |
+| Report ONE period of a team/stream — RAG health, shipped, blockers with asks | `status-report` |
+| Reconstruct ONE incident/project — timeline, root cause, owned actions | `post-mortem` |
+| Evaluate 2+ options across one fixed weighted criteria set — no forced winner | `comparison-matrix` |
+| Lay out direction over NOW/NEXT/LATER horizons — themes with outcomes | `roadmap` |
+| Set or grade ONE period's OKRs — outcomes with baselines, 0.0-1.0 grading | `okr-sheet` |
+| Tell ONE customer/project story — before→after proof metrics, limits | `case-study` |
+| Everything essential about ONE initiative on a single sheet — 60-second scan | `one-pager` |
+| Answer the questions a readership actually asks — self-sufficient answers | `faq` |
+| Teach ONE task to completion — steps with observable expected results | `tutorial` |
+| Publish ONE editorial article — thesis, moves, steel-manned counterpoint | `blogpost` |
 
 ---
 
@@ -1928,4 +1938,462 @@ was mined from (contract version noted). Compose to it as written.
                  27 of 35 landed, counted from index.json +
                  CHANGELOG.md.
 ================================================================ -->
+```
+
+## 29 · `status-report` — Status Report (contract v0.1)
+
+**Use when:** Status report: recurring period report for a team or workstream — RAG health strip, shipped list, in-progress with owners, blockers with explicit asks, next-period look-ahead; scannable in two minutes.
+
+```text
+     LLM AUTHORING CONTRACT — STATUS REPORT v0.1 — STYLE: Clay Explainer
+     te9-docs suite — compose-edition contract. The LLM assembles; it
+     does not redesign the grammar.
+
+     TASK        Report ONE period of ONE team's or stream's work — what
+                 shipped, what moved, what's blocked, what's next — so a
+                 stakeholder reads it in two minutes and knows exactly
+                 where things stand.
+     FORMAT      Recurring lightweight report: health strip (RAG chip per
+                 stream), shipped list, in-progress rows with %, blocked
+                 rows with owners and asks, next-period look-ahead. Facts
+                 counted from trackers, never estimated.
+     HIERARCHY   doc > health strip > section > item row > (fold: context)
+     SECTION     masthead (period + team + health) → 1 shipped →
+     ORDER       2 in progress → 3 blocked / asks → 4 next up → colophon
+                 (never omit the health strip; blockers before next-up)
+     ORDER       Health first — the RAG chips are the verdict. Blocked
+                 items MUST carry an owner and an explicit ask; a blocker
+                 without an ask is a complaint, not a report. Shipped
+                 items cite the artifact (link, ID, count).
+     BLOCK GRAMMAR
+       health       chip row under the kicker — one RAG chip per stream
+       strip        (ON TRACK olive / AT RISK amber-clay / OFF TRACK
+                    rust) + period label in mono.
+       shipped      ruled list, one line each: what + artifact link or ID.
+       in-progress  rows: name + % in mono + owner chip.
+       blocked      rust-tinted rows: what happened, owner, the ask as a
+                    clay chip (directed at a named person/team).
+       next         3-5 look-ahead bullets, one line each.
+     IRON RULES  Numbers counted from trackers/reality — never estimated.
+                 One RAG per stream, no split states. Every ask directed
+                 at a named owner. Zero scripts beyond the whitelist.
+     VOICE       Plain, factual, unhedged. "Shipped X", not "worked on X".
+     STATUS      Period chip in the kicker + one RAG chip per stream.
+```
+
+## 30 · `post-mortem` — Post-mortem (contract v0.1)
+
+**Use when:** Post-mortem: blameless reconstruction of ONE incident or completed project — timestamped timeline, root-cause chain, quantified impact, owned action items; sober, forward-facing.
+
+```text
+     LLM AUTHORING CONTRACT — POST-MORTEM v0.1 — STYLE: Clay Explainer
+     te9-docs suite — compose-edition contract. The LLM assembles; it
+     does not redesign the grammar.
+
+     TASK        Reconstruct ONE incident or completed project — what
+                 happened, why, what it cost, and what changes so it
+                 cannot repeat — blamelessly but without softening the
+                 cause.
+     FORMAT      Timeline-first investigation: summary band (severity +
+                 outcome + duration/cost), timestamped timeline, root-
+                 cause chain, quantified impact, action items with owners
+                 and dates, a short honest what-went-well.
+     HIERARCHY   doc > summary band > timeline event > cause step >
+                 action row
+     SECTION     masthead → 1 the one-line summary (ink) → 2 timeline →
+     ORDER       3 root cause → 4 impact → 5 action items → 6 what went
+                 well → colophon (verdict band precedes the story)
+     ORDER       The summary band states outcome + severity BEFORE the
+                 narrative. The root-cause chain asks "why?" until the
+                 answer is a process or system, not a person. Every
+                 action item names an owner, a date, and the recurrence
+                 it prevents.
+     BLOCK GRAMMAR
+       summary      ink panel: severity chip (SEV-1..4 or project
+       band         equivalent), one-sentence outcome, duration/cost
+                    as a mono pair.
+       timeline     vertical hairline, mono timestamp stamps, clay
+                    ring stations; cause-critical events marked.
+       root cause   numbered why-chain, each link answered, the
+                    terminal systemic cause on an oat plate.
+       impact       mono stat tiles: duration, units lost, cost,
+                    customers affected — labeled MODEL where estimated.
+       actions      ruled table: action / owner / due / prevents.
+       went well    short olive-tinted list — kept honest and brief.
+     IRON RULES  Blameless: causes name processes and systems, never
+                 people. Timeline timestamps verifiable from logs or
+                 records. Impact quantified where records allow, labeled
+                 MODEL where estimated. An action without an owner is
+                 not an action.
+     VOICE       Sober, precise, forward-facing. No dramatization, no
+                 euphemism.
+     STATUS      Severity chip in the summary band.
+```
+
+## 31 · `comparison-matrix` — Comparison Matrix (contract v0.1)
+
+**Use when:** Comparison matrix: side-by-side evaluation of 2+ options across one fixed, weighted criteria set — full trade-off surface with a sensitivity note; documents the evaluation, does not force a single winner.
+
+```text
+     LLM AUTHORING CONTRACT — COMPARISON MATRIX v0.1 — STYLE: Clay Explainer
+     te9-docs suite — compose-edition contract. The LLM assembles; it
+     does not redesign the grammar.
+
+     TASK        Evaluate TWO or more options side by side across a
+                 fixed criteria set — same criteria, same order, every
+                 option — so a reader sees the full trade-off surface
+                 and can disagree with any conclusion from the same
+                 evidence. Distinct from the brief: documents the
+                 evaluation; does not force a single winner.
+     FORMAT      Criteria-driven evaluation: subject band (what is
+                 compared + why now), the criteria set with weights, the
+                 scored matrix with weighted totals, per-option readings,
+                 and an explicit sensitivity note under alternative
+                 weightings.
+     HIERARCHY   doc > criteria set > matrix row > option reading
+     SECTION     masthead → 1 subjects + why compared → 2 criteria & →
+     ORDER       weights → 3 the matrix → 4 per-option readings →
+                 5 sensitivity → colophon (matrix may never be omitted)
+     ORDER       Criteria are fixed BEFORE any scoring — same criteria,
+                 same order for every option; no custom criteria per
+                 option. Scores are 1-5 with the weighting rule stated.
+                 The sensitivity section lets the reader re-weight
+                 honestly.
+     BLOCK GRAMMAR
+       subject      clay-soft strip: the options as chips + the
+       band         comparison question in one line.
+       criteria     ruled table: criterion / what it means / weight
+                    ×1-×3.
+       matrix       full table: criteria rows, option columns, mono
+                    scores, weighted total row; the leading column per
+                    criterion may be marked — the leading COLUMN overall
+                    tinted clay-soft (column leader, not a pick).
+       readings     per-option card: strongest criterion, weakest, one-
+                    line verdict.
+       sensitivity  fold: the top two options re-ranked under three
+                    alternative weightings.
+     IRON RULES  Same criteria, same order, for every option. Scores
+                 sourced where possible; subjective scores labeled
+                 SUBJ. Column leaders are arithmetic, not advocacy —
+                 the document picks no winner unless asked.
+     VOICE       Even-handed. Every option gets its best case made.
+     STATUS      Weighting chip: MEASURED or MODEL·NOT-MEASUREMENT
+                 where subjective.
+```
+
+## 32 · `roadmap` — Roadmap (contract v0.1)
+
+**Use when:** Roadmap: one product/program direction over NOW/NEXT/LATER horizons — themed lanes with outcome statements, committed-vs-proposed confidence, and the explicit not-on-the-roadmap list.
+
+```text
+     LLM AUTHORING CONTRACT — ROADMAP v0.1 — STYLE: Clay Explainer
+     te9-docs suite — compose-edition contract. The LLM assembles; it
+     does not redesign the grammar.
+
+     TASK        Lay out ONE product's or program's direction over
+                 horizons — what's now, what's next, what's later — as
+                 themes with outcomes, deliberately loose on dates.
+     FORMAT      Horizon bands: NOW / NEXT / LATER, each holding 2-4
+                 themed lanes with outcome statements and confidence
+                 markers; a direction statement on ink first; the
+                 explicit not-on-the-roadmap list last. Dates only where
+                 they are commitments.
+     HIERARCHY   doc > direction > horizon > theme > item > (fold:
+                 rationale)
+     SECTION     masthead → 1 direction statement (ink) → 2 NOW →
+     ORDER       3 NEXT → 4 LATER → 5 not on the roadmap → colophon
+                 (the not-list is mandatory, not optional)
+     ORDER       The direction statement precedes every item — each
+                 theme MUST trace to it. Horizons are time-relative
+                 (now = in flight, next = queued next, later = believed),
+                 never quarter-dated unless the date is a commitment.
+                 The not-list is maintained: silent drops are how scope
+                 creep enters.
+     BLOCK GRAMMAR
+       direction    ink panel: serif statement with one italic clay
+                    word — where this is heading and why.
+       horizon      band labeled in mono (NOW / NEXT / LATER) with its
+       band         definition line.
+       theme        theme name (serif h3) + outcome line (the change in
+       lane         the world) + items as chips with confidence dots:
+                    filled = committed, open = proposed.
+       not-list     ruled list: item + when/where it was declined.
+     IRON RULES  Every theme states an OUTCOME, not a feature list.
+                 Confidence is always shown. No silent drops — items
+                 leave the roadmap onto the not-list, never into
+                 nothing.
+     VOICE       Directional, confident, honest about uncertainty.
+     STATUS      One chip per theme: COMMITTED / PROPOSED / EXPLORING.
+```
+
+## 33 · `okr-sheet` — OKR Sheet (contract v0.1)
+
+**Use when:** OKR sheet: ONE period's objectives & key results — SET at period start (confidence per KR) or GRADED at end (scores from metrics); grading scale stated before any KR.
+
+```text
+     LLM AUTHORING CONTRACT — OKR SHEET v0.1 — STYLE: Clay Explainer
+     te9-docs suite — compose-edition contract. The LLM assembles; it
+     does not redesign the grammar.
+
+     TASK        Set or grade ONE period's OKRs — 3-5 objectives, each
+                 with 3-5 measurable key results — so ambition,
+                 measurement and grading are unambiguous before the
+                 period starts and honest after it ends.
+     FORMAT      Two-state document (mode chip SET or GRADED): grading
+                 scale on an oat plate first, then objective panels with
+                 key-result rows (metric, baseline → target, owner,
+                 confidence at set-time / score at grade-time), and —
+                 when graded — a retrospective fold per objective.
+     HIERARCHY   doc > mode > objective > key-result row
+     SECTION     masthead (period + team + mode chip) → 1 grading scale →
+     ORDER       2 objectives & key results → 3 (GRADED only) scores & →
+                 retrospective → colophon (scale before any KR)
+     ORDER       The grading scale is stated BEFORE any key result:
+                 0.0-1.0, 0.7 = success, 1.0 = never guaranteed. Key
+                 results are outcomes with baselines, not tasks — a KR
+                 that names a task is rewritten as an outcome. Grades
+                 come from the metric record, never from effort or
+                 memory.
+     BLOCK GRAMMAR
+       mode chip    pill in the kicker: SET (planning) / GRADED
+                    (retrospective).
+       scale        oat plate: the 0.0 / 0.7 / 1.0 anchors in mono.
+       objective    white panel: objective as serif h3 + one-line why;
+       panel        KR rows: metric in mono, baseline → target with a
+                    clay arrow, owner chip; confidence % (SET) or score
+                    (GRADED — big mono numeral, ≥0.7 olive, <0.7 rust).
+       retrospective fold per objective: what the score teaches and
+                    what carries into the next period's sheet.
+     IRON RULES  3-5 objectives, 3-5 KRs each — more is a task list.
+                 Every KR has a baseline and a target; no baseline, no
+                 KR. Scores from the metric record. No hedged targets —
+                 "improve", "help with" are not key results.
+     VOICE       Ambitious but measurable.
+     STATUS      Mode chip + per-KR confidence (SET) or score (GRADED).
+```
+
+## 34 · `case-study` — Case Study (contract v0.1)
+
+**Use when:** Case study: ONE customer/project story end to end — before state with numbers, what was actually done, before→after proof metrics, ink pull quote, honest limits.
+
+```text
+     LLM AUTHORING CONTRACT — CASE STUDY v0.1 — STYLE: Clay Explainer
+     te9-docs suite — compose-edition contract. The LLM assembles; it
+     does not redesign the grammar.
+
+     TASK        Tell ONE customer's or project's story end to end —
+                 where they started, what was done, what measurably
+                 changed — so the reader can judge the approach by its
+                 results, not its adjectives.
+     FORMAT      Narrative with proof: context band, the challenge (the
+                 before state with numbers), the approach (what was
+                 actually done, turns included), results as before→after
+                 metric pairs, a pull quote from the subject, and the
+                 honest limits.
+     HIERARCHY   doc > act (challenge/approach/results) > proof metric
+     SECTION     masthead → 1 the starting point → 2 the challenge →
+     ORDER       3 the approach → 4 results (before→after) → 5 in their
+                 words (ink) → 6 limits → colophon (results are the
+                 point — the approach never outruns them)
+     ORDER       Every approach claim MUST be paid for in the results
+                 section. Before-numbers are cited from records, not
+                 recalled. Limits exist in every real story; a case
+                 study without one is an advertisement.
+     BLOCK GRAMMAR
+       context      clay-soft strip: who / where / when in one line.
+       band
+       challenge    short narrative of the before state + before-metric
+                    chips in mono.
+       approach     3-5 numbered moves, each one sentence + what it
+                    targeted.
+       results      metric pair rows: before (mono, slate) → after
+                    (mono, clay-ink) with the delta chip (olive) and a
+                    MEASURED / REPORTED / MODEL proof chip.
+       pull quote   ink panel, serif, one sentence, attributed.
+       limits       honest ruled list — scope, context, caveats.
+     IRON RULES  Every result metric carries a before value and a
+                 source. The approach describes what WAS done, not what
+                 was planned. One subject per document.
+     VOICE       Narrative but numeric. Show the before; earn the after.
+     STATUS      Proof chip per metric: MEASURED / REPORTED / MODEL.
+```
+
+## 35 · `one-pager` — One-pager (contract v0.1)
+
+**Use when:** One-pager: everything essential about ONE initiative/product/team on a single sheet — pitch band on ink, how-it-works strip, three facts that matter, status row, one specific ask; 60-second scan.
+
+```text
+     LLM AUTHORING CONTRACT — ONE-PAGER v0.1 — STYLE: Clay Explainer
+     te9-docs suite — compose-edition contract. The LLM assembles; it
+     does not redesign the grammar.
+
+     TASK        Give a reader EVERYTHING essential about ONE
+                 initiative, product or team — what it is, why it
+                 exists, how it works, where it stands, what it needs —
+                 on a single sheet, scannable in 60 seconds. Distinct
+                 from the brief: orients and updates; does not force a
+                 decision.
+     FORMAT      Summary sheet: pitch band on ink (what + why in one
+                 breath), how-it-works step strip, the three facts that
+                 matter as a fact grid, status chip row, and one
+                 explicit ask.
+     HIERARCHY   doc > band > fact row
+     SECTION     masthead → 1 what & why (pitch band, ink) → 2 how it →
+     ORDER       works → 3 the facts that matter → 4 where it stands →
+                 5 the ask → colophon (never exceed one sheet)
+     ORDER       The pitch band is the document compressed to two
+                 sentences — if it is wrong, everything under it is
+                 wrong. The ask is specific: one action, one owner, one
+                 date. The facts are the three a reader must retain.
+     BLOCK GRAMMAR
+       pitch        ink panel: what-it-is in serif + the why-now line
+       band         carrying the italic clay word.
+       how strip    3-4 step chips on a hairline.
+       fact grid    three columns: mono label + big value + one-line
+                    source.
+       status row   chip row: stage, health, next milestone.
+       ask          clay-soft band: the ask as serif h3 + owner/date
+                    mono row.
+     IRON RULES  One sheet — overflow moves to an appendix document,
+                 never to smaller type. Every fact carries its source.
+                 The ask names a person and a date.
+     VOICE       Pitched but factual. Every sentence survives the "so
+                 what?" test.
+     STATUS      Stage + health chips in the status row.
+```
+
+## 36 · `faq` — FAQ (contract v0.1)
+
+**Use when:** FAQ: the questions a readership actually asks about ONE subject — jump-linked question index, themed groups, self-sufficient answers that lead with the answer, freshness chips.
+
+```text
+     LLM AUTHORING CONTRACT — FAQ v0.1 — STYLE: Clay Explainer
+     te9-docs suite — compose-edition contract. The LLM assembles; it
+     does not redesign the grammar.
+
+     TASK        Answer the questions a readership actually asks about
+                 ONE subject — grouped, ranked by frequency, each
+                 answer self-sufficient — so the reader's question is
+                 resolved in one place.
+     FORMAT      Grouped Q&A bank: a question index (every question as a
+                 jump-linked mono pill), themed groups (getting started
+                 / how-do-I / decisions / trouble), each question a fold
+                 whose answer leads with the answer, and an explicit
+                 still-stuck route.
+     HIERARCHY   doc > theme > Q&A pair
+     SECTION     masthead → question index → grouped Q&A (by theme) →
+     ORDER       still stuck → colophon (index covers every question)
+     ORDER       Questions come from evidence — support tickets, real
+                 asks — ranked most-asked first within their group.
+                 Answers are self-sufficient (no "see above") and state
+                 the answer in the first sentence, reasons after.
+     BLOCK GRAMMAR
+       question     mono pill strip, jump-linked, one pill per
+       index        question.
+       Q&A pair     fold: the question as the summary (mono, clay-ink);
+                    the answer opens on white — first sentence bold =
+                    the answer, then detail, then related-question
+                    chips.
+       theme        sec-kick + question count.
+       divider
+       still stuck  oat plate: who to ask, what to include.
+     IRON RULES  Answers lead with the answer. Questions are sourced or
+                 observed — no invented strawmen. Near-duplicates merge
+                 with cross-link chips.
+     VOICE       Direct, warm, second person. No hedging in the first
+                 sentence.
+     STATUS      Freshness chip per theme: last reviewed date.
+```
+
+## 37 · `tutorial` — Tutorial (contract v0.1)
+
+**Use when:** Tutorial: teach ONE task to completion — end state shown first, testable prerequisites, numbered steps each with an observable expected result, verification, troubleshooting.
+
+```text
+     LLM AUTHORING CONTRACT — TUTORIAL v0.1 — STYLE: Clay Explainer
+     te9-docs suite — compose-edition contract. The LLM assembles; it
+     does not redesign the grammar.
+
+     TASK        Teach ONE task to completion — a reader who has never
+                 done it finishes with the thing actually done, having
+                 understood each step rather than copied it.
+     FORMAT      Hands-on path: what-you'll-build band (the end state,
+                 shown first), testable prerequisites, numbered steps
+                 (action → expected result per step), a verification
+                 assertion, troubleshooting for known failure modes,
+                 and onward links.
+     HIERARCHY   doc > step > expected result
+     SECTION     masthead → 1 what you'll build → 2 prerequisites →
+     ORDER       3 the steps → 4 verify → 5 troubleshooting → 6 next →
+                 colophon (every step executed as written before ship)
+     ORDER       Every step is ONE action with an observable outcome —
+                 a step without an expected result is two steps or
+                 zero. Prerequisites are testable ("run this check"),
+                 not vibes ("be familiar with"). The end state is shown
+                 before step 1 so the target stays visible.
+     BLOCK GRAMMAR
+       build band   clay-soft strip: the finished result described + a
+                    small figure or end-state artifact.
+       prereq       checklist rows, each with a check command or test.
+       steps        numbered clay circles on a hairline: verb-first
+                    title, the action (mono when it is a command),
+                    expected result on an oat line.
+       verify       the acceptance check as one runnable assertion.
+       trouble      symptom → cause → fix; minimum three known failure
+                    modes.
+       next         2-3 onward links.
+     IRON RULES  The tutorial shipped only after its own steps were
+                 executed as written. Commands in mono, exactly
+                 copy-pasteable. Expected results observable (output,
+                 file, state).
+     VOICE       Second person, imperative, encouraging. No detours
+                 mid-step.
+     STATUS      Tested-on chip: environment + date.
+```
+
+## 38 · `blogpost` — Blogpost (contract v0.1)
+
+**Use when:** Blogpost: ONE editorial article — cold-open hook, quotable thesis, sections that advance one move each, steel-manned counterpoint, TL;DR box for scanners, one next action.
+
+```text
+     LLM AUTHORING CONTRACT — BLOGPOST v0.1 — STYLE: Clay Explainer
+     te9-docs suite — compose-edition contract. The LLM assembles; it
+     does not redesign the grammar.
+
+     TASK        Publish ONE editorial article — an idea argued from a
+                 hook to a takeaway — so a reader who arrives cold
+                 leaves with the point, the reasoning, and the next
+                 step.
+     FORMAT      Editorial flow: TL;DR box up top for scanners, cold-
+                 open hook (no heading), the thesis stated plainly,
+                 body sections advancing one move each with an ink pull
+                 quote as the mid-article break, a steel-manned
+                 counterpoint, and a close with one next action. Facts
+                 cited inline; opinions owned.
+     HIERARCHY   doc > section > move
+     SECTION     masthead → TL;DR box → hook (lede starts cold) →
+     ORDER       thesis → body sections → pull quote (ink) →
+                 counterpoint → close → colophon (thesis before
+                 arguments; counterpoint never dropped)
+     ORDER       The thesis appears before the arguments and is
+                 quotable in one sentence. Each section advances
+                 exactly one move — two moves make two sections. The
+                 strongest objection is included and answered fairly;
+                 a post without its counterpoint is a press release.
+     BLOCK GRAMMAR
+       TL;DR        oat plate, three bullets: the point, the proof,
+                    the ask.
+       hook         2-3 sentence lede, giant serif opening line.
+       section      sec-kick + serif h2 + 2-4 paragraphs — one move
+                    only.
+       pull quote   ink panel, serif, one sentence, mid-article.
+       counterpoint rust-soft band: the objection stated at its
+                    strongest, then the answer.
+       close        the takeaway + one next action (link or step).
+     IRON RULES  Facts cite sources inline. Claims of number carry the
+                 number. The counterpoint is steel-manned, not
+                 strawmanned.
+     VOICE       Owned opinions, first person, short sentences at the
+                 tension points.
+     STATUS      Reading-time chip in the kicker (mono).
 ```
