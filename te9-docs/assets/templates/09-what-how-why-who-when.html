@@ -1,0 +1,441 @@
+<!doctype html>
+<!-- te9-docs suite — self-describing placeholder · v0.7.0 — STYLE: Clay Explainer -->
+<!-- ================================================================
+     LLM AUTHORING CONTRACT — WHAT · HOW · WHY · WHO · WHEN v0.1 — STYLE: Clay Explainer
+     te9-docs suite — self-describing placeholder. Paste this comment
+     into the authoring LLM alongside the source material. The LLM
+     assembles; it does not redesign.
+
+     TASK        Examine ONE subject through five interrogative
+                 lenses — WHAT / HOW / WHY / WHO / WHEN — one section
+                 per lens, equal weight, each answering fully. The
+                 interrogative is the motif; the five-lens equality is
+                 the point.
+     FORMAT      Long-form reading document: lens strip (five pills)
+                 up top, one hub figure, five equal lens sections each
+                 opened by its question word as a giant serif stamp,
+                 colophon.
+     HIERARCHY   doc > lens section > (fold: concrete example)
+     SECTION     masthead + lens strip → the map (FIG · 01, the
+                 subject as double ring, five question rings fanning
+                 right) → five lens sections (WHAT / HOW / WHY / WHO /
+                 WHEN) → colophon
+     ORDER       exactly one figure; the five lens sections perfectly
+                 equal — identical anatomy, identical rhythm; one
+                 colophon.
+
+     BLOCK GRAMMAR
+       lens strip    five mono pills (WHAT / HOW / WHY / WHO / WHEN)
+                     as the jump-nav, inside the masthead
+       lens stamp    the question word as a HUGE serif display element
+                     (clamp(60px, 10vw, 120px)), ink with the clay-ink
+                     question mark, above the section heading
+       lens section  stamp → sec-kick (LENS NN · WORD) → h2 → answer
+                     lede (clay rule) → 2–3 supporting paragraphs →
+                     one <details> fold (a concrete example on an oat
+                     plate) — identical anatomy in every lens
+       hub figure    pele+clayify chain in the mandatory plate:
+                     header (FIG ID + legend strip + FULLSCREEN) /
+                     body (diagram only) / footer (caption)
+       colophon      DOC ID · suite version · siblings · prepared-by
+
+     IRON RULES  Every fact grounded in SUITE-BRIEF only — no
+                 invented suite facts. The five lens sections are
+                 perfectly equal: no lens longer or shorter than
+                 another. One figure; it may not carry a claim the
+                 lens sections don't.
+     VOICE       Plausible, domain-real. No invented precise metrics.
+     STATUS      One chip in the masthead only:
+                 Draft | Believe | Reviewed | Signed-off
+     COLORS      decorative clay #FE6C2D, text clay #B8430F, on ivory
+                 #FAF9F5 with slate ink #141413 — olive #55673C,
+                 rust #B04A3F supporting — do not deviate. Dark mode:
+                 token flip under prefers-color-scheme.
+================================================================ -->
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>te9-docs · What, How, Why, Who, When — suite v0.7.0</title>
+<style>
+  :root{
+    --ivory:#FAF9F5; --slate:#141413; --white:#FFFFFF;
+    --clay:#FE6C2D; --clay-ink:#B8430F; --clay-soft:#FDEBE0;
+    --oat:#E3DACC; --olive:#788C5D; --olive-ink:#55673C; --olive-soft:#EEF2E6;
+    --rust:#B04A3F; --rust-soft:#F8ECE9;
+    --gray-100:#F0EEE6; --gray-300:#D1CFC5; --muted:#67665F; --body:#3D3D3A;
+    --serif:ui-serif, Georgia, serif;
+    --sans:system-ui, -apple-system, sans-serif;
+    --mono:ui-monospace, "SF Mono", Menlo, monospace;
+    --radius-panel:12px; --radius-chip:999px;
+    --border:1.5px solid var(--gray-300);
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto;}
+  }
+  body{background:var(--ivory); color:var(--slate); font-family:var(--sans);
+       font-size:15.5px; line-height:1.6; -webkit-font-smoothing:antialiased;}
+  h1,h2,h3{font-family:var(--serif); font-weight:500; letter-spacing:-.01em;}
+  a{color:var(--clay-ink); text-decoration:none; border-bottom:1px dotted var(--clay-ink);}
+  a:hover{border-bottom-style:solid;}
+  a:focus-visible, summary:focus-visible{outline:2px solid var(--clay-ink); outline-offset:2px;}
+
+  /* ---------- kicker — pill + meta, the shared hero grammar ---------- */
+  .kicker{display:flex; align-items:baseline; gap:12px; flex-wrap:wrap;}
+  .pill{font-family:var(--mono); font-size:11px; text-transform:uppercase;
+        letter-spacing:.06em; color:var(--muted); background:var(--gray-100);
+        border:var(--border); border-radius:var(--radius-chip); padding:5px 11px;
+        white-space:nowrap;}
+  .pill b{color:var(--clay-ink); font-weight:500;}
+  .kicker-meta{font-family:var(--mono); font-size:11px; text-transform:uppercase;
+               letter-spacing:.18em; color:var(--muted);}
+  .page-no{margin-left:auto; font-family:var(--mono); font-size:11px;
+           letter-spacing:.18em; color:var(--muted); white-space:nowrap;}
+  .type-label{display:inline-block; margin-top:24px; font-family:var(--mono); font-size:11px;
+              text-transform:uppercase; letter-spacing:.06em; color:var(--muted);
+              background:var(--gray-100); border:var(--border);
+              border-radius:var(--radius-chip); padding:5px 11px;}
+
+  /* ---------- masthead — the hero directly on ivory ---------- */
+  .masthead{padding:56px 24px 0;}
+  .masthead-inner{max-width:1000px; margin:0 auto;}
+  h1{font-size:clamp(44px, 6.5vw, 80px); line-height:1.05; margin-top:20px; max-width:16ch;}
+  h1 em{font-style:italic; color:var(--clay-ink);}
+  .lede{margin-top:26px; font-size:17.5px; line-height:1.6; color:var(--body); border-left:3px solid var(--clay); padding:4px 0 4px 20px;}
+  .lede b{color:var(--slate); font-weight:600;}
+  .meta-row{display:flex; flex-wrap:wrap; gap:32px; margin-top:36px; padding-top:22px;
+            border-top:1px solid var(--gray-300);}
+  .meta-row dt{font-family:var(--mono); font-size:10px; letter-spacing:.18em;
+               text-transform:uppercase; color:var(--muted); margin-bottom:4px;}
+  .meta-row dd{font-weight:500; color:var(--slate);}
+  .chip{display:inline-block; font-family:var(--mono); font-size:11px;
+        letter-spacing:.06em; text-transform:uppercase; padding:4px 12px;
+        border-radius:var(--radius-chip); background:var(--clay-soft);
+        color:var(--clay-ink); border:1px solid var(--clay); white-space:nowrap;}
+
+  /* ---------- lens strip — five pills, the interrogative jump-nav ---------- */
+  nav.lens-strip{margin-top:30px;}
+  .strip-title{font-family:var(--mono); font-size:10px; letter-spacing:.18em;
+               text-transform:uppercase; color:var(--muted); margin-bottom:10px;}
+  .strip-links{display:flex; flex-wrap:wrap; gap:8px;}
+  .strip-links a{font-family:var(--mono); font-size:11px; letter-spacing:.06em;
+                 text-transform:uppercase; color:var(--muted); background:var(--white);
+                 border:var(--border); border-bottom:var(--border);
+                 border-radius:var(--radius-chip); padding:5px 11px;}
+  .strip-links a b{color:var(--clay-ink); font-weight:500; margin-right:4px;}
+  .strip-links a:hover{background:var(--clay-soft); border-color:var(--clay);
+                       border-bottom-color:var(--clay);}
+
+  /* ---------- layout — section rhythm convention ---------- */
+  .wrap{max-width:1000px; margin:0 auto; padding:20px 24px 90px;}
+  section{margin-top:40px; padding-top:40px; border-top:1px solid var(--gray-300);
+          scroll-margin-top:24px;}
+  h2{font-size:28px; line-height:1.15; margin:16px 0 16px;}
+  h2 + *{margin-top:0;}
+  .sec-kick{display:inline-block; font-family:var(--mono); font-size:10px;
+            text-transform:uppercase; letter-spacing:.18em; color:var(--muted);
+            background:var(--gray-100); border:var(--border);
+            border-radius:var(--radius-chip); padding:4px 11px;}
+  .section-lede{font-size:16.5px; color:var(--body);}
+  .section-lede + *{margin-top:24px;}
+
+  /* ---------- lens sections — five equal interrogative sections ---------- */
+  .lens-stamp{font-family:var(--serif); font-weight:500;
+              font-size:clamp(60px, 10vw, 120px); line-height:.95;
+              letter-spacing:-.02em; color:var(--slate);}
+  .lens-stamp .stamp-q{font-style:italic; color:var(--clay-ink);}
+  .lens .sec-kick{margin-top:20px;}
+  .lens-lede{font-size:16.5px; line-height:1.55; color:var(--slate); font-weight:500;
+             border-left:3px solid var(--clay); padding:8px 0 8px 16px;}
+  .lens-lede b{font-weight:600;}
+  .lens-body{margin-top:24px; font-size:14.5px; color:var(--body);}
+  .lens-body p + p{margin-top:10px;}
+  .lens-body b{color:var(--slate); font-weight:600;}
+  /* :target — the section's top hairline thickens to a 3px clay rule
+     (dossier grammar); padding compensates so the rhythm holds. JS-free. */
+  .lens:target{border-top:3px solid var(--clay); padding-top:38px;}
+
+  /* ---------- folds — JS-free disclosure, deck grammar ---------- */
+  details.fold{margin-top:16px;}
+  details.fold summary{cursor:pointer; list-style:none; font-family:var(--mono);
+                       font-size:11px; letter-spacing:.08em; text-transform:uppercase;
+                       color:var(--clay-ink);}
+  details.fold summary::-webkit-details-marker{display:none;}
+  details.fold summary::before{content:"+ "; color:var(--clay-ink); font-weight:600;}
+  details.fold[open] summary::before{content:"− ";}
+  details.fold[open] summary{margin-bottom:12px;}
+  details.fold .fold-body{padding-top:2px;}
+  .example{background:var(--oat); border:1px solid var(--gray-300);
+           border-radius:8px; padding:14px 16px; font-size:13.5px; color:var(--body);}
+  .example .etype{font-family:var(--mono); font-size:10px; letter-spacing:.14em;
+                  text-transform:uppercase; color:var(--muted); display:block;
+                  margin-bottom:5px;}
+  .example b{color:var(--slate); font-weight:600;}
+  .example p + p{margin-top:8px;}
+
+  /* ---------- figure — one hub map on a gray-100 plate ---------- */
+  .fig{margin-top:22px; background:var(--gray-100); border:var(--border);
+       border-radius:var(--radius-panel); position:relative; overflow:hidden;}
+  .fig-h{display:flex; align-items:center; justify-content:space-between; gap:12px;
+         padding:10px 14px;}
+  .fig-id{font-family:var(--mono); font-size:10px; letter-spacing:.18em;
+          text-transform:uppercase; color:var(--muted);}
+  .fig-fs{font-family:var(--mono); font-size:10px; text-transform:uppercase;
+          letter-spacing:.14em; color:var(--gray-500); background:var(--white);
+          border:var(--border); border-radius:999px; padding:4px 10px; cursor:pointer;}
+  .fig-fs:hover{color:var(--clay-ink); border-color:var(--clay);}
+  .fig-fs:focus-visible{outline:2px solid var(--clay); outline-offset:2px;}
+  .fig-legend{display:flex; flex-wrap:wrap; gap:6px 18px; padding:0 14px 9px;
+              border-bottom:1px solid var(--gray-300); font-family:var(--mono);
+              font-size:10px; letter-spacing:.06em; text-transform:uppercase;
+              color:var(--muted);}
+  .fig-legend .lg{display:inline-flex; align-items:center; gap:6px;}
+  .fig-legend .lg-g{flex:none;}
+  .fig-b{padding:20px 18px;}
+  .fig-b svg{display:block; width:auto; max-width:100%; height:auto; margin:0 auto;}
+  .fig-f{padding:10px 14px; border-top:1px solid var(--gray-300);
+         font-family:var(--mono); font-size:10px; letter-spacing:.18em;
+         text-transform:uppercase; color:var(--muted); text-align:center;}
+
+  /* pele theming — Clay mapping lives here, never inline */
+  .fig svg{--pele-fg:var(--slate); --pele-fg-on-light:var(--body); --pele-muted:var(--gray-500);
+           --pele-line:var(--gray-300); --pele-bg:transparent; --pele-surface:transparent;
+           --pele-surface-alt:transparent; --pele-border:var(--gray-300); --pele-accent:var(--clay);
+           --pele-radius:4px;
+           --pele-font:system-ui,-apple-system,sans-serif;
+           --pele-font-mono:ui-monospace,"SF Mono",Menlo,monospace;}
+  .fig svg .pele-title{display:none;}
+  .fig svg .pele-edge-label rect{fill:transparent;}
+  .fig svg .pele-edge-label text{fill:var(--body); font-size:12.5px;}
+
+  /* ---------- colophon ---------- */
+  .colophon p.statement{font-size:14.5px; color:var(--body);}
+  .colophon .row{display:flex; flex-wrap:wrap; gap:8px 24px; margin-top:20px;
+                 font-family:var(--mono); font-size:11px; letter-spacing:.06em;
+                 color:var(--muted);}
+
+  @media (max-width:860px){
+    .masthead{padding:36px 16px 0;}
+    .wrap{padding:12px 16px 72px;}
+    .meta-row{gap:20px;}
+  }
+
+  /* ---------- dark mode — the token flip, carried wholesale ---------- */
+  @media (prefers-color-scheme: dark){
+    :root{
+      --ivory:#191817; --slate:#F0EEE6; --white:#201F1D;
+      --clay-ink:#FE6C2D; --clay-soft:#3A241A;
+      --oat:#4A4438; --olive-ink:#A9BC8B; --olive-soft:#262D1E;
+      --rust:#D98A80; --rust-soft:#3A2622;
+      --gray-100:#232220; --gray-300:#3D3D3A; --muted:#A5A39B; --body:#D6D4CC;
+    }
+  }
+
+  @media print{
+    body{background:#FFFFFF; color:#141413;}
+    :root{
+      --ivory:#FFFFFF; --slate:#141413; --white:#FFFFFF; --body:#3D3D3A;
+      --gray-100:#F5F4F0; --gray-300:#D1CFC5; --muted:#67665F;
+      --clay-ink:#B8430F; --clay-soft:#FDEBE0;
+      --olive-ink:#55673C; --olive-soft:#EEF2E6;
+      --rust:#B04A3F; --rust-soft:#F8ECE9;
+    }
+    nav.lens-strip{display:none;}
+    .wrap{padding:0 24px;}
+    .masthead{padding:0 24px;}
+    section{margin-top:36px; padding-top:24px;}
+    .example, .fig, .colophon .row{break-inside:avoid;}
+    .lens-stamp{break-after:avoid;}
+    /* :target effects neutralized on paper */
+    .lens:target{border-top:1px solid var(--gray-300); padding-top:24px;}
+    /* folds forced open */
+    details.fold > *:not(summary){display:block !important;}
+    details.fold summary::before{content:"− ";}
+  }
+</style>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="masthead-inner">
+    <div class="kicker">
+      <span class="pill"><b>te9-docs</b> · skills.te9.dev</span>
+      <span class="kicker-meta">one subject · five lenses</span>
+      <span class="page-no">09 / 36</span>
+    </div>
+    <span class="type-label">What · How · Why · Who · When</span>
+    <h1>One subject, five <em>questions</em></h1>
+    <p class="lede"><b>Who this is for:</b> anyone who needs to explain the te9-docs suite itself and wants every angle covered. The subject is taken through five interrogative lenses — <b>WHAT, HOW, WHY, WHO, WHEN</b> — one section per lens, equal weight, each answering fully. Every fact comes from the suite brief, the suite's single source of truth.</p>
+    <dl class="meta-row">
+      <div><dt>Prepared by</dt><dd>Founding session</dd></div>
+      <div><dt>Suite version</dt><dd>0.7.0</dd></div>
+      <div><dt>Subject</dt><dd>The te9-docs suite · SUITE-BRIEF facts</dd></div>
+      <div><dt>Status</dt><dd><span class="chip">Reviewed</span></dd></div>
+    </dl>
+    <nav class="lens-strip" aria-label="Lens strip">
+      <p class="strip-title">The lens strip</p>
+      <div class="strip-links">
+        <a href="#what"><b>01</b>What</a>
+        <a href="#how"><b>02</b>How</a>
+        <a href="#why"><b>03</b>Why</a>
+        <a href="#who"><b>04</b>Who</a>
+        <a href="#when"><b>05</b>When</a>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<div class="wrap">
+
+  <!-- THE MAP — hub figure -->
+  <section id="map">
+    <span class="sec-kick">The map</span>
+    <h2>One subject, five rings</h2>
+    <p class="section-lede">The whole document in one map: the te9-docs suite as the double ring, center-left, and the five interrogative lenses fanning right as clay rings — one captioned hairline apiece, each caption the answer its lens section develops below. The suite brief feeds the subject from the left as a small gray dot, the single source of truth every fact on this page is grounded in. Rendered from Mermaid via pele at build time, then clayified into the ring grammar.</p>
+
+    <figure class="fig">
+      <div class="fig-h"><span class="fig-id">FIG &middot; 01</span><button class="fig-fs" type="button" aria-label="Open this diagram in a new tab">FULLSCREEN</button></div>
+      <div class="fig-legend"><span class="lg"><svg class="lg-g" width="14" height="14" viewBox="0 0 14 14" aria-hidden="true"><circle cx="7" cy="7" r="5" fill="none" stroke="#FE6C2D" stroke-width="2"/><circle cx="7" cy="7" r="2.5" fill="none" stroke="#FE6C2D" stroke-width="1.5"/></svg>double ring = the subject — the te9-docs suite</span><span class="lg"><svg class="lg-g" width="14" height="14" viewBox="0 0 14 14" aria-hidden="true"><circle cx="7" cy="7" r="5" fill="none" stroke="#FE6C2D" stroke-width="2"/></svg>interrogative lens</span><span class="lg"><svg class="lg-g" width="12" height="12" viewBox="0 0 12 12" aria-hidden="true"><circle cx="6" cy="6" r="4" fill="#87867F"/></svg>supporting fact</span></div>
+      <div class="fig-b"><svg aria-label="Hub figure: the te9-docs suite as a double ring, center-left; the five interrogative lenses — WHAT, HOW, WHY, WHO, WHEN — fanning right as clay rings on captioned hairlines; the suite brief as a supporting dot" xmlns="http://www.w3.org/2000/svg" class="pele pele-flowchart" viewBox="-41.63999999999999 0 834.64 579.81" width="835" height="580" style="max-width:100%;height:auto;--_bg:var(--pele-bg,#fff);--_fg:var(--pele-fg,#1f1f1f);--_m:var(--pele-muted,#6e6e6e);--_l:var(--pele-line,#1f1f1f);--_s:var(--pele-surface,#f3f3f3);--_a:var(--pele-surface-alt,#e6e6e6);--_b:var(--pele-border,#8a8a8a);--_c:var(--pele-accent,#5b7bd5);color:var(--_fg);--_fm:var(--pele-font-mono,monospace);font:16px sans-serif;letter-spacing:normal;word-spacing:normal;text-transform:none;direction:ltr;font-family:var(--pele-font,sans-serif)" fill="var(--_fg)" role="graphics-document document" aria-roledescription="flowchart">
+  <style>
+    @media (prefers-color-scheme: dark){
+      .clay-lab{fill:#F0EEE6;}
+      .clay-sub{fill:#A5A39B;}
+    }
+  </style><g transform="translate(0 43.8)"><g class="pele-edges" fill="none" stroke="var(--_l)" stroke-linecap="round"><g class="clay-edge" style="stroke:#D1CFC5;stroke-width:1.5px;"><path d="M60.96,232.39L346.00,232.39" fill="none"/></g><g class="clay-edge" style="stroke:#D1CFC5;stroke-width:1.5px;"><path d="M381.97,223.84L733.61,46.75" fill="none"/></g><g class="clay-edge" style="stroke:#D1CFC5;stroke-width:1.5px;"><path d="M383.43,227.77L729.95,141.01" fill="none"/></g><g class="clay-edge" style="stroke:#D1CFC5;stroke-width:1.5px;"><path d="M384.00,232.39L729.38,232.39" fill="none"/></g><g class="clay-edge" style="stroke:#D1CFC5;stroke-width:1.5px;"><path d="M383.43,237.02L730.31,324.12" fill="none"/></g><g class="clay-edge" style="stroke:#D1CFC5;stroke-width:1.5px;"><path d="M381.94,240.99L735.54,420.61" fill="none"/></g></g><g class="pele-edge-labels" font-size="14"><g class="pele-edge-label" data-id="L_BRIEF_SUITE_0"><rect x="122.43" y="221.89" width="148.85" height="21" rx="3" fill="var(--_bg)"/><text x="196.85" y="237.29" text-anchor="middle">every fact on this page</text></g><g class="pele-edge-label" data-id="L_SUITE_WHAT_0"><rect x="504.31" y="27.7" width="181.49" height="21" rx="3" fill="var(--_bg)"/><text x="595.06" y="43.1" text-anchor="middle">single-file HTML documents</text></g><g class="pele-edge-label" data-id="L_SUITE_HOW_0"><rect x="519.85" y="125.89" width="150.41" height="21" rx="3" fill="var(--_bg)"/><text x="595.06" y="141.29" text-anchor="middle">intake to storage menu</text></g><g class="pele-edge-label" data-id="L_SUITE_WHY_0"><rect x="509.36" y="221.89" width="171.39" height="21" rx="3" fill="var(--_bg)"/><text x="595.06" y="237.29" text-anchor="middle">polish without design work</text></g><g class="pele-edge-label" data-id="L_SUITE_WHO_0"><rect x="508.57" y="318.25" width="172.98" height="21" rx="3" fill="var(--_bg)"/><text x="595.06" y="333.65" text-anchor="middle">agents build, humans read</text></g><g class="pele-edge-label" data-id="L_SUITE_WHEN_0"><rect x="499.23" y="418.71" width="191.65" height="21" rx="3" fill="var(--_bg)"/><text x="595.06" y="434.11" text-anchor="middle">a shareable artifact is needed</text></g></g><g class="pele-nodes"><g class="clay-node" data-id="SUITE"><circle cx="365" cy="232.39" r="17" fill="none" stroke="#FE6C2D" stroke-width="2"/><circle cx="365" cy="232.39" r="13" fill="none" stroke="#FE6C2D" stroke-width="1.5"/><text class="clay-lab" x="365" y="206.39" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="11" font-weight="600" fill="#141413">TE9-DOCS SUITE</text><text class="clay-sub" x="365" y="271.39" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="10" fill="#87867F">the subject, examined</text></g><g class="clay-node" data-id="BRIEF"><circle cx="53.96" cy="232.39" r="5" fill="#87867F"/><text class="clay-lab" x="53.96" y="216.39" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="11" font-weight="600" fill="#141413">SUITE BRIEF</text><text class="clay-sub" x="53.96" y="250.39" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="10" fill="#87867F">single source of truth</text></g><g class="clay-node" data-id="WHAT"><circle cx="750.58" cy="38.2" r="17" fill="none" stroke="#FE6C2D" stroke-width="2"/><text class="clay-lab" x="750.58" y="12.200000000000003" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="11" font-weight="600" fill="#141413">WHAT</text><text class="clay-sub" x="750.58" y="77.2" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="10" fill="#87867F">LENS 01</text></g><g class="clay-node" data-id="HOW"><circle cx="748.38" cy="136.39" r="17" fill="none" stroke="#FE6C2D" stroke-width="2"/><text class="clay-lab" x="748.38" y="110.38999999999999" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="11" font-weight="600" fill="#141413">HOW</text><text class="clay-sub" x="748.38" y="175.39" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="10" fill="#87867F">LENS 02</text></g><g class="clay-node" data-id="WHY"><circle cx="748.38" cy="232.39" r="17" fill="none" stroke="#FE6C2D" stroke-width="2"/><text class="clay-lab" x="748.38" y="206.39" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="11" font-weight="600" fill="#141413">WHY</text><text class="clay-sub" x="748.38" y="271.39" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="10" fill="#87867F">LENS 03</text></g><g class="clay-node" data-id="WHO"><circle cx="748.74" cy="328.75" r="17" fill="none" stroke="#FE6C2D" stroke-width="2"/><text class="clay-lab" x="748.74" y="302.75" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="11" font-weight="600" fill="#141413">WHO</text><text class="clay-sub" x="748.74" y="367.75" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="10" fill="#87867F">LENS 04</text></g><g class="clay-node" data-id="WHEN"><circle cx="752.48" cy="429.21" r="17" fill="none" stroke="#FE6C2D" stroke-width="2"/><text class="clay-lab" x="752.48" y="403.21" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="11" font-weight="600" fill="#141413">WHEN</text><text class="clay-sub" x="752.48" y="468.21" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="10" fill="#87867F">LENS 05</text></g></g></g></svg></div>
+      <div class="fig-f">FIG · 01 — THE SUITE THROUGH FIVE LENSES · RENDERED VIA PELE, CLAYIFIED</div>
+    </figure>
+  </section>
+
+  <!-- LENS 01 · WHAT -->
+  <section class="lens" id="what">
+    <p class="lens-stamp" aria-hidden="true">What<span class="stamp-q">?</span></p>
+    <span class="sec-kick">Lens 01 · What</span>
+    <h2>The thing itself</h2>
+    <p class="lens-lede"><b>te9-docs is a document-suite skill</b>: it produces polished, shareable, single-file HTML documents for human readers — and every one of them is written in the Clay Explainer design system.</p>
+    <div class="lens-body">
+      <p>Concretely, it lives in the skills.te9.dev repo as a plain-dir Agent Skill (agentskills.io conformant), packaged for the pi agent as a thin plugin wrapper. Its unit is the <b>Template</b> — a finished, full-HTML document with realistic placeholders — and its product is the <b>Document</b>: the instance a reader actually receives. The launch taxonomy counts <b>36 types</b>, from decision brief to cashflow statement.</p>
+      <p>"Single-file" is a commitment, not a slogan: the three type faces ride as system stacks — zero webfonts, zero network requests in every document; folds are <b>&lt;details&gt;</b>, jumps are <b>:target</b>, and there are zero scripts by default under Clay discipline. A Document is one file that opens from disk anywhere, with dark mode, the print spec and AA contrast riding along in the tokens.</p>
+    </div>
+    <details class="fold">
+      <summary>Example · one WHAT, three times over</summary>
+      <div class="fold-body">
+        <div class="example">
+          <span class="etype">The founding trio</span>
+          <p><b>brief.html</b> (decision brief), <b>dossier.html</b> (evidence dossier) and <b>deck.html</b> (presentation deck) — the three founding documents, converted from the examples with placeholders rewritten about the suite. Three files, three purposes, one design system; each opens from disk with zero requests.</p>
+        </div>
+      </div>
+    </details>
+  </section>
+
+  <!-- LENS 02 · HOW -->
+  <section class="lens" id="how">
+    <p class="lens-stamp" aria-hidden="true">How<span class="stamp-q">?</span></p>
+    <span class="sec-kick">Lens 02 · How</span>
+    <h2>The production run</h2>
+    <p class="lens-lede">One document, one ordered run: <b>Intake → Index-first → Instance → Figures → Playback → Storage menu</b> — six steps, always in that order.</p>
+    <div class="lens-body">
+      <p><b>Intake</b> asks for the document's goal and acceptance criteria, and states the session's own recommendation — type and approach — from context. <b>Index-first</b> reads the suite index (<b>assets/templates/index.json</b>), normative for discovery, and grounds the type decision in it; the user confirms if two types could match. <b>Instance</b> copies the chosen Template and swaps the self-describing placeholders for real facts, preserving layout, interactions, and Clay tokens.</p>
+      <p><b>Figures</b> render at build time — Mermaid source through pele, clayified into the ring grammar, inlined in a fenced gray-100 plate with a mono FIG · NN caption. <b>Playback</b> shows the document in the browser — the review gate, approval after each build, feedback folded in on the spot. The <b>Storage menu</b> closes the run: (a) the project's docs folder, (b) the central collection at <b>E:\te9-docs\documents\</b>, (c) preview only — and the fourth option, specify a location, always wins when used.</p>
+    </div>
+    <details class="fold">
+      <summary>Example · a run in miniature</summary>
+      <div class="fold-body">
+        <div class="example">
+          <span class="etype">Six steps, one Document</span>
+          <p>A session is asked for a concept breakdown. Intake fixes the goal; the index says <b>05-concept-breakdown.html</b> matches; the Template is copied and its suite placeholders swapped for the reader's facts; the anatomy figure is rendered via pele and clayified; the build opens in the browser and passes the gate; the file lands at <b>&lt;project&gt;/docs/&lt;YYYY-MM-DD&gt;-&lt;slug&gt;.html</b>.</p>
+        </div>
+      </div>
+    </details>
+  </section>
+
+  <!-- LENS 03 · WHY -->
+  <section class="lens" id="why">
+    <p class="lens-stamp" aria-hidden="true">Why<span class="stamp-q">?</span></p>
+    <span class="sec-kick">Lens 03 · Why</span>
+    <h2>The reason it exists</h2>
+    <p class="lens-lede">So that <b>polished, consistent documents happen without design work</b> — the design decisions are made once, in one design system, and every document inherits them.</p>
+    <div class="lens-body">
+      <p>The Clay Explainer design system was extracted from the founding examples and specified in <b>references/CLAY-STYLE.md</b>: warm ivory ground, 1.5px hairlines, mono pill kickers, giant serif headlines with one italic clay word. Because all 36 types draw the same tokens, the same ring grammar and the same section rhythm, the suite reads as one publication — no document looks like its author invented a style that morning.</p>
+      <p>And the patterns are <b>owned</b>: te9-docs is the clean-room sibling of the vendored <b>html-docs</b> skill — every pattern adopted from it was re-justified and is owned as a te9 signature, with the decisions recorded in <b>docs/adr/0001–0006</b>. Ownership is what makes the polish a property of the suite rather than of whichever session happens to be building.</p>
+    </div>
+    <details class="fold">
+      <summary>Example · what the reader gets for free</summary>
+      <div class="fold-body">
+        <div class="example">
+          <span class="etype">Hand over the file</span>
+          <p>A Document handed to a human reader needs no instructions: it opens offline (zero network requests), flips dark with their OS preference, prints quiet with every fold forced open, and every accent passes AA. All of it arrives through the tokens — nobody designed anything to earn it.</p>
+        </div>
+      </div>
+    </details>
+  </section>
+
+  <!-- LENS 04 · WHO -->
+  <section class="lens" id="who">
+    <p class="lens-stamp" aria-hidden="true">Who<span class="stamp-q">?</span></p>
+    <span class="sec-kick">Lens 04 · Who</span>
+    <h2>The hands and the eyes</h2>
+    <p class="lens-lede"><b>Any agent session builds; human readers outside the session read</b> — and the two never need to meet.</p>
+    <div class="lens-body">
+      <p>The build side is written for a session, not a designer: intake, the index and the Template mechanic are executable by any agent session, with no design judgment required. Even growth is autonomous — the <b>extension protocol</b> lets a session that needs an unlisted type build it to the same conventions (Clay, self-describing content, whitelist compliance, quality gates), save it to <b>assets/templates/</b>, register it in the index, bump the suite version and write its own changelog line.</p>
+      <p>The read side is a human outside the session: they receive one file — no fonts to load, no scripts to run, no network to reach. The <b>review gate</b> keeps that human in charge of what ships: the document is shown in the browser after each build, and feedback is folded in while the session is still open.</p>
+    </div>
+    <details class="fold">
+      <summary>Example · the extension protocol, meeting a missing type</summary>
+      <div class="fold-body">
+        <div class="example">
+          <span class="etype">A type that wasn't there</span>
+          <p>A session is asked for a project postmortem. The index lists 36 types — none of them is a postmortem. The session builds one to the same conventions, registers it in the index, bumps the suite version by a MINOR and appends the changelog line. The next session discovers the new type where all types live: the index.</p>
+        </div>
+      </div>
+    </details>
+  </section>
+
+  <!-- LENS 05 · WHEN -->
+  <section class="lens" id="when">
+    <p class="lens-stamp" aria-hidden="true">When<span class="stamp-q">?</span></p>
+    <span class="sec-kick">Lens 05 · When</span>
+    <h2>The moments it serves</h2>
+    <p class="lens-lede">Whenever something must <b>leave the session and reach a human</b> — whenever a shareable artifact is needed.</p>
+    <div class="lens-body">
+      <p>The trigger is a shareable artifact; the check is the index. It grounds which of the 36 types fits the moment: a concept breakdown for one concept's anatomy, a 2D quadrant overview for positioning, timelines and steps for a plan, API documentation for an interface, a cashflow statement for the money. The index is normative for discovery — there is no keyword heuristics file to guess from.</p>
+      <p>The second when is <b>whenever a type is missing</b> — the extension protocol's trigger, and the version answers for it: a new template bumps the suite MINOR, a template or convention fix bumps PATCH, a breaking change bumps MAJOR, and every bump appends a one-line changelog entry. The user discovers new types in the index next session.</p>
+    </div>
+    <details class="fold">
+      <summary>Example · the two-question WHEN test</summary>
+      <div class="fold-body">
+        <div class="example">
+          <span class="etype">Before reaching for the suite</span>
+          <p>Does this need to reach a reader outside the session? If no, stop — the suite produces documents for humans, not notes for the session itself. If yes: does a type exist in the index? If yes, instance it; if no, build the type, register it — and the next "when" is already covered.</p>
+        </div>
+      </div>
+    </details>
+  </section>
+
+  <!-- COLOPHON -->
+  <section id="colophon" class="colophon">
+    <span class="sec-kick">Colophon</span>
+    <h2>What, How, Why, Who, When · template v0.1</h2>
+    <p class="statement">Assembled inside a fixed grammar — lens strip, hub figure, five perfectly equal lens sections, colophon — with every answer grounded in the suite brief and nothing invented. The interrogative is the motif: one subject, five question words, and no lens heavier than another.</p>
+    <div class="row">
+      <span>DOC ID · TE9-5W1H-001</span>
+      <span>SUITE VERSION · 0.7.0</span>
+      <span>SUITE · <a href="../README.html">te9-docs</a></span>
+      <span>SIBLINGS · <a href="01-brief.html">Decision Brief</a> · <a href="02-dossier.html">Evidence Dossier</a> · <a href="03-deck.html">Presentation Deck</a> · <a href="04-introduction-of-concepts.html">Introduction of Concepts</a> · <a href="05-concept-breakdown.html">Concept Breakdown</a> · <a href="06-top-down-explainer.html">Top-down Explainer</a> · <a href="07-i-am-12-explainer.html">I am 12 Explainer</a> · <a href="08-feature-breakdown.html">Feature Breakdown</a></span>
+      <span>PREPARED BY · Founding session</span>
+    </div>
+  </section>
+
+</div>
+
+<script>
+  document.querySelectorAll('.fig-fs').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var svg = btn.closest('.fig').querySelector('svg');
+      var blob = new Blob([svg.outerHTML], { type: 'image/svg+xml' });
+      window.open(URL.createObjectURL(blob), '_blank');
+    });
+  });
+</script>
+</body>
+</html>

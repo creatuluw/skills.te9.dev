@@ -1,0 +1,554 @@
+<!doctype html>
+<!-- te9-docs suite — self-describing placeholder · v1.1.0 — STYLE: Clay Explainer -->
+<!-- ================================================================
+     LLM AUTHORING CONTRACT — DATA REPORT v0.1 — STYLE: Clay Explainer
+     te9-docs suite — self-describing placeholder. Paste this comment
+     into the authoring LLM alongside the dataset. The LLM assembles;
+     it does not redesign.
+
+     TASK        Present one quantitative subject: what was measured
+                 and how (the dataset), two charts each grounded in a
+                 stated source and counting method, a bytes-on-disk
+                 metrics table, and numbered observations. Numbers
+                 first — every figure traceable to its counting method.
+     FORMAT      Numbers-first document: dataset section with headline
+                 counter tiles, two figure plates (pele pie + pele
+                 xychart, Clay series colors via --pele-series-*),
+                 ruled metrics table (files / bytes / KB per area),
+                 four numbered one-sentence observations, colophon.
+                 Scannable in 60 seconds, auditable in 3 minutes.
+     HIERARCHY   doc > section > tile / figure plate / table row /
+                 observation row > (fold: counting method)
+     SECTION     masthead → jump-nav pill strip → the dataset (tiles +
+                 method fold) → fig · 01 (composition pie) → fig · 02
+                 (growth bars) → metrics table → observations →
+                 colophon
+     ORDER       The dataset is the first section — method before
+                 numbers. Exactly two figures, one table, one
+                 observations section, one colophon.
+
+     BLOCK GRAMMAR
+       tile           white bordered panel (one clay-soft hero): mono
+                      micro-label, giant mono numeral, one sub-line.
+                      Counted from the repository at collection date.
+       figure plate   pele-rendered SVG in a fenced gray-100 plate:
+                      header = FIG ID + FULLSCREEN pill, legend strip =
+                      the chart's decoding key as mono text + swatches
+                      (the emitted legend info, pasted into the header),
+                      body = the diagram only, footer = caption naming
+                      the source and the collection date.
+       table          ruled register: mono uppercase headers, hairline
+                      rows, mono right-aligned numerals, 1.5px total
+                      rule, counting note under the table.
+       observation    numbered row: O-NN chip + ONE sentence, grounded
+                      in a number stated on this page.
+       fold           <details> on an oat plate; the counting method.
+
+     IRON RULES  Every number counted from the repository at the
+                 collection date (ls/du file counts, byte sums, the
+                 registry, the changelog) — never estimated, never
+                 invented. Every chart names its source and its
+                 counting method. Chart series colors are Clay:
+                 clay #FE6C2D, olive #788C5D, rust #B04A3F, slate
+                 #141413, then gray steps — set via --pele-series-1..8
+                 on the plate CSS, never pele's default blues. The
+                 measuring document excludes itself from template byte
+                 sums (the instrument does not measure itself) and says
+                 so in the method fold. Zero scripts beyond the
+                 whitelisted fullscreen listener.
+     VOICE       Plain, quantitative, declarative. Numbers first.
+     STATUS      The collection date is stated in the masthead, in
+                 every figure footer and in the table note.
+     COLORS      decorative clay #FE6C2D, text clay #B8430F, on ivory
+                 #FAF9F5 with slate ink #141413 — olive #55673C,
+                 rust #B04A3F supporting — do not deviate. Dark mode:
+                 token flip under prefers-color-scheme.
+================================================================ -->
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>te9-docs · Data Report — suite v1.1.0</title>
+<style>
+  :root{
+    --ivory:#FAF9F5; --slate:#141413; --white:#FFFFFF;
+    --clay:#FE6C2D; --clay-ink:#B8430F; --clay-soft:#FDEBE0;
+    --oat:#E3DACC; --olive:#788C5D; --olive-ink:#55673C; --olive-soft:#EEF2E6;
+    --rust:#B04A3F; --rust-soft:#F8ECE9;
+    --gray-100:#F0EEE6; --gray-300:#D1CFC5; --muted:#67665F; --body:#3D3D3A;
+    --serif:ui-serif, Georgia, serif;
+    --sans:system-ui, -apple-system, sans-serif;
+    --mono:ui-monospace, "SF Mono", Menlo, monospace;
+    --radius-panel:12px; --radius-chip:999px;
+    --border:1.5px solid var(--gray-300);
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto;}
+  }
+  body{background:var(--ivory); color:var(--slate); font-family:var(--sans);
+       font-size:15.5px; line-height:1.6; -webkit-font-smoothing:antialiased;}
+  h1,h2,h3{font-family:var(--serif); font-weight:500; letter-spacing:-.01em;}
+  a{color:var(--clay-ink); text-decoration:none; border-bottom:1px dotted var(--clay-ink);}
+  a:hover{border-bottom-style:solid;}
+  a:focus-visible, summary:focus-visible{outline:2px solid var(--clay-ink); outline-offset:2px;}
+  code{font-family:var(--mono); font-size:.92em; background:var(--gray-100);
+       border-radius:4px; padding:1px 5px;}
+
+  /* ---------- kicker — pill + meta, the shared hero grammar ---------- */
+  .kicker{display:flex; align-items:baseline; gap:12px; flex-wrap:wrap;}
+  .pill{font-family:var(--mono); font-size:11px; text-transform:uppercase;
+        letter-spacing:.06em; color:var(--muted); background:var(--gray-100);
+        border:var(--border); border-radius:var(--radius-chip); padding:5px 11px;
+        white-space:nowrap;}
+  .pill b{color:var(--clay-ink); font-weight:500;}
+  .kicker-meta{font-family:var(--mono); font-size:11px; text-transform:uppercase;
+               letter-spacing:.18em; color:var(--muted);}
+  .page-no{margin-left:auto; font-family:var(--mono); font-size:11px;
+           letter-spacing:.18em; color:var(--muted); white-space:nowrap;}
+  .type-label{display:inline-block; margin-top:24px; font-family:var(--mono); font-size:11px;
+              text-transform:uppercase; letter-spacing:.06em; color:var(--muted);
+              background:var(--gray-100); border:var(--border);
+              border-radius:var(--radius-chip); padding:5px 11px;}
+
+  /* ---------- masthead — the hero directly on ivory ---------- */
+  .masthead{padding:56px 24px 0;}
+  .masthead-inner{max-width:1000px; margin:0 auto;}
+  h1{font-size:clamp(44px, 6.5vw, 80px); line-height:1.05; margin-top:20px; max-width:16ch;}
+  h1 em{font-style:italic; color:var(--clay-ink);}
+  .lede{margin-top:26px; font-size:17.5px; line-height:1.6; color:var(--body); border-left:3px solid var(--clay); padding:4px 0 4px 20px;}
+  .lede b{color:var(--slate); font-weight:600;}
+  .meta-row{display:flex; flex-wrap:wrap; gap:32px; margin-top:36px; padding-top:22px;
+            border-top:1px solid var(--gray-300);}
+  .meta-row dt{font-family:var(--mono); font-size:10px; letter-spacing:.18em;
+               text-transform:uppercase; color:var(--muted); margin-bottom:4px;}
+  .meta-row dd{font-weight:500; color:var(--slate);}
+
+  /* ---------- jump nav — mono pill strip ---------- */
+  nav.part-index{margin-top:30px;}
+  .index-title{font-family:var(--mono); font-size:10px; letter-spacing:.18em;
+               text-transform:uppercase; color:var(--muted); margin-bottom:10px;}
+  .index-links{display:flex; flex-wrap:wrap; gap:8px;}
+  .index-links a{font-family:var(--mono); font-size:11px; letter-spacing:.06em;
+                 text-transform:uppercase; color:var(--muted); background:var(--white);
+                 border:var(--border); border-bottom:var(--border);
+                 border-radius:var(--radius-chip); padding:5px 11px;}
+  .index-links a b{color:var(--clay-ink); font-weight:500; margin-right:4px;}
+  .index-links a:hover{background:var(--clay-soft); border-color:var(--clay);
+                       border-bottom-color:var(--clay);}
+
+  /* ---------- layout — section rhythm convention ---------- */
+  .wrap{max-width:1000px; margin:0 auto; padding:20px 24px 90px;}
+  section{margin-top:40px; padding-top:40px; border-top:1px solid var(--gray-300);
+          scroll-margin-top:24px;}
+  h2{font-size:28px; line-height:1.15; margin:16px 0 16px;}
+  h2 + *{margin-top:0;}
+  .sec-kick{display:inline-block; font-family:var(--mono); font-size:10px;
+            text-transform:uppercase; letter-spacing:.18em; color:var(--muted);
+            background:var(--gray-100); border:var(--border);
+            border-radius:var(--radius-chip); padding:4px 11px;}
+  .section-lede{font-size:16.5px; color:var(--body);}
+  .section-lede + *{margin-top:24px;}
+  /* :target — the section's top hairline thickens to a 3px clay rule
+     and its pill flips clay-soft. Border, rule and chip move as one. JS-free. */
+  section:target{border-top:3px solid var(--clay); padding-top:38px;}
+  section:target .sec-kick{background:var(--clay-soft); border-color:var(--clay);
+                           color:var(--clay-ink);}
+
+  /* ---------- counter tiles — the headline numbers ---------- */
+  .tiles{display:grid; grid-template-columns:repeat(auto-fit, minmax(165px, 1fr));
+         gap:16px; margin-top:24px;}
+  .tile{background:var(--white); border:var(--border); border-radius:var(--radius-panel);
+        padding:18px 18px 16px; break-inside:avoid;}
+  .tile.hero{background:var(--clay-soft); border-color:var(--clay);}
+  .t-label{font-family:var(--mono); font-size:10px; letter-spacing:.14em;
+           text-transform:uppercase; color:var(--muted);}
+  .t-num{margin-top:10px; font-family:var(--mono); font-weight:500;
+         font-size:clamp(38px, 4.5vw, 50px); line-height:1; letter-spacing:-.02em;
+         color:var(--slate);}
+  .tile.hero .t-num{color:var(--clay-ink);}
+  .t-den{font-size:20px; color:var(--muted); letter-spacing:0;}
+  .t-sub{margin-top:10px; font-size:12px; line-height:1.5; color:var(--muted);}
+  .t-sub b{color:var(--slate); font-weight:600;}
+
+  /* ---------- folds — JS-free disclosure, deck grammar ---------- */
+  details.fold{margin-top:16px;}
+  details.fold summary{cursor:pointer; list-style:none; font-family:var(--mono);
+                       font-size:11px; letter-spacing:.08em; text-transform:uppercase;
+                       color:var(--clay-ink);}
+  details.fold summary::-webkit-details-marker{display:none;}
+  details.fold summary::before{content:"+ "; color:var(--clay-ink); font-weight:600;}
+  details.fold[open] summary::before{content:"− ";}
+  details.fold[open] summary{margin-bottom:12px;}
+  details.fold .fold-body{padding-top:2px;}
+  .example{background:var(--oat); border:1px solid var(--gray-300);
+           border-radius:8px; padding:14px 16px; font-size:13.5px; color:var(--body);}
+  .example .etype{font-family:var(--mono); font-size:10px; letter-spacing:.14em;
+                  text-transform:uppercase; color:var(--muted); display:block;
+                  margin-bottom:5px;}
+  .example b{color:var(--slate); font-weight:600;}
+  .example p + p{margin-top:8px;}
+
+  /* ---------- figure — a data chart on a gray-100 plate ---------- */
+  .fig{margin-top:22px; background:var(--gray-100); border:var(--border);
+       border-radius:var(--radius-panel); position:relative; overflow:hidden;}
+  .fig-h{display:flex; align-items:center; justify-content:space-between; gap:12px;
+         padding:10px 14px;}
+  .fig-id{font-family:var(--mono); font-size:10px; letter-spacing:.18em;
+          text-transform:uppercase; color:var(--muted);}
+  .fig-fs{font-family:var(--mono); font-size:10px; text-transform:uppercase;
+          letter-spacing:.14em; color:var(--muted); background:var(--white);
+          border:var(--border); border-radius:999px; padding:4px 10px; cursor:pointer;}
+  .fig-fs:hover{color:var(--clay-ink); border-color:var(--clay);}
+  .fig-fs:focus-visible{outline:2px solid var(--clay); outline-offset:2px;}
+  .fig-legend{display:flex; flex-wrap:wrap; gap:6px 18px; padding:0 14px 9px;
+              border-bottom:1px solid var(--gray-300); font-family:var(--mono);
+              font-size:10px; letter-spacing:.06em; text-transform:uppercase;
+              color:var(--muted);}
+  .fig-legend .lg{display:inline-flex; align-items:center; gap:6px;}
+  .fig-legend .lg-g{flex:none;}
+  .fig-b{padding:20px 18px;}
+  .fig-b svg{display:block; width:auto; max-width:100%; height:auto; margin:0 auto;}
+  .fig-f{padding:10px 14px; border-top:1px solid var(--gray-300);
+         font-family:var(--mono); font-size:10px; letter-spacing:.18em;
+         text-transform:uppercase; color:var(--muted); text-align:center;}
+
+  /* pele theming — the Clay mapping lives here, in document CSS, never
+     inline in the SVG (inline var() indirection failed to resolve
+     in-suite; CSS on .fig svg is the proven path). Series colors are
+     the Clay family: clay, olive, rust, slate, then gray steps —
+     NEVER pele's default blues. */
+  .fig svg{--pele-fg:var(--slate); --pele-fg-on-light:var(--body); --pele-fg-on-dark:var(--ivory);
+           --pele-muted:var(--muted); --pele-line:var(--gray-300); --pele-bg:transparent;
+           --pele-surface:transparent;
+           /* deliberate deviation, data plates only: pele draws the xychart
+              grid from surface-alt; transparent would erase the gridlines a
+              data chart reads against. Hairline gray-300 keeps the grid and
+              flips with the theme. */
+           --pele-surface-alt:var(--gray-300);
+           --pele-border:var(--gray-300); --pele-accent:var(--clay);
+           --pele-critical:var(--rust); --pele-error:var(--rust);
+           --pele-radius:4px; --pele-title-weight:500; --pele-heading-weight:500;
+           --pele-font:system-ui,-apple-system,sans-serif;
+           --pele-font-mono:ui-monospace,"SF Mono",Menlo,monospace;
+           --pele-series-1:var(--clay);
+           --pele-series-2:var(--olive);
+           /* literal rust, not var(--rust): --rust flips to a light tint in
+              dark mode, which would strand the pinned white in-slice label at
+              2.66:1. Pinned #B04A3F keeps the slice, the header swatch and
+              the label AA (5.4:1) in both modes. */
+           --pele-series-3:#B04A3F;
+           --pele-series-4:var(--slate);
+           --pele-series-5:#67665F;
+           --pele-series-6:#87867F;
+           --pele-series-7:#A5A39B;
+           --pele-series-8:#D1CFC5;}
+  .fig svg .pele-title{display:none;}
+  .fig svg .pele-edge-label rect{fill:transparent;}
+  .fig svg .pele-edge-label text{fill:var(--body); font-size:12.5px;}
+
+  /* FIG · 01 — pie specifics. The emitted in-SVG legend is suppressed:
+     its info (names, counts, swatches) is pasted into the plate header
+     strip, which is AA-text on the plate instead of SVG-embedded text.
+     Slice fills are series variables — identical in light and dark —
+     so the in-slice percentage labels are PINNED per slice for AA:
+     #141413 on clay 6.5:1 · #141413 on olive 5.0:1 · #FFFFFF on rust 5.4:1. */
+  #fig01 svg .pele-legend{display:none;}
+  #fig01 svg .pele-slices,
+  #fig01 svg .pele-slice-labels{transform:translate(226px,168px);}
+  #fig01 svg .pele-slice-labels text{font-weight:600;}
+  #fig01 svg .pele-slice-labels text:nth-of-type(1){fill:#141413;}
+  #fig01 svg .pele-slice-labels text:nth-of-type(2){fill:#141413;}
+  #fig01 svg .pele-slice-labels text:nth-of-type(3){fill:#FFFFFF;}
+
+  /* ---------- metrics table — the ruled register ---------- */
+  .table-scroll{margin-top:24px; overflow-x:auto;}
+  .metrics-table{width:100%; min-width:640px; background:var(--white); border:var(--border);
+                 border-radius:var(--radius-panel); border-collapse:separate;
+                 border-spacing:0; padding:6px 26px 8px; break-inside:avoid;}
+  .metrics-table thead th{font-family:var(--mono); font-size:10px; letter-spacing:.14em;
+                          text-transform:uppercase; color:var(--muted); font-weight:500;
+                          text-align:left; padding:14px 12px 10px 0;
+                          border-bottom:1px solid var(--gray-300);}
+  .metrics-table tbody td{padding:14px 12px 14px 0; border-bottom:1px solid var(--gray-300);
+                          font-size:14px; vertical-align:top;}
+  .metrics-table .a-name h3{font-size:16px; line-height:1.3;}
+  .metrics-table .a-name p{margin-top:2px; font-family:var(--mono); font-size:10.5px;
+                           letter-spacing:.06em; color:var(--muted);}
+  .metrics-table .num{font-family:var(--mono); text-align:right; white-space:nowrap;
+                      color:var(--slate);}
+  .metrics-table tr.total td{border-bottom:none; border-top:1.5px solid var(--gray-300);
+                             font-weight:600;}
+  .metrics-table tr.total .a-name h3{font-size:15px;}
+  .table-note{margin-top:16px; font-family:var(--mono); font-size:10.5px;
+              letter-spacing:.06em; line-height:1.7; color:var(--muted);}
+
+  /* ---------- observations — numbered, one sentence each ---------- */
+  .obs-board{margin-top:24px; background:var(--white); border:var(--border);
+             border-radius:var(--radius-panel); padding:6px 26px 8px;}
+  .obs{display:grid; grid-template-columns:150px 1fr; gap:20px; padding:20px 0;
+       border-bottom:1px solid var(--gray-300); break-inside:avoid;}
+  .obs:last-child{border-bottom:none;}
+  .obs-chip{display:inline-block; font-family:var(--mono); font-size:10px;
+            letter-spacing:.14em; text-transform:uppercase; color:var(--clay-ink);
+            border:1px solid var(--clay); border-radius:var(--radius-chip);
+            padding:3px 10px; white-space:nowrap;}
+  .obs h3{font-size:16.5px; line-height:1.5; font-weight:400;}
+  .obs h3 b{font-weight:600; color:var(--slate);}
+  .obs .o-num{font-family:var(--mono); font-size:.9em; color:var(--clay-ink);}
+
+  /* ---------- colophon ---------- */
+  .colophon p.statement{font-size:14.5px; color:var(--body);}
+  .colophon .row{display:flex; flex-wrap:wrap; gap:8px 24px; margin-top:20px;
+                 font-family:var(--mono); font-size:11px; letter-spacing:.06em;
+                 text-transform:uppercase; color:var(--muted);}
+
+  @media (max-width:860px){
+    .masthead{padding:36px 16px 0;}
+    .wrap{padding:12px 16px 72px;}
+    .meta-row{gap:20px;}
+    .obs{grid-template-columns:1fr; gap:8px;}
+  }
+
+  /* ---------- dark mode — the token flip, carried wholesale ---------- */
+  @media (prefers-color-scheme: dark){
+    :root{
+      --ivory:#191817; --slate:#F0EEE6; --white:#201F1D;
+      --clay-ink:#FE6C2D; --clay-soft:#3A241A;
+      --oat:#4A4438; --olive-ink:#A9BC8B; --olive-soft:#262D1E;
+      --rust:#D98A80; --rust-soft:#3A2622;
+      --gray-100:#232220; --gray-300:#3D3D3A; --muted:#A5A39B; --body:#D6D4CC;
+    }
+    /* chart plates flip through the same tokens: axis text rides --muted,
+       grid and bars ride the flipped grays and clay; the pie's series
+       fills are theme-constant, so its pinned label colors hold. */
+  }
+
+  @media print{
+    body{background:#FFFFFF; color:#141413;}
+    :root{
+      --ivory:#FFFFFF; --slate:#141413; --white:#FFFFFF; --body:#3D3D3A;
+      --gray-100:#F5F4F0; --gray-300:#D1CFC5; --muted:#67665F;
+      --clay-ink:#B8430F; --clay-soft:#FDEBE0;
+      --olive-ink:#55673C; --olive-soft:#EEF2E6;
+      --rust:#B04A3F; --rust-soft:#F8ECE9;
+    }
+    nav.part-index{display:none;}
+    .wrap{padding:0 24px;}
+    .masthead{padding:0 24px;}
+    section{margin-top:36px; padding-top:24px;}
+    .tile, .fig, .metrics-table, .obs, .example{break-inside:avoid;}
+    /* :target effects neutralized on paper */
+    section:target{border-top:1px solid var(--gray-300); padding-top:24px;}
+    section:target .sec-kick{background:var(--gray-100); border-color:var(--gray-300);
+                             color:var(--muted);}
+    /* folds forced open */
+    details.fold > *:not(summary){display:block !important;}
+    details.fold summary::before{content:"− ";}
+  }
+</style>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="masthead-inner">
+    <div class="kicker">
+      <span class="pill"><b>te9-docs</b> · skills.te9.dev</span>
+      <span class="kicker-meta">quantitative · the suite counted at collection</span>
+      <span class="page-no">DOC · 14</span>
+    </div>
+    <span class="type-label">Data Report</span>
+    <h1>The suite, in <em>numbers</em></h1>
+    <p class="lede"><b>Who this is for:</b> anyone who wants the te9-docs suite as counts instead of claims. Every number on this page was counted from the repository on <b>2026-10-29</b> — file counts and byte sums from the four asset areas, the template-to-cluster mapping from the registry, and the version-by-version build series from the changelog. Nothing is estimated; where a count excludes this very document, the method fold says so.</p>
+    <dl class="meta-row">
+      <div><dt>Prepared by</dt><dd>Founding session</dd></div>
+      <div><dt>Suite version</dt><dd>1.1.0</dd></div>
+      <div><dt>Subject</dt><dd>The suite in numbers</dd></div>
+      <div><dt>Collection date</dt><dd>2026-10-29</dd></div>
+      <div><dt>Method</dt><dd>File counts · byte sums (ls/du) · registry · changelog</dd></div>
+    </dl>
+    <nav class="part-index" aria-label="Section index">
+      <p class="index-title">Report index</p>
+      <div class="index-links">
+        <a href="#dataset"><b>01</b>The dataset</a>
+        <a href="#fig01"><b>02</b>Fig · 01</a>
+        <a href="#fig02"><b>03</b>Fig · 02</a>
+        <a href="#metrics"><b>04</b>Metrics table</a>
+        <a href="#observed"><b>05</b>Observations</a>
+        <a href="#colophon"><b>06</b>Colophon</a>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<div class="wrap">
+
+  <!-- THE DATASET — WHAT WAS MEASURED, AND HOW (FIRST SECTION: METHOD BEFORE NUMBERS) -->
+  <section id="dataset">
+    <span class="sec-kick">The dataset</span>
+    <h2>What was counted, and how</h2>
+    <p class="section-lede">Four repository areas, one registry and one changelog — each counted with a stated method at collection date <b>2026-10-29</b>. The tiles are the headline counters; the fold beneath them is the exact counting method.</p>
+
+    <div class="tiles">
+      <article class="tile hero">
+        <p class="t-label">Registered templates</p>
+        <p class="t-num">13</p>
+        <p class="t-sub"><b>index.json entries</b> — a 14th file, this report, is on disk and unregistered until its gate</p>
+      </article>
+      <article class="tile">
+        <p class="t-label">Figure corpus</p>
+        <p class="t-num">45</p>
+        <p class="t-sub">Mermaid sources + rendered SVGs in <b>assets/figures/</b> — 4 of them this report's</p>
+      </article>
+      <article class="tile">
+        <p class="t-label">Reference showcases</p>
+        <p class="t-num">34</p>
+        <p class="t-sub">pele diagram types as Clay documents · <b>assets/examples/</b></p>
+      </article>
+      <article class="tile">
+        <p class="t-label">Build scripts</p>
+        <p class="t-num">5</p>
+        <p class="t-sub">figure renderers + clayify pipeline · <b>scripts/</b>, no node_modules</p>
+      </article>
+    </div>
+
+    <details class="fold">
+      <summary>Method · how these numbers were counted</summary>
+      <div class="fold-body">
+        <div class="example">
+          <span class="etype">Counted from the repository, not from memory — 2026-10-29</span>
+          <p><b>File counts and byte sums</b> are <code>ls -l</code> listings summed per area (byte totals equivalent to <code>du</code>): 13 registered template files, 45 figure files, 34 example showcases, 5 build scripts. <b>Registry</b>: <code>index.json</code> parsed as JSON — 13 template entries, each mapped to its build cluster for Fig · 01. <b>Changelog</b>: <code>CHANGELOG.md</code> read as the version history for Fig · 02 — every suite file carries the same collection date. <b>Self-exclusion rule</b>: this document is the measuring instrument, so template counts and byte sums exclude it (13 files, not 14); the figure corpus includes this report's own two sources and two renders. <b>Cluster mapping</b>: founding trio = brief, dossier, deck; explainers = introduction of concepts, concept breakdown, top-down explainer, I-am-12 explainer, feature breakdown, what/how/why/who/when; analysis &amp; reporting = decisions log, research report, directional report, management report.</p>
+        </div>
+      </div>
+    </details>
+  </section>
+
+  <!-- FIG · 01 — REGISTERED TEMPLATES BY BUILD CLUSTER (PELE PIE, CLAY SERIES) -->
+  <section id="fig01">
+    <span class="sec-kick">Chart 01 · composition</span>
+    <h2>Fig · 01 — the registered thirteen, by cluster</h2>
+    <p class="section-lede"><b>Source:</b> the registry, <code>index.json</code> — 13 template entries. <b>Counting method:</b> entries per build cluster; the composition shown is the registry's, not the directory's (the 14th file on disk, this report, registers at its gate). Rendered from Mermaid via pele at build time; series colors are Clay, set through the plate's <code>--pele-series-*</code> variables.</p>
+
+    <figure class="fig" id="fig01">
+      <div class="fig-h"><span class="fig-id">FIG &middot; 01</span><button class="fig-fs" type="button" aria-label="Open this diagram in a new tab">FULLSCREEN</button></div>
+      <div class="fig-legend"><span class="lg"><svg class="lg-g" width="14" height="14" viewBox="0 0 14 14" aria-hidden="true"><rect x="1" y="1" width="12" height="12" rx="2" fill="#FE6C2D"/></svg>Founding trio · 3 · 23%</span><span class="lg"><svg class="lg-g" width="14" height="14" viewBox="0 0 14 14" aria-hidden="true"><rect x="1" y="1" width="12" height="12" rx="2" fill="#788C5D"/></svg>Explainers · 6 · 46%</span><span class="lg"><svg class="lg-g" width="14" height="14" viewBox="0 0 14 14" aria-hidden="true"><rect x="1" y="1" width="12" height="12" rx="2" fill="#B04A3F"/></svg>Analysis &amp; reporting · 4 · 31%</span><span class="lg">N = 13 registered</span></div>
+      <div class="fig-b"><svg xmlns="http://www.w3.org/2000/svg" class="pele pele-pie" viewBox="0 0 452 296" width="452" height="296" style="max-width:100%;height:auto;--_bg:var(--pele-bg,#fff);--_fg:var(--pele-fg,#1f1f1f);--_m:var(--pele-muted,#6e6e6e);--_l:var(--pele-line,#1f1f1f);--_s:var(--pele-surface,#f3f3f3);--_a:var(--pele-surface-alt,#e6e6e6);--_b:var(--pele-border,#8a8a8a);--_c:var(--pele-accent,#5b7bd5);color:var(--_fg);--_tw:var(--pele-title-weight,bold);--_fm:var(--pele-font-mono,monospace);font:16px sans-serif;letter-spacing:normal;word-spacing:normal;text-transform:none;direction:ltr;font-family:var(--pele-font,sans-serif)" fill="var(--_fg)" role="graphics-document document" aria-roledescription="pie"><text class="pele-title" font-weight="var(--_tw)" text-anchor="middle" xml:space="preserve"><tspan x="226" y="25.6">&quot;Registered templates by build cluster&quot;</tspan></text><g class="pele-slices" transform="translate(128,168)" stroke="var(--_bg)" stroke-width="1" stroke-linejoin="round"><path class="pele-slice" data-id="Founding trio" d="M0,0L0,-120A120,120 0 0 1 119.13,-14.46Z" fill="var(--pele-series-1,#4c78a8)"/><path class="pele-slice" data-id="Explainers" d="M0,0L119.13,-14.46A120,120 0 0 1 -112.2,42.55Z" fill="var(--pele-series-2,#f58518)"/><path class="pele-slice" data-id="Analysis &amp; reporting" d="M0,0L-112.2,42.55A120,120 0 0 1 0,-120Z" fill="var(--pele-series-3,#54a24b)"/></g><g class="pele-slice-labels" transform="translate(128,168)" font-size="14" text-anchor="middle" fill="var(--_bg)"><text x="59.68" y="-62.47">23%</text><text x="21.54" y="92.28">46%</text><text x="-74.07" y="-46.23">31%</text></g><g class="pele-legend" font-size="14"><g class="pele-legend-item" data-id="Founding trio"><rect x="280" y="136" width="12" height="12" rx="2" fill="var(--pele-series-1,#4c78a8)"/><text x="350.58" y="146.9" text-anchor="middle">Founding trio [3]</text></g><g class="pele-legend-item" data-id="Explainers"><rect x="280" y="162" width="12" height="12" rx="2" fill="var(--pele-series-2,#f58518)"/><text x="342.41" y="172.9" text-anchor="middle">Explainers [6]</text></g><g class="pele-legend-item" data-id="Analysis &amp; reporting"><rect x="280" y="188" width="12" height="12" rx="2" fill="var(--pele-series-3,#54a24b)"/><text x="371.97" y="198.9" text-anchor="middle">Analysis &amp; reporting [4]</text></g></g></svg></div>
+      <div class="fig-f">FIG · 01 — REGISTERED TEMPLATES BY BUILD CLUSTER · N = 13 · SOURCE: INDEX.JSON · COUNTED 2026-10-29</div>
+    </figure>
+  </section>
+
+  <!-- FIG · 02 — BUILD PROGRESS PER SUITE VERSION (PELE XYCHART, CLAY SERIES) -->
+  <section id="fig02">
+    <span class="sec-kick">Chart 02 · growth</span>
+    <h2>Fig · 02 — build progress, version by version</h2>
+    <p class="section-lede"><b>Source:</b> the <code>CHANGELOG.md</code> version history, cross-checked against the suite's own records. <b>Counting method:</b> templates on disk at each suite version — one per announced arrival, carried flat through patch-only releases; two counts are corroborated on-repo (v1.0.0-rc2 = 12, the management report's board; v1.1.0 = 13, the registry's entry count). <code>rc2</code> on the axis is v1.0.0-rc2, shortened to fit. The exact series is in the strip below the header — the bars have no value labels, so the strip is the chart's numbers.</p>
+
+    <figure class="fig" id="fig02">
+      <div class="fig-h"><span class="fig-id">FIG &middot; 02</span><button class="fig-fs" type="button" aria-label="Open this diagram in a new tab">FULLSCREEN</button></div>
+      <div class="fig-legend"><span class="lg"><svg class="lg-g" width="14" height="14" viewBox="0 0 14 14" aria-hidden="true"><rect x="1" y="4" width="12" height="9" rx="1" fill="#FE6C2D"/></svg>templates on disk per version</span><span class="lg">0.1.0=3 · 0.2.0=4 · 0.3.0=4 · 0.4.0=4 · 0.5.0=5 · 0.6.0=6 · 0.8.0=9 · v1.0.0-rc2=12 · v1.1.0=13</span></div>
+      <div class="fig-b"><svg xmlns="http://www.w3.org/2000/svg" class="pele pele-xychart" viewBox="0 0 700 500" width="700" height="500" style="max-width:100%;height:auto;--_bg:var(--pele-bg,#fff);--_fg:var(--pele-fg,#1f1f1f);--_m:var(--pele-muted,#6e6e6e);--_l:var(--pele-line,#1f1f1f);--_s:var(--pele-surface,#f3f3f3);--_a:var(--pele-surface-alt,#e6e6e6);--_b:var(--pele-border,#8a8a8a);--_c:var(--pele-accent,#5b7bd5);color:var(--_fg);--_tw:var(--pele-title-weight,bold);--_fm:var(--pele-font-mono,monospace);font:16px sans-serif;letter-spacing:normal;word-spacing:normal;text-transform:none;direction:ltr;font-family:var(--pele-font,sans-serif)" fill="var(--_fg)" role="graphics-document document" aria-roledescription="xychart"><text class="pele-title" font-weight="var(--_tw)" text-anchor="middle" xml:space="preserve"><tspan x="350" y="25.6">Templates on disk per suite version</tspan></text><path class="pele-grid" d="M60.57,463H692M60.57,404.64H692M60.57,346.29H692M60.57,287.93H692M60.57,229.57H692M60.57,171.21H692M60.57,112.86H692M60.57,54.5H692" stroke="var(--_a)"/><g class="pele-plot"><g class="pele-series pele-bars" fill="var(--pele-series-1,#4c78a8)"><rect x="71.09" y="375.46" width="49.11" height="87.54"/><rect x="141.25" y="346.29" width="49.11" height="116.71"/><rect x="211.41" y="346.29" width="49.11" height="116.71"/><rect x="281.57" y="346.29" width="49.11" height="116.71"/><rect x="351.73" y="317.11" width="49.11" height="145.89"/><rect x="421.89" y="287.93" width="49.11" height="175.07"/><rect x="492.05" y="200.39" width="49.11" height="262.61"/><rect x="562.21" y="112.86" width="49.11" height="350.14"/><rect x="632.36" y="83.68" width="49.11" height="379.32"/></g></g><path class="pele-axis" d="M60.57,54.5V463M60.57,463H692M60.57,463h-4M60.57,404.64h-4M60.57,346.29h-4M60.57,287.93h-4M60.57,229.57h-4M60.57,171.21h-4M60.57,112.86h-4M60.57,54.5h-4M95.65,463v4M165.81,463v4M235.97,463v4M306.12,463v4M376.28,463v4M446.44,463v4M516.6,463v4M586.76,463v4M656.92,463v4" fill="none" stroke="var(--_b)"/><g class="pele-axis-labels" font-size="14" fill="var(--_m)"><text x="50.57" y="467.9" text-anchor="end">0</text><text x="50.57" y="409.54" text-anchor="end">2</text><text x="50.57" y="351.19" text-anchor="end">4</text><text x="50.57" y="292.83" text-anchor="end">6</text><text x="50.57" y="234.47" text-anchor="end">8</text><text x="50.57" y="176.11" text-anchor="end">10</text><text x="50.57" y="117.76" text-anchor="end">12</text><text x="50.57" y="59.4" text-anchor="end">14</text><text x="95.65" y="486.4" text-anchor="middle">0.1.0</text><text x="165.81" y="486.4" text-anchor="middle">0.2.0</text><text x="235.97" y="486.4" text-anchor="middle">0.3.0</text><text x="306.12" y="486.4" text-anchor="middle">0.4.0</text><text x="376.28" y="486.4" text-anchor="middle">0.5.0</text><text x="446.44" y="486.4" text-anchor="middle">0.6.0</text><text x="516.6" y="486.4" text-anchor="middle">0.8.0</text><text x="586.76" y="486.4" text-anchor="middle">rc2</text><text x="656.92" y="486.4" text-anchor="middle">1.1.0</text></g><g class="pele-axis-titles" font-size="14"><g transform="translate(18.5,258.75) rotate(-90)"><text x="0" y="4.9" text-anchor="middle">Templates</text></g></g></svg></div>
+      <div class="fig-f">FIG · 02 — TEMPLATES ON DISK PER SUITE VERSION · SOURCE: CHANGELOG.MD + SUITE RECORDS · COUNTED 2026-10-29</div>
+    </figure>
+  </section>
+
+  <!-- METRICS TABLE — BYTES ON DISK PER AREA -->
+  <section id="metrics">
+    <span class="sec-kick">Metrics table</span>
+    <h2>Bytes on disk, area by area</h2>
+    <p class="section-lede">The whole counted corpus in one ruled register: file counts, byte sums and kilobytes per area, collected <b>2026-10-29</b>. The templates row excludes this document — the instrument does not measure itself — and the figure row includes its four files.</p>
+
+    <div class="table-scroll">
+      <table class="metrics-table">
+        <thead>
+          <tr><th scope="col">Area</th><th scope="col" style="text-align:right">Files</th><th scope="col" style="text-align:right">Bytes</th><th scope="col" style="text-align:right">KB</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="a-name"><h3>Registered templates</h3><p>assets/templates/ · excl. this document</p></td>
+            <td class="num">13</td><td class="num">511,616</td><td class="num">499.6</td>
+          </tr>
+          <tr>
+            <td class="a-name"><h3>Figure sources + renders</h3><p>assets/figures/ · incl. this report's 4 files</p></td>
+            <td class="num">45</td><td class="num">85,787</td><td class="num">83.8</td>
+          </tr>
+          <tr>
+            <td class="a-name"><h3>Reference showcases</h3><p>assets/examples/ · 32 pele types + gallery + compendium</p></td>
+            <td class="num">34</td><td class="num">477,973</td><td class="num">466.8</td>
+          </tr>
+          <tr>
+            <td class="a-name"><h3>Build scripts</h3><p>scripts/ · renderers, clayify, package · no node_modules</p></td>
+            <td class="num">5</td><td class="num">28,581</td><td class="num">27.9</td>
+          </tr>
+          <tr class="total">
+            <td class="a-name"><h3>Total — four counted areas</h3></td>
+            <td class="num">97</td><td class="num">1,103,957</td><td class="num">1,078.1</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p class="table-note">Counting note · byte sums = &Sigma; <code>ls -l</code> file sizes per area (du-equivalent) · collection 2026-10-29 · templates exclude this document; figures include its 2 sources + 2 renders · KB = bytes &divide; 1024.</p>
+
+    <details class="fold">
+      <summary>Method · what each row counts, file by file</summary>
+      <div class="fold-body">
+        <div class="example">
+          <span class="etype">The register, auditable row by row</span>
+          <p><b>Templates (13 files, 511,616 B):</b> every registered template from 01-brief to 13-management-report; the 14th file on disk is this report, excluded by the self-exclusion rule. Average registered template: 39,355 B ≈ 38.4 KB. <b>Figures (45 files, 85,787 B):</b> per-figure Mermaid sources (<code>.mmd</code>), clayify spec files, rendered SVGs and emitted legend fragments. <b>Examples (34 files, 477,973 B):</b> the pele reference gallery — one Clay showcase per diagram type plus the gallery index and the all-types compendium. <b>Scripts (5 files, 28,581 B):</b> <code>render-figure.mjs</code>, <code>clayify.mjs</code>, <code>render-figure-video.mjs</code>, the experiment builder and <code>package.json</code> — dependencies (node_modules) are not counted.</p>
+        </div>
+      </div>
+    </details>
+  </section>
+
+  <!-- OBSERVATIONS — NUMBERED, ONE SENTENCE EACH -->
+  <section id="observed">
+    <span class="sec-kick">Observations</span>
+    <h2>Four observations, one sentence each</h2>
+    <p class="section-lede">What the numbers above say when read together — each observation a single sentence, each grounded in a figure stated on this page.</p>
+
+    <div class="obs-board">
+      <article class="obs">
+        <div><span class="obs-chip">Observation O·01</span></div>
+        <h3><b>Explainers is the largest build cluster</b> — <span class="o-num">6 of 13</span> registered templates (<span class="o-num">46%</span>) — so the suite's center of gravity sits squarely on teaching documents.</h3>
+      </article>
+      <article class="obs">
+        <div><span class="obs-chip">Observation O·02</span></div>
+        <h3>Registered templates average <span class="o-num">38.4 KB</span> (<span class="o-num">511,616 B ÷ 13</span>), and the heaviest single file is the management report at <span class="o-num">52.3 KB</span> — reports carry their figures inline.</h3>
+      </article>
+      <article class="obs">
+        <div><span class="obs-chip">Observation O·03</span></div>
+        <h3>Build progress compounds fastest in the <span class="o-num">0.6.0 → 0.8.0</span> step (<span class="o-num">+3 templates, +50%</span>), and the corpus has grown <b>more than fourfold</b> since founding (<span class="o-num">3 → 13</span>).</h3>
+      </article>
+      <article class="obs">
+        <div><span class="obs-chip">Observation O·04</span></div>
+        <h3>The pele reference gallery weighs <span class="o-num">466.8 KB</span> across <span class="o-num">34</span> showcases — <span class="o-num">0.93×</span> the registered template corpus — making the suite's examples nearly as heavy as its products.</h3>
+      </article>
+    </div>
+  </section>
+
+  <!-- COLOPHON -->
+  <section id="colophon" class="colophon">
+    <span class="sec-kick">Colophon</span>
+    <h2>Data Report · template v0.1</h2>
+    <p class="statement">Assembled numbers-first: the method before the numbers, the numbers before the charts, the charts before the observations. Every figure on this page was counted from the repository at collection date 2026-10-29 — <code>ls</code>/<code>du</code> byte sums over the four asset areas, the registry's cluster mapping, and the changelog's version series — and where the counting method could not support a claim, no claim was made. The first data-report template of the analysis &amp; reporting cluster: built through the autonomous extension protocol, gated in the browser, and — on landing — the fourteenth template on disk and the fifth of its cluster.</p>
+    <div class="row">
+      <span>DOC ID · TE9-DAT-001</span>
+      <span>SUITE VERSION · 1.1.0</span>
+      <span>SUITE · te9-docs</span>
+      <span>SIBLINGS · <a href="10-decisions-log.html">Decisions Log</a> · <a href="11-research-report.html">Research Report</a> · <a href="12-directional-report.html">Directional Report</a> · <a href="13-management-report.html">Management Report</a></span>
+      <span>PREPARED BY · Founding session</span>
+    </div>
+  </section>
+
+</div>
+
+<script>
+  document.querySelectorAll('.fig-fs').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var svg = btn.closest('.fig').querySelector('svg');
+      var blob = new Blob([svg.outerHTML], { type: 'image/svg+xml' });
+      window.open(URL.createObjectURL(blob), '_blank');
+    });
+  });
+</script>
+</body>
+</html>

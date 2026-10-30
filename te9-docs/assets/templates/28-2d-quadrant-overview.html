@@ -1,0 +1,688 @@
+<!doctype html>
+<!-- te9-docs suite — self-describing placeholder · v2.5.0 — STYLE: Clay Explainer -->
+<!-- ================================================================
+     LLM AUTHORING CONTRACT — 2D QUADRANT OVERVIEW v0.1 — STYLE: Clay Explainer
+     te9-docs suite — self-describing placeholder. Paste this comment
+     into the authoring LLM alongside the effort model. The LLM
+     assembles; it does not redesign.
+
+     TASK        Position items on two axes across four quadrants — the
+                 reading is in the quadrants: each corner means
+                 something. This instance plots the suite's own
+                 formats & remaining cluster: the 8 remaining template
+                 types of the 35-type launch taxonomy by BUILD EFFORT
+                 (x: light→heavy; structural novelty × figure
+                 complexity) against READER IMPACT (y: niche→core; how
+                 central the type is to the suite's promise of
+                 shareable, polished, single-file documents), with 3
+                 landed anchor types proving the axes on known cases.
+     FORMAT      Quadrant reading document: masthead + method strip
+                 (the honesty signature), the axis band (ink: both
+                 axes + the corner rule before any position), fig · 01
+                 the plot in full plate grammar (native pele
+                 quadrantChart — open clay rings = to build, filled
+                 olive = landed, tinted corner = build first), FOUR
+                 quadrant sections — one per corner, each: what the
+                 quadrant means, which plotted types fall there with a
+                 one-line argument each, and the consequence for build
+                 order — colophon. Scannable in 60 seconds, arguable
+                 in 3.
+     HIERARCHY   doc > section > quadrant resident row / band line >
+                 (fold: what the axes deliberately do not measure, why
+                 the mediums read right of center)
+     SECTION     masthead (h1 + method strip + meta + index) → 1 the
+                 method (ink) → 2 fig · 01 the plot → 3 build first →
+                 4 plan carefully → 5 quick wins → 6 defer → colophon
+     ORDER       The method comes first and states both axes and the
+                 corner rule BEFORE any position — a reader must know
+                 how to read the corners before reading the residents.
+                 Positions are argued, never measured: every plotted
+                 type carries its one-line justification in its own
+                 quadrant section. The colophon is the last word.
+
+     BLOCK GRAMMAR
+       method strip  clay-soft strip under the lede — JUDGMENT·NOT-
+                     MEASUREMENT pill + the honesty sentence: positions
+                     are the founding session's argued judgment; each
+                     one justified in its quadrant section.
+       axis band     ink region in section 1: the x axis, the y axis,
+                     the corner rule (each corner means something),
+                     and the plotted-population chip row (11 points =
+                     8 remaining + 3 anchors; 27/35 counted; ≤ 11 is
+                     the point-label legibility ceiling).
+       figure        native pele quadrantChart (pele 1.12.0), NO
+                     clayify — quadrants theme via pele vars + plate
+                     CSS: open rings fill transparent, stroke clay
+                     2.5px (the living work); the 4 landed points fill
+                     olive (the counted past: 3 anchors + this
+                     template, landing at this gate); the build-first
+                     quadrant rect fills clay-soft via
+                     .pele-quadrant[data-id="2"]. pele quadrantChart
+                     has no point-class binding, so the landed/open
+                     distinction pins to the circles' data-id attrs in
+                     plate CSS (14-data-report convention). Header
+                     legend strip = the decoding key, mono FIG · NN
+                     caption, FULLSCREEN pill.
+       quadrant
+       section       one per corner: meaning lede → ruled table
+                     (resident / plotted position / the one-line
+                     argument; landed residents carry an olive LANDED
+                     chip) → consequence-for-build-order strip (mono,
+                     dotted clay rule). Section-head chip stamps the
+                     corner verdict: BUILD FIRST (clay-soft), PLAN
+                     CAREFULLY (clay outline), QUICK WINS (olive),
+                     DEFER (muted).
+       folds         JS-free <details> in §1 (what the axes
+                     deliberately do not measure) and §4 (why the
+                     medium types read right of center).
+
+     IRON RULES  Positions are ARGUED, not measured — the method note
+                 says so at point of use and every type carries its
+                 one-line justification in its quadrant section. 11
+                 plotted points is the legibility ceiling. Point
+                 colors ride the Clay family through plate CSS (never
+                 pele's default blues): clay #FE6C2D open rings for the
+                 living work, olive #788C5D fills for the counted past
+                 — the same clay-alive / olive-counted signature as the
+                 rolling forecast's chart. Raw clay is decorative-only
+                 on light ground; all accent text is --clay-ink (AA).
+                 Dark flip covers the chart through the pele vars on
+                 .fig svg; the tinted corner rides --clay-soft and
+                 flips with it. Zero scripts beyond the whitelisted
+                 fullscreen listener.
+     VOICE       Prioritization register, argued but calm. Each corner
+                 gets its verdict in one breath, then the residents,
+                 then the consequence. The chart is an argument, not a
+                 measurement, and says so; positions move when the
+                 argument moves.
+     STATUS      Landing document — the first of the formats &
+                 remaining eight to land (28th on disk), plotting its
+                 seven siblings still to build. Baseline: suite v2.5.0,
+                 27 of 35 landed, counted from index.json +
+                 CHANGELOG.md.
+     COLORS      decorative clay #FE6C2D, text clay #B8430F, on ivory
+                 #FAF9F5 with slate ink #141413 — olive #55673C,
+                 rust #B04A3F supporting — do not deviate. Dark mode:
+                 token flip under prefers-color-scheme.
+================================================================ -->
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>te9-docs · 2D Quadrant Overview — suite v2.5.0</title>
+<style>
+  :root{
+    --ivory:#FAF9F5; --slate:#141413; --white:#FFFFFF;
+    --clay:#FE6C2D; --clay-ink:#B8430F; --clay-soft:#FDEBE0;
+    --oat:#E3DACC; --olive:#788C5D; --olive-ink:#55673C; --olive-soft:#EEF2E6;
+    --rust:#B04A3F; --rust-soft:#F8ECE9;
+    --gray-100:#F0EEE6; --gray-300:#D1CFC5; --muted:#67665F; --body:#3D3D3A;
+    --serif:ui-serif, Georgia, serif;
+    --sans:system-ui, -apple-system, sans-serif;
+    --mono:ui-monospace, "SF Mono", Menlo, monospace;
+    --radius-panel:12px; --radius-chip:999px;
+    --border:1.5px solid var(--gray-300);
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto;}
+  }
+  body{background:var(--ivory); color:var(--slate); font-family:var(--sans);
+       font-size:15.5px; line-height:1.6; -webkit-font-smoothing:antialiased;}
+  h1,h2,h3{font-family:var(--serif); font-weight:500; letter-spacing:-.01em;}
+  a{color:var(--clay-ink); text-decoration:none; border-bottom:1px dotted var(--clay-ink);}
+  a:hover{border-bottom-style:solid;}
+  a:focus-visible, summary:focus-visible{outline:2px solid var(--clay-ink); outline-offset:2px;}
+  code{font-family:var(--mono); font-size:.92em; background:var(--gray-100);
+       border-radius:4px; padding:1px 5px;}
+
+  /* ---------- kicker — pill + meta, the shared hero grammar ---------- */
+  .kicker{display:flex; align-items:baseline; gap:12px; flex-wrap:wrap;}
+  .pill{font-family:var(--mono); font-size:11px; text-transform:uppercase;
+        letter-spacing:.06em; color:var(--muted); background:var(--gray-100);
+        border:var(--border); border-radius:var(--radius-chip); padding:5px 11px;
+        white-space:nowrap;}
+  .pill b{color:var(--clay-ink); font-weight:500;}
+  .kicker-meta{font-family:var(--mono); font-size:11px; text-transform:uppercase;
+               letter-spacing:.18em; color:var(--muted);}
+  .page-no{margin-left:auto; font-family:var(--mono); font-size:11px;
+           letter-spacing:.18em; color:var(--muted); white-space:nowrap;}
+  .type-label{display:inline-block; margin-top:24px; font-family:var(--mono); font-size:11px;
+              text-transform:uppercase; letter-spacing:.06em; color:var(--muted);
+              background:var(--gray-100); border:var(--border);
+              border-radius:var(--radius-chip); padding:5px 11px;}
+
+  /* ---------- masthead — the hero directly on ivory ---------- */
+  .masthead{padding:56px 24px 0;}
+  .masthead-inner{max-width:1000px; margin:0 auto;}
+  h1{font-size:clamp(44px, 6.5vw, 80px); line-height:1.05; margin-top:20px; max-width:16ch;}
+  h1 em{font-style:italic; color:var(--clay-ink);}
+  .lede{margin-top:26px; font-size:17.5px; line-height:1.6; color:var(--body); border-left:3px solid var(--clay); padding:4px 0 4px 20px;}
+  .lede b{color:var(--slate); font-weight:600;}
+
+  /* ---------- method strip — the quadrant's honesty signature ---------- */
+  .estimates{margin-top:28px; display:flex; align-items:flex-start; gap:14px;
+             background:var(--clay-soft); border:1.5px solid var(--clay);
+             border-radius:var(--radius-panel); padding:16px 18px;}
+  .est-tag{flex:none; font-family:var(--mono); font-size:10px; font-weight:600;
+           letter-spacing:.18em; text-transform:uppercase; color:var(--clay-ink);
+           border:1px solid var(--clay); border-radius:var(--radius-chip);
+           padding:5px 11px; margin-top:2px;}
+  .est-body{font-size:14px; line-height:1.6; color:var(--body);}
+  .est-body b{color:var(--clay-ink); font-weight:600;}
+
+  .meta-row{display:flex; flex-wrap:wrap; gap:32px; margin-top:36px; padding-top:22px;
+            border-top:1px solid var(--gray-300);}
+  .meta-row dt{font-family:var(--mono); font-size:10px; letter-spacing:.18em;
+               text-transform:uppercase; color:var(--muted); margin-bottom:4px;}
+  .meta-row dd{font-weight:500; color:var(--slate);}
+
+  /* ---------- jump nav — mono pill strip ---------- */
+  nav.part-index{margin-top:30px;}
+  .index-title{font-family:var(--mono); font-size:10px; letter-spacing:.18em;
+               text-transform:uppercase; color:var(--muted); margin-bottom:10px;}
+  .index-links{display:flex; flex-wrap:wrap; gap:8px;}
+  .index-links a{font-family:var(--mono); font-size:11px; letter-spacing:.06em;
+                 text-transform:uppercase; color:var(--muted); background:var(--white);
+                 border:var(--border); border-bottom:var(--border);
+                 border-radius:var(--radius-chip); padding:5px 11px;}
+  .index-links a b{color:var(--clay-ink); font-weight:500; margin-right:4px;}
+  .index-links a:hover{background:var(--clay-soft); border-color:var(--clay);
+                       border-bottom-color:var(--clay);}
+
+  /* ---------- layout — section rhythm convention ---------- */
+  .wrap{max-width:1000px; margin:0 auto; padding:20px 24px 90px;}
+  section{margin-top:40px; padding-top:40px; border-top:1px solid var(--gray-300);
+          scroll-margin-top:24px;}
+  h2{font-size:28px; line-height:1.15; margin:16px 0 16px;}
+  h2 + *{margin-top:0;}
+  .sec-kick{display:inline-block; font-family:var(--mono); font-size:10px;
+            text-transform:uppercase; letter-spacing:.18em; color:var(--muted);
+            background:var(--gray-100); border:var(--border);
+            border-radius:var(--radius-chip); padding:4px 11px;}
+  .section-lede{font-size:16.5px; color:var(--body);}
+  .section-lede + *{margin-top:24px;}
+  .section-lede b{color:var(--slate); font-weight:600;}
+  /* :target — the section's top hairline thickens to a 3px clay rule
+     and its pill flips clay-soft. Border, rule and chip move as one. JS-free. */
+  section:target{border-top:3px solid var(--clay); padding-top:38px;}
+  section:target .sec-kick{background:var(--clay-soft); border-color:var(--clay);
+                           color:var(--clay-ink);}
+
+  /* ---------- axis band — the ink region: both axes + corner rule before positions ---------- */
+  .window-band{background:var(--slate); border-radius:var(--radius-panel);
+               padding:26px 30px 24px; color:#F0EEE6;}
+  .win-tag{font-family:var(--mono); font-size:10px; font-weight:600; letter-spacing:.18em;
+           text-transform:uppercase; color:#FE6C2D;}
+  .window-band h3{font-size:clamp(22px, 3vw, 28px); line-height:1.3; margin-top:12px;
+                  color:#F0EEE6; max-width:32ch;}
+  .window-band h3 em{font-style:italic; color:#FE6C2D;}
+  .window-band p{margin-top:14px; font-size:14.5px; line-height:1.65; color:#D6D4CC; max-width:70ch;}
+  .window-band p b{color:#F0EEE6; font-weight:600;}
+  .win-figures{display:flex; flex-wrap:wrap; gap:10px; margin-top:18px;}
+  .win-figures span{font-family:var(--mono); font-size:11px; letter-spacing:.06em;
+                    text-transform:uppercase; color:#D6D4CC; background:#232220;
+                    border:1px solid #3D3D3A; border-radius:var(--radius-chip);
+                    padding:4px 11px;}
+  .win-figures span b{color:#FE6C2D; font-weight:500;}
+
+  /* ---------- corner verdict chips — the quadrant's stamp grammar ---------- */
+  .chip{display:inline-block; font-family:var(--mono); font-size:10px; font-weight:600;
+        letter-spacing:.12em; text-transform:uppercase; border-radius:var(--radius-chip);
+        padding:4px 10px; white-space:nowrap;}
+  .chip.buildfirst{color:var(--clay-ink); background:var(--clay-soft); border:1px solid var(--clay);}
+  .chip.plancareful{color:var(--clay-ink); background:var(--white); border:1.5px solid var(--clay);}
+  .chip.quickwins{color:var(--olive-ink); background:var(--olive-soft); border:1px solid var(--olive);}
+  .chip.defer{color:var(--muted); background:var(--gray-100); border:1px solid var(--gray-300);}
+  .landed-chip{display:inline-block; margin-left:8px; font-family:var(--mono); font-size:9px;
+               font-weight:600; letter-spacing:.14em; text-transform:uppercase;
+               color:var(--olive-ink); background:var(--olive-soft);
+               border:1px solid var(--olive); border-radius:var(--radius-chip);
+               padding:2px 8px; vertical-align:2px;}
+
+  /* ---------- folds — JS-free disclosure, deck grammar ---------- */
+  details.fold{margin-top:16px;}
+  details.fold summary{cursor:pointer; list-style:none; font-family:var(--mono);
+                       font-size:11px; letter-spacing:.08em; text-transform:uppercase;
+                       color:var(--clay-ink);}
+  details.fold summary::-webkit-details-marker{display:none;}
+  details.fold summary::before{content:"+ "; color:var(--clay-ink); font-weight:600;}
+  details.fold[open] summary::before{content:"− ";}
+  details.fold[open] summary{margin-bottom:12px;}
+  details.fold .fold-body{padding-top:2px;}
+  .example{background:var(--oat); border:1px solid var(--gray-300);
+           border-radius:8px; padding:14px 16px; font-size:13.5px; color:var(--body);}
+  .example .etype{font-family:var(--mono); font-size:10px; letter-spacing:.14em;
+                  text-transform:uppercase; color:var(--muted); display:block;
+                  margin-bottom:5px;}
+  .example b{color:var(--slate); font-weight:600;}
+  .example p + p{margin-top:8px;}
+  .example ul{margin:6px 0 0 18px;}
+  .example li{margin-top:4px;}
+
+  /* ---------- figure — the plot on a gray-100 plate ---------- */
+  .fig{margin-top:22px; background:var(--gray-100); border:var(--border);
+       border-radius:var(--radius-panel); position:relative; overflow:hidden;}
+  .fig-h{display:flex; align-items:center; justify-content:space-between; gap:12px;
+         padding:10px 14px;}
+  .fig-id{font-family:var(--mono); font-size:10px; letter-spacing:.18em;
+          text-transform:uppercase; color:var(--muted);}
+  .fig-fs{font-family:var(--mono); font-size:10px; text-transform:uppercase;
+          letter-spacing:.14em; color:var(--muted); background:var(--white);
+          border:var(--border); border-radius:999px; padding:4px 10px; cursor:pointer;}
+  .fig-fs:hover{color:var(--clay-ink); border-color:var(--clay);}
+  .fig-fs:focus-visible{outline:2px solid var(--clay); outline-offset:2px;}
+  .fig-legend{display:flex; flex-wrap:wrap; gap:6px 18px; padding:0 14px 9px;
+              border-bottom:1px solid var(--gray-300); font-family:var(--mono);
+              font-size:10px; letter-spacing:.06em; text-transform:uppercase;
+              color:var(--muted);}
+  .fig-legend .lg{display:inline-flex; align-items:center; gap:6px;}
+  .fig-legend .lg-g{flex:none;}
+  .fig-b{padding:20px 18px;}
+  .fig-b svg{display:block; width:auto; max-width:100%; height:auto; margin:0 auto;}
+  .fig-f{padding:10px 14px; border-top:1px solid var(--gray-300);
+         font-family:var(--mono); font-size:10px; letter-spacing:.18em;
+         text-transform:uppercase; color:var(--muted); text-align:center;}
+
+  /* pele theming — the Clay mapping lives here, in document CSS, never
+     inline in the SVG (inline var() indirection failed to resolve
+     in-suite; CSS on .fig svg is the proven path). Point colors are the
+     Clay family: clay for the open rings (the living work carries the
+     accent, as the rolling forecast's dashed clay forecast), olive for
+     the landed fills (the counted past, as its solid olive actual) —
+     NEVER pele's default blues. */
+  .fig svg{--pele-fg:var(--slate); --pele-fg-on-light:var(--body); --pele-fg-on-dark:var(--ivory);
+           --pele-muted:var(--muted); --pele-line:var(--gray-300); --pele-bg:transparent;
+           --pele-surface:transparent;
+           /* deliberate deviation, data plates only: transparent surface-alt would
+              erase nothing here (quadrant rects ride --pele-surface), but the hairline
+              grid token stays pinned for the axis frame to read against. */
+           --pele-surface-alt:var(--gray-300);
+           --pele-border:var(--gray-300); --pele-accent:var(--clay);
+           --pele-critical:var(--rust); --pele-error:var(--rust);
+           --pele-radius:4px; --pele-title-weight:500; --pele-heading-weight:500;
+           --pele-font:system-ui,-apple-system,sans-serif;
+           --pele-font-mono:ui-monospace,"SF Mono",Menlo,monospace;
+           --pele-series-1:var(--clay);}
+  /* Quadrant points: pele quadrantChart has no point-class binding
+     (classDef parses but points cannot reference classes), so the
+     landed/open distinction pins to the circles' stable data-id
+     attributes here in plate CSS — the same convention as the pie
+     slice labels in 14-data-report. Build record:
+     figures/28-fig01.spec.json. The FULLSCREEN blob opens the raw SVG
+     without document CSS (every point reverts to clay fill, tint lost)
+     — accepted suite-wide for native chart types; the plate view is
+     the Clay-correct one. */
+  .fig svg .pele-point{fill:transparent; stroke:var(--clay); stroke-width:2.5px;}
+  .fig svg .pele-point[data-id="API documentation"],
+  .fig svg .pele-point[data-id="Decisions log"],
+  .fig svg .pele-point[data-id="I-am-12 explainer"],
+  .fig svg .pele-point[data-id="2D quadrant · landed"]{fill:var(--olive); stroke:var(--olive);}
+  /* The priority corner reads as a figure: the build-first quadrant
+     (pele data-id 2, top-left) fills clay-soft — the brief's
+     winner-column tint, flipped by the dark token flip. */
+  .fig svg .pele-quadrant[data-id="2"] rect{fill:var(--clay-soft);}
+  .fig svg .pele-title{display:none;}
+  .fig svg .pele-edge-label rect{fill:transparent;}
+  .fig svg .pele-edge-label text{fill:var(--body); font-size:12.5px;}
+
+  /* ---------- resident tables — the ruled quadrant register ---------- */
+  .table-scroll{margin-top:18px; overflow-x:auto;}
+  .metrics-table{width:100%; min-width:780px; background:var(--white); border:var(--border);
+                 border-radius:var(--radius-panel); border-collapse:separate;
+                 border-spacing:0; padding:6px 26px 8px; break-inside:avoid;}
+  .metrics-table thead th{font-family:var(--mono); font-size:10px; letter-spacing:.14em;
+                          text-transform:uppercase; color:var(--muted); font-weight:500;
+                          text-align:left; padding:14px 12px 10px 0;
+                          border-bottom:1px solid var(--gray-300);}
+  .metrics-table tbody td{padding:14px 12px 14px 0; border-bottom:1px solid var(--gray-300);
+                          font-size:14px; vertical-align:top;}
+  .metrics-table .a-name h3{font-size:16px; line-height:1.3;}
+  .metrics-table .a-name p{margin-top:2px; font-family:var(--mono); font-size:10.5px;
+                           letter-spacing:.06em; color:var(--muted);}
+  .metrics-table .num{font-family:var(--mono); text-align:left; white-space:nowrap;
+                      color:var(--slate); font-size:13px;}
+  .metrics-table .txt{font-size:13px; color:var(--body);}
+  .metrics-table tr:last-child td{border-bottom:none;}
+  .table-note{margin-top:16px; font-family:var(--mono); font-size:10.5px;
+              letter-spacing:.06em; line-height:1.7; color:var(--muted);}
+
+  /* ---------- consequence strip — the corner's build-order verdict ---------- */
+  .consequence{margin-top:20px; font-size:13.5px; line-height:1.8; color:var(--body);
+               border-top:1px dotted var(--clay); padding-top:12px;}
+  .consequence b{color:var(--clay-ink); font-weight:600;}
+  .cons-tag{font-family:var(--mono); font-size:10px; font-weight:600;
+            letter-spacing:.18em; text-transform:uppercase; color:var(--clay-ink);}
+
+  /* ---------- colophon ---------- */
+  .colophon p.statement{font-size:14.5px; color:var(--body);}
+  .colophon .row{display:flex; flex-wrap:wrap; gap:8px 24px; margin-top:20px;
+                 font-family:var(--mono); font-size:11px; letter-spacing:.06em;
+                 text-transform:uppercase; color:var(--muted);}
+
+  @media (max-width:860px){
+    .masthead{padding:36px 16px 0;}
+    .wrap{padding:12px 16px 72px;}
+    .meta-row{gap:20px;}
+    .window-band{padding:22px 18px 20px;}
+  }
+
+  /* ---------- dark mode — the token flip, carried wholesale ---------- */
+  @media (prefers-color-scheme: dark){
+    :root{
+      --ivory:#191817; --slate:#F0EEE6; --white:#201F1D;
+      --clay-ink:#FE6C2D; --clay-soft:#3A241A;
+      --oat:#4A4438; --olive-ink:#A9BC8B; --olive-soft:#262D1E;
+      --rust:#D98A80; --rust-soft:#3A2622;
+      --gray-100:#232220; --gray-300:#3D3D3A; --muted:#A5A39B; --body:#D6D4CC;
+    }
+    /* the chart flips through the same tokens: point rings ride --clay
+       (theme-constant), landed fills ride --olive (theme-constant),
+       labels ride --pele-fg → --slate, quadrant hairlines ride
+       --gray-300, the tinted corner rides --clay-soft. */
+    .window-band{background:#000000;}
+    .win-figures span{background:#141312;}
+  }
+
+  @media print{
+    body{background:#FFFFFF; color:#141413;}
+    :root{
+      --ivory:#FFFFFF; --slate:#141413; --white:#FFFFFF; --body:#3D3D3A;
+      --gray-100:#F5F4F0; --gray-300:#D1CFC5; --muted:#67665F;
+      --clay-ink:#B8430F; --clay-soft:#FDEBE0;
+      --olive-ink:#55673C; --olive-soft:#EEF2E6;
+      --rust:#B04A3F; --rust-soft:#F8ECE9;
+    }
+    nav.part-index{display:none;}
+    .wrap{padding:0 24px;}
+    .masthead{padding:0 24px;}
+    section{margin-top:36px; padding-top:24px;}
+    .estimates, .window-band, .consequence, .fig,
+    .metrics-table, .example{break-inside:avoid;}
+    /* :target effects neutralized on paper */
+    section:target{border-top:1px solid var(--gray-300); padding-top:24px;}
+    section:target .sec-kick{background:var(--gray-100); border-color:var(--gray-300);
+                             color:var(--muted);}
+    /* folds forced open */
+    details.fold > *:not(summary){display:block !important;}
+    details.fold summary::before{content:"− ";}
+  }
+</style>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="masthead-inner">
+    <div class="kicker">
+      <span class="pill"><b>te9-docs</b> · skills.te9.dev</span>
+      <span class="kicker-meta">2d quadrant overview · build effort × reader impact · each corner means something</span>
+      <span class="page-no">28 / 35</span>
+    </div>
+    <span class="type-label">2D Quadrant Overview</span>
+    <h1>The last eight, <em>plotted</em></h1>
+    <p class="lede"><b>Who this is for:</b> whoever picks the next build, and the gate after that. This is the suite's quadrant overview of its own remaining work: the <b>eight template types the 35-type taxonomy still awaits</b>, plotted by build effort against reader impact, with three landed types proving the axes on known cases. The chart is an argument, not a measurement — the reading is in the quadrants, and each corner ends in a build-order consequence.</p>
+
+    <div class="estimates">
+      <span class="est-tag">Judgment · not measurement</span>
+      <p class="est-body">Every position on this chart is an <b>argued judgment — the founding session's call</b>, not a measured value: the axes price a type's intrinsic build cost and reader centrality, and neither is a clock reading. Each plotted type carries its one-line justification in its own quadrant section, and a position moves when its argument moves. What <i>is</i> counted: the population — 27 of 35 types landed, 8 remaining, 3 anchors, from the index and changelog.</p>
+    </div>
+
+    <dl class="meta-row">
+      <div><dt>Prepared by</dt><dd>Founding session</dd></div>
+      <div><dt>Suite version</dt><dd>2.5.0</dd></div>
+      <div><dt>Subject</dt><dd>The last eight, plotted</dd></div>
+      <div><dt>Baseline</dt><dd>v2.5.0 · 27 of 35 landed — counted</dd></div>
+      <div><dt>Plotted</dt><dd>8 remaining + 3 anchors · 11 points</dd></div>
+      <div><dt>Corner rule</dt><dd>Each corner means something</dd></div>
+    </dl>
+    <nav class="part-index" aria-label="Section index">
+      <p class="index-title">Quadrant index</p>
+      <div class="index-links">
+        <a href="#method"><b>01</b>The method</a>
+        <a href="#fig01"><b>02</b>Fig · 01</a>
+        <a href="#buildfirst"><b>03</b>Build first</a>
+        <a href="#plancarefully"><b>04</b>Plan carefully</a>
+        <a href="#quickwins"><b>05</b>Quick wins</a>
+        <a href="#defer"><b>06</b>Defer</a>
+        <a href="#colophon"><b>07</b>Colophon</a>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<div class="wrap">
+
+  <!-- 01 · THE METHOD — BOTH AXES + THE CORNER RULE, BEFORE ANY POSITION -->
+  <section id="method" aria-label="The method">
+    <span class="sec-kick">The method</span>
+    <h2>Two axes, four corners — and what each corner means</h2>
+    <p class="section-lede">A quadrant chart is read corner-first: the axes draw the map, the corners carry the meaning, the points only inherit it. So the method comes before the residents — <b>what each axis prices, and what each corner concludes</b> — stated before any position is read.</p>
+
+    <div class="window-band">
+      <span class="win-tag">The method · baseline v2.5.0 · 27 of 35 landed, counted</span>
+      <h3>Build effort against reader impact — <em>the reading is in the quadrants</em>.</h3>
+      <p>The x axis is <b>build effort</b>: structural novelty × figure complexity — what a fresh, gated build of the type would cost, its figure renders and review round-trips included. The y axis is <b>reader impact</b>: how central the type is to the suite's promise — shareable, polished, single-file documents a human actually forwards. Four corners fall out of the two axes, and each means something: <b>top-left, build first</b> — core impact at affordable effort; <b>top-right, plan carefully</b> — core impact, but heavy; <b>bottom-left, quick wins</b> — cheap to land, niche in reach; <b>bottom-right, defer</b> — the heaviest builds serving the narrowest readers. The three landed anchors sit on the chart to prove the axes can place known cases where the suite already knows they belong.</p>
+      <div class="win-figures">
+        <span><b>27/35</b> landed at baseline · counted</span>
+        <span><b>8</b> remaining plotted</span>
+        <span><b>3</b> landed anchors plotted</span>
+        <span><b>11</b> points · the legibility ceiling</span>
+        <span><b>35</b> the launch taxonomy · frozen to v1.0.0</span>
+      </div>
+    </div>
+
+    <details class="fold">
+      <summary>What the axes deliberately do not measure</summary>
+      <div class="fold-body">
+        <div class="example">
+          <span class="etype">Three things the plot leaves out — on purpose</span>
+          <ul>
+            <li><b>Clock hours.</b> The founding day built 25 templates in one sitting, so history cannot price a type — the x axis argues what a fresh gated build <b>should</b> cost, not what once went fast. The effort model's own forward rate (≈1–1.5 h per gated template, per the rolling forecast) is where the clock re-enters.</li>
+            <li><b>Sequencing between types.</b> The corners say what to build first in aggregate; dependencies that force a finer order (the index before the pages it links, say) live in each corner's consequence strip, not in the plot coordinates.</li>
+            <li><b>Reader taste.</b> The y axis prices centrality to the suite's promise, not how much any one reader will love a type. A niche corner is a small audience, never a verdict on the reading.</li>
+          </ul>
+        </div>
+      </div>
+    </details>
+  </section>
+
+  <!-- 02 · FIG · 01 — THE PLOT -->
+  <section id="fig01" aria-label="The quadrant figure">
+    <span class="sec-kick">Fig · 01 · the plot</span>
+    <h2>Eleven points, four corners</h2>
+    <p class="section-lede"><b>Source:</b> the 8 remaining types of the formats &amp; remaining cluster, argued onto the two axes from the method above; 3 landed anchors (API documentation, Decisions log, I-am-12 explainer) plotted from known builds; and the 2D quadrant overview itself — <b>landed at this gate</b>, first of the eight, because the cluster needed its build order argued before its builds. Rendered from Mermaid via pele at build time (native quadrantChart, no clayify); point styling rides the plate CSS, never pele's default blues.</p>
+
+    <figure class="fig">
+      <div class="fig-h"><span class="fig-id">FIG &middot; 01</span><button class="fig-fs" type="button" aria-label="Open this chart in a new tab">FULLSCREEN</button></div>
+      <div class="fig-legend"><span class="lg"><svg class="lg-g" width="14" height="14" viewBox="0 0 14 14" aria-hidden="true"><circle cx="7" cy="7" r="4.5" fill="none" stroke="#FE6C2D" stroke-width="2.5"/></svg>open ring — to build · the 7 remaining</span><span class="lg"><svg class="lg-g" width="14" height="14" viewBox="0 0 14 14" aria-hidden="true"><circle cx="7" cy="7" r="5" fill="#788C5D"/></svg>filled olive — landed · 3 anchors + this template</span><span class="lg">tinted corner = build first</span><span class="lg">positions argued, not measured</span></div>
+      <div class="fig-b"><svg xmlns="http://www.w3.org/2000/svg" class="pele pele-quadrantChart" viewBox="0 0 760 760" width="760" height="760" style="max-width:100%;height:auto;--_bg:var(--pele-bg,#fff);--_fg:var(--pele-fg,#1f1f1f);--_m:var(--pele-muted,#6e6e6e);--_l:var(--pele-line,#1f1f1f);--_s:var(--pele-surface,#f3f3f3);--_a:var(--pele-surface-alt,#e6e6e6);--_b:var(--pele-border,#8a8a8a);--_c:var(--pele-accent,#5b7bd5);color:var(--_fg);--_r:var(--pele-radius,4px);--_tw:var(--pele-title-weight,bold);--_fm:var(--pele-font-mono,monospace);font:16px sans-serif;letter-spacing:normal;word-spacing:normal;text-transform:none;direction:ltr;font-family:var(--pele-font,sans-serif)" fill="var(--_fg)" role="graphics-document document" aria-roledescription="quadrantChart"><text class="pele-title" font-weight="var(--_tw)" text-anchor="middle" xml:space="preserve"><tspan x="380" y="22.6">The last eight, plotted — build effort × reader impact</tspan></text><g class="pele-quadrants" fill="var(--_s)" stroke="var(--_b)"><g class="pele-quadrant" data-id="1"><rect x="395" y="42" width="357" height="340" style="rx:var(--_r)"/><text class="pele-label" fill="var(--_fg)" stroke="none" x="573.5" y="64.6" text-anchor="middle">Plan carefully</text></g><g class="pele-quadrant" data-id="2"><rect x="34" y="42" width="357" height="340" style="rx:var(--_r)"/><text class="pele-label" fill="var(--_fg)" stroke="none" x="212.5" y="64.6" text-anchor="middle">Build first</text></g><g class="pele-quadrant" data-id="3"><rect x="34" y="386" width="357" height="340" style="rx:var(--_r)"/><text class="pele-label" fill="var(--_fg)" stroke="none" x="212.5" y="408.6" text-anchor="middle">Quick wins</text></g><g class="pele-quadrant" data-id="4"><rect x="395" y="386" width="357" height="340" style="rx:var(--_r)"/><text class="pele-label" fill="var(--_fg)" stroke="none" x="573.5" y="408.6" text-anchor="middle">Defer</text></g></g><g class="pele-axis-labels" font-size="14" fill="var(--_m)"><text x="213.5" y="746.4" text-anchor="middle">Light build effort</text><text x="572.5" y="746.4" text-anchor="middle">Heavy build effort</text><g transform="translate(18.5,555) rotate(-90)"><text x="0" y="4.9" text-anchor="middle">Niche reader impact</text></g><g transform="translate(18.5,213) rotate(-90)"><text x="0" y="4.9" text-anchor="middle">Core reader impact</text></g></g><g class="pele-points" fill="var(--pele-series-1,#4c78a8)"><circle class="pele-point" data-id="2D quadrant · landed" cx="421.72" cy="288.24" r="6"/><circle class="pele-point" data-id="I-am-12 explainer" cx="127.34" cy="349.8" r="6"/><circle class="pele-point" data-id="Decisions log" cx="357.1" cy="151.44" r="6"/><circle class="pele-point" data-id="API documentation" cx="665.84" cy="165.12" r="6"/><circle class="pele-point" data-id="Journalistic investigation" cx="550.96" cy="452.4" r="6"/><circle class="pele-point" data-id="Wikipage + index" cx="651.48" cy="233.52" r="6"/><circle class="pele-point" data-id="Link/dependency analysis" cx="428.9" cy="178.8" r="6"/><circle class="pele-point" data-id="Tutorial" cx="608.4" cy="110.4" r="6"/><circle class="pele-point" data-id="Compendium of archetypes" cx="306.84" cy="548.16" r="6"/><circle class="pele-point" data-id="Before/after showcase" cx="191.96" cy="301.92" r="6"/><circle class="pele-point" data-id="Blogpost/article" cx="148.88" cy="124.08" r="6"/></g><g class="pele-point-labels" font-size="12"><text class="pele-label" x="148.88" y="146.48" text-anchor="middle">Blogpost/article</text><text class="pele-label" x="191.96" y="324.32" text-anchor="middle">Before/after showcase</text><text class="pele-label" x="306.84" y="570.56" text-anchor="middle">Compendium of archetypes</text><text class="pele-label" x="608.4" y="132.8" text-anchor="middle">Tutorial</text><text class="pele-label" x="508.6" y="183" text-anchor="middle">Link/dependency analysis</text><text class="pele-label" x="651.48" y="255.92" text-anchor="middle">Wikipage + index</text><text class="pele-label" x="550.96" y="474.8" text-anchor="middle">Journalistic investigation</text><text class="pele-label" x="665.84" y="187.52" text-anchor="middle">API documentation</text><text class="pele-label" x="310.42" y="155.64" text-anchor="middle">Decisions log</text><text class="pele-label" x="127.34" y="372.2" text-anchor="middle">I-am-12 explainer</text><text class="pele-label" x="490.57" y="292.44" text-anchor="middle">2D quadrant · landed</text></g></svg></div>
+      <div class="fig-f">FIG · 01 — BUILD EFFORT × READER IMPACT · OPEN CLAY RING = TO BUILD (7) · FILLED OLIVE = LANDED (3 ANCHORS + THIS TEMPLATE) · TINTED CORNER = BUILD FIRST · POSITIONS ARGUED, NOT MEASURED</div>
+    </figure>
+
+    <p class="section-lede" style="margin-top:18px;">Read once, the chart argues its own order: <b>eight of the eleven points sit core-ward</b> of the horizontal midline — the cluster's center of gravity is the promise, not the periphery. The corners split that weight: four residents the suite can land cheaply, five it must schedule, one quick win, one deferral. The olive point in the top-right is the chart's own type — <b>landed at this gate</b> — standing next to the API documentation anchor that proves a heavy-core build can reach the gate and hold its corner.</p>
+  </section>
+
+  <!-- 03 · QUADRANT · BUILD FIRST -->
+  <section id="buildfirst" aria-label="Quadrant — build first">
+    <span class="sec-kick">Quadrant · build first</span>
+    <h2>Core impact, affordable effort</h2>
+    <p class="section-lede"><span class="chip buildfirst">Build first</span> The top-left corner is where the suite's promise is cheapest to advance: types readers share most readily, built on grammar the suite has already hardened. The anchors prove the corner is real — <b>the I-am-12 explainer and the Decisions log both landed inside the founding day</b>, at minutes per build, and both still hold the core-ward edge of the chart.</p>
+
+    <div class="table-scroll">
+      <table class="metrics-table">
+        <thead>
+          <tr><th scope="col">Resident</th><th scope="col">Plotted</th><th scope="col">The one-line argument</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="a-name"><h3>Blogpost/article</h3><p>one prose column · the shareable artifact itself</p></td>
+            <td class="num">light · core</td>
+            <td class="txt">The purest form of the promise — no novel structure to invent, and the finished document is exactly the thing a human forwards.</td>
+          </tr>
+          <tr>
+            <td class="a-name"><h3>Before/after showcase</h3><p>two plates · a delta read</p></td>
+            <td class="num">light · medium</td>
+            <td class="txt">Two figure plates and the paragraph between them, on the gallery grammar the suite already owns; persuasive, but narrower than the core.</td>
+          </tr>
+          <tr>
+            <td class="a-name"><h3>Decisions log<span class="landed-chip">Landed</span></h3><p>anchor · kanban discipline</p></td>
+            <td class="num">medium · core</td>
+            <td class="txt">One native kanban grammar plus a stamp-once discipline to design; the suite records its own direction in one — as core as it gets.</td>
+          </tr>
+          <tr>
+            <td class="a-name"><h3>I-am-12 explainer<span class="landed-chip">Landed</span></h3><p>anchor · one register shift</p></td>
+            <td class="num">light · medium</td>
+            <td class="txt">One move — one idea, one register shift, no figures; it wins non-technical readers without carrying the suite's center of gravity.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p class="table-note">Reading · both anchors landed in the founding day's explainers and reports rounds — the corner's promise is not theoretical · "medium · core" for the Decisions log sits left of the midline because the kanban board was pele-native from day one · a resident's chip stamps the corner verdict it inherits.</p>
+
+    <div class="consequence">
+      <span class="cons-tag">Consequence · build order</span><br>
+      Land the <b>blogpost/article</b> and the <b>before/after showcase</b> next — the cheapest core-adjacent pair left in the taxonomy. Neither needs a new figure grammar; both inherit the plate, fold and chip grammar this cluster has already hardened. Back-to-back, inside one gate day.
+    </div>
+  </section>
+
+  <!-- 04 · QUADRANT · PLAN CAREFULLY -->
+  <section id="plancarefully" aria-label="Quadrant — plan carefully">
+    <span class="sec-kick">Quadrant · plan carefully</span>
+    <h2>Core impact, but heavy</h2>
+    <p class="section-lede"><span class="chip plancareful">Plan carefully</span> The top-right corner holds the types the taxonomy cannot skip and cannot rush: core-impact builds carrying new grammars, new figure loads, or two documents in one. The work here is <b>sequencing, not avoidance</b>. The landed proof is the API documentation — the heaviest build the suite has gated, three coupled figure grammars deep, and the corner it proved is this one.</p>
+
+    <div class="table-scroll">
+      <table class="metrics-table">
+        <thead>
+          <tr><th scope="col">Resident</th><th scope="col">Plotted</th><th scope="col">The one-line argument</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="a-name"><h3>Tutorial</h3><p>steps · verification · a running example</p></td>
+            <td class="num">heavy · core</td>
+            <td class="txt">Sequential steps with verification at each, one running example threaded through — the heaviest new grammar in the cluster; the reader's terminal question ("how do I actually do this") lives here.</td>
+          </tr>
+          <tr>
+            <td class="a-name"><h3>Wikipage + index</h3><p>a page grammar · a cross-linked index</p></td>
+            <td class="num">heavy · core</td>
+            <td class="txt">Two documents in one — the page plus the index system that makes pages findable; this is how knowledge compounds, which makes it core by definition.</td>
+          </tr>
+          <tr>
+            <td class="a-name"><h3>Link/dependency analysis</h3><p>what depends on what · what breaks</p></td>
+            <td class="num">medium, right of center · core</td>
+            <td class="txt">Sequence, ER and class carry the figures as native pele types, but the analysis layout — blast radius, not boxes — is new structure to design.</td>
+          </tr>
+          <tr>
+            <td class="a-name"><h3>API documentation<span class="landed-chip">Landed</span></h3><p>anchor · sequence + ER + class</p></td>
+            <td class="num">heavy · core</td>
+            <td class="txt">Three coupled figure grammars plus endpoint-table register — the heaviest gated build so far; machine-facing documents are a knowledge suite's staple.</td>
+          </tr>
+          <tr>
+            <td class="a-name"><h3>2D quadrant overview<span class="landed-chip">Landed</span></h3><p>this document · landed at this gate</p></td>
+            <td class="num">medium, right of center · core</td>
+            <td class="txt">A native pele chart plus a new plate-legend grammar; landed first of the eight because the cluster needed its build order argued before its builds.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <details class="fold">
+      <summary>Why the medium types read right of center</summary>
+      <div class="fold-body">
+        <div class="example">
+          <span class="etype">The midline argument — the judgment, in the open</span>
+          <p>"Medium" is the middle band, and the vertical midline cuts through it — so a medium type lands where its <b>argument</b> pushes it. Two mediums sit right of the line here, for the same reason: the link/dependency analysis and this quadrant chart both arrive with figures already native in pele, but each introduces an <b>analysis layout the suite has never drawn</b> — blast-radius reading, corner semantics, a legend grammar. New prose structure, not just new charts, is what the x axis prices heaviest.</p>
+          <p>The Decisions log, the mirror case, sits left of the line for the mirrored reason: its kanban grammar was pele-native <b>and</b> its layout (one card per decision) was already the suite's card grammar — nothing new but the discipline.</p>
+        </div>
+      </div>
+    </details>
+
+    <div class="consequence">
+      <span class="cons-tag">Consequence · build order</span><br>
+      Sequence, don't sprint: <b>link/dependency analysis first</b> of the three open builds (its figures are native types), then <b>wikipage + index</b> (its index defines the cross-links the tutorial will reuse), then the <b>tutorial last</b> — the heaviest build, benefiting from everything the cluster hardened before it. One gated build per round-trip; no batching.
+    </div>
+  </section>
+
+  <!-- 05 · QUADRANT · QUICK WINS -->
+  <section id="quickwins" aria-label="Quadrant — quick wins">
+    <span class="sec-kick">Quadrant · quick wins</span>
+    <h2>Light effort, niche reach</h2>
+    <p class="section-lede"><span class="chip quickwins">Quick wins</span> The bottom-left corner is the suite's spare capacity: types cheap enough to land between the heavy builds, niche enough that nothing waits on them. Nothing core lives here — and that is the point. A quick win fills a gate round-trip without moving a single date.</p>
+
+    <div class="table-scroll">
+      <table class="metrics-table">
+        <thead>
+          <tr><th scope="col">Resident</th><th scope="col">Plotted</th><th scope="col">The one-line argument</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="a-name"><h3>Compendium of archetypes</h3><p>a card gallery of the suite's own forms</p></td>
+            <td class="num">medium, left of center · niche</td>
+            <td class="txt">One repeated card grammar, no figures; the cataloging judgment is real but the build is not heavy — reference reading, consulted rather than consumed.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p class="table-note">Reading · a single resident is honest, not thin — the cluster's other "cheap" types argued their way upward into build first, and the bottom-right's sole resident argued itself out of here · niche ≠ optional: the slot stays in the frozen taxonomy until it lands.</p>
+
+    <div class="consequence">
+      <span class="cons-tag">Consequence · build order</span><br>
+      Slot the <b>compendium of archetypes</b> between the heavy builds — after wikipage + index, whose hardened card-and-index grammar it reuses. It keeps the gate rhythm warm without competing for a core slot.
+    </div>
+  </section>
+
+  <!-- 06 · QUADRANT · DEFER -->
+  <section id="defer" aria-label="Quadrant — defer">
+    <span class="sec-kick">Quadrant · defer</span>
+    <h2>Heavy effort, narrowest reach</h2>
+    <p class="section-lede"><span class="chip defer">Defer</span> The bottom-right corner is where cost and audience point the wrong way together: the heaviest builds serving the narrowest readers. Defer is not delete — <b>the taxonomy reserves the slot until the type lands</b> — it means last, and only after the core corners are full.</p>
+
+    <div class="table-scroll">
+      <table class="metrics-table">
+        <thead>
+          <tr><th scope="col">Resident</th><th scope="col">Plotted</th><th scope="col">The one-line argument</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="a-name"><h3>Journalistic investigation</h3><p>evidence chains · a narrative spine</p></td>
+            <td class="num">heavy · medium, below the line</td>
+            <td class="txt">Dossier-grade evidence rails and attribution on a narrative spine — a full investigative grammar to design; vital when a subject earns it, rarely needed — so its impact sits below the quadrant line.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="consequence">
+      <span class="cons-tag">Consequence · build order</span><br>
+      <b>Last of the eight</b> — after the tutorial. Nothing in the suite waits on it; the taxonomy is full the day it lands. If a re-roll ever reprices the cluster upward, this is the build whose scope gets trimmed first — trimmed, not dropped: the launch promise counts all 35.
+    </div>
+  </section>
+
+  <!-- COLOPHON -->
+  <section id="colophon" class="colophon">
+    <span class="sec-kick">Colophon</span>
+    <h2>2D Quadrant Overview · template v0.1</h2>
+    <p class="statement">The suite's prioritization grammar — a method band that states both axes and the corner rule before any position, one chart carrying the remaining eight and the landed three on the same argued plane, four corner sections that each end in a build-order consequence, and a method strip that keeps the JUDGMENT·NOT-MEASUREMENT label welded to the plot. The twenty-eighth template on disk, built through the autonomous extension protocol, gated in the browser, registering at its gate — the first of the formats &amp; remaining eight to land, and the argument its seven siblings will be built in.</p>
+    <div class="row">
+      <span>DOC ID · TE9-QAD-001</span>
+      <span>SUITE VERSION · 2.5.0</span>
+      <span>SUITE · <a href="../README.html">te9-docs</a></span>
+      <span>SIBLINGS · <a href="25-business-case.html">Business Case</a> · <a href="26-rolling-forecast.html">Rolling Forecast</a> · <a href="14-data-report.html">Data Report</a></span>
+      <span>PREPARED BY · Founding session</span>
+    </div>
+  </section>
+
+</div>
+
+<script>
+  document.querySelectorAll('.fig-fs').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var svg = btn.closest('.fig').querySelector('svg');
+      var blob = new Blob([svg.outerHTML], { type: 'image/svg+xml' });
+      window.open(URL.createObjectURL(blob), '_blank');
+    });
+  });
+</script>
+</body>
+</html>

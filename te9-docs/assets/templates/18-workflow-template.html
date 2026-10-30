@@ -1,0 +1,775 @@
+<!doctype html>
+<!-- te9-docs suite — self-describing placeholder · v1.5.0 — STYLE: Clay Explainer -->
+<!-- ================================================================
+     LLM AUTHORING CONTRACT — WORKFLOW TEMPLATE v0.1 —
+     STYLE: Clay Explainer
+     te9-docs suite — self-describing placeholder. Paste this comment
+     into the authoring LLM alongside the source material. The LLM
+     assembles; it does not redesign.
+
+     TASK        Publish an operating procedure a team actually
+                 follows — here: the document production workflow of
+                 the human + agent pair. Phases with role-assigned
+                 do/verify steps, decision-point callouts, per-phase
+                 checklists, one definition of done. A procedure to
+                 execute, not a report to read.
+     FORMAT      Workflow document: roles strip (two role cards +
+                 grammar strip), one swimlane figure, one section per
+                 phase — each step a row (role chip · action · mono
+                 VERIFY line "done when: …"), each phase closed by a
+                 static checklist (CSS box glyphs, print-safe, not
+                 interactive) — decision callouts between phases, a
+                 definition-of-done ink band, colophon.
+     HIERARCHY   doc > section (phase) > step row + checklist >
+                 (fold: why every step carries a verify line)
+     SECTION     masthead → jump-nav pill strip → roles (+ FIG · 01,
+                 the run split by role) → phase 01 ask & align
+                 (+ decisions 01–02, the type gate) → phase 02 build
+                 → phase 03 check (+ decision 03, the gate) → phase 04
+                 keep → definition of done (ink) → colophon
+     ORDER       roles first, colophon last. Exactly one figure; four
+                 phase sections; three decision callouts; one ink band.
+
+     BLOCK GRAMMAR
+       roles strip    two white bordered cards side by side — YOU and
+                      THE SESSION — each: role chip, mono verbs line,
+                      one-line responsibility. Above them, a grammar
+                      strip: four cells (role · action · verify ·
+                      checklist) that teach the step anatomy once.
+       phase head     PHASE NN sec-kick + chip (steps count, who acts),
+                      serif h2, one-line purpose lede.
+       step row       hairline-separated row: role chip (YOU = clay,
+                      THE SESSION = olive) · action h3 + one-line body
+                      · mono verify plate "done when: …". Every step
+                      carries role AND verify — no exceptions.
+       checklist      white bordered card, mono title, static CSS box
+                      glyphs (empty squares, 1.5px muted border). Not
+                      interactive; they keep their boxes on paper.
+       decision       clay-soft callout: rotated-square "?" glyph, mono
+                      kicker "DECISION NN · <condition>", the rule in
+                      one sentence, one supporting line. Placed at the
+                      phase exit it governs. The document never computes
+                      the branch — the pair does, out loud.
+       done band      ink panel (slate ground): chip + the thesis in big
+                      serif with one italic clay word, numbered mono rows
+                      — the four conditions, the fourth marked
+                      conditional. Last content section before colophon.
+       figure         ONE pele-rendered swimlane (swimlane-beta) in a
+                      fenced gray-100 plate: two lanes YOU / THE SESSION
+                      across the production phases, rings = steps, double
+                      ring = the deliverable; header with FIG ID + legend
+                      strip + FULLSCREEN; body = diagram only; footer =
+                      caption.
+       fold           <details> on an oat plate — one only: why every
+                      step carries a verify line.
+       colophon       DOC ID · suite version · siblings · prepared-by
+
+     IRON RULES  Facts grounded in SUITE-BRIEF's workflow section only —
+                 no invented suite facts. Every step carries a role and
+                 a verify line. Checklists are static: no checkboxes
+                 inputs, no scripts, boxes print as drawn. Decision
+                 callouts restate the brief's own rules (confirm when
+                 two types match; nothing builds past a failed gate;
+                 the extension protocol when no type matches). Counts
+                 taken at build time (17 templates on disk, index at
+                 1.5.0; denominator = the 35-type launch taxonomy). Zero
+                 scripts beyond the whitelisted fullscreen listener.
+     VOICE       An operating procedure: imperative, direct, second
+                 person where the role is you. The verify line is the
+                 payload — a step without "done when" is not a step.
+     STATUS      Execution view — the boxes start empty every run;
+                 nothing here tracks state between documents.
+     COLORS      decorative clay #FE6C2D, text clay #B8430F, on ivory
+                 #FAF9F5 with slate ink #141413 — olive #55673C (the
+                 session's hue), rust #B04A3F supporting — do not
+                 deviate. Dark mode: token flip under
+                 prefers-color-scheme.
+================================================================ -->
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>te9-docs · Workflow Template — suite v1.5.0</title>
+<style>
+  :root{
+    --ivory:#FAF9F5; --slate:#141413; --white:#FFFFFF;
+    --clay:#FE6C2D; --clay-ink:#B8430F; --clay-soft:#FDEBE0;
+    --oat:#E3DACC; --olive:#788C5D; --olive-ink:#55673C; --olive-soft:#EEF2E6;
+    --rust:#B04A3F; --rust-soft:#F8ECE9;
+    --gray-100:#F0EEE6; --gray-300:#D1CFC5; --gray-500:#87867F; --muted:#67665F; --body:#3D3D3A;
+    --serif:ui-serif, Georgia, serif;
+    --sans:system-ui, -apple-system, sans-serif;
+    --mono:ui-monospace, "SF Mono", Menlo, monospace;
+    --radius-panel:12px; --radius-chip:999px;
+    --border:1.5px solid var(--gray-300);
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto;}
+  }
+  body{background:var(--ivory); color:var(--slate); font-family:var(--sans);
+       font-size:15.5px; line-height:1.6; -webkit-font-smoothing:antialiased;}
+  h1,h2,h3{font-family:var(--serif); font-weight:500; letter-spacing:-.01em;}
+  a{color:var(--clay-ink); text-decoration:none; border-bottom:1px dotted var(--clay-ink);}
+  a:hover{border-bottom-style:solid;}
+  a:focus-visible, summary:focus-visible{outline:2px solid var(--clay-ink); outline-offset:2px;}
+  code{font-family:var(--mono); font-size:.92em; background:var(--gray-100);
+       border-radius:4px; padding:1px 5px;}
+
+  /* ---------- kicker — pill + meta, the shared hero grammar ---------- */
+  .kicker{display:flex; align-items:baseline; gap:12px; flex-wrap:wrap;}
+  .pill{font-family:var(--mono); font-size:11px; text-transform:uppercase;
+        letter-spacing:.06em; color:var(--muted); background:var(--gray-100);
+        border:var(--border); border-radius:var(--radius-chip); padding:5px 11px;
+        white-space:nowrap;}
+  .pill b{color:var(--clay-ink); font-weight:500;}
+  .kicker-meta{font-family:var(--mono); font-size:11px; text-transform:uppercase;
+               letter-spacing:.18em; color:var(--muted);}
+  .page-no{margin-left:auto; font-family:var(--mono); font-size:11px;
+           letter-spacing:.18em; color:var(--muted); white-space:nowrap;}
+  .type-label{display:inline-block; margin-top:24px; font-family:var(--mono); font-size:11px;
+              text-transform:uppercase; letter-spacing:.06em; color:var(--muted);
+              background:var(--gray-100); border:var(--border);
+              border-radius:var(--radius-chip); padding:5px 11px;}
+
+  /* ---------- masthead — the hero directly on ivory ---------- */
+  .masthead{padding:56px 24px 0;}
+  .masthead-inner{max-width:1000px; margin:0 auto;}
+  h1{font-size:clamp(44px, 6.5vw, 80px); line-height:1.05; margin-top:20px; max-width:16ch;}
+  h1 em{font-style:italic; color:var(--clay-ink);}
+  .lede{margin-top:26px; font-size:17.5px; line-height:1.6; color:var(--body); border-left:3px solid var(--clay); padding:4px 0 4px 20px;}
+  .lede b{color:var(--slate); font-weight:600;}
+  .meta-row{display:flex; flex-wrap:wrap; gap:32px; margin-top:36px; padding-top:22px;
+            border-top:1px solid var(--gray-300);}
+  .meta-row dt{font-family:var(--mono); font-size:10px; letter-spacing:.18em;
+               text-transform:uppercase; color:var(--muted); margin-bottom:4px;}
+  .meta-row dd{font-weight:500; color:var(--slate);}
+
+  /* ---------- jump nav — mono pill strip ---------- */
+  nav.part-index{margin-top:30px;}
+  .index-title{font-family:var(--mono); font-size:10px; letter-spacing:.18em;
+               text-transform:uppercase; color:var(--muted); margin-bottom:10px;}
+  .index-links{display:flex; flex-wrap:wrap; gap:8px;}
+  .index-links a{font-family:var(--mono); font-size:11px; letter-spacing:.06em;
+                 text-transform:uppercase; color:var(--muted); background:var(--white);
+                 border:var(--border); border-bottom:var(--border);
+                 border-radius:var(--radius-chip); padding:5px 11px;}
+  .index-links a b{color:var(--clay-ink); font-weight:500; margin-right:4px;}
+  .index-links a:hover{background:var(--clay-soft); border-color:var(--clay);
+                       border-bottom-color:var(--clay);}
+
+  /* ---------- layout — section rhythm convention ---------- */
+  .wrap{max-width:1000px; margin:0 auto; padding:20px 24px 90px;}
+  section{margin-top:40px; padding-top:40px; border-top:1px solid var(--gray-300);
+          scroll-margin-top:24px;}
+  h2{font-size:28px; line-height:1.15; margin:16px 0 16px;}
+  h2 + *{margin-top:0;}
+  .sec-kick{display:inline-block; font-family:var(--mono); font-size:10px;
+            text-transform:uppercase; letter-spacing:.18em; color:var(--muted);
+            background:var(--gray-100); border:var(--border);
+            border-radius:var(--radius-chip); padding:4px 11px;}
+  .section-lede{font-size:16.5px; color:var(--body);}
+  .section-lede + *{margin-top:24px;}
+  /* :target — the section's top hairline thickens to a 3px clay rule
+     and its pill flips clay-soft. Border, rule and chip move as one. JS-free. */
+  section:target{border-top:3px solid var(--clay); padding-top:38px;}
+  section:target .sec-kick{background:var(--clay-soft); border-color:var(--clay);
+                           color:var(--clay-ink);}
+
+  /* ---------- the grammar strip — four cells, the step anatomy taught once ---------- */
+  .grammar{display:grid; grid-template-columns:repeat(4, 1fr); border:var(--border);
+           border-radius:var(--radius-panel); background:var(--white); overflow:hidden;
+           margin-top:24px; break-inside:avoid;}
+  .g-cell{padding:14px 16px 13px; border-left:1px solid var(--gray-300);}
+  .g-cell:first-child{border-left:none;}
+  .g-k{font-family:var(--mono); font-size:10px; letter-spacing:.14em;
+       text-transform:uppercase; color:var(--clay-ink); display:block; margin-bottom:5px;}
+  .g-cell p{font-size:12.5px; line-height:1.55; color:var(--body);}
+
+  /* ---------- roles strip — two role cards, the strip the run hangs on ---------- */
+  .roles{display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-top:20px;}
+  .role-card{background:var(--white); border:var(--border);
+             border-radius:var(--radius-panel); padding:18px 20px 17px;
+             break-inside:avoid;}
+  .role-chip{display:inline-block; font-family:var(--mono); font-size:12px;
+             letter-spacing:.14em; padding:4px 14px; border-radius:var(--radius-chip);
+             white-space:nowrap;}
+  .role-you{border:1px solid var(--clay); color:var(--clay-ink); background:var(--clay-soft);}
+  .role-session{border:1px solid var(--olive); color:var(--olive-ink); background:var(--olive-soft);}
+  .role-verbs{margin-top:12px; font-family:var(--mono); font-size:10.5px;
+              letter-spacing:.14em; text-transform:uppercase; color:var(--muted);}
+  .role-card h3{font-size:19px; line-height:1.3; margin-top:6px;}
+  .role-card p{margin-top:9px; font-size:13.5px; line-height:1.6; color:var(--body);}
+  .role-card p b{color:var(--slate); font-weight:600;}
+  .role-holds{margin-top:12px; padding-top:10px; border-top:1px solid var(--gray-100);
+              font-family:var(--mono); font-size:10px; letter-spacing:.08em;
+              text-transform:uppercase; color:var(--clay-ink);}
+  .role-card + .role-card .role-holds{color:var(--olive-ink);}
+
+  /* ---------- phase head — kick + chip, one row ---------- */
+  .ph-head{display:flex; align-items:center; gap:10px; flex-wrap:wrap;}
+  .ph-chip{margin-left:auto; font-family:var(--mono); font-size:10px;
+           text-transform:uppercase; letter-spacing:.06em; color:var(--muted);
+           background:var(--white); border:var(--border);
+           border-radius:var(--radius-chip); padding:4px 11px; white-space:nowrap;}
+  .ph-chip b{color:var(--clay-ink); font-weight:500;}
+
+  /* ---------- step rows — the motif: role chip · action · verify ---------- */
+  .steps{margin-top:8px;}
+  .wstep{display:grid; grid-template-columns:132px 1fr 300px; gap:18px;
+         padding:18px 0 17px; border-bottom:1px solid var(--gray-100);
+         break-inside:avoid;}
+  .wstep:last-of-type{border-bottom:var(--border);}
+  .ws-left{display:flex; flex-direction:column; align-items:flex-start; gap:9px;
+           padding-top:3px;}
+  .ws-no{font-family:var(--mono); font-size:10px; letter-spacing:.14em;
+         text-transform:uppercase; color:var(--muted); white-space:nowrap;}
+  .ws-left .role-chip{font-size:10.5px; padding:3px 11px;}
+  .ws-main h3{font-size:17.5px; line-height:1.3;}
+  .ws-main p{margin-top:6px; font-size:13.5px; line-height:1.6; color:var(--body);}
+  .ws-main p b{color:var(--slate); font-weight:600;}
+  .ws-main .sc-suite{margin-top:8px; font-family:var(--mono); font-size:10px;
+                     letter-spacing:.08em; text-transform:uppercase; color:var(--clay-ink);}
+  .ws-verify{background:var(--gray-100); border-radius:8px; padding:11px 13px;
+             font-family:var(--mono); font-size:12px; line-height:1.6;
+             color:var(--body); align-self:start;}
+  .ws-verify b{color:var(--clay-ink); font-weight:600;}
+
+  /* ---------- phase checklist — static boxes, print-safe, not interactive ---------- */
+  .checklist{margin-top:20px; background:var(--white); border:var(--border);
+             border-radius:var(--radius-panel); padding:16px 20px 15px;
+             break-inside:avoid;}
+  .cl-title{font-family:var(--mono); font-size:10px; letter-spacing:.14em;
+            text-transform:uppercase; color:var(--muted);}
+  .cl-title b{color:var(--clay-ink); font-weight:500;}
+  ul.check{list-style:none; margin-top:12px; display:grid; gap:9px;}
+  ul.check li{position:relative; padding-left:26px; font-size:13.5px;
+              line-height:1.5; color:var(--body);}
+  ul.check li::before{content:""; position:absolute; left:2px; top:3px;
+                      width:12px; height:12px; border:1.5px solid var(--muted);
+                      border-radius:3px; background:var(--white);}
+  ul.check li b{color:var(--slate); font-weight:600;}
+
+  /* ---------- decision callouts — the diamond gate between phases ---------- */
+  .decision{display:grid; grid-template-columns:auto 1fr; gap:18px; align-items:start;
+            margin-top:20px; background:var(--clay-soft); border:var(--border);
+            border-left:3px solid var(--clay); border-radius:var(--radius-panel);
+            padding:18px 22px 17px 20px; break-inside:avoid;}
+  .dp-glyph{flex:none; width:34px; height:34px; margin:4px 8px 0 4px;
+            border:2px solid var(--clay); border-radius:5px;
+            transform:rotate(45deg); display:flex; align-items:center;
+            justify-content:center; background:var(--white);}
+  .dp-glyph span{transform:rotate(-45deg); font-family:var(--mono); font-size:16px;
+                 font-weight:600; color:var(--clay-ink); line-height:1;}
+  .dp-k{font-family:var(--mono); font-size:10px; letter-spacing:.14em;
+        text-transform:uppercase; color:var(--clay-ink); display:block;}
+  .dp-t{margin-top:6px; font-size:15px; line-height:1.55; color:var(--slate);}
+  .dp-t b{font-weight:600;}
+  .dp-s{margin-top:5px; font-size:13px; line-height:1.6; color:var(--body);}
+
+  /* ---------- the definition of done — on ink, last content section ---------- */
+  .bluf{background:var(--slate); border-radius:var(--radius-panel);
+        padding:30px 34px 26px; break-inside:avoid;}
+  .b-top{display:flex; align-items:center; gap:16px; flex-wrap:wrap;}
+  .st-chip{display:inline-block; font-family:var(--mono); font-size:11px;
+           letter-spacing:.14em; text-transform:uppercase; padding:4px 14px;
+           border-radius:var(--radius-chip); border:1px solid #FE6C2D;
+           color:#FE6C2D; white-space:nowrap;}
+  .b-period{font-family:var(--mono); font-size:10px; letter-spacing:.18em;
+            text-transform:uppercase; color:#A5A39B;}
+  .b-verdict{margin-top:20px; font-family:var(--serif); font-weight:500;
+             font-size:clamp(24px, 3.4vw, 36px); line-height:1.25;
+             letter-spacing:-.01em; color:var(--ivory); max-width:34ch;}
+  .b-verdict em{font-style:italic; color:#FE6C2D;}
+  .b-list{margin-top:26px; border-top:1px solid #3D3D3A;}
+  .b-row{display:grid; grid-template-columns:110px 1fr; gap:16px; padding:15px 0;
+         border-bottom:1px solid #3D3D3A;}
+  .b-row:last-child{border-bottom:none;}
+  .b-label{font-family:var(--mono); font-size:10px; letter-spacing:.18em;
+           text-transform:uppercase; color:#A5A39B; padding-top:4px;}
+  .b-row p{font-size:14.5px; line-height:1.6; color:#D6D4CC;}
+  .b-row p b{color:var(--ivory); font-weight:600;}
+  .b-next{margin-top:20px; font-family:var(--mono); font-size:10px;
+          letter-spacing:.18em; text-transform:uppercase; color:#A5A39B;}
+  .b-next b{color:#FE6C2D; font-weight:500;}
+
+  /* ---------- figure — the swimlane on a gray-100 plate ---------- */
+  .fig{margin-top:24px; background:var(--gray-100); border:var(--border);
+       border-radius:var(--radius-panel); position:relative; overflow:hidden;}
+  .fig-h{display:flex; align-items:center; justify-content:space-between; gap:12px;
+         padding:10px 14px;}
+  .fig-id{font-family:var(--mono); font-size:10px; letter-spacing:.18em;
+          text-transform:uppercase; color:var(--muted);}
+  .fig-fs{font-family:var(--mono); font-size:10px; text-transform:uppercase;
+          letter-spacing:.14em; color:var(--muted); background:var(--white);
+          border:var(--border); border-radius:999px; padding:4px 10px; cursor:pointer;}
+  .fig-fs:hover{color:var(--clay-ink); border-color:var(--clay);}
+  .fig-fs:focus-visible{outline:2px solid var(--clay); outline-offset:2px;}
+  .fig-legend{display:flex; flex-wrap:wrap; gap:6px 18px; padding:0 14px 9px;
+              border-bottom:1px solid var(--gray-300); font-family:var(--mono);
+              font-size:10px; letter-spacing:.06em; text-transform:uppercase;
+              color:var(--muted);}
+  .fig-legend .lg{display:inline-flex; align-items:center; gap:6px;}
+  .fig-legend .lg-g{flex:none;}
+  .fig-b{padding:20px 18px;}
+  .fig-b svg{display:block; width:auto; max-width:100%; height:auto; margin:0 auto;}
+  .fig-f{padding:10px 14px; border-top:1px solid var(--gray-300);
+         font-family:var(--mono); font-size:10px; letter-spacing:.18em;
+         text-transform:uppercase; color:var(--muted); text-align:center;}
+
+  /* pele theming — the Clay mapping lives here, in document CSS, never
+     inline in the SVG (inline var() indirection failed to resolve
+     in-suite and painted edge-label chips black; this is the fix). */
+  .fig svg{--pele-fg:var(--slate); --pele-fg-on-light:var(--body); --pele-muted:var(--gray-500);
+           --pele-line:var(--gray-300); --pele-bg:transparent; --pele-surface:transparent;
+           --pele-surface-alt:transparent; --pele-border:var(--gray-300); --pele-accent:var(--clay);
+           --pele-radius:4px;
+           --pele-font:system-ui,-apple-system,sans-serif;
+           --pele-font-mono:ui-monospace,"SF Mono",Menlo,monospace;}
+  .fig svg .pele-title{display:none;}
+  .fig svg .pele-edge-label rect{fill:transparent;}
+  .fig svg .pele-edge-label text{fill:var(--body); font-size:12.5px;}
+
+  /* ---------- folds — JS-free disclosure ---------- */
+  details.fold{margin-top:16px;}
+  details.fold summary{cursor:pointer; list-style:none; font-family:var(--mono);
+                       font-size:11px; letter-spacing:.08em; text-transform:uppercase;
+                       color:var(--clay-ink);}
+  details.fold summary::-webkit-details-marker{display:none;}
+  details.fold summary::before{content:"+ "; color:var(--clay-ink); font-weight:600;}
+  details.fold[open] summary::before{content:"− ";}
+  details.fold[open] summary{margin-bottom:12px;}
+  details.fold .fold-body{padding-top:2px;}
+  .example{background:var(--oat); border:1px solid var(--gray-300);
+           border-radius:8px; padding:14px 16px; font-size:13.5px; color:var(--body);}
+  .example .etype{font-family:var(--mono); font-size:10px; letter-spacing:.14em;
+                  text-transform:uppercase; color:var(--muted); display:block;
+                  margin-bottom:5px;}
+  .example b{color:var(--slate); font-weight:600;}
+  .example p + p{margin-top:8px;}
+
+  /* ---------- colophon ---------- */
+  .colophon p.statement{font-size:14.5px; color:var(--body);}
+  .colophon .row{display:flex; flex-wrap:wrap; gap:8px 24px; margin-top:20px;
+                 font-family:var(--mono); font-size:11px; letter-spacing:.06em;
+                 text-transform:uppercase; color:var(--muted);}
+
+  @media (max-width:960px){
+    .wstep{grid-template-columns:120px 1fr; gap:14px;}
+    .ws-no{display:none;}
+    .ws-left{padding-top:0;}
+    .ws-verify{grid-column:2;}
+  }
+  @media (max-width:860px){
+    .masthead{padding:36px 16px 0;}
+    .wrap{padding:12px 16px 72px;}
+    .meta-row{gap:20px;}
+    .bluf{padding:22px 18px 20px;}
+    .b-row{grid-template-columns:1fr; gap:4px;}
+    .ph-chip{margin-left:0;}
+    .grammar{grid-template-columns:1fr 1fr;}
+    .g-cell:nth-child(3){border-left:none;}
+    .g-cell:nth-child(n+3){border-top:1px solid var(--gray-300);}
+    .roles{grid-template-columns:1fr;}
+  }
+  @media (max-width:680px){
+    .grammar{grid-template-columns:1fr;}
+    .g-cell{border-left:none;}
+    .g-cell:nth-child(n+2){border-top:1px solid var(--gray-300);}
+    .wstep{grid-template-columns:1fr; gap:10px;}
+    .ws-verify{grid-column:auto;}
+    .decision{grid-template-columns:auto 1fr; gap:14px;}
+  }
+
+  /* ---------- dark mode — the token flip, carried wholesale ---------- */
+  @media (prefers-color-scheme: dark){
+    :root{
+      --ivory:#191817; --slate:#F0EEE6; --white:#201F1D;
+      --clay-ink:#FE6C2D; --clay-soft:#3A241A;
+      --oat:#4A4438; --olive-ink:#A9BC8B; --olive-soft:#262D1E;
+      --rust:#D98A80; --rust-soft:#3A2622;
+      --gray-100:#232220; --gray-300:#3D3D3A; --gray-500:#A5A39B; --muted:#A5A39B; --body:#D6D4CC;
+    }
+    /* the ink panel flips to light — its on-ink colors flip with it */
+    .st-chip{border-color:#B8430F; color:#B8430F;}
+    .b-period, .b-label, .b-next{color:#67665F;}
+    .b-verdict{color:#191817;}
+    .b-verdict em{color:#B8430F;}
+    .b-list, .b-row{border-color:#D1CFC5;}
+    .b-row p{color:#3D3D3A;}
+    .b-row p b{color:#141413;}
+    .b-next b{color:#B8430F;}
+  }
+
+  @media print{
+    body{background:#FFFFFF; color:#141413;}
+    :root{
+      --ivory:#FFFFFF; --slate:#141413; --white:#FFFFFF; --body:#3D3D3A;
+      --gray-100:#F5F4F0; --gray-300:#D1CFC5; --gray-500:#87867F; --muted:#67665F;
+      --clay-ink:#B8430F; --clay-soft:#FDEBE0;
+      --olive-ink:#55673C; --olive-soft:#EEF2E6;
+      --rust:#B04A3F; --rust-soft:#F8ECE9;
+    }
+    nav.part-index{display:none;}
+    .fig-fs{display:none;}
+    .wrap{padding:0 24px;}
+    .masthead{padding:0 24px;}
+    section{margin-top:36px; padding-top:24px;}
+    .bluf, .wstep, .role-card, .decision, .checklist, .grammar, .fig,
+    .example{break-inside:avoid;}
+    /* :target effects neutralized on paper */
+    section:target{border-top:1px solid var(--gray-300); padding-top:24px;}
+    section:target .sec-kick{background:var(--gray-100); border-color:var(--gray-300);
+                             color:var(--muted);}
+    /* the checklist boxes keep their printed outlines */
+    ul.check li::before{background:#FFFFFF;}
+    /* folds forced open */
+    details.fold > *:not(summary){display:block !important;}
+    details.fold summary::before{content:"− ";}
+  }
+</style>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="masthead-inner">
+    <div class="kicker">
+      <span class="pill"><b>te9-docs</b> · skills.te9.dev</span>
+      <span class="kicker-meta">workflow template · the procedure a human + agent pair executes</span>
+      <span class="page-no">18 / 35</span>
+    </div>
+    <span class="type-label">Workflow Template</span>
+    <h1>One document, two pairs of <em>hands</em></h1>
+    <p class="lede"><b>Who this is for:</b> any pair about to produce one te9-docs document. The document production workflow is written here as an operating procedure — <b>four phases, nine steps</b>, every step owned by a role and carrying its own <b>verify line</b> ("done when: …"), three decision points called out where the run can branch, a checklist per phase, and one definition of done. The facts are the suite's own workflow, from the suite brief.</p>
+    <dl class="meta-row">
+      <div><dt>Prepared by</dt><dd>Founding session</dd></div>
+      <div><dt>Suite version</dt><dd>1.5.0</dd></div>
+      <div><dt>Subject</dt><dd>The document production workflow</dd></div>
+      <div><dt>On disk</dt><dd>17 of 35 landed · this is landing 18</dd></div>
+      <div><dt>Grammar</dt><dd>4 phases · 9 steps · 3 decisions · 1 figure</dd></div>
+    </dl>
+    <nav class="part-index" aria-label="Section index">
+      <p class="index-title">Run index</p>
+      <div class="index-links">
+        <a href="#roles"><b>01</b>Roles</a>
+        <a href="#p1"><b>02</b>P1 · Ask &amp; align</a>
+        <a href="#p2"><b>03</b>P2 · Build</a>
+        <a href="#p3"><b>04</b>P3 · Check</a>
+        <a href="#p4"><b>05</b>P4 · Keep</a>
+        <a href="#done"><b>06</b>Definition of done</a>
+        <a href="#colophon"><b>07</b>Colophon</a>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<div class="wrap">
+
+  <!-- ROLES — THE STRIP THE RUN HANGS ON -->
+  <section id="roles">
+    <span class="sec-kick">Roles</span>
+    <h2>Two pairs of hands</h2>
+    <p class="section-lede">Every step in this procedure is owned by exactly one of two roles. Read the four cells below once — they teach the anatomy every step row shares — and the rest of the document parses itself.</p>
+
+    <div class="grammar" role="img" aria-label="The step anatomy in four cells: role, action, verify, checklist.">
+      <div class="g-cell"><span class="g-k">Role</span><p>The chip on the step names the one who acts — <b>you</b> or <b>the session</b>. One owner per step; never both, never neither.</p></div>
+      <div class="g-cell"><span class="g-k">Action</span><p>What gets done, in one line. A step starts when the previous step's verify line reads done.</p></div>
+      <div class="g-cell"><span class="g-k">Verify</span><p>The mono line to the right: <b>done when …</b> — the step's own exit test, checkable in the conversation.</p></div>
+      <div class="g-cell"><span class="g-k">Checklist</span><p>Each phase closes with static boxes — empty until every verify line in the phase holds. They print as drawn; no state is tracked here.</p></div>
+    </div>
+
+    <div class="roles">
+      <article class="role-card">
+        <span class="role-chip role-you">YOU</span>
+        <p class="role-verbs">decides · reviews · approves</p>
+        <h3>The human half of the pair</h3>
+        <p>Owns the <b>goal</b>, the <b>gate</b> and the <b>home</b>. You state what the document is for, confirm what it will be, pass judgment on what was built, and choose where it lives. The run starts with you and ends with you.</p>
+        <p class="role-holds">holds · the goal, the review gate, the storage choice</p>
+      </article>
+      <article class="role-card">
+        <span class="role-chip role-session">THE SESSION</span>
+        <p class="role-verbs">asks · builds · shows</p>
+        <h3>The agent half of the pair</h3>
+        <p>Does the building. Asks when the ask is unclear, states its own recommendation before grounding it, builds to the conventions, and shows the result <b>before anything is stored</b> — it copies nothing until you confirm.</p>
+        <p class="role-holds">holds · the recommendation, the build, the playback</p>
+      </article>
+    </div>
+
+    <figure class="fig">
+      <div class="fig-h"><span class="fig-id">FIG &middot; 01</span><button class="fig-fs" type="button" aria-label="Open this diagram in a new tab">FULLSCREEN</button></div>
+      <div class="fig-legend"><span class="lg"><svg class="lg-g" width="14" height="14" viewBox="0 0 14 14" aria-hidden="true"><circle cx="7" cy="7" r="5" fill="none" stroke="#FE6C2D" stroke-width="2"/></svg>a step in the run · its lane names the role</span><span class="lg"><svg class="lg-g" width="14" height="14" viewBox="0 0 14 14" aria-hidden="true"><circle cx="7" cy="7" r="5" fill="none" stroke="#FE6C2D" stroke-width="2"/><circle cx="7" cy="7" r="2.5" fill="none" stroke="#FE6C2D" stroke-width="1.5"/></svg>the deliverable · the document at its home</span></div>
+      <div class="fig-b"><svg xmlns="http://www.w3.org/2000/svg" class="pele pele-swimlane" viewBox="-9.33999999999999 0 495.34 1193" width="495" height="1193" style="max-width:100%;height:auto;--_bg:var(--pele-bg,#fff);--_fg:var(--pele-fg,#1f1f1f);--_m:var(--pele-muted,#6e6e6e);--_l:var(--pele-line,#1f1f1f);--_s:var(--pele-surface,#f3f3f3);--_a:var(--pele-surface-alt,#e6e6e6);--_b:var(--pele-border,#8a8a8a);--_c:var(--pele-accent,#5b7bd5);color:var(--_fg);--_r:var(--pele-radius,4px);--_fm:var(--pele-font-mono,monospace);font:16px sans-serif;letter-spacing:normal;word-spacing:normal;text-transform:none;direction:ltr;font-family:var(--pele-font,sans-serif)" fill="var(--_fg)" role="graphics-document document" aria-roledescription="swimlane">
+  <style>
+    @media (prefers-color-scheme: dark){
+      .clay-lab{fill:#F0EEE6;}
+      .clay-sub{fill:#A5A39B;}
+    }
+  </style><g transform="translate(0 0)"><g class="pele-clusters"><g class="pele-cluster pele-lane" data-id="subGraph1"><rect x="240.51" y="8" width="236.98" height="1176.55" fill="none" stroke="var(--_b)"/><rect x="240.51" y="8" width="236.98" height="40" fill="var(--_a)" stroke="var(--_b)"/><text class="pele-cluster-label" fill="var(--_m)" x="359" y="33.6" text-anchor="middle">THE SESSION</text></g><g class="pele-cluster pele-lane" data-id="YOU"><rect x="8" y="8" width="231.13" height="1176.55" fill="none" stroke="var(--_b)"/><rect x="8" y="8" width="231.13" height="40" fill="var(--_a)" stroke="var(--_b)"/><text class="pele-cluster-label" fill="var(--_m)" x="123.56" y="33.6" text-anchor="middle">YOU</text></g></g><g class="pele-edges" fill="none" stroke="var(--_l)" stroke-linecap="round"><g class="clay-edge" style="stroke:#D1CFC5;stroke-width:1.5px;"><path d="M124,113L124,177" fill="none"/></g><g class="clay-edge" style="stroke:#D1CFC5;stroke-width:1.5px;"><path d="M359,213L359,307" fill="none"/></g><g class="clay-edge" style="stroke:#D1CFC5;stroke-width:1.5px;"><path d="M359,345L359,396" fill="none"/></g><g class="clay-edge" style="stroke:#D1CFC5;stroke-width:1.5px;"><path d="M124,430L124,485" fill="none"/></g><g class="clay-edge" style="stroke:#D1CFC5;stroke-width:1.5px;"><path d="M359,521L359,606" fill="none"/></g><g class="clay-edge" style="stroke:#D1CFC5;stroke-width:1.5px;"><path d="M359,644L359,727" fill="none"/></g><g class="clay-edge" style="stroke:#D1CFC5;stroke-width:1.5px;"><path d="M359,765L359,816" fill="none"/></g><g class="clay-edge" style="stroke:#D1CFC5;stroke-width:1.5px;"><path d="M124,850L124,937" fill="none"/></g><g class="clay-edge" style="stroke:#D1CFC5;stroke-width:1.5px;"><path d="M124,975L124,1089" fill="none"/></g></g><g class="pele-edge-labels" font-size="14"><g class="pele-edge-label" data-id="L_U1_S1_0"><rect x="258.63" y="85.5" width="53.14" height="21" rx="3" fill="var(--_bg)"/><text x="285.2" y="100.9" text-anchor="middle">the ask</text></g><g class="pele-edge-label" data-id="L_S1_S2_0"><rect x="302.87" y="253" width="112.26" height="21" rx="3" fill="var(--_bg)"/><text x="359" y="268.4" text-anchor="middle">recommendation</text></g><g class="pele-edge-label" data-id="L_S2_U2_0"><rect x="145.86" y="313.5" width="97.5" height="21" rx="3" fill="var(--_bg)"/><text x="194.61" y="328.9" text-anchor="middle">grounded type</text></g><g class="pele-edge-label" data-id="L_U2_S3_0"><rect x="245.24" y="402.5" width="69.46" height="21" rx="3" fill="var(--_bg)"/><text x="279.97" y="417.9" text-anchor="middle">confirmed</text></g><g class="pele-edge-label" data-id="L_S3_S4_0"><rect x="317.26" y="552" width="83.49" height="21" rx="3" fill="var(--_bg)"/><text x="359" y="567.4" text-anchor="middle">the instance</text></g><g class="pele-edge-label" data-id="L_S4_S5_0"><rect x="331.55" y="674" width="54.89" height="21" rx="3" fill="var(--_bg)"/><text x="359" y="689.4" text-anchor="middle">figures</text></g><g class="pele-edge-label" data-id="L_S5_U3_0"><rect x="201.53" y="779.5" width="94.35" height="21" rx="3" fill="var(--_bg)"/><text x="248.7" y="794.9" text-anchor="middle">shown whole</text></g><g class="pele-edge-label" data-id="L_U3_U4_0"><rect x="80.91" y="882" width="86.18" height="21" rx="3" fill="var(--_bg)"/><text x="124" y="897.4" text-anchor="middle">gate approval</text></g><g class="pele-edge-label" data-id="L_U4_U5_0"><rect x="107.51" y="1021" width="33" height="21" rx="3" fill="var(--_bg)"/><text x="124" y="1036.4" text-anchor="middle">stored</text></g></g><g class="pele-nodes"><g class="clay-node" data-id="U1"><circle cx="124" cy="96" r="17" fill="none" stroke="#FE6C2D" stroke-width="2"/><text class="clay-lab" x="124" y="70" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="11" font-weight="600" fill="#141413">01 · THE ASK</text><text class="clay-sub" x="124" y="135" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="10" fill="#87867F">PHASE 1 · GOAL + CRITERIA</text></g><g class="clay-node" data-id="S1"><circle cx="359" cy="196" r="17" fill="none" stroke="#FE6C2D" stroke-width="2"/><text class="clay-lab" x="359" y="170" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="11" font-weight="600" fill="#141413">02 · RECOMMEND</text><text class="clay-sub" x="359" y="235" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="10" fill="#87867F">PHASE 1 · TYPE + APPROACH</text></g><g class="clay-node" data-id="S2"><circle cx="359" cy="328" r="17" fill="none" stroke="#FE6C2D" stroke-width="2"/><text class="clay-lab" x="359" y="302" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="11" font-weight="600" fill="#141413">03 · INDEX-FIRST</text><text class="clay-sub" x="359" y="367" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="10" fill="#87867F">PHASE 1 · GROUNDED</text></g><g class="clay-node" data-id="U2"><circle cx="124" cy="413" r="17" fill="none" stroke="#FE6C2D" stroke-width="2"/><text class="clay-lab" x="124" y="387" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="11" font-weight="600" fill="#141413">04 · CONFIRM</text><text class="clay-sub" x="124" y="452" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="10" fill="#87867F">PHASE 1 · ONE TYPE, SAID YES TO</text></g><g class="clay-node" data-id="S3"><circle cx="359" cy="504" r="17" fill="none" stroke="#FE6C2D" stroke-width="2"/><text class="clay-lab" x="359" y="478" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="11" font-weight="600" fill="#141413">05 · INSTANCE</text><text class="clay-sub" x="359" y="543" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="10" fill="#87867F">PHASE 2 · COPY + CONTENT SWAP</text></g><g class="clay-node" data-id="S4"><circle cx="359" cy="627" r="17" fill="none" stroke="#FE6C2D" stroke-width="2"/><text class="clay-lab" x="359" y="601" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="11" font-weight="600" fill="#141413">06 · FIGURES</text><text class="clay-sub" x="359" y="666" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="10" fill="#87867F">PHASE 2 · PELE + CLAYIFY</text></g><g class="clay-node" data-id="S5"><circle cx="359" cy="748" r="17" fill="none" stroke="#FE6C2D" stroke-width="2"/><text class="clay-lab" x="359" y="722" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="11" font-weight="600" fill="#141413">07 · PLAYBACK</text><text class="clay-sub" x="359" y="787" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="10" fill="#87867F">PHASE 3 · IN THE BROWSER</text></g><g class="clay-node" data-id="U3"><circle cx="124" cy="833" r="17" fill="none" stroke="#FE6C2D" stroke-width="2"/><text class="clay-lab" x="124" y="807" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="11" font-weight="600" fill="#141413">08 · THE GATE</text><text class="clay-sub" x="124" y="872" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="10" fill="#87867F">PHASE 3 · FEEDBACK FOLDED IN</text></g><g class="clay-node" data-id="U4"><circle cx="124" cy="958" r="17" fill="none" stroke="#FE6C2D" stroke-width="2"/><text class="clay-lab" x="124" y="932" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="11" font-weight="600" fill="#141413">09 · STORAGE</text><text class="clay-sub" x="124" y="997" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="10" fill="#87867F">PHASE 4 · THE MENU, FOUR OPTIONS</text></g><g class="clay-node" data-id="U5"><circle cx="124" cy="1106" r="17" fill="none" stroke="#FE6C2D" stroke-width="2"/><circle cx="124" cy="1106" r="13" fill="none" stroke="#FE6C2D" stroke-width="1.5"/><text class="clay-lab" x="124" y="1080" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="11" font-weight="600" fill="#141413">10 · AT ITS HOME</text><text class="clay-sub" x="124" y="1145" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="10" fill="#87867F">THE DOCUMENT, DONE</text></g></g></g></svg></div>
+      <div class="fig-f">FIG · 01 — THE PRODUCTION RUN, SPLIT BY ROLE · TWO LANES, TEN STOPS, NINE HAND-OFFS · RENDERED VIA PELE (SWIMLANE), CLAYIFIED</div>
+    </figure>
+
+    <details class="fold">
+      <summary>Why every step carries a verify line</summary>
+      <div class="fold-body">
+        <div class="example">
+          <span class="etype">The discipline behind the mono lines</span>
+          <p><b>A step without "done when" is not a step — it is an intention.</b> The verify line makes each step's exit checkable in the conversation itself: the goal is written down, the type points at an index entry, the document is open in your browser.</p>
+          <p><b>It is also the pair's contract.</b> The review gate is the suite's own rule — nothing stores before approval — but a gate only works if every step before it declared what "done" means. When a verify line can't read done, the step is not finished, whatever was built.</p>
+        </div>
+      </div>
+    </details>
+  </section>
+
+  <!-- PHASE 01 — ASK & ALIGN -->
+  <section id="p1">
+    <div class="ph-head">
+      <span class="sec-kick">Phase 01 · Ask &amp; align</span>
+      <span class="ph-chip"><b>4 steps</b> · you open it, the session grounds it, you close it</span>
+    </div>
+    <h2>Agree what done means, before anything is built</h2>
+    <p class="section-lede">No writing happens in this phase. Its output is a decision both halves of the pair have said yes to — a goal with acceptance criteria, and one document type, grounded in the suite's index.</p>
+
+    <div class="steps">
+      <div class="wstep">
+        <div class="ws-left"><span class="ws-no">Step 1 · of 9</span><span class="role-chip role-you">YOU</span></div>
+        <div class="ws-main">
+          <h3>State the goal and the acceptance criteria</h3>
+          <p>Say what the document is for and what must be true when it is finished. This is the intake — before any writing, before any template is opened.</p>
+        </div>
+        <p class="ws-verify"><b>done when:</b> the goal and its acceptance criteria exist in writing, in the conversation.</p>
+      </div>
+      <div class="wstep">
+        <div class="ws-left"><span class="ws-no">Step 2 · of 9</span><span class="role-chip role-session">THE SESSION</span></div>
+        <div class="ws-main">
+          <h3>State the skill's own recommendation</h3>
+          <p>From context alone: which document type fits, and the approach it would take. A recommendation, made before the index is consulted — not after.</p>
+        </div>
+        <p class="ws-verify"><b>done when:</b> a type and an approach are on the table, named as the skill's recommendation.</p>
+      </div>
+      <div class="wstep">
+        <div class="ws-left"><span class="ws-no">Step 3 · of 9</span><span class="role-chip role-session">THE SESSION</span></div>
+        <div class="ws-main">
+          <h3>Ground the type decision in the index</h3>
+          <p>Read the suite index — <code>assets/templates/index.json</code> — and match the recommendation against what is listed. The index is normative for discovery; the decision points at it, not at vibes.</p>
+          <p class="sc-suite">the suite calls this: Index-first</p>
+        </div>
+        <p class="ws-verify"><b>done when:</b> the type decision points at an index entry — or its absence is named out loud (decision 02).</p>
+      </div>
+      <div class="wstep">
+        <div class="ws-left"><span class="ws-no">Step 4 · of 9</span><span class="role-chip role-you">YOU</span></div>
+        <div class="ws-main">
+          <h3>Confirm the type</h3>
+          <p>You say yes to one type. Where two candidates could both carry the document, this confirmation is not a formality — it is the decision (decision 01).</p>
+        </div>
+        <p class="ws-verify"><b>done when:</b> you have confirmed one type, in the conversation, before anything is copied.</p>
+      </div>
+    </div>
+
+    <div class="checklist">
+      <p class="cl-title"><b>Phase 01 checklist</b> · four boxes, all ticked before phase 02</p>
+      <ul class="check">
+        <li><b>Goal + acceptance criteria</b> — stated by you, in writing.</li>
+        <li><b>Recommendation made</b> — type + approach, from the session, before the index was read.</li>
+        <li><b>Index consulted</b> — the decision grounded in <code>assets/templates/index.json</code>.</li>
+        <li><b>Type confirmed</b> — by you; one type, said yes to.</li>
+      </ul>
+    </div>
+
+    <div class="decision">
+      <span class="dp-glyph" aria-hidden="true"><span>?</span></span>
+      <div>
+        <span class="dp-k">Decision 01 · at the exit of ask &amp; align — if two types could match</span>
+        <p class="dp-t"><b>The session asks; you confirm before anything is copied.</b></p>
+        <p class="dp-s">Two plausible types is not a tie to break silently. The session lays both entries side by side, you pick one — and only then does the build phase open the template.</p>
+      </div>
+    </div>
+
+    <div class="decision">
+      <span class="dp-glyph" aria-hidden="true"><span>?</span></span>
+      <div>
+        <span class="dp-k">Decision 02 · at the exit of ask &amp; align — if no type matches</span>
+        <p class="dp-t"><b>The extension protocol applies.</b></p>
+        <p class="dp-s">The suite grows instead of the document bending: the session builds the unlisted type to the same conventions, saves it, registers it in the index, bumps the suite version and writes its own changelog line — the next run finds it in the index.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- PHASE 02 — BUILD -->
+  <section id="p2">
+    <div class="ph-head">
+      <span class="sec-kick">Phase 02 · Build</span>
+      <span class="ph-chip"><b>2 steps</b> · all the session's — you wait, holding the confirmed type</span>
+    </div>
+    <h2>Instance the template, render the figures</h2>
+    <p class="section-lede">The build phase is the session's alone, and it is deliberately short: copy, swap, render. Nothing here invents a layout — the template is the layout.</p>
+
+    <div class="steps">
+      <div class="wstep">
+        <div class="ws-left"><span class="ws-no">Step 5 · of 9</span><span class="role-chip role-session">THE SESSION</span></div>
+        <div class="ws-main">
+          <h3>Instance the template</h3>
+          <p>Copy the confirmed template and swap its self-describing placeholders for the real facts — <b>preserving the layout, the interactions and the Clay tokens</b>. The instance changes content, never design.</p>
+          <p class="sc-suite">the suite calls this: Template instance</p>
+        </div>
+        <p class="ws-verify"><b>done when:</b> every placeholder is swapped and layout, interactions and tokens are untouched.</p>
+      </div>
+      <div class="wstep">
+        <div class="ws-left"><span class="ws-no">Step 6 · of 9</span><span class="role-chip role-session">THE SESSION</span></div>
+        <div class="ws-main">
+          <h3>Render the figures</h3>
+          <p>Mermaid sources rendered by pele at build time (Node), clayified, inlined as SVG on Clay variables inside a fenced plate with its <code>FIG · NN</code> caption. Zero network requests survive the build.</p>
+          <p class="sc-suite">the suite calls this: Figure · pele</p>
+        </div>
+        <p class="ws-verify"><b>done when:</b> each figure is inlined SVG on Clay tokens, in its plate, with its caption.</p>
+      </div>
+    </div>
+
+    <div class="checklist">
+      <p class="cl-title"><b>Phase 02 checklist</b> · three boxes, all ticked before phase 03</p>
+      <ul class="check">
+        <li><b>Template copied, not redesigned</b> — layout, interactions and Clay tokens preserved.</li>
+        <li><b>Placeholders swapped</b> — real facts in, self-describing placeholders out.</li>
+        <li><b>Figures built</b> — pele-rendered, clayified, plated, captioned.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- PHASE 03 — CHECK -->
+  <section id="p3">
+    <div class="ph-head">
+      <span class="sec-kick">Phase 03 · Check</span>
+      <span class="ph-chip"><b>2 steps</b> · shown first, judged second</span>
+    </div>
+    <h2>Show it, gate it, fold in the feedback</h2>
+    <p class="section-lede">The document looks done from the inside; this phase proves it from yours. The session shows, you judge — and nothing downstream of this phase moves until the gate says so.</p>
+
+    <div class="steps">
+      <div class="wstep">
+        <div class="ws-left"><span class="ws-no">Step 7 · of 9</span><span class="role-chip role-session">THE SESSION</span></div>
+        <div class="ws-main">
+          <h3>Show the document in the browser</h3>
+          <p>The playback: the finished instance opened where you read it — light and dark, scrolled whole, folds and jumps working. The session does not summarize it; it shows it.</p>
+          <p class="sc-suite">the suite calls this: Playback</p>
+        </div>
+        <p class="ws-verify"><b>done when:</b> the document is open in your browser and you have seen it whole.</p>
+      </div>
+      <div class="wstep">
+        <div class="ws-left"><span class="ws-no">Step 8 · of 9</span><span class="role-chip role-you">YOU</span></div>
+        <div class="ws-main">
+          <h3>Pass the review gate</h3>
+          <p>You approve — or you say what is wrong. Feedback goes back into the build and the document is shown again. Approval is yours to give; it cannot be assumed.</p>
+          <p class="sc-suite">the suite calls this: Review gate</p>
+        </div>
+        <p class="ws-verify"><b>done when:</b> you approve — or your feedback has been folded in and the document shown again.</p>
+      </div>
+    </div>
+
+    <div class="checklist">
+      <p class="cl-title"><b>Phase 03 checklist</b> · three boxes, all ticked before phase 04</p>
+      <ul class="check">
+        <li><b>Shown in the browser</b> — the whole document, not a description of it.</li>
+        <li><b>Feedback folded in</b> — every round of it, each followed by another showing.</li>
+        <li><b>Gate approval given</b> — by you, out loud.</li>
+      </ul>
+    </div>
+
+    <div class="decision">
+      <span class="dp-glyph" aria-hidden="true"><span>?</span></span>
+      <div>
+        <span class="dp-k">Decision 03 · at the exit of check — if the gate fails</span>
+        <p class="dp-t"><b>Feedback is folded in; nothing builds forward.</b></p>
+        <p class="dp-s">A failed gate does not demote the document to "good enough for storage" — the run holds at this phase until a re-show earns your approval. Storage waits; it is the next phase, not a consolation prize.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- PHASE 04 — KEEP -->
+  <section id="p4">
+    <div class="ph-head">
+      <span class="sec-kick">Phase 04 · Keep</span>
+      <span class="ph-chip"><b>1 step</b> · your choice — four options, the specified one wins</span>
+    </div>
+    <h2>Choose the home, close the run</h2>
+    <p class="section-lede">One step, four options, zero defaults. The document lands where you choose — and "nowhere yet" is a legitimate choice, as long as it is made on purpose.</p>
+
+    <div class="steps">
+      <div class="wstep">
+        <div class="ws-left"><span class="ws-no">Step 9 · of 9</span><span class="role-chip role-you">YOU</span></div>
+        <div class="ws-main">
+          <h3>Choose from the storage menu</h3>
+          <p><b>(a)</b> the project docs folder — <code>&lt;project&gt;/docs/&lt;YYYY-MM-DD&gt;-&lt;slug&gt;.html</code>; <b>(b)</b> the central collection — <code>E:\te9-docs\documents\</code>; <b>(c)</b> preview only; or <b>(d)</b> specify a location — which always wins when used.</p>
+          <p class="sc-suite">the suite calls this: Storage menu</p>
+        </div>
+        <p class="ws-verify"><b>done when:</b> the document sits at its chosen home — or the run closed as preview-only, on purpose.</p>
+      </div>
+    </div>
+
+    <div class="checklist">
+      <p class="cl-title"><b>Phase 04 checklist</b> · three boxes, all ticked before the run closes</p>
+      <ul class="check">
+        <li><b>An option named</b> — a, b, c or d, chosen by you.</li>
+        <li><b>Used = chosen</b> — the location used is the location chosen; a specified location always wins when used.</li>
+        <li><b>Ledger marks, if a new type was built</b> — index entry, version bump, changelog line (decision 02's tail).</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- DEFINITION OF DONE — THE INK BAND -->
+  <section id="done">
+    <span class="sec-kick">Definition of done</span>
+    <h2>Four conditions, none optional</h2>
+    <p class="section-lede">The run is finished when all four lines below hold. Three of four is the most common way a document fails without anyone noticing — usually the fourth.</p>
+
+    <div class="bluf">
+      <p class="b-top"><span class="st-chip">The whole run, passed</span><span class="b-period">4 conditions · 1 conditional · 0 assumptions</span></p>
+      <p class="b-verdict">A document is done when <em>all four</em> hold — not three, and not "basically".</p>
+      <div class="b-list">
+        <div class="b-row">
+          <span class="b-label">01 · Goal met</span>
+          <p><b>The acceptance criteria from intake are met</b> — checked against the criteria named in phase 01, not against a mood. The goal the run opened with is the goal the run closes on.</p>
+        </div>
+        <div class="b-row">
+          <span class="b-label">02 · Gate passed</span>
+          <p><b>You approved the document in the browser</b> — after seeing it whole, with every round of feedback folded in and re-shown. No approval, no done.</p>
+        </div>
+        <div class="b-row">
+          <span class="b-label">03 · Storage chosen</span>
+          <p><b>The document sits at its chosen home</b> — project docs folder, central collection, a location you specified, or preview-only as a deliberate close.</p>
+        </div>
+        <div class="b-row">
+          <span class="b-label">04 · Registered <b>if new type</b></span>
+          <p><b>Only when the run built an unlisted type:</b> the index entry exists, the suite version is bumped, the changelog line is written. Runs that used a listed type skip this line — done is still done.</p>
+        </div>
+      </div>
+      <p class="b-next">Then the run closes · <b>nothing pending, nothing assumed</b> — the next document starts a fresh set of empty boxes</p>
+    </div>
+  </section>
+
+  <!-- COLOPHON -->
+  <section id="colophon" class="colophon">
+    <span class="sec-kick">Colophon</span>
+    <h2>Workflow Template · template v0.1</h2>
+    <p class="statement">An operating procedure for one document's life: four phases, nine steps, each owned by you or the session, each carrying its own "done when". The three decision points are the suite's own rules — confirm when two types match, extend when none does, stop at a failed gate — and the definition of done is the whole run, passed. This document was itself produced by the procedure it documents: intake, index, instance, a build-time figure, playback, a home. Seventeen of thirty-five landed at build time; this is landing 18.</p>
+    <div class="row">
+      <span>DOC ID · TE9-WFL-001</span>
+      <span>SUITE VERSION · 1.5.0</span>
+      <span>SUITE · te9-docs</span>
+      <span>SIBLINGS · <a href="17-high-level-timelines-and-steps.html">High Level Timelines and Steps</a></span>
+      <span>PREPARED BY · Founding session</span>
+    </div>
+  </section>
+
+</div>
+
+<script>
+  document.querySelectorAll('.fig-fs').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var svg = btn.closest('.fig').querySelector('svg');
+      var blob = new Blob([svg.outerHTML], { type: 'image/svg+xml' });
+      window.open(URL.createObjectURL(blob), '_blank');
+    });
+  });
+</script>
+</body>
+</html>

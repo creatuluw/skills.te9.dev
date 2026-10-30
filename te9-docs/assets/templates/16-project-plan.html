@@ -1,0 +1,820 @@
+<!doctype html>
+<!-- te9-docs suite — self-describing placeholder · v1.3.0 — STYLE: Clay Explainer -->
+<!-- ================================================================
+     LLM AUTHORING CONTRACT — PROJECT PLAN v0.1 — STYLE: Clay Explainer
+     te9-docs suite — self-describing placeholder. Paste this comment
+     into the authoring LLM alongside the source material. The LLM
+     assembles; it does not redesign.
+
+     TASK        Plan ONE objective's execution: what is in and out of
+                 scope, the phases in build order (each with exact
+                 deliverables and exit criteria), the milestone chain,
+                 the dependencies and risks, and the governance the
+                 work runs under. The plan a team actually executes
+                 against — counts real, criteria checkable, status
+                 honest.
+     FORMAT      Execution-breakdown document: objective band on ink,
+                 scope table (in / out), phase panels with status
+                 chips, one milestone figure, dependency strip +
+                 risk/mitigation table, governance rows, colophon.
+                 Executable over aspirational.
+     HIERARCHY   doc > section > phase panel / dep row / risk row /
+                 governance row > (fold: membership / counting method)
+     SECTION     masthead → jump-nav pill strip → objective (ink band)
+                 → scope (IN/OUT table + membership fold) → phases
+                 (panels, build order; each = deliverables + exit
+                 criteria + status chip) → milestones (FIG · 01, the
+                 phase chain) → dependencies & risks (dep strip +
+                 tinted risk/mitigation table) → governance (gate +
+                 extension protocol + ledger) → colophon
+     ORDER       objective first, colophon last. Exactly one figure;
+                 one scope table; one risk table; one colophon.
+
+     BLOCK GRAMMAR
+       objective band ink panel (slate ground): status chip + horizon
+                      strip, the objective in big serif with one
+                      italic clay phrase, mono rows (done-when /
+                      protocol / measure), mono next-gate line. First
+                      section of the document.
+       scope table    ruled two-column table: IN the work / OUT the
+                      deferrals, row-aligned; membership fold beneath
+                      names every in-scope item.
+       phase panel    white bordered panel: PHASE NN chip + name h3 +
+                      status flag (In progress clay / Queued gray) +
+                      numbered deliverables (exact names) + exit
+                      criteria on a gray mono plate. One per remaining
+                      cluster, in build order.
+       dep strip      gray-100 strip, mono DEP-NN rows: what waits on
+                      what, one line each.
+       risk row       two-cell tinted region (rust-soft risk /
+                      olive-soft mitigation), R-NN / MITIGATION chips.
+       governance     white panel, GOV-NN rows: the rule stated once,
+                      with its source.
+       fold           <details> on an oat plate; membership, counting.
+       figure         ONE pele-rendered SVG in a fenced gray-100
+                      plate: filled ring = here-now, open rings =
+                      phases ahead (sub-label carries the count),
+                      double ring = the destination; header with FIG
+                      ID + legend strip + FULLSCREEN; body = diagram
+                      only; footer = caption
+       colophon       DOC ID · suite version · siblings · prepared-by
+
+     IRON RULES  Every count taken from the repository at build time
+                 (template directory, index.json, CHANGELOG, the
+                 cluster board). Facts grounded in SUITE-BRIEF and
+                 CHANGELOG reality only — no invented suite facts, no
+                 test suite claimed that the repository does not show.
+                 Phases follow the canonical cluster board
+                 (3+6+5+5+3+4+9 = 35). The figure may not carry a
+                 claim the panels don't. Zero scripts beyond the
+                 whitelisted fullscreen listener.
+     VOICE       Plausible, domain-real, direct. Executable over
+                 aspirational: every exit criterion checkable.
+     STATUS      One chip in the objective band, one flag on every
+                 phase panel: In progress | Queued.
+     COLORS      decorative clay #FE6C2D, text clay #B8430F, on ivory
+                 #FAF9F5 with slate ink #141413 — olive #55673C,
+                 rust #B04A3F supporting — do not deviate. Dark mode:
+                 token flip under prefers-color-scheme.
+================================================================ -->
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>te9-docs · Project Plan — suite v1.3.0</title>
+<style>
+  :root{
+    --ivory:#FAF9F5; --slate:#141413; --white:#FFFFFF;
+    --clay:#FE6C2D; --clay-ink:#B8430F; --clay-soft:#FDEBE0;
+    --oat:#E3DACC; --olive:#788C5D; --olive-ink:#55673C; --olive-soft:#EEF2E6;
+    --rust:#B04A3F; --rust-soft:#F8ECE9;
+    --gray-100:#F0EEE6; --gray-300:#D1CFC5; --muted:#67665F; --body:#3D3D3A;
+    --serif:ui-serif, Georgia, serif;
+    --sans:system-ui, -apple-system, sans-serif;
+    --mono:ui-monospace, "SF Mono", Menlo, monospace;
+    --radius-panel:12px; --radius-chip:999px;
+    --border:1.5px solid var(--gray-300);
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto;}
+  }
+  body{background:var(--ivory); color:var(--slate); font-family:var(--sans);
+       font-size:15.5px; line-height:1.6; -webkit-font-smoothing:antialiased;}
+  h1,h2,h3{font-family:var(--serif); font-weight:500; letter-spacing:-.01em;}
+  a{color:var(--clay-ink); text-decoration:none; border-bottom:1px dotted var(--clay-ink);}
+  a:hover{border-bottom-style:solid;}
+  a:focus-visible, summary:focus-visible{outline:2px solid var(--clay-ink); outline-offset:2px;}
+  code{font-family:var(--mono); font-size:.92em; background:var(--gray-100);
+       border-radius:4px; padding:1px 5px;}
+
+  /* ---------- kicker — pill + meta, the shared hero grammar ---------- */
+  .kicker{display:flex; align-items:baseline; gap:12px; flex-wrap:wrap;}
+  .pill{font-family:var(--mono); font-size:11px; text-transform:uppercase;
+        letter-spacing:.06em; color:var(--muted); background:var(--gray-100);
+        border:var(--border); border-radius:var(--radius-chip); padding:5px 11px;
+        white-space:nowrap;}
+  .pill b{color:var(--clay-ink); font-weight:500;}
+  .kicker-meta{font-family:var(--mono); font-size:11px; text-transform:uppercase;
+               letter-spacing:.18em; color:var(--muted);}
+  .page-no{margin-left:auto; font-family:var(--mono); font-size:11px;
+           letter-spacing:.18em; color:var(--muted); white-space:nowrap;}
+  .type-label{display:inline-block; margin-top:24px; font-family:var(--mono); font-size:11px;
+              text-transform:uppercase; letter-spacing:.06em; color:var(--muted);
+              background:var(--gray-100); border:var(--border);
+              border-radius:var(--radius-chip); padding:5px 11px;}
+
+  /* ---------- masthead — the hero directly on ivory ---------- */
+  .masthead{padding:56px 24px 0;}
+  .masthead-inner{max-width:1000px; margin:0 auto;}
+  h1{font-size:clamp(44px, 6.5vw, 80px); line-height:1.05; margin-top:20px; max-width:16ch;}
+  h1 em{font-style:italic; color:var(--clay-ink);}
+  .lede{margin-top:26px; font-size:17.5px; line-height:1.6; color:var(--body); border-left:3px solid var(--clay); padding:4px 0 4px 20px;}
+  .lede b{color:var(--slate); font-weight:600;}
+  .meta-row{display:flex; flex-wrap:wrap; gap:32px; margin-top:36px; padding-top:22px;
+            border-top:1px solid var(--gray-300);}
+  .meta-row dt{font-family:var(--mono); font-size:10px; letter-spacing:.18em;
+               text-transform:uppercase; color:var(--muted); margin-bottom:4px;}
+  .meta-row dd{font-weight:500; color:var(--slate);}
+
+  /* ---------- jump nav — mono pill strip ---------- */
+  nav.part-index{margin-top:30px;}
+  .index-title{font-family:var(--mono); font-size:10px; letter-spacing:.18em;
+               text-transform:uppercase; color:var(--muted); margin-bottom:10px;}
+  .index-links{display:flex; flex-wrap:wrap; gap:8px;}
+  .index-links a{font-family:var(--mono); font-size:11px; letter-spacing:.06em;
+                 text-transform:uppercase; color:var(--muted); background:var(--white);
+                 border:var(--border); border-bottom:var(--border);
+                 border-radius:var(--radius-chip); padding:5px 11px;}
+  .index-links a b{color:var(--clay-ink); font-weight:500; margin-right:4px;}
+  .index-links a:hover{background:var(--clay-soft); border-color:var(--clay);
+                       border-bottom-color:var(--clay);}
+
+  /* ---------- layout — section rhythm convention ---------- */
+  .wrap{max-width:1000px; margin:0 auto; padding:20px 24px 90px;}
+  section{margin-top:40px; padding-top:40px; border-top:1px solid var(--gray-300);
+          scroll-margin-top:24px;}
+  h2{font-size:28px; line-height:1.15; margin:16px 0 16px;}
+  h2 + *{margin-top:0;}
+  .sec-kick{display:inline-block; font-family:var(--mono); font-size:10px;
+            text-transform:uppercase; letter-spacing:.18em; color:var(--muted);
+            background:var(--gray-100); border:var(--border);
+            border-radius:var(--radius-chip); padding:4px 11px;}
+  .section-lede{font-size:16.5px; color:var(--body);}
+  .section-lede + *{margin-top:24px;}
+  /* :target — the section's top hairline thickens to a 3px clay rule
+     and its pill flips clay-soft. Border, rule and chip move as one. JS-free. */
+  section:target{border-top:3px solid var(--clay); padding-top:38px;}
+  section:target .sec-kick{background:var(--clay-soft); border-color:var(--clay);
+                           color:var(--clay-ink);}
+
+  /* ---------- the objective band — on ink, first section ---------- */
+  .bluf{background:var(--slate); border-radius:var(--radius-panel);
+        padding:30px 34px 26px; break-inside:avoid;}
+  .b-top{display:flex; align-items:center; gap:16px; flex-wrap:wrap;}
+  .st-chip{display:inline-block; font-family:var(--mono); font-size:11px;
+           letter-spacing:.14em; text-transform:uppercase; padding:4px 14px;
+           border-radius:var(--radius-chip); border:1px solid #FE6C2D;
+           color:#FE6C2D; white-space:nowrap;}
+  .b-period{font-family:var(--mono); font-size:10px; letter-spacing:.18em;
+            text-transform:uppercase; color:#A5A39B;}
+  .b-verdict{margin-top:20px; font-family:var(--serif); font-weight:500;
+             font-size:clamp(24px, 3.4vw, 36px); line-height:1.25;
+             letter-spacing:-.01em; color:var(--ivory); max-width:34ch;}
+  .b-verdict em{font-style:italic; color:#FE6C2D;}
+  .b-list{margin-top:26px; border-top:1px solid #3D3D3A;}
+  .b-row{display:grid; grid-template-columns:110px 1fr; gap:16px; padding:15px 0;
+         border-bottom:1px solid #3D3D3A;}
+  .b-row:last-child{border-bottom:none;}
+  .b-label{font-family:var(--mono); font-size:10px; letter-spacing:.18em;
+           text-transform:uppercase; color:#A5A39B; padding-top:4px;}
+  .b-row p{font-size:14.5px; line-height:1.6; color:#D6D4CC;}
+  .b-row p b{color:var(--ivory); font-weight:600;}
+  .b-next{margin-top:20px; font-family:var(--mono); font-size:10px;
+          letter-spacing:.18em; text-transform:uppercase; color:#A5A39B;}
+  .b-next b{color:#FE6C2D; font-weight:500;}
+
+  /* ---------- scope — the IN/OUT table ---------- */
+  .scope-wrap{margin-top:24px; background:var(--white); border:var(--border);
+              border-radius:var(--radius-panel); padding:6px 26px 8px;
+              break-inside:avoid;}
+  table.scope{width:100%; border-collapse:collapse;}
+  table.scope th{font-family:var(--mono); font-size:10px; letter-spacing:.14em;
+                 text-transform:uppercase; text-align:left; padding:16px 0 10px;
+                 border-bottom:1px solid var(--gray-300); width:50%;}
+  table.scope th.in-h{color:var(--olive-ink);}
+  table.scope th.out-h{color:var(--rust);}
+  table.scope td{vertical-align:top; padding:18px 26px 16px;
+                 border-bottom:1px solid var(--gray-300); font-size:14px;
+                 line-height:1.6; color:var(--body);}
+  table.scope tr:last-child td{border-bottom:none;}
+  table.scope td:first-child{border-right:1px solid var(--gray-300);}
+  table.scope td:first-child{padding-left:0;}
+  table.scope td:last-child{padding-right:0;}
+  table.scope b{color:var(--slate); font-weight:600;}
+  .cell-tag{display:none; font-family:var(--mono); font-size:10px;
+            letter-spacing:.14em; text-transform:uppercase; margin-bottom:6px;}
+  .cell-tag.in{color:var(--olive-ink);}
+  .cell-tag.out{color:var(--rust);}
+
+  /* ---------- phases — panels in build order ---------- */
+  .phase{margin-top:20px; background:var(--white); border:var(--border);
+         border-radius:var(--radius-panel); padding:22px 26px 20px;
+         break-inside:avoid;}
+  .phase:first-of-type{margin-top:0;}
+  .ph-head{display:flex; align-items:baseline; gap:14px; flex-wrap:wrap;}
+  .ph-chip{font-family:var(--mono); font-size:10px; letter-spacing:.14em;
+           text-transform:uppercase; color:var(--clay-ink); border:1px solid var(--clay);
+           border-radius:var(--radius-chip); padding:3px 10px; white-space:nowrap;}
+  .ph-head h3{font-size:19px; line-height:1.3;}
+  .ph-head .flag{margin-left:auto;}
+  .ph-sub{margin-top:8px; font-family:var(--mono); font-size:10.5px;
+          letter-spacing:.14em; text-transform:uppercase; color:var(--muted);}
+  .ph-sub b{color:var(--clay-ink); font-weight:500;}
+  .ph-grid{display:grid; grid-template-columns:1.25fr 1fr; gap:14px 28px;
+           margin-top:16px; padding-top:16px; border-top:1px solid var(--gray-300);}
+  .ph-label{font-family:var(--mono); font-size:10px; letter-spacing:.18em;
+            text-transform:uppercase; color:var(--muted);}
+  .ph-col ol{margin-top:10px; list-style:none; counter-reset:del;}
+  .ph-col ol li{counter-increment:del; position:relative; font-size:13.5px;
+                line-height:1.6; color:var(--body); padding:6px 0 6px 34px;
+                border-top:1px solid var(--gray-100);}
+  .ph-col ol li:first-child{border-top:none; padding-top:2px;}
+  .ph-col ol li::before{content:"0" counter(del); position:absolute; left:0; top:8px;
+                        font-family:var(--mono); font-size:10px; letter-spacing:.06em;
+                        color:var(--muted);}
+  .ph-col ol li:first-child::before{top:4px;}
+  .ph-col ol li b{color:var(--slate); font-weight:600;}
+  .ph-col ol li.this-doc::before{content:"✓"; color:var(--clay-ink); font-weight:600;}
+  .ph-col ol li.this-doc{color:var(--slate);}
+  .ph-col ol li .li-note{font-size:12px; color:var(--muted);}
+  .ph-exit{margin-top:10px; font-family:var(--mono); font-size:11px; line-height:1.9;
+           letter-spacing:.04em; color:var(--body); background:var(--gray-100);
+           border-radius:8px; padding:12px 14px;}
+  .ph-exit b{color:var(--clay-ink); font-weight:500;}
+  .ph-note{margin-top:16px; font-family:var(--mono); font-size:10.5px;
+           letter-spacing:.06em; line-height:1.7; color:var(--muted);}
+
+  /* ---------- figure — one phase chain on a gray-100 plate ---------- */
+  .fig{margin-top:22px; background:var(--gray-100); border:var(--border);
+       border-radius:var(--radius-panel); position:relative; overflow:hidden;}
+  .fig-h{display:flex; align-items:center; justify-content:space-between; gap:12px;
+         padding:10px 14px;}
+  .fig-id{font-family:var(--mono); font-size:10px; letter-spacing:.18em;
+          text-transform:uppercase; color:var(--muted);}
+  .fig-fs{font-family:var(--mono); font-size:10px; text-transform:uppercase;
+          letter-spacing:.14em; color:var(--muted); background:var(--white);
+          border:var(--border); border-radius:999px; padding:4px 10px; cursor:pointer;}
+  .fig-fs:hover{color:var(--clay-ink); border-color:var(--clay);}
+  .fig-fs:focus-visible{outline:2px solid var(--clay); outline-offset:2px;}
+  .fig-legend{display:flex; flex-wrap:wrap; gap:6px 18px; padding:0 14px 9px;
+              border-bottom:1px solid var(--gray-300); font-family:var(--mono);
+              font-size:10px; letter-spacing:.06em; text-transform:uppercase;
+              color:var(--muted);}
+  .fig-legend .lg{display:inline-flex; align-items:center; gap:6px;}
+  .fig-legend .lg-g{flex:none;}
+  .fig-b{padding:20px 18px;}
+  .fig-b svg{display:block; width:auto; max-width:100%; height:auto; margin:0 auto;}
+  .fig-f{padding:10px 14px; border-top:1px solid var(--gray-300);
+         font-family:var(--mono); font-size:10px; letter-spacing:.18em;
+         text-transform:uppercase; color:var(--muted); text-align:center;}
+
+  /* pele theming — the Clay mapping lives here, in document CSS, never
+     inline in the SVG (inline var() indirection failed to resolve
+     in-suite and painted edge-label chips black; this is the fix). */
+  .fig svg{--pele-fg:var(--slate); --pele-fg-on-light:var(--body); --pele-muted:var(--gray-500);
+           --pele-line:var(--gray-300); --pele-bg:transparent; --pele-surface:transparent;
+           --pele-surface-alt:transparent; --pele-border:var(--gray-300); --pele-accent:var(--clay);
+           --pele-radius:4px;
+           --pele-font:system-ui,-apple-system,sans-serif;
+           --pele-font-mono:ui-monospace,"SF Mono",Menlo,monospace;}
+  .fig svg .pele-title{display:none;}
+  .fig svg .pele-edge-label rect{fill:transparent;}
+  .fig svg .pele-edge-label text{fill:var(--body); font-size:12.5px;}
+
+  /* ---------- dependencies & risks — strip + tinted table ---------- */
+  .deps{margin-top:24px; background:var(--gray-100); border:var(--border);
+        border-radius:var(--radius-panel); padding:4px 22px; break-inside:avoid;}
+  .dep{display:grid; grid-template-columns:auto 1fr; gap:8px 18px; align-items:baseline;
+       padding:14px 0; border-top:1px solid var(--gray-300);}
+  .dep:first-child{border-top:none;}
+  .dep-chip{display:inline-block; font-family:var(--mono); font-size:10px;
+            letter-spacing:.14em; text-transform:uppercase; color:var(--muted);
+            border:1px solid var(--gray-300); background:var(--white);
+            border-radius:var(--radius-chip); padding:2px 9px; white-space:nowrap;}
+  .dep p{font-size:13.5px; line-height:1.6; color:var(--body);}
+  .dep p b{color:var(--slate); font-weight:600;}
+  table.risk{width:100%; margin-top:26px; border-collapse:separate; border-spacing:0 10px;}
+  table.risk th{font-family:var(--mono); font-size:10px; letter-spacing:.14em;
+                text-transform:uppercase; color:var(--muted); text-align:left;
+                padding:0 18px 0; width:50%;}
+  table.risk td{vertical-align:top; padding:16px 18px; font-size:13.5px;
+                line-height:1.6; color:var(--body);}
+  table.risk td.r-cell{background:var(--rust-soft); border-radius:8px 0 0 8px;}
+  table.risk td.m-cell{background:var(--olive-soft); border-radius:0 8px 8px 0;}
+  table.risk td b{color:var(--slate); font-weight:600;}
+  .r-chip, .m-chip{display:inline-block; font-family:var(--mono); font-size:10px;
+                   letter-spacing:.14em; text-transform:uppercase;
+                   border-radius:var(--radius-chip); padding:2px 9px;
+                   margin-bottom:8px;}
+  .r-chip{color:var(--rust); border:1px solid var(--rust);}
+  .m-chip{color:var(--olive-ink); border:1px solid var(--olive);}
+  .note{margin-top:18px; padding:14px 16px; background:var(--gray-100);
+        border:var(--border); border-radius:8px; font-size:14px; color:var(--body);}
+  .note b{color:var(--slate); font-weight:600;}
+
+  /* ---------- governance — the rules, stated once ---------- */
+  .govs{margin-top:24px; background:var(--white); border:var(--border);
+        border-radius:var(--radius-panel); padding:6px 26px 8px;}
+  .gov{display:grid; grid-template-columns:150px 1fr; gap:20px; padding:20px 0;
+       border-bottom:1px solid var(--gray-300); break-inside:avoid;}
+  .gov:last-child{border-bottom:none;}
+  .gov-chip{display:inline-block; font-family:var(--mono); font-size:10px;
+            letter-spacing:.14em; text-transform:uppercase; color:var(--clay-ink);
+            border:1px solid var(--clay); border-radius:var(--radius-chip);
+            padding:3px 10px; white-space:nowrap;}
+  .gov h3{font-size:19px; line-height:1.3;}
+  .gov p{margin-top:8px; font-size:14px; line-height:1.6; color:var(--body);}
+  .gov p b{color:var(--slate); font-weight:600;}
+  .g-sub{margin-top:10px; font-family:var(--mono); font-size:10.5px;
+         letter-spacing:.08em; text-transform:uppercase; color:var(--clay-ink);}
+
+  /* ---------- folds — JS-free disclosure, deck grammar ---------- */
+  details.fold{margin-top:16px;}
+  details.fold summary{cursor:pointer; list-style:none; font-family:var(--mono);
+                       font-size:11px; letter-spacing:.08em; text-transform:uppercase;
+                       color:var(--clay-ink);}
+  details.fold summary::-webkit-details-marker{display:none;}
+  details.fold summary::before{content:"+ "; color:var(--clay-ink); font-weight:600;}
+  details.fold[open] summary::before{content:"− ";}
+  details.fold[open] summary{margin-bottom:12px;}
+  details.fold .fold-body{padding-top:2px;}
+  .example{background:var(--oat); border:1px solid var(--gray-300);
+           border-radius:8px; padding:14px 16px; font-size:13.5px; color:var(--body);}
+  .example .etype{font-family:var(--mono); font-size:10px; letter-spacing:.14em;
+                  text-transform:uppercase; color:var(--muted); display:block;
+                  margin-bottom:5px;}
+  .example b{color:var(--slate); font-weight:600;}
+  .example p + p{margin-top:8px;}
+
+  /* ---------- colophon ---------- */
+  .colophon p.statement{font-size:14.5px; color:var(--body);}
+  .colophon .row{display:flex; flex-wrap:wrap; gap:8px 24px; margin-top:20px;
+                 font-family:var(--mono); font-size:11px; letter-spacing:.06em;
+                 text-transform:uppercase; color:var(--muted);}
+
+  @media (max-width:860px){
+    .masthead{padding:36px 16px 0;}
+    .wrap{padding:12px 16px 72px;}
+    .meta-row{gap:20px;}
+    .bluf{padding:22px 18px 20px;}
+    .b-row{grid-template-columns:1fr; gap:4px;}
+    .ph-head .flag{margin-left:0;}
+    .ph-grid{grid-template-columns:1fr;}
+    .scope-wrap, .govs{padding:6px 16px 8px;}
+    table.scope th{display:none;}
+    table.scope td{display:block; width:100%; padding:16px 0 14px;
+                   border-right:none !important;}
+    table.scope td:last-child{border-top:1px solid var(--gray-300);}
+    .cell-tag{display:inline-block;}
+    table.risk th{display:none;}
+    table.risk td{display:block; width:100%;}
+    table.risk td.r-cell{border-radius:8px 8px 0 0;}
+    table.risk td.m-cell{border-radius:0 0 8px 8px;}
+    .gov{grid-template-columns:1fr; gap:8px;}
+  }
+
+  /* ---------- dark mode — the token flip, carried wholesale ---------- */
+  @media (prefers-color-scheme: dark){
+    :root{
+      --ivory:#191817; --slate:#F0EEE6; --white:#201F1D;
+      --clay-ink:#FE6C2D; --clay-soft:#3A241A;
+      --oat:#4A4438; --olive-ink:#A9BC8B; --olive-soft:#262D1E;
+      --rust:#D98A80; --rust-soft:#3A2622;
+      --gray-100:#232220; --gray-300:#3D3D3A; --muted:#A5A39B; --body:#D6D4CC;
+    }
+    /* the ink panel flips to light — its on-ink colors flip with it */
+    .st-chip{border-color:#B8430F; color:#B8430F;}
+    .b-period, .b-label, .b-next{color:#67665F;}
+    .b-verdict{color:#191817;}
+    .b-verdict em{color:#B8430F;}
+    .b-list, .b-row{border-color:#D1CFC5;}
+    .b-row p{color:#3D3D3A;}
+    .b-row p b{color:#141413;}
+    .b-next b{color:#B8430F;}
+  }
+
+  @media print{
+    body{background:#FFFFFF; color:#141413;}
+    :root{
+      --ivory:#FFFFFF; --slate:#141413; --white:#FFFFFF; --body:#3D3D3A;
+      --gray-100:#F5F4F0; --gray-300:#D1CFC5; --muted:#67665F;
+      --clay-ink:#B8430F; --clay-soft:#FDEBE0;
+      --olive-ink:#55673C; --olive-soft:#EEF2E6;
+      --rust:#B04A3F; --rust-soft:#F8ECE9;
+    }
+    nav.part-index{display:none;}
+    .fig-fs{display:none;}
+    .wrap{padding:0 24px;}
+    .masthead{padding:0 24px;}
+    section{margin-top:36px; padding-top:24px;}
+    .bluf, .scope-wrap, .phase, .fig, .deps, .gov, .govs, .note,
+    .example{break-inside:avoid;}
+    table.risk tr{break-inside:avoid;}
+    /* :target effects neutralized on paper */
+    section:target{border-top:1px solid var(--gray-300); padding-top:24px;}
+    section:target .sec-kick{background:var(--gray-100); border-color:var(--gray-300);
+                             color:var(--muted);}
+    /* folds forced open */
+    details.fold > *:not(summary){display:block !important;}
+    details.fold summary::before{content:"− ";}
+  }
+</style>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="masthead-inner">
+    <div class="kicker">
+      <span class="pill"><b>te9-docs</b> · skills.te9.dev</span>
+      <span class="kicker-meta">execution plan · the build program to v1.0.0</span>
+      <span class="page-no">16 / 35</span>
+    </div>
+    <span class="type-label">Project Plan</span>
+    <h1>Twenty templates to <em>go</em></h1>
+    <p class="lede"><b>Who this is for:</b> every session that picks up the build next. This is the plan the team actually executes against — scope drawn tight, five phases in build order, every exit criterion checkable, every count taken from the repository the moment this page was assembled. It is also <b>Phase 1's own first deliverable</b>: a project plan built through the same gate protocol it governs.</p>
+    <dl class="meta-row">
+      <div><dt>Prepared by</dt><dd>Founding session</dd></div>
+      <div><dt>Suite version</dt><dd>1.3.0</dd></div>
+      <div><dt>Subject</dt><dd>Completing the launch taxonomy</dd></div>
+      <div><dt>Position</dt><dd>15/35 landed · 20 to go</dd></div>
+      <div><dt>Next gate</dt><dd>Timelines &amp; steps · Phase 1</dd></div>
+    </dl>
+    <nav class="part-index" aria-label="Section index">
+      <p class="index-title">Plan index</p>
+      <div class="index-links">
+        <a href="#objective"><b>01</b>Objective</a>
+        <a href="#scope"><b>02</b>Scope</a>
+        <a href="#phases"><b>03</b>Phases</a>
+        <a href="#milestones"><b>04</b>Fig · 01</a>
+        <a href="#risks"><b>05</b>Risks</a>
+        <a href="#governance"><b>06</b>Governance</a>
+        <a href="#colophon"><b>07</b>Colophon</a>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<div class="wrap">
+
+  <!-- OBJECTIVE — THE BAND ON INK, FIRST SECTION -->
+  <section id="objective">
+    <span class="sec-kick">Objective</span>
+    <h2>One objective, stated once</h2>
+    <p class="section-lede">Everything downstream — the scope, the phases, the gates — exists to serve this sentence. If a proposed piece of work does not advance it, it is out of scope by definition.</p>
+
+    <div class="bluf">
+      <p class="b-top"><span class="st-chip">In progress</span><span class="b-period">Horizon · suite 1.3.0 · 15/35 → release v1.0.0 · 35/35</span></p>
+      <p class="b-verdict">Complete the 35-template launch taxonomy <em>through gated cluster builds</em>, and release v1.0.0 with every type landed, registered and accounted for.</p>
+      <div class="b-list">
+        <div class="b-row">
+          <span class="b-label">Done when</span>
+          <p><b>Thirty-five of thirty-five templates are landed</b> — each through its own browser gate, registered in index.json, version-bumped and changelogged. The taxonomy audit passes; the html-docs decision is recorded; the suite is stamped v1.0.0.</p>
+        </div>
+        <div class="b-row">
+          <span class="b-label">Protocol</span>
+          <p><b>One build → one browser gate → approval.</b> Every landing is an autonomous extension: conventions kept, index regenerated, changelog line appended by the building session. Nothing is stored ungated.</p>
+        </div>
+        <div class="b-row">
+          <span class="b-label">Measure</span>
+          <p><b>Counts only, taken at build time:</b> templates on disk, gates passed, registry entries. The denominator is the frozen 35-type launch taxonomy; the registry trails the directory by design, so the directory is what gets counted.</p>
+        </div>
+      </div>
+      <p class="b-next">Next gate · <b>high-level timelines and steps</b> — Phase 1's second deliverable, this plan's first sibling</p>
+    </div>
+  </section>
+
+  <!-- SCOPE — THE IN/OUT TABLE -->
+  <section id="scope">
+    <span class="sec-kick">Scope</span>
+    <h2>The scope, drawn tight</h2>
+    <p class="section-lede">What the build will and will not do between 15/35 and v1.0.0. The in-column is the remaining twenty; the out-column is everything that would move the denominator or break the discipline.</p>
+
+    <div class="scope-wrap">
+      <table class="scope">
+        <thead>
+          <tr>
+            <th class="in-h">In scope — the build delivers</th>
+            <th class="out-h">Out of scope — deferred past v1.0.0</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><span class="cell-tag in">In</span><b>The remaining 20 templates,</b> built by cluster in order: Plans &amp; process (5) → Formal &amp; contractual (3) → Financial (3) → Formats &amp; remaining (9). Every name is listed in the phases below.</td>
+            <td><span class="cell-tag out">Out</span><b>New document types beyond the 35.</b> The scope freeze holds until v1.0.0 — a thirty-sixth type would silently move every count this plan commits to. The extension protocol is where new types go, after the release.</td>
+          </tr>
+          <tr>
+            <td><span class="cell-tag in">In</span><b>The gate protocol on every template:</b> one build → one browser review gate → approval. Landed means gated — zero exceptions, including this document.</td>
+            <td><span class="cell-tag out">Out</span><b>Runtime interactivity beyond the script whitelist.</b> Folds and <code>:target</code> jumps carry the disclosure; the deck's arrow-key/HUD listener stays the suite's only script. No template in this plan adds a second one.</td>
+          </tr>
+          <tr>
+            <td><span class="cell-tag in">In</span><b>Extension-protocol registration on every landing:</b> index.json regenerated, suite version bumped (new template = MINOR), changelog line appended — by the building session itself, per the suite brief.</td>
+            <td><span class="cell-tag out">Out</span><b>html-docs deprecation execution.</b> The clean-room sibling relationship closes at v1.0.0, when the deprecation criteria are decided and recorded (management decision D1); the vendored reference stays untouched until then.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <details class="fold">
+      <summary>Membership · the 20 in-scope templates, named</summary>
+      <div class="fold-body">
+        <div class="example">
+          <span class="etype">Counted from the directory at build time — 15 on disk, 20 to go</span>
+          <p><b>Plans &amp; process (5):</b> project plan ✓ this document · high-level timelines and steps · workflow template · meeting notes · standard operating procedure.</p>
+          <p><b>Formal &amp; contractual (3):</b> request for proposal · request for information · API documentation.</p>
+          <p><b>Financial (3 remaining):</b> business case · rolling forecast · cashflow statement — the cluster's fourth type, the annual report, already landed as template 15 in suite 1.3.0.</p>
+          <p><b>Formats &amp; remaining (9):</b> link/dependency analysis · before-and-after showcase · interview transcript · 2D quadrant overview · wikipage + index · compendium of archetypes · blogpost/article · journalistic investigation · tutorial.</p>
+          <p><b>5 + 3 + 3 + 9 = 20</b> — and 15 landed + 20 to go = 35, the launch taxonomy every count on this page assumes.</p>
+        </div>
+      </div>
+    </details>
+  </section>
+
+  <!-- PHASES — PANELS IN BUILD ORDER -->
+  <section id="phases">
+    <span class="sec-kick">Phases</span>
+    <h2>Five phases, in build order</h2>
+    <p class="section-lede">One phase per remaining cluster, ordered by similarity: the conventions one cluster hardens are the ones the next inherits, so review effort amortizes forward. Each panel names its deliverables exactly and states its exit criteria checkably — a phase is done when every line on its exit plate is true, not when it feels done.</p>
+
+    <article class="phase">
+      <div class="ph-head">
+        <span class="ph-chip">Phase 1</span>
+        <h3>Plans &amp; process — the documents that run work</h3>
+        <span class="flag now">In progress</span>
+      </div>
+      <p class="ph-sub">5 deliverables · <b>this document is deliverable №1</b> · enters at 15/35</p>
+      <div class="ph-grid">
+        <div class="ph-col">
+          <p class="ph-label">Deliverables</p>
+          <ol>
+            <li class="this-doc"><b>Project plan</b> — <span class="li-note">this document; built through the gate it governs</span></li>
+            <li><b>High-level timelines and steps</b> — <span class="li-note">the next build; the phase's first sibling</span></li>
+            <li><b>Workflow template</b></li>
+            <li><b>Meeting notes</b></li>
+            <li><b>Standard operating procedure</b></li>
+          </ol>
+        </div>
+        <div class="ph-col">
+          <p class="ph-label">Exit criteria</p>
+          <p class="ph-exit"><b>EXIT</b> · five gates passed in the browser · five entries registered in index.json · suite version bumped at each landing · changelog lines appended · <b>20/35 on disk</b></p>
+        </div>
+      </div>
+    </article>
+
+    <article class="phase">
+      <div class="ph-head">
+        <span class="ph-chip">Phase 2</span>
+        <h3>Formal &amp; contractual — the documents that bind</h3>
+        <span class="flag next">Queued</span>
+      </div>
+      <p class="ph-sub">3 deliverables · enters at 20/35</p>
+      <div class="ph-grid">
+        <div class="ph-col">
+          <p class="ph-label">Deliverables</p>
+          <ol>
+            <li><b>Request for proposal</b></li>
+            <li><b>Request for information</b></li>
+            <li><b>API documentation</b></li>
+          </ol>
+        </div>
+        <div class="ph-col">
+          <p class="ph-label">Exit criteria</p>
+          <p class="ph-exit"><b>EXIT</b> · three gates passed · three registered · versions bumped · changelog lines appended · <b>23/35 on disk</b></p>
+        </div>
+      </div>
+    </article>
+
+    <article class="phase">
+      <div class="ph-head">
+        <span class="ph-chip">Phase 3</span>
+        <h3>Financial — the documents that account</h3>
+        <span class="flag next">Queued</span>
+      </div>
+      <p class="ph-sub">3 deliverables remain · enters at 23/35 · <b>annual report already on disk</b></p>
+      <div class="ph-grid">
+        <div class="ph-col">
+          <p class="ph-label">Deliverables</p>
+          <ol>
+            <li><b>Business case</b></li>
+            <li><b>Rolling forecast</b></li>
+            <li><b>Cashflow statement</b></li>
+          </ol>
+        </div>
+        <div class="ph-col">
+          <p class="ph-label">Exit criteria</p>
+          <p class="ph-exit"><b>EXIT</b> · three gates passed · three registered · versions bumped · changelog lines appended · <b>26/35 on disk</b></p>
+        </div>
+      </div>
+    </article>
+
+    <article class="phase">
+      <div class="ph-head">
+        <span class="ph-chip">Phase 4</span>
+        <h3>Formats &amp; remaining — the long tail, closed last</h3>
+        <span class="flag next">Queued</span>
+      </div>
+      <p class="ph-sub">9 deliverables · enters at 26/35</p>
+      <div class="ph-grid">
+        <div class="ph-col">
+          <p class="ph-label">Deliverables</p>
+          <ol>
+            <li><b>Link/dependency analysis</b></li>
+            <li><b>Before-and-after showcase</b></li>
+            <li><b>Interview transcript</b></li>
+            <li><b>2D quadrant overview</b></li>
+            <li><b>Wikipage + index</b></li>
+            <li><b>Compendium of archetypes</b></li>
+            <li><b>Blogpost/article</b></li>
+            <li><b>Journalistic investigation</b></li>
+            <li><b>Tutorial</b></li>
+          </ol>
+        </div>
+        <div class="ph-col">
+          <p class="ph-label">Exit criteria</p>
+          <p class="ph-exit"><b>EXIT</b> · nine gates passed · nine registered · versions bumped · changelog lines appended · <b>35/35 on disk — the taxonomy is complete</b></p>
+        </div>
+      </div>
+    </article>
+
+    <article class="phase">
+      <div class="ph-head">
+        <span class="ph-chip">Phase 5</span>
+        <h3>Release — the v1.0.0 review</h3>
+        <span class="flag next">Queued</span>
+      </div>
+      <p class="ph-sub">No new templates · enters at 35/35 · the one gate that spans all five phases</p>
+      <div class="ph-grid">
+        <div class="ph-col">
+          <p class="ph-label">Deliverables</p>
+          <ol>
+            <li><b>Full-taxonomy audit</b> — <span class="li-note">35/35 counted from the repository: every type gated, registered, changelogged</span></li>
+            <li><b>README + index regeneration</b> — <span class="li-note">the front door rewritten for the full taxonomy, the registry caught up to the directory</span></li>
+            <li><b>html-docs decision recorded</b> — <span class="li-note">the deprecation criteria approved and written down (management decision D1)</span></li>
+            <li><b>v1.0.0 stamped</b> — <span class="li-note">the suite version that means: the launch taxonomy ships</span></li>
+          </ol>
+        </div>
+        <div class="ph-col">
+          <p class="ph-label">Exit criteria</p>
+          <p class="ph-exit"><b>EXIT</b> · audit clean · decision recorded · README and index regenerated · suite stamped <b>1.0.0</b> — the launch taxonomy ships</p>
+        </div>
+      </div>
+    </article>
+
+    <p class="ph-note">Membership note · the phases follow the canonical cluster board committed in the management report (3+6+5+5+3+4+9 = 35): standard operating procedure sits in Plans &amp; process, interview transcript in Formats &amp; remaining — so this plan's rows stay comparable, report to report, with every count on the program board.</p>
+  </section>
+
+  <!-- MILESTONES — FIG · 01, THE PHASE CHAIN -->
+  <section id="milestones">
+    <span class="sec-kick">Milestones</span>
+    <h2>Fig · 01 — the chain from 15/35 to v1.0.0</h2>
+    <p class="section-lede">The whole plan as one chain: the <b>filled ring</b> is here-now — v1.3.0, fifteen of thirty-five landed; the <b>open rings</b> are the phases ahead, each sub-label carrying the count it leaves behind; the <b>double ring</b> is the destination. Same ring grammar as the management report's progress chain — the plan and the report must never disagree.</p>
+
+    <figure class="fig">
+      <div class="fig-h"><span class="fig-id">FIG &middot; 01</span><button class="fig-fs" type="button" aria-label="Open this diagram in a new tab">FULLSCREEN</button></div>
+      <div class="fig-legend"><span class="lg"><svg class="lg-g" width="14" height="14" viewBox="0 0 14 14" aria-hidden="true"><circle cx="7" cy="7" r="5.5" fill="#FE6C2D" stroke="#FE6C2D" stroke-width="1.5"/></svg>filled = here-now · v1.3.0, 15 of 35</span><span class="lg"><svg class="lg-g" width="14" height="14" viewBox="0 0 14 14" aria-hidden="true"><circle cx="7" cy="7" r="5" fill="none" stroke="#FE6C2D" stroke-width="2"/></svg>open = phase ahead · sub-label carries the count</span><span class="lg"><svg class="lg-g" width="14" height="14" viewBox="0 0 14 14" aria-hidden="true"><circle cx="7" cy="7" r="5" fill="none" stroke="#FE6C2D" stroke-width="2"/><circle cx="7" cy="7" r="2.5" fill="none" stroke="#FE6C2D" stroke-width="1.5"/></svg>the destination · v1.0.0, the full taxonomy</span></div>
+      <div class="fig-b"><svg xmlns="http://www.w3.org/2000/svg" class="pele pele-flowchart" viewBox="-48.510000000000005 0 290 999.9699999999999" width="290" height="1000" style="max-width:100%;height:auto;--_bg:var(--pele-bg,#fff);--_fg:var(--pele-fg,#1f1f1f);--_m:var(--pele-muted,#6e6e6e);--_l:var(--pele-line,#1f1f1f);--_s:var(--pele-surface,#f3f3f3);--_a:var(--pele-surface-alt,#e6e6e6);--_b:var(--pele-border,#8a8a8a);--_c:var(--pele-accent,#5b7bd5);color:var(--_fg);--_fm:var(--pele-font-mono,monospace);font:16px sans-serif;letter-spacing:normal;word-spacing:normal;text-transform:none;direction:ltr;font-family:var(--pele-font,sans-serif)" fill="var(--_fg)" role="graphics-document document" aria-roledescription="flowchart">
+  <style>
+    @media (prefers-color-scheme: dark){
+      .clay-lab{fill:#F0EEE6;}
+      .clay-sub{fill:#A5A39B;}
+    }
+  </style><g transform="translate(0 47.05)"><g class="pele-edges" fill="none" stroke="var(--_l)" stroke-linecap="round"><g class="clay-edge" style="stroke:#D1CFC5;stroke-width:1.5px;"><path d="M96.49,53.95L96.49,154.80" fill="none"/></g><g class="clay-edge" style="stroke:#D1CFC5;stroke-width:1.5px;"><path d="M96.49,192.80L96.49,280.58" fill="none"/></g><g class="clay-edge" style="stroke:#D1CFC5;stroke-width:1.5px;"><path d="M96.49,318.58L96.49,406.36" fill="none"/></g><g class="clay-edge" style="stroke:#D1CFC5;stroke-width:1.5px;"><path d="M96.49,444.36L96.49,532.14" fill="none"/></g><g class="clay-edge" style="stroke:#D1CFC5;stroke-width:1.5px;"><path d="M96.49,570.14L96.49,682.92" fill="none"/></g><g class="clay-edge" style="stroke:#D1CFC5;stroke-width:1.5px;"><path d="M96.49,720.92L96.49,823.87" fill="none"/></g></g><g class="pele-edge-labels" font-size="14"><g class="pele-edge-label" data-id="L_NOW_P1_0"><rect x="31.01" y="84.41" width="130.95" height="21" rx="3" fill="var(--_bg)"/><text x="96.49" y="99.81" text-anchor="middle">phase 1 in progress</text></g><g class="pele-edge-label" data-id="L_P4_P5_0"><rect x="12.73" y="612.53" width="167.52" height="21" rx="3" fill="var(--_bg)"/><text x="96.49" y="627.93" text-anchor="middle">every cluster gate passed</text></g><g class="pele-edge-label" data-id="L_P5_V1_0"><rect x="10" y="763.31" width="172.98" height="21" rx="3" fill="var(--_bg)"/><text x="96.49" y="778.71" text-anchor="middle">audit clean, decision taken</text></g></g><g class="pele-nodes"><g class="clay-node" data-id="NOW"><circle cx="96.49" cy="34.95" r="17" fill="#FE6C2D" stroke="#FE6C2D" stroke-width="2"/><text class="clay-lab" x="96.49" y="8.950000000000003" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="11" font-weight="600" fill="#141413">NOW · V1.3.0</text><text class="clay-sub" x="96.49" y="73.95" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="10" fill="#87867F">HERE-NOW · 15 OF 35 LANDED</text></g><g class="clay-node" data-id="P1"><circle cx="96.49" cy="173.8" r="17" fill="none" stroke="#FE6C2D" stroke-width="2"/><text class="clay-lab" x="96.49" y="147.8" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="11" font-weight="600" fill="#141413">PHASE 1 · PLANS / PROCESS</text><text class="clay-sub" x="96.49" y="212.8" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="10" fill="#87867F">20/35 AFTER P1 · THIS DOC IS №1</text></g><g class="clay-node" data-id="P2"><circle cx="96.49" cy="299.58" r="17" fill="none" stroke="#FE6C2D" stroke-width="2"/><text class="clay-lab" x="96.49" y="273.58" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="11" font-weight="600" fill="#141413">PHASE 2 · FORMAL / CONTRACTUAL</text><text class="clay-sub" x="96.49" y="338.58" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="10" fill="#87867F">23/35 AFTER P2</text></g><g class="clay-node" data-id="P3"><circle cx="96.49" cy="425.36" r="17" fill="none" stroke="#FE6C2D" stroke-width="2"/><text class="clay-lab" x="96.49" y="399.36" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="11" font-weight="600" fill="#141413">PHASE 3 · FINANCIAL</text><text class="clay-sub" x="96.49" y="464.36" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="10" fill="#87867F">26/35 AFTER P3</text></g><g class="clay-node" data-id="P4"><circle cx="96.49" cy="551.14" r="17" fill="none" stroke="#FE6C2D" stroke-width="2"/><text class="clay-lab" x="96.49" y="525.14" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="11" font-weight="600" fill="#141413">PHASE 4 · FORMATS / REMAINING</text><text class="clay-sub" x="96.49" y="590.14" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="10" fill="#87867F">35/35 · TAXONOMY COMPLETE</text></g><g class="clay-node" data-id="P5"><circle cx="96.49" cy="701.92" r="17" fill="none" stroke="#FE6C2D" stroke-width="2"/><text class="clay-lab" x="96.49" y="675.92" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="11" font-weight="600" fill="#141413">PHASE 5 · RELEASE</text><text class="clay-sub" x="96.49" y="740.92" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="10" fill="#87867F">THE V1.0.0 REVIEW</text></g><g class="clay-node" data-id="V1"><circle cx="96.49" cy="842.87" r="17" fill="none" stroke="#FE6C2D" stroke-width="2"/><circle cx="96.49" cy="842.87" r="13" fill="none" stroke="#FE6C2D" stroke-width="1.5"/><text class="clay-lab" x="96.49" y="816.87" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="11" font-weight="600" fill="#141413">V1.0.0</text><text class="clay-sub" x="96.49" y="881.87" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="10" fill="#87867F">THE FULL LAUNCH TAXONOMY · 35 OF 35</text></g></g></g></svg></div>
+      <div class="fig-f">FIG · 01 — THE PHASE CHAIN · V1.3.0 · 15/35 → V1.0.0 · 35/35 · RENDERED VIA PELE, CLAYIFIED</div>
+    </figure>
+  </section>
+
+  <!-- DEPENDENCIES & RISKS -->
+  <section id="risks">
+    <span class="sec-kick">Dependencies &amp; risks</span>
+    <h2>What waits on what, what could bite</h2>
+    <p class="section-lede">The plan's four real dependencies first — what each step genuinely waits on. Then the four risks that could bend the chain, each paired with the mitigation that holds it. A risk without a named mitigation is a prediction, not a plan.</p>
+
+    <div class="deps">
+      <div class="dep">
+        <span class="dep-chip">DEP-01</span>
+        <p><b>Every landing waits on its browser review gate.</b> The workflow stores nothing ungated, so the gate cadence is the plan's pace — one build, one gate, by design.</p>
+      </div>
+      <div class="dep">
+        <span class="dep-chip">DEP-02</span>
+        <p><b>Figure-bearing templates wait on the build-time pipeline</b> — render-figure (pele) then clayify. The pipeline is versioned, and every hardening cycle is a changelog line.</p>
+      </div>
+      <div class="dep">
+        <span class="dep-chip">DEP-03</span>
+        <p><b>Phase N+1 waits on Phase N's exit criteria.</b> The cluster order is deliberate: the conventions one cluster hardens are the ones the next inherits — the amortization runs forward, never backward.</p>
+      </div>
+      <div class="dep">
+        <span class="dep-chip">DEP-04</span>
+        <p><b>Nothing waits on index.json.</b> The registry trails the directory by design and regenerates on the next extension — it is a ledger, never a blocker.</p>
+      </div>
+    </div>
+
+    <table class="risk">
+      <thead>
+        <tr>
+          <th>Risk</th>
+          <th>Mitigation</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="r-cell"><span class="r-chip">R-01 · Gate fatigue</span><br><b>Twenty gates from 15/35 to v1.0.0</b> — deep into the nine-gate Phase 4 run, reviews could start rubber-stamping, and a rubber-stamped gate is no gate at all.</td>
+          <td class="m-cell"><span class="m-chip">Held by</span><br><b>Cluster similarity amortizes the review.</b> Each cluster's first build hardens the conventions its successors reuse, so per-template review effort falls as the cluster runs. The gate inspects the document — plates, dark flip, print, folds — never the count.</td>
+        </tr>
+        <tr>
+          <td class="r-cell"><span class="r-chip">R-02 · Convention change mid-cluster</span><br><b>A fix to a shared convention lands mid-cluster</b> — and seems to demand that already-gated templates be reopened and re-reviewed.</td>
+          <td class="m-cell"><span class="m-chip">Held by</span><br><b>Cluster-level PATCH applies forward.</b> A convention fix bumps the suite version as PATCH and binds every build from that point on; landed templates stand as gated. The changelog line marks the seam.</td>
+        </tr>
+        <tr>
+          <td class="r-cell"><span class="r-chip">R-03 · Figure-pipeline regression</span><br><b>Every figure-bearing template renders through pele + clayify</b> — a regression there would smear bad figures across a whole cluster before anyone notices.</td>
+          <td class="m-cell"><span class="m-chip">Held by</span><br><b>The per-template gate catches regressions at the plate</b> before landing — a broken figure cannot pass review — and the pipeline itself is versioned, with its six hardening cycles recorded in the changelog.</td>
+        </tr>
+        <tr>
+          <td class="r-cell"><span class="r-chip">R-04 · Scope creep</span><br><b>A session mid-program invents a thirty-sixth type</b> "the suite obviously needs" — and the denominator every count assumes quietly moves.</td>
+          <td class="m-cell"><span class="m-chip">Held by</span><br><b>The extension protocol holds new types until v1.0.0.</b> The scope freeze keeps the taxonomy at 35; unlisted types wait — and the protocol's own registration path is exactly where they go after the release.</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p class="note"><b>Counting note, kept honest:</b> the changelog's only unit tests — eight, on the step-player experiment's frame function — cover the parked video export, not the figure pipeline. No test suite is claimed here that the repository does not show; the pipeline's standing guards are the per-template review gate and its versioned, changelogged hardening history.</p>
+  </section>
+
+  <!-- GOVERNANCE -->
+  <section id="governance">
+    <span class="sec-kick">Governance</span>
+    <h2>The rules the work runs under</h2>
+    <p class="section-lede">Two protocols and one ledger govern every build between this page and v1.0.0. All three are already in force — the suite brief defines them, the changelog shows them working; this plan adds nothing new, it just binds the phases to them.</p>
+
+    <div class="govs">
+      <article class="gov">
+        <div>
+          <span class="gov-chip">GOV-01</span>
+        </div>
+        <div>
+          <h3>The gate protocol — one build → one browser gate → approval</h3>
+          <p>Every template is built, opened in the browser and approved <b>before it is stored</b>. Landed means gated — the gate inspects the real document (figure plates, dark-mode flip, print block, folds, the whitelisted script budget), never a summary. A new template bumps the suite version as MINOR; a convention or template fix bumps it as PATCH; the building session appends its own changelog line.</p>
+        </div>
+      </article>
+
+      <article class="gov">
+        <div>
+          <span class="gov-chip">GOV-02</span>
+        </div>
+        <div>
+          <h3>The extension protocol — unlisted types extend the suite the same way</h3>
+          <p>A session needing a type the index does not list builds it to the same conventions — Clay, self-describing content, whitelist compliance, quality gates — saves it to <b>assets/templates/</b>, registers it in index.json, bumps the version and writes its own changelog line; the next session discovers it in the index. During this program the protocol runs under the scope freeze: new types queue until v1.0.0.</p>
+          <p class="g-sub">SUITE-BRIEF · EXTENSION PROTOCOL · AUTONOMOUS BY DESIGN</p>
+        </div>
+      </article>
+
+      <article class="gov">
+        <div>
+          <span class="gov-chip">GOV-03</span>
+        </div>
+        <div>
+          <h3>The ledger — four marks make a landing</h3>
+          <p>A template is only landed when all four marks exist: <b>the file</b> in assets/templates/, <b>its entry</b> in index.json, <b>the version bump</b>, <b>the changelog line</b>. If any one is missing, the template is not landed — and the next report will count it as what it is: pending.</p>
+        </div>
+      </article>
+    </div>
+
+    <p class="note"><b>Why no schedule police:</b> the protocols are deliberately autonomous — the session that builds is the session that registers, bumps and logs, and no calendar governs the phases; the taxonomy does. v1.0.0 is the one gate that spans all five phases, and Phase 5 is that gate, run as work.</p>
+  </section>
+
+  <!-- COLOPHON -->
+  <section id="colophon" class="colophon">
+    <span class="sec-kick">Colophon</span>
+    <h2>Project Plan · template v0.1</h2>
+    <p class="statement">Built in build order and counted at build time: the objective, the scope, the five phases, the chain from 15/35 to v1.0.0, the risks that could bend it and the governance that holds it straight. This plan is Phase 1's first deliverable — the sixteenth of thirty-five on landing, assembled through the same gate protocol it governs. The next session that picks up the build starts at Phase 1, deliverable №2: high-level timelines and steps.</p>
+    <div class="row">
+      <span>DOC ID · TE9-PRJ-001</span>
+      <span>SUITE VERSION · 1.3.0</span>
+      <span>SUITE · te9-docs</span>
+      <span>SIBLINGS · <a href="12-directional-report.html">Directional Report</a> · <a href="13-management-report.html">Management Report</a></span>
+      <span>PREPARED BY · Founding session</span>
+    </div>
+  </section>
+
+</div>
+
+<script>
+  document.querySelectorAll('.fig-fs').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var svg = btn.closest('.fig').querySelector('svg');
+      var blob = new Blob([svg.outerHTML], { type: 'image/svg+xml' });
+      window.open(URL.createObjectURL(blob), '_blank');
+    });
+  });
+</script>
+</body>
+</html>

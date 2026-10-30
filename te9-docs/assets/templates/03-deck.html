@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- ================================================================
+     LLM AUTHORING CONTRACT — READOUT DECK v0.1 — STYLE: Clay Explainer
+     Part of the te9-docs suite — self-describing placeholder. Paste this
+     contract section) into the authoring LLM alongside dictated
+     content. The LLM assembles; it does not redesign.
+
+     TASK        Turn discovery/research into a stakeholder readout.
+     FORMAT      Scrollable full-width slide cards. One card = one
+                 idea = one PDF page (print CSS enforces this).
+     HIERARCHY   deck > card > block > item
+     CARD ORDER  cover → context → findings → quote → journey →
+                 recommendation → next-steps → colophon
+                 (exactly one of each; never reorder; never invent
+                 new card types)
+
+     CARD GRAMMAR
+       cover          kicker (org · client), type label, title (≤ 8
+                      words), subtitle (one sentence), meta row
+                      (prepared-by · date · status chip)
+       context        lede + 2–3 numbered context items
+       findings       intro line + grid of 3–4 numbered cards:
+                      headline (≤ 8 words) + body (≤ 60 words) + tag
+                      (Signal | Pain | Risk)
+       quote          one pull quote + attribution (name · role) +
+                      corroboration line (who/what confirms it)
+       journey        3–6 steps in chronological order: step name,
+                      one-sentence description, meta line (place ·
+                      time), label (Pain | Working well)
+       recommendation "Where we'd start" callout: 2–3 concrete moves
+       next-steps     2–4 actions, each with owner + horizon
+       colophon       doc ID, suite links, generation note
+
+     VOICE       Declarative. Concrete nouns. No hedging except in
+                 confidence chips. Facts plausible and domain-real;
+                 no invented precise metrics.
+     STATUS      one chip on the cover only:
+                 Draft | Believe | Reviewed | Signed-off
+     COLORS      decorative clay #FE6C2D, text clay #B8430F, on ivory
+                 #FAF9F5 with slate ink #141413 — do not deviate.
+                 Dark mode: token flip under prefers-color-scheme.
+================================================================ -->
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>te9-docs · Founding Readout — te9-docs suite</title>
+<style>
+  :root{
+    --ivory:#FAF9F5; --slate:#141413; --white:#FFFFFF;
+    --clay:#FE6C2D; --clay-ink:#B8430F; --clay-soft:#FDEBE0;
+    --oat:#E3DACC; --olive:#788C5D; --olive-ink:#55673C; --olive-soft:#EEF2E6;
+    --rust:#B04A3F; --rust-soft:#F8ECE9;
+    --gray-100:#F0EEE6; --gray-300:#D1CFC5; --muted:#67665F; --body:#3D3D3A;
+    --serif:ui-serif, Georgia, serif;
+    --sans:system-ui, -apple-system, sans-serif;
+    --mono:ui-monospace, "SF Mono", Menlo, monospace;
+    --radius-panel:12px; --radius-chip:999px;
+    --border:1.5px solid var(--gray-300);
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{background:var(--ivory); color:var(--slate); font-family:var(--sans);
+       font-size:15.5px; line-height:1.6; -webkit-font-smoothing:antialiased;}
+
+  /* ---------- card shell ---------- */
+  .deck{display:flex; flex-direction:column; align-items:center;
+        gap:44px; padding:56px 24px 96px;}
+  .card{background:var(--white); border:var(--border); border-radius:var(--radius-panel);
+        width:min(920px, 100%); padding:52px 56px 44px; position:relative;}
+  .card-num{position:absolute; top:22px; right:26px; font-family:var(--mono);
+            font-size:11px; color:var(--muted); letter-spacing:.08em;}
+  /* the reference's section rhythm, inside each card: hairline + step label + serif h2 */
+  .sec-head{margin-bottom:26px;}
+  .kicker{display:flex; align-items:baseline; gap:12px; flex-wrap:wrap; margin-bottom:18px;}
+  .pill{font-family:var(--mono); font-size:11px; text-transform:uppercase;
+        letter-spacing:.06em; color:var(--muted); background:var(--gray-100);
+        border:var(--border); border-radius:var(--radius-chip); padding:5px 11px;
+        white-space:nowrap;}
+  .pill b{color:var(--clay-ink); font-weight:500;}
+  .kicker-meta{font-family:var(--mono); font-size:11px; text-transform:uppercase;
+               letter-spacing:.18em; color:var(--muted);}
+  h1,h2,h3{font-family:var(--serif); font-weight:500; letter-spacing:-.01em;}
+  h2{font-size:30px; line-height:1.15; margin-top:8px;}
+  .lede{margin-top:14px; font-size:17px; line-height:1.6; color:var(--body); max-width:62ch;}
+  a{color:var(--clay-ink); text-decoration:none; border-bottom:1px dotted var(--clay-ink);}
+  a:hover{border-bottom-style:solid;}
+  :focus-visible{outline:2px solid var(--clay-ink); outline-offset:2px;}
+
+  /* ---------- cover — the reference hero, directly on ivory ---------- */
+  .card.cover{background:transparent; border:none; border-radius:0; padding-top:24px;}
+  .card.cover .card-num{display:none;}
+  .type-label{display:inline-block; font-family:var(--mono); font-size:11px;
+              text-transform:uppercase; letter-spacing:.06em; color:var(--muted);
+              background:var(--gray-100); border:var(--border);
+              border-radius:var(--radius-chip); padding:5px 11px;}
+  h1{font-size:clamp(44px, 6.5vw, 80px); line-height:1.05; margin-top:20px;}
+  h1 em, blockquote em{font-style:italic; color:var(--clay-ink);}
+  .cover .lede{font-size:19px; margin-top:26px;}
+  .meta-row{display:flex; flex-wrap:wrap; gap:32px; margin-top:38px; padding-top:22px;
+            border-top:1px solid var(--gray-300);}
+  .meta-row dt{font-family:var(--mono); font-size:10px; letter-spacing:.18em;
+               text-transform:uppercase; color:var(--muted); margin-bottom:4px;}
+  .meta-row dd{font-weight:500; color:var(--slate);}
+  .chip{display:inline-block; font-family:var(--mono); font-size:11px;
+        letter-spacing:.06em; text-transform:uppercase; padding:4px 12px;
+        border-radius:var(--radius-chip); background:var(--clay-soft);
+        color:var(--clay-ink); border:1px solid var(--clay);}
+
+  /* ---------- card index (:target navigation, JS-free) ---------- */
+  .card-index{display:flex; flex-wrap:wrap; gap:8px; margin-top:26px;}
+  .card-index a{font-family:var(--mono); font-size:11px; letter-spacing:.06em;
+                text-transform:uppercase; color:var(--muted); background:var(--white);
+                border:var(--border); border-radius:var(--radius-chip);
+                padding:5px 11px; border-bottom:var(--border);}
+  .card-index a b{color:var(--clay-ink); font-weight:500; margin-right:4px;}
+  .card-index a:hover{background:var(--clay-soft); border-color:var(--clay);}
+  .card:target{border-color:var(--clay); box-shadow:0 0 0 3px var(--clay-soft);}
+
+  /* ---------- context — the reference's three-pillar grid ---------- */
+  .pillars{display:grid; grid-template-columns:repeat(3,1fr); gap:36px; margin-top:6px;}
+  .pillar .stap-label{font-family:var(--mono); font-size:10px; text-transform:uppercase;
+                      letter-spacing:.18em; color:var(--clay-ink);}
+  .pillar h3{font-weight:600; font-size:22px; line-height:1.25; margin-top:8px;}
+  .pillar p{margin-top:10px; font-size:14.5px; color:var(--body);}
+
+  /* ---------- findings — the reference's achievement cards ---------- */
+  .findings-grid{display:grid; grid-template-columns:repeat(2,1fr); gap:16px; margin-top:6px;}
+  .finding{background:var(--white); border:var(--border); border-radius:var(--radius-panel);
+           padding:20px 22px 18px;}
+  .finding .n{font-family:var(--mono); font-size:10px; letter-spacing:.18em;
+              text-transform:uppercase; color:var(--clay-ink);}
+  .finding svg.icoon{float:right; margin:0 0 6px 12px; color:var(--clay);}
+  .finding h3{font-weight:600; font-size:19px; line-height:1.25; margin-top:8px;}
+  .finding p{margin-top:10px; font-size:14px; color:var(--body);}
+  .tag{display:inline-block; margin-top:12px; font-family:var(--mono); font-size:10px;
+       letter-spacing:.1em; text-transform:uppercase; padding:3px 10px;
+       border-radius:var(--radius-chip); border:1px solid transparent;}
+  .tag.signal{background:var(--olive-soft); color:var(--olive-ink); border-color:var(--olive);}
+  .tag.pain{background:var(--clay-soft); color:var(--clay-ink); border-color:var(--clay);}
+  .tag.risk{background:var(--rust-soft); color:var(--rust); border-color:var(--rust);}
+
+  /* ---------- quote — the suite's one ink-inverted figure ---------- */
+  .card.quote-card{background:var(--slate); border-color:var(--slate); color:var(--ivory);}
+  .card.quote-card .pill{background:#232220; color:#A5A39B; border-color:#3D3D3A;}
+  .card.quote-card .pill b{color:var(--clay);}
+  blockquote{font-family:var(--serif); font-weight:500; font-size:clamp(26px,3.4vw,38px);
+             line-height:1.2; max-width:28ch; margin-top:10px;}
+  .card.quote-card blockquote em{color:var(--clay);}
+  .attrib{margin-top:26px; font-size:15px; color:#D6D4CC;}
+  .attrib b{color:var(--ivory); font-weight:600;}
+  /* fold inside the dark card — corroboration */
+  details.fold{margin-top:20px;}
+  details.fold summary{cursor:pointer; font-family:var(--mono); font-size:11px;
+                       letter-spacing:.08em; text-transform:uppercase;
+                       color:var(--clay-ink); list-style:none;}
+  details.fold summary::-webkit-details-marker{display:none;}
+  details.fold summary::before{content:"+ "; color:var(--clay-ink);}
+  details.fold[open] summary::before{content:"− ";}
+  details.fold[open] summary{margin-bottom:12px;}
+  details.fold .fold-body{font-size:14px; line-height:1.6; color:#D6D4CC;
+                          max-width:66ch; padding:14px 16px; background:#201F1D;
+                          border:1px solid #3D3D3A; border-radius:var(--radius-panel);}
+  details.fold.on-dark summary{color:var(--clay);}
+  details.fold.on-dark summary::before{color:var(--clay);}
+
+  /* ---------- journey — reference timeline + SVG overview map ---------- */
+  .journey-plate{margin-top:6px; padding:22px 20px 14px; background:var(--gray-100);
+                 border:var(--border); border-radius:var(--radius-panel);}
+  .journey-plate figcaption{font-family:var(--mono); font-size:10px; letter-spacing:.18em;
+                            text-transform:uppercase; color:var(--muted);
+                            padding:8px 4px 2px; text-align:center;}
+  .lijst{list-style:none; margin-top:28px;}
+  .lijn-item{position:relative; padding-left:44px; padding-bottom:30px;}
+  .lijn-item:last-child{padding-bottom:0;}
+  .lijn-item::before{content:""; position:absolute; left:8px; top:6px; bottom:-6px;
+                     width:1.5px; background:var(--gray-300);}
+  .lijn-item:last-child::before{display:none;}
+  .lijn-item::after{content:""; position:absolute; left:0; top:3px; width:17px; height:17px;
+                    border-radius:var(--radius-chip); border:2px solid var(--clay);
+                    background:var(--ivory);}
+  .lijn-item.klaar::after{background:var(--clay);}
+  .lijn-item h3{font-weight:600; font-size:20px; margin-top:2px;}
+  .lijn-item .stap-label{font-family:var(--mono); font-size:10px; text-transform:uppercase;
+                         letter-spacing:.18em; color:var(--muted);}
+  .lijn-item p.desc{margin-top:5px; font-size:14.5px; color:var(--body); max-width:62ch;}
+  .flag{display:inline-block; margin-top:10px; font-size:12px; font-weight:600;
+        font-family:var(--sans); padding:3px 10px; border-radius:var(--radius-chip);}
+  .flag.pain{background:var(--rust-soft); color:var(--rust);}
+  .flag.well{background:var(--olive-soft); color:var(--olive-ink);}
+
+  /* ---------- recommendation — clay-soft figure with clay frame ---------- */
+  .card.rec-card{background:var(--clay-soft); border-color:var(--clay);}
+  .card.rec-card .pill{background:var(--white); color:var(--muted);}
+  .card.rec-card .pill b{color:var(--clay-ink);}
+  .rec-moves{margin-top:20px; display:grid; gap:14px;}
+  .rec-moves li{list-style:none; display:grid; grid-template-columns:30px 1fr;
+                gap:12px; align-items:baseline; font-size:16px; color:var(--slate);}
+  .rec-moves .arrow{font-family:var(--serif); font-size:22px; color:var(--clay-ink);}
+  .rec-moves strong{font-weight:600;}
+  .card.rec-card details.fold .fold-body{background:var(--white);
+                                         border-color:var(--gray-300); color:var(--body);}
+
+  /* ---------- next steps ---------- */
+  .steps-table{width:100%; border-collapse:collapse; margin-top:6px;}
+  .steps-table th{font-family:var(--mono); font-size:10px; letter-spacing:.18em;
+                  text-transform:uppercase; color:var(--muted); text-align:left;
+                  padding:10px 12px; border-bottom:2px solid var(--slate);}
+  .steps-table td{padding:15px 12px; border-bottom:1px solid var(--gray-300);
+                  font-size:14.5px; vertical-align:top; color:var(--slate);}
+  .steps-table td:first-child{font-weight:600;}
+
+  /* ---------- colophon ---------- */
+  .colophon p.statement{font-size:14.5px; color:var(--body); max-width:66ch;}
+  .colophon .row{display:flex; flex-wrap:wrap; gap:8px 24px; margin-top:20px;
+                 font-family:var(--mono); font-size:11px; letter-spacing:.06em;
+                 text-transform:uppercase; color:var(--muted);}
+
+  /* ---------- HUD ---------- */
+  .hud{position:fixed; bottom:18px; right:22px; font-family:var(--mono); font-size:11px;
+       color:var(--muted); background:var(--white); border:var(--border);
+       border-radius:var(--radius-chip); padding:6px 14px; letter-spacing:.08em; z-index:10;}
+
+  @media (max-width:720px){
+    .deck{padding:32px 14px 72px; gap:32px;}
+    .card{padding:32px 22px 28px;}
+    .findings-grid{grid-template-columns:1fr;}
+    .pillars{grid-template-columns:1fr; gap:24px;}
+  }
+
+  /* ---------- dark mode — the reference's token flip, carried wholesale ---------- */
+  @media (prefers-color-scheme: dark){
+    :root{
+      --ivory:#191817; --slate:#F0EEE6; --white:#201F1D;
+      --clay-ink:#FE6C2D; --clay-soft:#3A241A;
+      --oat:#4A4438; --olive-ink:#A9BC8B; --olive-soft:#262D1E;
+      --rust:#D98A80; --rust-soft:#3A2622;
+      --gray-100:#232220; --gray-300:#3D3D3A; --muted:#A5A39B; --body:#D6D4CC;
+    }
+    .card.cover{background:transparent;}
+    .card.quote-card{background:#000000; border-color:#000000;}
+    .card.quote-card .attrib b{color:#FFFFFF;}
+  }
+
+  @media print{
+    body{background:#FFFFFF; color:#141413;}
+    :root{
+      --ivory:#FFFFFF; --slate:#141413; --white:#FFFFFF; --body:#3D3D3A;
+      --gray-100:#F5F4F0; --gray-300:#D1CFC5; --muted:#67665F;
+      --clay-ink:#B8430F; --clay-soft:#FDEBE0;
+      --olive-ink:#55673C; --olive-soft:#EEF2E6;
+      --rust:#B04A3F; --rust-soft:#F8ECE9;
+    }
+    .hud, .card-index{display:none;}
+    .deck{gap:0; padding:0;}
+    .card{width:100%; border:none; border-radius:0; box-shadow:none;
+          min-height:96vh; page-break-after:always;}
+    .card.cover{min-height:auto; padding-top:0;}
+    .card:target{border:none; box-shadow:none;}
+    details.fold > *:not(summary){display:block !important;}
+    details.fold summary::before{content:"− ";}
+  }
+</style>
+</head>
+<body>
+
+<main class="deck" id="deck">
+
+  <!-- 01 · COVER -->
+  <section class="card cover" id="c1" aria-label="Cover">
+    <span class="card-num">01 / 08</span>
+    <div class="kicker">
+      <span class="pill"><b>te9-docs</b> · skills.te9.dev</span>
+      <span class="kicker-meta">Document-suite skill · Founding readout</span>
+    </div>
+    <span class="type-label">Founding Readout</span>
+    <h1>Thirty-six documents, <em>without</em> breaking Clay</h1>
+    <p class="lede">What the founding trio taught us about intake, the index, and where the next thirty-three types should start.</p>
+    <dl class="meta-row">
+      <div><dt>Prepared by</dt><dd>Founding session</dd></div>
+      <div><dt>Suite version</dt><dd>0.1.0</dd></div>
+      <div><dt>Status</dt><dd><span class="chip">Believe</span></dd></div>
+    </dl>
+    <nav class="card-index" aria-label="Card index">
+      <a href="#c1"><b>01</b>Cover</a>
+      <a href="#c2"><b>02</b>Context</a>
+      <a href="#c3"><b>03</b>Findings</a>
+      <a href="#c4"><b>04</b>Quote</a>
+      <a href="#c5"><b>05</b>Journey</a>
+      <a href="#c6"><b>06</b>Start here</a>
+      <a href="#c7"><b>07</b>Next steps</a>
+      <a href="#c8"><b>08</b>Colophon</a>
+    </nav>
+  </section>
+
+  <!-- 02 · CONTEXT -->
+  <section class="card" id="c2" aria-label="Context">
+    <span class="card-num">02 / 08</span>
+    <div class="sec-head">
+      <div class="kicker">
+        <span class="pill"><b>Context</b> · why a suite</span>
+      </div>
+      <h2>Bespoke documents outgrew the session</h2>
+      <p class="lede">te9-docs produces polished, shareable, single-file HTML documents for human readers. Every session used to hand-roll one — and every hand-rolled one re-decided the palette, the structure, and the quality bar.</p>
+    </div>
+    <div class="pillars">
+      <article class="pillar">
+        <div class="stap-label">01 &middot; The ask</div>
+        <h3>Polished documents,<br/>on demand.</h3>
+        <p>The ask behind the suite: single-file HTML documents for human readers outside the building session — produced inside it, never as a scratch file.</p>
+      </article>
+      <article class="pillar">
+        <div class="stap-label">02 &middot; The record</div>
+        <h3>Three founders<br/>already in Clay.</h3>
+        <p>The founding documents — brief, dossier, deck — sat finished at docs/examples, their design system waiting to be extracted into the house style.</p>
+      </article>
+      <article class="pillar">
+        <div class="stap-label">03 &middot; The fieldwork</div>
+        <h3>Clean-room analysis<br/>of html-docs.</h3>
+        <p>Before any build, the vendored html-docs skill was analysed pattern by pattern — every adopt given an explicit adopt/adapt/reject verdict, nothing inherited wholesale.</p>
+      </article>
+    </div>
+  </section>
+
+  <!-- 03 · FINDINGS -->
+  <section class="card" id="c3" aria-label="Discovery findings">
+    <span class="card-num">03 / 08</span>
+    <div class="sec-head">
+      <div class="kicker">
+        <span class="pill"><b>Discovery findings</b> · what the fieldwork settled</span>
+      </div>
+      <h2>Four signals, one risk</h2>
+    </div>
+    <div class="findings-grid">
+      <article class="finding">
+        <span class="n">FINDING 01</span>
+        <svg class="icoon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        <h3>The suite is its own first subject</h3>
+        <p>Every template's placeholder content documents te9-docs itself. The suite dogfoods its own output, review stays concrete, and the template index doubles as the suite's manual.</p>
+        <span class="tag signal">Signal</span>
+      </article>
+      <article class="finding">
+        <span class="n">FINDING 02</span>
+        <svg class="icoon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13.4 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8.6a2 2 0 0 0-.59-1.42l-5-5A2 2 0 0 0 13.4 2z"/><path d="M3 8h18"/><path d="M8 13h.01"/><path d="M12 13h.01"/><path d="M16 13h.01"/><path d="M8 17h.01"/><path d="M12 17h.01"/></svg>
+        <h3>Hand-built documents drift, then disappear</h3>
+        <p>A bespoke document re-decides type, palette, and structure every time. Nothing registers in the index, nothing is reusable, and the next session starts from zero.</p>
+        <span class="tag pain">Pain</span>
+      </article>
+      <article class="finding">
+        <span class="n">FINDING 03</span>
+        <svg class="icoon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m22 2-7 20-4-9-9-4z"/></svg>
+        <h3>Zero webfonts, zero requests, three faces</h3>
+        <p>ui-serif display, system-ui body, ui-monospace micro-labels — no network requests in any document. What a template ships is what a reader opens, years later, offline.</p>
+        <span class="tag signal">Signal</span>
+      </article>
+      <article class="finding">
+        <span class="n">FINDING 04</span>
+        <svg class="icoon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 8v4"/><path d="M12 16h.01"/></svg>
+        <h3>Every script is a hole in Clay discipline</h3>
+        <p>Suite documents run zero scripts by default — details folds, :target jumps, hover states. Anything beyond the deck's sanctioned navigation needs the script whitelist, justified at its review gate.</p>
+        <span class="tag risk">Risk</span>
+      </article>
+    </div>
+  </section>
+
+  <!-- 04 · QUOTE -->
+  <section class="card quote-card" id="c4" aria-label="Pull quote">
+    <span class="card-num">04 / 08</span>
+    <div class="kicker">
+      <span class="pill"><b>Overheard</b> · at the review gate</span>
+      <span class="kicker-meta">Founding trio · third gate</span>
+    </div>
+    <blockquote>&ldquo;If a template can't survive print, dark mode, and zero requests, <em>it doesn't ship</em>.&rdquo;</blockquote>
+    <p class="attrib"><b>The review gate</b> · where every template earns its place</p>
+    <details class="fold on-dark">
+      <summary>Corroboration — what confirms this</summary>
+      <div class="fold-body"><p>Confirmed by the founding documents themselves: all three run the same warm ivory ground, 1.5px hairlines, mono pill kickers, and one italic clay word — dark-flip and print-first, with zero scripts. The deck's arrow-key navigation is the only sanctioned exemption, and it sits on the whitelist by name.</p></div>
+    </details>
+  </section>
+
+  <!-- 05 · JOURNEY -->
+  <section class="card" id="c5" aria-label="Current state journey">
+    <span class="card-num">05 / 08</span>
+    <div class="sec-head">
+      <div class="kicker">
+        <span class="pill"><b>Current state</b> · one document, five moments</span>
+      </div>
+      <h2>The journey of a produced document</h2>
+      <p class="lede">A Document touches five steps between Intake and the storage menu. The instance mechanic is reliable; every step skipped is where drift gets in.</p>
+    </div>
+
+    <figure class="journey-plate">
+      <svg viewBox="0 0 920 120" role="img" aria-label="Overview of the five moments: Intake, Index, Instance, Playback, Store. The Instance step is marked as working well; the other four carry the drift risk.">
+        <title>Five moments, one working well</title>
+        <line x1="50" y1="58" x2="870" y2="58" stroke="#D1CFC5" stroke-width="2"/>
+        <!-- stations -->
+        <circle cx="90"  cy="58" r="11" fill="#FAF9F5" stroke="#FE6C2D" stroke-width="2.5"/>
+        <circle cx="285" cy="58" r="11" fill="#FAF9F5" stroke="#FE6C2D" stroke-width="2.5"/>
+        <circle cx="480" cy="58" r="11" fill="#FE6C2D" stroke="#FE6C2D" stroke-width="2.5"/>
+        <circle cx="675" cy="58" r="11" fill="#FAF9F5" stroke="#FE6C2D" stroke-width="2.5"/>
+        <circle cx="860" cy="58" r="11" fill="#FAF9F5" stroke="#FE6C2D" stroke-width="2.5"/>
+        <!-- labels -->
+        <g font-family="ui-monospace, Menlo, monospace" font-size="13" fill="#141413" text-anchor="middle" font-weight="600">
+          <text x="90"  y="92">INTAKE</text>
+          <text x="285" y="92">INDEX</text>
+          <text x="480" y="92">INSTANCE</text>
+          <text x="675" y="92">PLAYBACK</text>
+          <text x="860" y="92">STORE</text>
+        </g>
+        <g font-family="ui-monospace, Menlo, monospace" font-size="10" letter-spacing="1.5" fill="#67665F" text-anchor="middle">
+          <text x="90"  y="110">ASK FIRST</text>
+          <text x="285" y="110">INDEX FIRST</text>
+          <text x="480" y="110">WORKING WELL</text>
+          <text x="675" y="110">REVIEW GATE</text>
+          <text x="860" y="110">YOU CHOOSE</text>
+        </g>
+        <!-- corner texts -->
+        <text x="16" y="22" font-family="ui-monospace, Menlo, monospace" font-size="10" letter-spacing="1.5" fill="#67665F">ONE DOCUMENT · FIVE MOMENTS</text>
+        <text x="904" y="22" font-family="ui-monospace, Menlo, monospace" font-size="10" letter-spacing="1.5" fill="#B8430F" text-anchor="end">FILLED = DO NOT TOUCH</text>
+      </svg>
+      <figcaption>FIG · 01 — A PRODUCED DOCUMENT, INTAKE TO STORAGE MENU</figcaption>
+    </figure>
+
+    <ol class="lijst">
+      <li class="lijn-item">
+        <div class="stap-label">Production run · before any writing</div>
+        <h3>Intake</h3>
+        <p class="desc">The session asks for the document's goal and acceptance criteria, then states its own recommendation — type plus approach — before the user confirms.</p>
+        <span class="flag pain">Pain · no brief, nothing to review against</span>
+      </li>
+      <li class="lijn-item">
+        <div class="stap-label">Production run · the type decision</div>
+        <h3>Index</h3>
+        <p class="desc">The suite index at assets/templates/index.json is read first and grounds the type decision; two plausible matches get confirmed with the user.</p>
+        <span class="flag pain">Pain · skipping it re-invents existing types</span>
+      </li>
+      <li class="lijn-item klaar">
+        <div class="stap-label">Production run · the build</div>
+        <h3>Instance</h3>
+        <p class="desc">Copy the Template and swap self-describing placeholders for real facts, preserving layout, interactions, and Clay tokens.</p>
+        <span class="flag well">Working well · copy, don't create</span>
+      </li>
+      <li class="lijn-item">
+        <div class="stap-label">Production run · the review gate</div>
+        <h3>Playback</h3>
+        <p class="desc">The document is shown in the browser and folded with feedback; nothing is built forward until the gate passes.</p>
+        <span class="flag pain">Pain · skipping it ships drift to every sibling</span>
+      </li>
+      <li class="lijn-item">
+        <div class="stap-label">Production run · the storage menu</div>
+        <h3>Store</h3>
+        <p class="desc">Project docs folder, the central collection, preview only — or option four, specify location, which always wins when used.</p>
+        <span class="flag pain">Pain · a document needs a home it can be found in</span>
+      </li>
+    </ol>
+  </section>
+
+  <!-- 06 · RECOMMENDATION -->
+  <section class="card rec-card" id="c6" aria-label="Recommendation">
+    <span class="card-num">06 / 08</span>
+    <div class="sec-head">
+      <div class="kicker">
+        <span class="pill"><b>Recommendation</b> · where we'd start</span>
+      </div>
+      <h2>Grow to v1.0 in sibling clusters, never solo</h2>
+    </div>
+    <ul class="rec-moves">
+      <li><span class="arrow">&rarr;</span><span><strong>Cluster the build order.</strong> Group the thirty-three pending types by similarity — explainers, reports, formal contract types, financial — so gate feedback on one template immediately benefits its neighbors.</span></li>
+      <li><span class="arrow">&rarr;</span><span><strong>Index and version every gate.</strong> Each passing template registers in index.json and bumps the suite version — a MINOR for a new type, a PATCH for a fix — with one changelog line each.</span></li>
+      <li><span class="arrow">&rarr;</span><span><strong>Let the suite extend itself.</strong> A session needing an unlisted type builds it to the same conventions, registers it, bumps the version, and writes its own changelog line — no asking.</span></li>
+    </ul>
+    <details class="fold">
+      <summary>Why no bespoke documents, ever</summary>
+      <div class="fold-body"><p>One-off documents are where consistency dies. Anything a session needs that the suite lacks goes through the extension protocol — Clay conformance, self-describing content, whitelist compliance — and lands in the index where the next session finds it. The launch taxonomy stays the only way in.</p></div>
+    </details>
+  </section>
+
+  <!-- 07 · NEXT STEPS -->
+  <section class="card" id="c7" aria-label="Next steps">
+    <span class="card-num">07 / 08</span>
+    <div class="sec-head">
+      <div class="kicker">
+        <span class="pill"><b>Next steps</b> · owners and horizons</span>
+      </div>
+      <h2>Three moves before v1.0</h2>
+    </div>
+    <table class="steps-table">
+      <thead><tr><th>Action</th><th>Owner</th><th>Horizon</th><th>Done when</th></tr></thead>
+      <tbody>
+        <tr><td>Cluster plan: group the thirty-three pending types into sibling build clusters</td><td>Build session</td><td>1 week</td><td>Clusters cover all thirty-three, none orphaned</td></tr>
+        <tr><td>First cluster through the gates: intake, instance, playback, register, bump</td><td>Build session</td><td>Week 1</td><td>Every template in the cluster has passed its review gate</td></tr>
+        <tr><td>v1.0 review: index complete, changelog reads as the suite's history</td><td>Founding session</td><td>Ongoing</td><td>Launch taxonomy fully registered and stamped in the brief</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- 08 · COLOPHON -->
+  <section class="card colophon" id="c8" aria-label="Colophon">
+    <span class="card-num">08 / 08</span>
+    <div class="sec-head">
+      <div class="kicker">
+        <span class="pill"><b>Colophon</b> · about this document</span>
+      </div>
+      <h2>Readout Deck · template v0.1</h2>
+    </div>
+    <p class="statement">This template is the suite edition of the founding deck at docs/examples, converted to the te9-docs suite; its placeholder content documents the suite itself inside a fixed card grammar — eight cards, one idea each, headlines under eight words, bodies under sixty. Layout and vocabulary are the Clay Explainer's; only the facts are the suite's.</p>
+    <div class="row">
+      <span>DOC ID · TE9-DECK-001</span>
+      <span>SUITE · <a href="../README.html">te9-docs</a></span>
+      <span>SIBLINGS · <a href="02-dossier.html">Evidence Dossier</a> · <a href="01-brief.html">Decision Brief</a></span>
+      <span>ASSEMBLED BY · build session, from SUITE-BRIEF.md</span>
+      <span>REVIEWED BY · human, at the review gate</span>
+    </div>
+  </section>
+
+</main>
+
+<div class="hud" id="hud">01 / 08</div>
+
+<script>
+  // Arrow-key navigation between cards + live position HUD.
+  const cards = [...document.querySelectorAll('.card')];
+  const hud = document.getElementById('hud');
+  const current = () => {
+    let idx = 0;
+    for (let i = 0; i < cards.length; i++)
+      if (cards[i].getBoundingClientRect().top <= window.innerHeight * 0.4) idx = i;
+    return idx};
+  const update = () => {
+    hud.textContent = String(current() + 1).padStart(2, '0') + ' / ' + String(cards.length).padStart(2, '0')};
+  document.addEventListener('keydown', (e) => {
+    if (e.key !== 'ArrowDown' && e.key !== 'ArrowRight' && e.key !== 'ArrowUp' && e.key !== 'ArrowLeft') return;
+    e.preventDefault();
+    const idx = current() + (e.key === 'ArrowDown' || e.key === 'ArrowRight' ? 1 : -1);
+    cards[Math.max(0, Math.min(cards.length - 1, idx))].scrollIntoView({ behavior: 'smooth' })});
+  document.addEventListener('scroll', update, { passive: true });
+  update();
+</script>
+</body>
+</html>

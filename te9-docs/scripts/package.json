@@ -1,0 +1,9 @@
+{
+  "name": "te9-docs-scripts",
+  "private": true,
+  "type": "module",
+  "description": "Build-time tooling for the te9-docs suite. Never a dependency of finished documents.",
+  "dependencies": {
+    "pele": "^1.12.0"
+  }
+}

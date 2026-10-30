@@ -1,0 +1,506 @@
+<!doctype html>
+<!-- te9-docs suite — self-describing placeholder · v0.5.0 — STYLE: Clay Explainer -->
+<!-- ================================================================
+     LLM AUTHORING CONTRACT — I AM 12 EXPLAINER v0.1 — STYLE: Clay Explainer
+     te9-docs suite — self-describing placeholder. Paste this comment
+     into the authoring LLM alongside the source material. The LLM
+     assembles; it does not redesign.
+
+     TASK        Explain one subject to a 12-year-old: short sentences,
+                 concrete everyday metaphors, zero jargon — real facts
+                 in simple words. Playful, never condescending: the
+                 reader is smart, the words are just small.
+     FORMAT      Long-form reading document: masthead hero, "the big
+                 idea" in short paragraphs, THE 4 STEPS as numbered
+                 story panels, three term cards with folded real
+                 definitions, one story-map figure, an ink "try it"
+                 band, colophon.
+     HIERARCHY   doc > section > step / term card > (fold = the real
+                 definition)
+     SECTION     masthead → part-index pill strip → the big idea (3–4
+                 short paragraphs, direct on ivory) → the 4 steps (2×2
+                 story panels) → big words, simply (3 term cards, one
+                 fold each) → story-map figure (FIG · 01) → try it
+                 yourself (ink band) → colophon
+     ORDER       exactly one figure; one fold per term card; one ink
+                 band; one colophon.
+
+     BLOCK GRAMMAR
+       idea-par      short paragraph on ivory: max 2 sentences, each
+                     under 15 words, direct address ("you")
+       step          numbered story panel: mono micro-label (STEP NN ·
+                     NAME) + serif h3 (the kid sentence) + short body +
+                     grown-up line naming the real suite term
+       grown         the real term, named small: "GROWN-UPS CALL THIS ·
+                     INTAKE" — mono micro-label, clay-ink term
+       term card     white panel: big word + kid analogy + ONE fold
+                     holding the glossary definition, word for word
+       figure        ONE pele-rendered story chain in a fenced gray-100
+                     plate: rings = the steps, double ring = the
+                     document you keep; header with FIG ID + legend
+                     strip + FULLSCREEN; body = diagram only; footer =
+                     caption
+       band          the ink region: serif line with one clay em, short
+                     recap, one question to the reader
+       fold          summary "The real definition"; body on an oat plate
+
+     IRON RULES  Facts grounded in SUITE-BRIEF only — no invented suite
+                 facts. Glossary definitions quoted word for word.
+                 Sentences under 15 words. No corporate words in the
+                 kid voice. The figure may not carry a step the panels
+                 don't. Zero scripts beyond the whitelisted fullscreen
+                 listener.
+     VOICE       Playful, direct, honest. Questions to the reader are
+                 good. Everyday comparisons: a finished example essay,
+                 a check-before-handing-in, a folder you choose.
+     STATUS      One chip in the masthead only:
+                 Draft | Believe | Reviewed | Signed-off
+     COLORS      decorative clay #FE6C2D, text clay #B8430F, on ivory
+                 #FAF9F5 with slate ink #141413 — olive #55673C,
+                 rust #B04A3F supporting — do not deviate. Dark mode:
+                 token flip under prefers-color-scheme.
+================================================================ -->
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>te9-docs · I am 12 Explainer — suite v0.5.0</title>
+<style>
+  :root{
+    --ivory:#FAF9F5; --slate:#141413; --white:#FFFFFF;
+    --clay:#FE6C2D; --clay-ink:#B8430F; --clay-soft:#FDEBE0;
+    --oat:#E3DACC; --olive:#788C5D; --olive-ink:#55673C; --olive-soft:#EEF2E6;
+    --rust:#B04A3F; --rust-soft:#F8ECE9;
+    --gray-100:#F0EEE6; --gray-300:#D1CFC5; --gray-500:#87867F; --muted:#67665F; --body:#3D3D3A;
+    --band-em:#FE6C2D;
+    --serif:ui-serif, Georgia, serif;
+    --sans:system-ui, -apple-system, sans-serif;
+    --mono:ui-monospace, "SF Mono", Menlo, monospace;
+    --radius-panel:12px; --radius-chip:999px;
+    --border:1.5px solid var(--gray-300);
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto;}
+  }
+  body{background:var(--ivory); color:var(--slate); font-family:var(--sans);
+       font-size:15.5px; line-height:1.6; -webkit-font-smoothing:antialiased;}
+  h1,h2,h3{font-family:var(--serif); font-weight:500; letter-spacing:-.01em;}
+  a{color:var(--clay-ink); text-decoration:none; border-bottom:1px dotted var(--clay-ink);}
+  a:hover{border-bottom-style:solid;}
+  a:focus-visible, summary:focus-visible{outline:2px solid var(--clay-ink); outline-offset:2px;}
+
+  /* ---------- kicker — pill + meta, the shared hero grammar ---------- */
+  .kicker{display:flex; align-items:baseline; gap:12px; flex-wrap:wrap;}
+  .pill{font-family:var(--mono); font-size:11px; text-transform:uppercase;
+        letter-spacing:.06em; color:var(--muted); background:var(--gray-100);
+        border:var(--border); border-radius:var(--radius-chip); padding:5px 11px;
+        white-space:nowrap;}
+  .pill b{color:var(--clay-ink); font-weight:500;}
+  .kicker-meta{font-family:var(--mono); font-size:11px; text-transform:uppercase;
+               letter-spacing:.18em; color:var(--muted);}
+  .page-no{margin-left:auto; font-family:var(--mono); font-size:11px;
+           letter-spacing:.18em; color:var(--muted); white-space:nowrap;}
+  .type-label{display:inline-block; margin-top:24px; font-family:var(--mono); font-size:11px;
+              text-transform:uppercase; letter-spacing:.06em; color:var(--muted);
+              background:var(--gray-100); border:var(--border);
+              border-radius:var(--radius-chip); padding:5px 11px;}
+
+  /* ---------- masthead — the hero directly on ivory ---------- */
+  .masthead{padding:56px 24px 0;}
+  .masthead-inner{max-width:1000px; margin:0 auto;}
+  h1{font-size:clamp(44px, 6.5vw, 80px); line-height:1.05; margin-top:20px; max-width:16ch;}
+  h1 em{font-style:italic; color:var(--clay-ink);}
+  .lede{margin-top:26px; font-size:17.5px; line-height:1.6; color:var(--body); border-left:3px solid var(--clay); padding:4px 0 4px 20px;}
+  .lede b{color:var(--slate); font-weight:600;}
+  .meta-row{display:flex; flex-wrap:wrap; gap:32px; margin-top:36px; padding-top:22px;
+            border-top:1px solid var(--gray-300);}
+  .meta-row dt{font-family:var(--mono); font-size:10px; letter-spacing:.18em;
+               text-transform:uppercase; color:var(--muted); margin-bottom:4px;}
+  .meta-row dd{font-weight:500; color:var(--slate);}
+  .chip{display:inline-block; font-family:var(--mono); font-size:11px;
+        letter-spacing:.06em; text-transform:uppercase; padding:4px 12px;
+        border-radius:var(--radius-chip); background:var(--clay-soft);
+        color:var(--clay-ink); border:1px solid var(--clay); white-space:nowrap;}
+
+  /* ---------- part index — mono pill strip, jump-nav grammar ---------- */
+  nav.part-index{margin-top:30px;}
+  .index-title{font-family:var(--mono); font-size:10px; letter-spacing:.18em;
+               text-transform:uppercase; color:var(--muted); margin-bottom:10px;}
+  .index-links{display:flex; flex-wrap:wrap; gap:8px;}
+  .index-links a{font-family:var(--mono); font-size:11px; letter-spacing:.06em;
+                 text-transform:uppercase; color:var(--muted); background:var(--white);
+                 border:var(--border); border-bottom:var(--border);
+                 border-radius:var(--radius-chip); padding:5px 11px;}
+  .index-links a b{color:var(--clay-ink); font-weight:500; margin-right:4px;}
+  .index-links a:hover{background:var(--clay-soft); border-color:var(--clay);
+                       border-bottom-color:var(--clay);}
+
+  /* ---------- layout — section rhythm convention ---------- */
+  .wrap{max-width:1000px; margin:0 auto; padding:20px 24px 90px;}
+  section{margin-top:40px; padding-top:40px; border-top:1px solid var(--gray-300);
+          scroll-margin-top:24px;}
+  h2{font-size:28px; line-height:1.15; margin:16px 0 16px;}
+  h2 + *{margin-top:0;}
+  h2 em{font-style:italic; color:var(--clay-ink);}
+  .sec-kick{display:inline-block; font-family:var(--mono); font-size:10px;
+            text-transform:uppercase; letter-spacing:.18em; color:var(--muted);
+            background:var(--gray-100); border:var(--border);
+            border-radius:var(--radius-chip); padding:4px 11px;}
+  .section-lede{font-size:16.5px; color:var(--body);}
+  .section-lede + *{margin-top:24px;}
+
+  /* ---------- the big idea — short paragraphs directly on ivory ---------- */
+  .idea p{max-width:62ch; margin-top:18px; font-size:17px; line-height:1.65; color:var(--body);}
+  .idea p b{color:var(--slate); font-weight:600;}
+
+  /* ---------- panels — white 1.5px-bordered panels on ivory ---------- */
+  /* the 4 steps (2×2 story grid) and the term cards share one panel
+     anatomy, two jobs */
+  .panel-grid{display:grid; grid-template-columns:1fr 1fr; gap:20px; margin-top:24px;}
+  .panel-grid.three{grid-template-columns:repeat(3, 1fr);}
+  .part{background:var(--white); border:var(--border);
+        border-radius:var(--radius-panel); padding:26px 30px 24px;
+        scroll-margin-top:24px;}
+  /* :target — border warms to clay under a soft clay-soft ring,
+     border and ring moving as one. JS-free. */
+  .part:target{border-color:var(--clay);
+               box-shadow:0 0 0 4px var(--clay-soft);}
+  .p-label{font-family:var(--mono); font-size:10px; letter-spacing:.18em;
+           text-transform:uppercase; color:var(--clay-ink);}
+  .part h3{font-size:22px; line-height:1.2; margin-top:10px;}
+  .part p{margin-top:14px; font-size:14.5px; color:var(--body);}
+  .part p b{color:var(--slate); font-weight:600;}
+  /* the grown-up line — the real term, named small */
+  .grown{margin-top:16px; font-family:var(--mono); font-size:10px;
+         letter-spacing:.08em; text-transform:uppercase; color:var(--muted);}
+  .grown b{color:var(--clay-ink); font-weight:500;}
+
+  /* ---------- folds — the real definition, JS-free disclosure ---------- */
+  details.fold{margin-top:16px;}
+  details.fold summary{cursor:pointer; list-style:none; font-family:var(--mono);
+                       font-size:11px; letter-spacing:.08em; text-transform:uppercase;
+                       color:var(--clay-ink);}
+  details.fold summary::-webkit-details-marker{display:none;}
+  details.fold summary::before{content:"+ "; color:var(--clay-ink); font-weight:600;}
+  details.fold[open] summary::before{content:"− ";}
+  details.fold[open] summary{margin-bottom:12px;}
+  details.fold .fold-body{padding-top:2px;}
+  .example{background:var(--oat); border:1px solid var(--gray-300);
+           border-radius:8px; padding:14px 16px; font-size:13.5px; color:var(--body);}
+  .example .etype{font-family:var(--mono); font-size:10px; letter-spacing:.14em;
+                  text-transform:uppercase; color:var(--muted); display:block;
+                  margin-bottom:5px;}
+  .example b{color:var(--slate); font-weight:600;}
+  .example code{font-family:var(--mono); font-size:12px; color:var(--slate);}
+
+  /* ---------- figure — one story chain on a gray-100 plate ---------- */
+  .fig{margin-top:22px; background:var(--gray-100); border:var(--border);
+       border-radius:var(--radius-panel); position:relative; overflow:hidden;}
+  .fig-h{display:flex; align-items:center; justify-content:space-between; gap:12px;
+         padding:10px 14px;}
+  .fig-id{font-family:var(--mono); font-size:10px; letter-spacing:.18em;
+          text-transform:uppercase; color:var(--muted);}
+  .fig-fs{font-family:var(--mono); font-size:10px; text-transform:uppercase;
+          letter-spacing:.14em; color:var(--gray-500); background:var(--white);
+          border:var(--border); border-radius:999px; padding:4px 10px; cursor:pointer;}
+  .fig-fs:hover{color:var(--clay-ink); border-color:var(--clay);}
+  .fig-fs:focus-visible{outline:2px solid var(--clay); outline-offset:2px;}
+  .fig-legend{display:flex; flex-wrap:wrap; gap:6px 18px; padding:0 14px 9px;
+              border-bottom:1px solid var(--gray-300); font-family:var(--mono);
+              font-size:10px; letter-spacing:.06em; text-transform:uppercase;
+              color:var(--muted);}
+  .fig-legend .lg{display:inline-flex; align-items:center; gap:6px;}
+  .fig-legend .lg-g{flex:none;}
+  .fig-b{padding:20px 18px;}
+  .fig-b svg{display:block; width:auto; max-width:100%; height:auto; margin:0 auto;}
+  /* pele → Clay mapping, on the .fig svg (CSS, never inline var() indirection) */
+  .fig svg{
+    --pele-fg:var(--slate);
+    --pele-fg-on-light:var(--body);
+    --pele-muted:var(--gray-500);
+    --pele-line:var(--gray-300);
+    --pele-surface:transparent;
+    --pele-surface-alt:transparent;
+    --pele-bg:transparent;
+    --pele-border:var(--gray-300);
+    --pele-accent:var(--clay);
+    --pele-critical:var(--rust);
+    --pele-error:var(--rust);
+    --pele-font:system-ui, -apple-system, sans-serif;
+    --pele-font-mono:ui-monospace, "SF Mono", Menlo, monospace;
+    --pele-title-weight:500;
+    --pele-heading-weight:500;
+    --pele-radius:4px;
+  }
+  .fig svg .pele-title{display:none;}
+  .fig-f{padding:10px 14px; border-top:1px solid var(--gray-300);
+         font-family:var(--mono); font-size:10px; letter-spacing:.18em;
+         text-transform:uppercase; color:var(--muted); text-align:center;}
+
+  /* ---------- try-it band — the ink region ---------- */
+  .band{margin-top:24px; background:var(--slate); color:var(--ivory);
+        border-radius:var(--radius-panel); padding:34px 38px 32px;}
+  .band-label{font-family:var(--mono); font-size:10px; letter-spacing:.18em;
+              text-transform:uppercase; color:var(--band-em);}
+  .band h2{color:var(--ivory); font-size:clamp(26px, 3.6vw, 40px); line-height:1.15;
+           margin:14px 0 0; max-width:22ch;}
+  .band h2 em{font-style:italic; color:var(--band-em);}
+  .band p{margin-top:16px; font-size:15.5px; line-height:1.65; color:var(--ivory);
+          opacity:.82; max-width:62ch;}
+  .band .band-note{margin-top:20px; font-family:var(--mono); font-size:10px;
+                   letter-spacing:.18em; text-transform:uppercase; color:var(--ivory);
+                   opacity:.6;}
+
+  /* ---------- colophon ---------- */
+  .colophon p.statement{font-size:14.5px; color:var(--body);}
+  .colophon .row{display:flex; flex-wrap:wrap; gap:8px 24px; margin-top:20px;
+                 font-family:var(--mono); font-size:11px; letter-spacing:.06em;
+                 color:var(--muted);}
+
+  @media (max-width:860px){
+    .masthead{padding:36px 16px 0;}
+    .wrap{padding:12px 16px 72px;}
+    .part{padding:20px 18px 18px;}
+    .panel-grid{grid-template-columns:1fr;}
+    .panel-grid.three{grid-template-columns:1fr;}
+    .meta-row{gap:20px;}
+    .band{padding:26px 22px 24px;}
+  }
+
+  /* ---------- dark mode — the token flip, carried wholesale ---------- */
+  @media (prefers-color-scheme: dark){
+    :root{
+      --ivory:#191817; --slate:#F0EEE6; --white:#201F1D;
+      --clay-ink:#FE6C2D; --clay-soft:#3A241A;
+      --oat:#4A4438; --olive-ink:#A9BC8B; --olive-soft:#262D1E;
+      --rust:#D98A80; --rust-soft:#3A2622;
+      --gray-100:#232220; --gray-300:#3D3D3A; --gray-500:#A5A39B; --muted:#A5A39B; --body:#D6D4CC;
+      --band-em:#B8430F;
+    }
+  }
+
+  @media print{
+    body{background:#FFFFFF; color:#141413;}
+    :root{
+      --ivory:#FFFFFF; --slate:#141413; --white:#FFFFFF; --body:#3D3D3A;
+      --gray-100:#F5F4F0; --gray-300:#D1CFC5; --gray-500:#87867F; --muted:#67665F;
+      --clay-ink:#B8430F; --clay-soft:#FDEBE0;
+      --olive-ink:#55673C; --olive-soft:#EEF2E6;
+      --rust:#B04A3F; --rust-soft:#F8ECE9;
+    }
+    nav.part-index{display:none;}
+    .wrap{padding:0 24px;}
+    .masthead{padding:0 24px;}
+    section{margin-top:36px; padding-top:24px;}
+    .part, .example, .fig, .band{break-inside:avoid;}
+    .part{box-shadow:none;}
+    /* the ink band prints as a quiet tinted plate — light palette on paper */
+    .band{background:var(--clay-soft); color:#141413;}
+    .band h2{color:#141413;}
+    .band h2 em, .band-label{color:#B8430F;}
+    .band p, .band .band-note{color:#141413; opacity:1;}
+    /* :target effects neutralized on paper */
+    .part:target{border-color:var(--gray-300); box-shadow:none;}
+    /* folds forced open — the real definitions are never lost on paper */
+    details.fold > *:not(summary){display:block !important;}
+    details.fold summary::before{content:"− ";}
+  }
+</style>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="masthead-inner">
+    <div class="kicker">
+      <span class="pill"><b>te9-docs</b> · for curious kids</span>
+      <span class="kicker-meta">small words &middot; real facts &middot; no jargon</span>
+      <span class="page-no">07 / 36</span>
+    </div>
+    <span class="type-label">I am 12 Explainer</span>
+    <h1>A robot that makes <em>beautiful</em> documents.</h1>
+    <p class="lede"><b>Who this is for:</b> you, if you are curious. Maybe you are twelve. Maybe you are a grown-up who likes small words &mdash; welcome. Every fact on this page is real. Only the words are made simple.</p>
+    <dl class="meta-row">
+      <div><dt>Prepared by</dt><dd>Founding session</dd></div>
+      <div><dt>Suite version</dt><dd>0.5.0</dd></div>
+      <div><dt>Approach</dt><dd>Small words, real facts</dd></div>
+      <div><dt>Status</dt><dd><span class="chip">Reviewed</span></dd></div>
+    </dl>
+    <nav class="part-index" aria-label="Part index">
+      <p class="index-title">Part index</p>
+      <div class="index-links">
+        <a href="#idea"><b>01</b>The big idea</a>
+        <a href="#steps"><b>02</b>The 4 steps</a>
+        <a href="#words"><b>03</b>Big words</a>
+        <a href="#fig"><b>04</b>Fig &middot; 01</a>
+        <a href="#try"><b>05</b>Try it</a>
+        <a href="#colophon"><b>06</b>Colophon</a>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<div class="wrap">
+
+  <!-- THE BIG IDEA -->
+  <section id="idea" class="idea">
+    <span class="sec-kick">The big idea</span>
+    <h2>A helper that makes <em>documents</em></h2>
+    <p>te9-docs makes documents for people to read. Each one is a single file. Open it and share it anywhere.</p>
+    <p>It is a skill: a recipe book that a computer helper follows. The recipes say exactly how each document should look.</p>
+    <p>Every document wears the same warm look, called <b>Clay</b>. Warm paper, thin lines, and one friendly orange thread.</p>
+    <p>There are 36 kinds to pick from. The suite can even grow new kinds all by itself.</p>
+  </section>
+
+  <!-- THE 4 STEPS -->
+  <section id="steps">
+    <span class="sec-kick">How it works</span>
+    <h2>Four steps, start to <em>finish</em></h2>
+    <p class="section-lede">Making a document is a short story. Here it is, step by step.</p>
+
+    <div class="panel-grid">
+
+      <article class="part" id="step-1">
+        <div class="p-label">Step 01 &middot; the ask</div>
+        <h3>You say what you need.</h3>
+        <p>A school essay? A party plan? Say it in your own words. You also say what &ldquo;done and good&rdquo; should look like.</p>
+        <p class="grown">Grown-ups call this &middot; <b>Intake</b></p>
+      </article>
+
+      <article class="part" id="step-2">
+        <div class="p-label">Step 02 &middot; the questions</div>
+        <h3>The robot asks questions.</h3>
+        <p>It wants to get things right. You answer, and it picks the best recipe for your job.</p>
+        <p class="grown">Still Intake &middot; <b>it wants it right</b></p>
+      </article>
+
+      <article class="part" id="step-3">
+        <div class="p-label">Step 03 &middot; the copy</div>
+        <h3>It copies a finished example.</h3>
+        <p>Every kind of document has a finished example. The robot copies it, like copying a model essay. Then it swaps the pretend facts for your real ones.</p>
+        <p class="grown">Grown-ups call this &middot; <b>Instance</b></p>
+      </article>
+
+      <article class="part" id="step-4">
+        <div class="p-label">Step 04 &middot; yours</div>
+        <h3>You get a document.</h3>
+        <p>First you look at it in the browser. It is like checking your work before you hand it in. Say yes, or say what to fix &mdash; the robot listens. Then you choose where it lives. Your folder, the big shared shelf, or anywhere you name.</p>
+        <p class="grown">Grown-ups call this &middot; <b>Review gate &rarr; Storage menu</b></p>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- BIG WORDS, SIMPLY -->
+  <section id="words">
+    <span class="sec-kick">Big words, simply</span>
+    <h2>Three big words, made <em>small</em></h2>
+    <p class="section-lede">Grown-ups love big words. Here is what they really mean.</p>
+
+    <div class="panel-grid three">
+
+      <article class="part" id="word-1">
+        <div class="p-label">Big word 01</div>
+        <h3>Template</h3>
+        <p>Think of a finished example essay. Not an empty page &mdash; a whole, done essay with pretend facts in it. You copy it, then swap the pretend facts for real ones. That is a Template.</p>
+        <details class="fold">
+          <summary>The real definition</summary>
+          <div class="fold-body">
+            <div class="example">
+              <span class="etype">From the suite glossary &middot; word for word</span>
+              <p>A complete, finished, polished HTML document with realistic placeholder content &mdash; not a skeleton, not a component kit. The unit of the suite.</p>
+            </div>
+          </div>
+        </details>
+      </article>
+
+      <article class="part" id="word-2">
+        <div class="p-label">Big word 02</div>
+        <h3>Review gate</h3>
+        <p>You know that check before you hand your work in? The document gets the same check. A person looks at it and says yes. Or says what to fix. Nothing moves on until the check is done.</p>
+        <details class="fold">
+          <summary>The real definition</summary>
+          <div class="fold-body">
+            <div class="example">
+              <span class="etype">From the suite glossary &middot; word for word</span>
+              <p>The build-step approval rule: after each template is built, it is shown in the browser (or file path named) and the user approves or gives feedback; nothing is built forward until the gate passes. Feedback applies to the current template AND the conventions for all later waves.</p>
+            </div>
+          </div>
+        </details>
+      </article>
+
+      <article class="part" id="word-3">
+        <div class="p-label">Big word 03</div>
+        <h3>Storage menu</h3>
+        <p>The work is done. Where does it live? You pick where: your folder, the big shared shelf, or just a look. Name a spot yourself? Your spot always wins.</p>
+        <details class="fold">
+          <summary>The real definition</summary>
+          <div class="fold-body">
+            <div class="example">
+              <span class="etype">From the suite glossary &middot; word for word</span>
+              <p>The post-playback storage decision offered after a produced Document is reviewed in the browser. Exactly three standard options &mdash; (a) save to the project docs folder (<code>&lt;project&gt;/docs/</code>, <code>&lt;YYYY-MM-DD&gt;-&lt;slug&gt;.html</code>), (b) save to the central suite folder, (c) preview only, no disk write &mdash; plus option 4: <b>specify location</b>, which always wins when used.</p>
+            </div>
+          </div>
+        </details>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- THE STORY MAP -->
+  <section id="fig">
+    <span class="sec-kick">The map</span>
+    <h2>The whole story in one <em>line</em></h2>
+    <p class="section-lede">The same story, drawn as a map. Start on the left, follow the line. The small words under each ring are the grown-up names.</p>
+
+    <figure class="fig">
+      <div class="fig-h"><span class="fig-id">FIG &middot; 01</span><button class="fig-fs" type="button" aria-label="Open this diagram in a new tab">FULLSCREEN</button></div>
+      <div class="fig-legend"><span class="lg"><svg class="lg-g" width="14" height="14" viewBox="0 0 14 14" aria-hidden="true"><circle cx="7" cy="7" r="5" fill="none" stroke="#FE6C2D" stroke-width="2"/></svg>a step in the story</span><span class="lg"><svg class="lg-g" width="14" height="14" viewBox="0 0 14 14" aria-hidden="true"><circle cx="7" cy="7" r="5" fill="none" stroke="#FE6C2D" stroke-width="2"/><circle cx="7" cy="7" r="2.5" fill="none" stroke="#FE6C2D" stroke-width="1.5"/></svg>the end — the document you keep</span></div>
+      <div class="fig-b"><svg xmlns="http://www.w3.org/2000/svg" class="pele pele-flowchart" viewBox="0 0 805 181" width="805" height="181" style="max-width:100%;height:auto;--_bg:var(--pele-bg,#fff);--_fg:var(--pele-fg,#1f1f1f);--_m:var(--pele-muted,#6e6e6e);--_l:var(--pele-line,#1f1f1f);--_s:var(--pele-surface,#f3f3f3);--_a:var(--pele-surface-alt,#e6e6e6);--_b:var(--pele-border,#8a8a8a);--_c:var(--pele-accent,#5b7bd5);color:var(--_fg);--_fm:var(--pele-font-mono,monospace);font:16px sans-serif;letter-spacing:normal;word-spacing:normal;text-transform:none;direction:ltr;font-family:var(--pele-font,sans-serif)" fill="var(--_fg)" role="graphics-document document" aria-roledescription="flowchart">
+  <style>
+    @media (prefers-color-scheme: dark){
+      .clay-lab{fill:#F0EEE6;}
+      .clay-sub{fill:#A5A39B;}
+    }
+  </style><g transform="translate(0 0)"><g class="pele-edges" fill="none" stroke="var(--_l)" stroke-linecap="round"><g class="clay-edge" style="stroke:#D1CFC5;stroke-width:1.5px;"><path d="M66.30,90.34L184.37,90.34" fill="none"/></g><g class="clay-edge" style="stroke:#D1CFC5;stroke-width:1.5px;"><path d="M222.37,90.34L383.50,90.34" fill="none"/></g><g class="clay-edge" style="stroke:#D1CFC5;stroke-width:1.5px;"><path d="M421.50,90.34L567.04,90.34" fill="none"/></g><g class="clay-edge" style="stroke:#D1CFC5;stroke-width:1.5px;"><path d="M605.04,90.34L723.02,90.34" fill="none"/></g></g><g class="pele-nodes"><g class="clay-node" data-id="ASK"><circle cx="47.3" cy="90.34" r="17" fill="none" stroke="#FE6C2D" stroke-width="2"/><text class="clay-lab" x="47.3" y="64.34" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="11" font-weight="600" fill="#141413">YOU ASK</text><text class="clay-sub" x="47.3" y="129.34" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="10" fill="#87867F">INTAKE</text></g><g class="clay-node" data-id="Q"><circle cx="203.37" cy="90.34" r="17" fill="none" stroke="#FE6C2D" stroke-width="2"/><text class="clay-lab" x="203.37" y="64.34" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="11" font-weight="600" fill="#141413">IT ASKS QUESTIONS</text><text class="clay-sub" x="203.37" y="129.34" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="10" fill="#87867F">INTAKE TOO</text></g><g class="clay-node" data-id="COPY"><circle cx="402.5" cy="90.34" r="17" fill="none" stroke="#FE6C2D" stroke-width="2"/><text class="clay-lab" x="402.5" y="64.34" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="11" font-weight="600" fill="#141413">IT COPIES AN EXAMPLE</text><text class="clay-sub" x="402.5" y="129.34" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="10" fill="#87867F">INSTANCE</text></g><g class="clay-node" data-id="CHECK"><circle cx="586.04" cy="90.34" r="17" fill="none" stroke="#FE6C2D" stroke-width="2"/><text class="clay-lab" x="586.04" y="64.34" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="11" font-weight="600" fill="#141413">YOU CHECK IT</text><text class="clay-sub" x="586.04" y="129.34" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="10" fill="#87867F">REVIEW GATE</text></g><g class="clay-node" data-id="KEEP"><circle cx="742.02" cy="90.34" r="17" fill="none" stroke="#FE6C2D" stroke-width="2"/><circle cx="742.02" cy="90.34" r="13" fill="none" stroke="#FE6C2D" stroke-width="1.5"/><text class="clay-lab" x="742.02" y="64.34" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="11" font-weight="600" fill="#141413">YOU KEEP IT</text><text class="clay-sub" x="742.02" y="129.34" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="10" fill="#87867F">STORAGE MENU</text></g></g></g></svg></div>
+      <div class="fig-f">RENDERED VIA PELE, CLAYIFIED</div>
+    </figure>
+  </section>
+
+  <!-- TRY IT YOURSELF -->
+  <section id="try">
+    <span class="sec-kick">Try it yourself</span>
+    <div class="band">
+      <div class="band-label">Your turn</div>
+      <h2>The robot does the typing &mdash; <em>you</em> do the thinking.</h2>
+      <p>Next time someone needs a document, you know the dance. Say what you need. Answer the questions. Check the result. Pick the spot. What will you ask it to make first?</p>
+      <p class="band-note">One file &middot; no internet &middot; it just works</p>
+    </div>
+  </section>
+
+  <!-- COLOPHON -->
+  <section id="colophon" class="colophon">
+    <span class="sec-kick">Colophon</span>
+    <h2>I am 12 Explainer &middot; template v0.1</h2>
+    <p class="statement">Made like every document here: one file, no internet, nothing to install. The only script is the fullscreen button on the map. Everything else is plain HTML. Every fact comes straight from the suite brief.</p>
+    <div class="row">
+      <span>DOC ID &middot; TE9-KID-001</span>
+      <span>SUITE VERSION &middot; 0.5.0</span>
+      <span>SUITE &middot; <a href="../README.html">te9-docs</a></span>
+      <span>SIBLINGS &middot; <a href="01-brief.html">Decision Brief</a> &middot; <a href="02-dossier.html">Evidence Dossier</a> &middot; <a href="03-deck.html">Presentation Deck</a> &middot; <a href="04-introduction-of-concepts.html">Introduction of Concepts</a> &middot; <a href="05-concept-breakdown.html">Concept Breakdown</a> &middot; <a href="06-top-down-explainer.html">Top-down Explainer</a></span>
+      <span>PREPARED BY &middot; Founding session</span>
+    </div>
+  </section>
+
+</div>
+
+<script>
+  document.querySelectorAll('.fig-fs').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var svg = btn.closest('.fig').querySelector('svg');
+      var blob = new Blob([svg.outerHTML], { type: 'image/svg+xml' });
+      window.open(URL.createObjectURL(blob), '_blank');
+    });
+  });
+</script>
+</body>
+</html>

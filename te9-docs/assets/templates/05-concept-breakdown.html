@@ -1,0 +1,589 @@
+<!doctype html>
+<!-- te9-docs suite — self-describing placeholder · v0.4.7 — STYLE: Clay Explainer -->
+<!-- ================================================================
+     LLM AUTHORING CONTRACT — CONCEPT BREAKDOWN v0.1 — STYLE: Clay Explainer
+     te9-docs suite — self-describing placeholder. Paste this comment
+     into the authoring LLM alongside the source material. The LLM
+     assembles; it does not redesign.
+
+     TASK        Take ONE concept and break it down — the anatomy of a
+                 single concept: its parts, each examined in depth
+                 (definition, behavior, edge cases), how the parts
+                 compose, and the common misconceptions. Distinct from
+                 introduction-of-concepts, which orients across MANY
+                 concepts; this type goes deep on exactly one.
+     FORMAT      Long-form reading document: part-index pill strip up
+                 top, one anatomy figure, sub-part panels, misconceptions,
+                 composition run-order, colophon.
+     HIERARCHY   doc > section > part panel > (fold: edge case / misconception)
+     SECTION     masthead → anatomy (FIG · 01, the subject as double ring)
+                 → parts (4–6, numbered) → misconceptions (2–3)
+                 → how the parts compose → colophon
+     ORDER       exactly one figure; misconceptions in one section;
+                 one colophon.
+
+     BLOCK GRAMMAR
+       part           mono micro-label (PART NN · NAME grammar) + serif h3
+                      + definition lede (glossary wording, clay rule)
+                      + behavior body (real suite facts)
+                      + fold: one edge case or misconception on an oat plate
+       figure         ONE pele-rendered SVG in a fenced gray-100 plate with
+                      mono FIG · NN caption; the subject concept as the
+                      double ring, sub-parts as clay rings chained in run
+                      order, supporting sources as gray dots; FULLSCREEN pill
+       misconception  struck-through claim (or rust chip) + correction in
+                      body ink; rust-soft / white two-cell region
+       compose        the run order the parts execute, in sequence
+       colophon       DOC ID · suite version · siblings · prepared-by
+
+     IRON RULES  Definitions match the glossary word for word. Parts are
+                 grounded in SUITE-BRIEF facts only — no invented suite
+                 facts. One figure; it may not carry a claim the panels
+                 don't.
+     VOICE       Plausible, domain-real. No invented precise metrics.
+     STATUS      One chip in the masthead only:
+                 Draft | Believe | Reviewed | Signed-off
+     COLORS      decorative clay #FE6C2D, text clay #B8430F, on ivory
+                 #FAF9F5 with slate ink #141413 — olive #55673C,
+                 rust #B04A3F supporting — do not deviate. Dark mode:
+                 token flip under prefers-color-scheme.
+================================================================ -->
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>te9-docs · Concept Breakdown — suite v0.4.1</title>
+<style>
+  :root{
+    --ivory:#FAF9F5; --slate:#141413; --white:#FFFFFF;
+    --clay:#FE6C2D; --clay-ink:#B8430F; --clay-soft:#FDEBE0;
+    --oat:#E3DACC; --olive:#788C5D; --olive-ink:#55673C; --olive-soft:#EEF2E6;
+    --rust:#B04A3F; --rust-soft:#F8ECE9;
+    --gray-100:#F0EEE6; --gray-300:#D1CFC5; --muted:#67665F; --body:#3D3D3A;
+    --serif:ui-serif, Georgia, serif;
+    --sans:system-ui, -apple-system, sans-serif;
+    --mono:ui-monospace, "SF Mono", Menlo, monospace;
+    --radius-panel:12px; --radius-chip:999px;
+    --border:1.5px solid var(--gray-300);
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto;}
+  }
+  body{background:var(--ivory); color:var(--slate); font-family:var(--sans);
+       font-size:15.5px; line-height:1.6; -webkit-font-smoothing:antialiased;}
+  h1,h2,h3{font-family:var(--serif); font-weight:500; letter-spacing:-.01em;}
+  a{color:var(--clay-ink); text-decoration:none; border-bottom:1px dotted var(--clay-ink);}
+  a:hover{border-bottom-style:solid;}
+  a:focus-visible, summary:focus-visible{outline:2px solid var(--clay-ink); outline-offset:2px;}
+
+  /* ---------- kicker — pill + meta, the shared hero grammar ---------- */
+  .kicker{display:flex; align-items:baseline; gap:12px; flex-wrap:wrap;}
+  .pill{font-family:var(--mono); font-size:11px; text-transform:uppercase;
+        letter-spacing:.06em; color:var(--muted); background:var(--gray-100);
+        border:var(--border); border-radius:var(--radius-chip); padding:5px 11px;
+        white-space:nowrap;}
+  .pill b{color:var(--clay-ink); font-weight:500;}
+  .kicker-meta{font-family:var(--mono); font-size:11px; text-transform:uppercase;
+               letter-spacing:.18em; color:var(--muted);}
+  .page-no{margin-left:auto; font-family:var(--mono); font-size:11px;
+           letter-spacing:.18em; color:var(--muted); white-space:nowrap;}
+  .type-label{display:inline-block; margin-top:24px; font-family:var(--mono); font-size:11px;
+              text-transform:uppercase; letter-spacing:.06em; color:var(--muted);
+              background:var(--gray-100); border:var(--border);
+              border-radius:var(--radius-chip); padding:5px 11px;}
+
+  /* ---------- masthead — the hero directly on ivory ---------- */
+  .masthead{padding:56px 24px 0;}
+  .masthead-inner{max-width:1000px; margin:0 auto;}
+  h1{font-size:clamp(44px, 6.5vw, 80px); line-height:1.05; margin-top:20px; max-width:16ch;}
+  h1 em{font-style:italic; color:var(--clay-ink);}
+  .lede{margin-top:26px; font-size:17.5px; line-height:1.6; color:var(--body); border-left:3px solid var(--clay); padding:4px 0 4px 20px;}
+  .lede b{color:var(--slate); font-weight:600;}
+  .meta-row{display:flex; flex-wrap:wrap; gap:32px; margin-top:36px; padding-top:22px;
+            border-top:1px solid var(--gray-300);}
+  .meta-row dt{font-family:var(--mono); font-size:10px; letter-spacing:.18em;
+               text-transform:uppercase; color:var(--muted); margin-bottom:4px;}
+  .meta-row dd{font-weight:500; color:var(--slate);}
+  .chip{display:inline-block; font-family:var(--mono); font-size:11px;
+        letter-spacing:.06em; text-transform:uppercase; padding:4px 12px;
+        border-radius:var(--radius-chip); background:var(--clay-soft);
+        color:var(--clay-ink); border:1px solid var(--clay); white-space:nowrap;}
+
+  /* ---------- part index — mono pill strip, jump-nav grammar ---------- */
+  nav.part-index{margin-top:30px;}
+  .index-title{font-family:var(--mono); font-size:10px; letter-spacing:.18em;
+               text-transform:uppercase; color:var(--muted); margin-bottom:10px;}
+  .index-links{display:flex; flex-wrap:wrap; gap:8px;}
+  .index-links a{font-family:var(--mono); font-size:11px; letter-spacing:.06em;
+                 text-transform:uppercase; color:var(--muted); background:var(--white);
+                 border:var(--border); border-bottom:var(--border);
+                 border-radius:var(--radius-chip); padding:5px 11px;}
+  .index-links a b{color:var(--clay-ink); font-weight:500; margin-right:4px;}
+  .index-links a:hover{background:var(--clay-soft); border-color:var(--clay);
+                       border-bottom-color:var(--clay);}
+
+  /* ---------- layout — section rhythm convention ---------- */
+  .wrap{max-width:1000px; margin:0 auto; padding:20px 24px 90px;}
+  section{margin-top:40px; padding-top:40px; border-top:1px solid var(--gray-300);
+          scroll-margin-top:24px;}
+  h2{font-size:28px; line-height:1.15; margin:16px 0 16px;}
+  h2 + *{margin-top:0;}
+  .sec-kick{display:inline-block; font-family:var(--mono); font-size:10px;
+            text-transform:uppercase; letter-spacing:.18em; color:var(--muted);
+            background:var(--gray-100); border:var(--border);
+            border-radius:var(--radius-chip); padding:4px 11px;}
+  .section-lede{font-size:16.5px; color:var(--body);}
+  .section-lede + *{margin-top:24px;}
+
+  /* ---------- part panels — white 1.5px-bordered panels on ivory ---------- */
+  .part-set{display:grid; grid-template-columns:1fr; gap:20px;}
+  .part{background:var(--white); border:var(--border);
+        border-radius:var(--radius-panel); padding:26px 30px 24px;
+        scroll-margin-top:24px;}
+  /* :target — border warms to clay under a soft clay-soft ring,
+     border and ring moving as one. JS-free. */
+  .part:target{border-color:var(--clay);
+               box-shadow:0 0 0 4px var(--clay-soft);}
+  .p-label{font-family:var(--mono); font-size:10px; letter-spacing:.18em;
+           text-transform:uppercase; color:var(--clay-ink);}
+  .part h3{font-size:22px; line-height:1.2; margin-top:10px;}
+  .p-def{margin-top:20px; margin-bottom:6px; font-size:16.5px; line-height:1.55; color:var(--slate);
+         font-weight:500; border-left:3px solid var(--clay);
+         padding:8px 0 8px 16px;}
+  .p-behavior{margin-top:14px; font-size:14.5px; color:var(--body);}
+  .p-behavior b{color:var(--slate); font-weight:600;}
+  .p-behavior p + p{margin-top:10px;}
+
+  /* ---------- folds — JS-free disclosure, deck grammar ---------- */
+  details.fold{margin-top:16px;}
+  details.fold summary{cursor:pointer; list-style:none; font-family:var(--mono);
+                       font-size:11px; letter-spacing:.08em; text-transform:uppercase;
+                       color:var(--clay-ink);}
+  details.fold summary::-webkit-details-marker{display:none;}
+  details.fold summary::before{content:"+ "; color:var(--clay-ink); font-weight:600;}
+  details.fold[open] summary::before{content:"− ";}
+  details.fold[open] summary{margin-bottom:12px;}
+  details.fold .fold-body{padding-top:2px;}
+  .example{background:var(--oat); border:1px solid var(--gray-300);
+           border-radius:8px; padding:14px 16px; font-size:13.5px; color:var(--body);}
+  .example .etype{font-family:var(--mono); font-size:10px; letter-spacing:.14em;
+                  text-transform:uppercase; color:var(--muted); display:block;
+                  margin-bottom:5px;}
+  .example b{color:var(--slate); font-weight:600;}
+  .example p + p{margin-top:8px;}
+
+  /* ---------- misconceptions — rust-soft / white two-cell regions ---------- */
+  .mis-set{display:grid; grid-template-columns:1fr; gap:16px; margin-top:24px;}
+  .mis{display:grid; grid-template-columns:1fr 1fr; background:var(--white);
+       border:var(--border); border-radius:var(--radius-panel); overflow:hidden;
+       break-inside:avoid;}
+  .mis-no{background:var(--rust-soft); padding:20px 24px; border-right:var(--border);}
+  .mis-yes{padding:20px 24px;}
+  .mis-chip{display:inline-block; font-family:var(--mono); font-size:10px;
+            letter-spacing:.14em; text-transform:uppercase; color:var(--rust);
+            border:1px solid var(--rust); border-radius:var(--radius-chip);
+            padding:3px 10px;}
+  .mis-claim{margin-top:12px; font-size:16px; color:var(--muted);}
+  .mis-claim s{text-decoration:line-through; text-decoration-color:var(--rust);
+               text-decoration-thickness:1.5px;}
+  .mis-label{font-family:var(--mono); font-size:10px; letter-spacing:.18em;
+             text-transform:uppercase; color:var(--muted);}
+  .mis-yes p{margin-top:12px; font-size:14.5px; color:var(--body);}
+  .mis-yes p b{color:var(--slate); font-weight:600;}
+
+  /* ---------- figure — one anatomy map on a gray-100 plate ---------- */
+  .fig{margin-top:22px; background:var(--gray-100); border:var(--border);
+       border-radius:var(--radius-panel); position:relative; overflow:hidden;}
+  .fig-h{display:flex; align-items:center; justify-content:space-between; gap:12px;
+         padding:10px 14px;}
+  .fig-id{font-family:var(--mono); font-size:10px; letter-spacing:.18em;
+          text-transform:uppercase; color:var(--muted);}
+  .fig-fs{font-family:var(--mono); font-size:10px; text-transform:uppercase;
+          letter-spacing:.14em; color:var(--gray-500); background:var(--white);
+          border:var(--border); border-radius:999px; padding:4px 10px; cursor:pointer;}
+  .fig-fs:hover{color:var(--clay-ink); border-color:var(--clay);}
+  .fig-fs:focus-visible{outline:2px solid var(--clay); outline-offset:2px;}
+.fig-legend{display:flex; flex-wrap:wrap; gap:6px 18px; padding:0 14px 9px;
+              border-bottom:1px solid var(--gray-300); font-family:var(--mono);
+              font-size:10px; letter-spacing:.06em; text-transform:uppercase;
+              color:var(--muted);}
+  .fig-legend .lg{display:inline-flex; align-items:center; gap:6px;}
+  .fig-legend .lg-g{flex:none;}
+    .fig-b{padding:20px 18px;}
+  .fig-b svg{display:block; width:auto; max-width:100%; height:auto; margin:0 auto;}
+  .fig-f{padding:10px 14px; border-top:1px solid var(--gray-300);
+         font-family:var(--mono); font-size:10px; letter-spacing:.18em;
+         text-transform:uppercase; color:var(--muted); text-align:center;}
+
+  /* ---------- compose — the run order, hairline-separated steps ---------- */
+  ol.run{list-style:none; margin-top:4px;}
+  ol.run li{display:grid; grid-template-columns:52px 1fr; gap:16px;
+            padding:16px 4px; border-bottom:1px solid var(--gray-300);
+            break-inside:avoid;}
+  ol.run li:last-child{border-bottom:none;}
+  ol.run .rn{font-family:var(--mono); font-size:20px; font-weight:500;
+             color:var(--clay-ink); padding-top:2px;}
+  ol.run h3{font-size:17px; line-height:1.3;}
+  ol.run p{margin-top:4px; font-size:14.5px; color:var(--body);}
+  ol.run p a{font-weight:500;}
+  .run-note{margin-top:18px; padding:14px 16px; background:var(--gray-100);
+            border:var(--border); border-radius:8px; font-size:14px;
+            color:var(--body);}
+
+  /* ---------- colophon ---------- */
+  .colophon p.statement{font-size:14.5px; color:var(--body);}
+  .colophon .row{display:flex; flex-wrap:wrap; gap:8px 24px; margin-top:20px;
+                 font-family:var(--mono); font-size:11px; letter-spacing:.06em;
+                 color:var(--muted);}
+
+  @media (max-width:860px){
+    .masthead{padding:36px 16px 0;}
+    .wrap{padding:12px 16px 72px;}
+    .part{padding:20px 18px 18px;}
+    .mis{grid-template-columns:1fr;}
+    .mis-no{border-right:none; border-bottom:var(--border);}
+    .meta-row{gap:20px;}
+  }
+
+  /* ---------- dark mode — the token flip, carried wholesale ---------- */
+  @media (prefers-color-scheme: dark){
+    :root{
+      --ivory:#191817; --slate:#F0EEE6; --white:#201F1D;
+      --clay-ink:#FE6C2D; --clay-soft:#3A241A;
+      --oat:#4A4438; --olive-ink:#A9BC8B; --olive-soft:#262D1E;
+      --rust:#D98A80; --rust-soft:#3A2622;
+      --gray-100:#232220; --gray-300:#3D3D3A; --muted:#A5A39B; --body:#D6D4CC;
+    }
+  }
+
+  @media print{
+    body{background:#FFFFFF; color:#141413;}
+    :root{
+      --ivory:#FFFFFF; --slate:#141413; --white:#FFFFFF; --body:#3D3D3A;
+      --gray-100:#F5F4F0; --gray-300:#D1CFC5; --muted:#67665F;
+      --clay-ink:#B8430F; --clay-soft:#FDEBE0;
+      --olive-ink:#55673C; --olive-soft:#EEF2E6;
+      --rust:#B04A3F; --rust-soft:#F8ECE9;
+    }
+    nav.part-index{display:none;}
+    .wrap{padding:0 24px;}
+    .masthead{padding:0 24px;}
+    section{margin-top:36px; padding-top:24px;}
+    .part, .example, .fig, .mis, ol.run li, .run-note{break-inside:avoid;}
+    .part{box-shadow:none;}
+    /* :target effects neutralized on paper */
+    .part:target{border-color:var(--gray-300); box-shadow:none;}
+    /* folds forced open */
+    details.fold > *:not(summary){display:block !important;}
+    details.fold summary::before{content:"− ";}
+  }
+</style>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="masthead-inner">
+    <div class="kicker">
+      <span class="pill"><b>te9-docs</b> · skills.te9.dev</span>
+      <span class="kicker-meta">anatomy of one concept</span>
+      <span class="page-no">05 / 36</span>
+    </div>
+    <span class="type-label">Concept Breakdown</span>
+    <h1>The Template instance, taken <em>apart</em></h1>
+    <p class="lede"><b>Who this is for:</b> anyone who has watched a te9-docs production run and wants to know what actually happens inside it. The subject is one concept — the <b>Template instance</b>, the copy-and-swap mechanic every Document is born through. It comes apart into six parts, each examined in depth, then shown composing back into the whole.</p>
+    <dl class="meta-row">
+      <div><dt>Prepared by</dt><dd>Founding session</dd></div>
+      <div><dt>Suite version</dt><dd>0.4.1</dd></div>
+      <div><dt>Subject</dt><dd>Template instance · Suite brief vocabulary</dd></div>
+      <div><dt>Status</dt><dd><span class="chip">Reviewed</span></dd></div>
+    </dl>
+    <nav class="part-index" aria-label="Part index">
+      <p class="index-title">Part index</p>
+      <div class="index-links">
+        <a href="#part-1"><b>01</b>The copy step</a>
+        <a href="#part-2"><b>02</b>The content swap</a>
+        <a href="#part-3"><b>03</b>The preserved contract</a>
+        <a href="#part-4"><b>04</b>The figure pipeline</a>
+        <a href="#part-5"><b>05</b>The gate pass</a>
+        <a href="#part-6"><b>06</b>The storage menu</a>
+        <a href="#anatomy"><b>07</b>Fig · 01</a>
+        <a href="#misconceptions"><b>08</b>Misconceptions</a>
+        <a href="#compose"><b>09</b>How they compose</a>
+        <a href="#colophon"><b>10</b>Colophon</a>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<div class="wrap">
+
+  <!-- ANATOMY FIGURE -->
+  <section id="anatomy">
+    <span class="sec-kick">The anatomy</span>
+    <h2>One subject, six rings</h2>
+    <p class="section-lede">The anatomy in one map. The subject concept sits as the double ring; its six parts hang off it as clay rings, chained in the order a production run executes them; the two sources every instance draws on — the suite brief for its facts, Clay Style for its law — sit as small gray dots. Rendered from Mermaid via pele at build time, then clayified into the ring grammar.</p>
+
+    <figure class="fig">
+      <div class="fig-h"><span class="fig-id">FIG &middot; 01</span><button class="fig-fs" type="button" aria-label="Open this diagram in a new tab">FULLSCREEN</button></div>
+      <div class="fig-legend"><span class="lg"><svg class="lg-g" width="14" height="14" viewBox="0 0 14 14" aria-hidden="true"><circle cx="7" cy="7" r="5" fill="none" stroke="#FE6C2D" stroke-width="2"/><circle cx="7" cy="7" r="2.5" fill="none" stroke="#FE6C2D" stroke-width="1.5"/></svg>double ring = the subject concept</span><span class="lg"><svg class="lg-g" width="14" height="14" viewBox="0 0 14 14" aria-hidden="true"><circle cx="7" cy="7" r="5" fill="none" stroke="#FE6C2D" stroke-width="2"/></svg>sub-part</span><span class="lg"><svg class="lg-g" width="12" height="12" viewBox="0 0 12 12" aria-hidden="true"><circle cx="6" cy="6" r="4" fill="#87867F"/></svg>supporting</span></div>
+      <div class="fig-b"><svg xmlns="http://www.w3.org/2000/svg" class="pele pele-flowchart" viewBox="0 0 615.39 957.5699999999999" width="615" height="958" style="max-width:100%;height:auto;--pele-fg:var(--slate);--pele-fg-on-light:var(--body);--pele-muted:var(--gray-500);--pele-line:var(--gray-300);--pele-bg:transparent;--pele-surface:transparent;--pele-surface-alt:transparent;--pele-border:var(--gray-300);--pele-accent:var(--clay);--pele-font:system-ui,-apple-system,sans-serif;--pele-font-mono:ui-monospace,'SF Mono',Menlo,monospace;--_bg:var(--pele-bg,#fff);--_fg:var(--pele-fg,#1f1f1f);--_m:var(--pele-muted,#6e6e6e);--_l:var(--pele-line,#1f1f1f);--_s:var(--pele-surface,#f3f3f3);--_a:var(--pele-surface-alt,#e6e6e6);--_b:var(--pele-border,#8a8a8a);--_c:var(--pele-accent,#5b7bd5);color:var(--_fg);--_r:var(--pele-radius,4px);--_fm:var(--pele-font-mono,monospace);font:16px sans-serif;letter-spacing:normal;word-spacing:normal;text-transform:none;direction:ltr;font-family:var(--pele-font,sans-serif)" fill="var(--_fg)" role="graphics-document document" aria-roledescription="flowchart">
+  <style>
+    @media (prefers-color-scheme: dark){
+      .clay-lab{fill:#F0EEE6;}
+      .clay-sub{fill:#A5A39B;}
+    }
+  </style><g transform="translate(0 28.880000000000003)"><g class="pele-clusters"><g class="pele-cluster" data-id="ROW2"><rect x="159.96" y="565.19" width="147.24" height="343.01" fill="var(--_a)" fill-opacity="0.5" stroke="var(--_b)" style="rx:var(--_r)"/></g><g class="pele-cluster" data-id="ROW1"><rect x="8" y="171.24" width="437.94" height="320.94" fill="var(--_a)" fill-opacity="0.5" stroke="var(--_b)" style="rx:var(--_r)"/></g></g><g class="pele-edges" fill="none" stroke="var(--_l)" stroke-linecap="round"><g class="clay-edge" style="stroke:#D1CFC5;stroke-width:1.5px;"><path d="M233.58,273.68L233.58,392.65" fill="none"/></g><g class="clay-edge" style="stroke:#D1CFC5;stroke-width:1.5px;"><path d="M97.81,259.90L220.91,397.49" fill="none"/></g><g class="clay-edge" style="stroke:#D1CFC5;stroke-width:1.5px;"><path d="M355.08,269.14L245.91,397.19" fill="none"/></g><g class="clay-edge" style="stroke:#D1CFC5;stroke-width:1.5px;"><path d="M233.58,430.65L233.58,639.81" fill="none"/></g><g class="clay-edge" style="stroke:#D1CFC5;stroke-width:1.5px;"><path d="M233.58,677.81L233.58,817.81" fill="none"/></g><g class="clay-edge" style="stroke:#D1CFC5;stroke-width:1.5px;"><path d="M438.64,70.84L374.27,236.96" fill="none"/></g><g class="clay-edge" style="stroke:#D1CFC5;stroke-width:1.5px;"><path d="M450.63,71.41L521.70,324.97" fill="none"/></g></g><g class="pele-edge-labels" font-size="14"><g class="pele-edge-label" data-id="L_IN_TI_0"><rect x="176.29" y="320.62" width="114.6" height="21" rx="3" fill="var(--_bg)"/><text x="233.58" y="336.02" text-anchor="middle">confirms the type</text></g><g class="pele-edge-label" data-id="L_IDX_TI_0"><rect x="30" y="320.62" width="126.29" height="21" rx="3" fill="var(--_bg)"/><text x="93.14" y="336.02" text-anchor="middle">grounds the choice</text></g><g class="pele-edge-label" data-id="L_TPL_TI_0"><rect x="310.88" y="320.62" width="113.06" height="21" rx="3" fill="var(--_bg)"/><text x="367.41" y="336.02" text-anchor="middle">copied, swapped</text></g><g class="pele-edge-label" data-id="L_TI_RG_0"><rect x="175.12" y="514.69" width="116.92" height="21" rx="3" fill="var(--_bg)"/><text x="233.58" y="530.09" text-anchor="middle">shown in browser</text></g><g class="pele-edge-label" data-id="L_RG_DOC_0"><rect x="200.4" y="734.93" width="66.37" height="21" rx="3" fill="var(--_bg)"/><text x="233.58" y="750.33" text-anchor="middle">approved</text></g><g class="pele-edge-label" data-id="L_EXT_TPL_0"><rect x="318.27" y="120.74" width="98.27" height="21" rx="3" fill="var(--_bg)"/><text x="367.41" y="136.14" text-anchor="middle">builds the next</text></g><g class="pele-edge-label" data-id="L_EXT_VER_0"><rect x="498.59" y="120.74" width="50.01" height="21" rx="3" fill="var(--_bg)"/><text x="523.59" y="136.14" text-anchor="middle">bumps</text></g></g><g class="pele-nodes"><g class="clay-node" data-id="IN"><circle cx="233.58" cy="254.68" r="17" fill="none" stroke="#FE6C2D" stroke-width="2"/><text class="clay-lab" x="233.58" y="228.68" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="11" font-weight="600" fill="#141413">INTAKE</text><text class="clay-sub" x="233.58" y="293.68" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="10" fill="#87867F">CONCEPT 04</text></g><g class="clay-node" data-id="TI"><circle cx="233.58" cy="411.65" r="17" fill="none" stroke="#FE6C2D" stroke-width="2"/><text class="clay-lab" x="233.58" y="385.65" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="11" font-weight="600" fill="#141413">TEMPLATE INSTANCE</text><text class="clay-sub" x="233.58" y="450.65" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="10" fill="#87867F">THE SUBJECT CONCEPT</text></g><g class="clay-node" data-id="IDX"><circle cx="93.14" cy="254.68" r="5" fill="#87867F"/><text class="clay-lab" x="93.14" y="238.68" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="11" font-weight="600" fill="#141413">INDEX</text><text class="clay-sub" x="93.14" y="272.68" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="10" fill="#87867F">read first, normative</text></g><g class="clay-node" data-id="TPL"><circle cx="367.41" cy="254.68" r="17" fill="none" stroke="#FE6C2D" stroke-width="2"/><text class="clay-lab" x="367.41" y="228.68" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="11" font-weight="600" fill="#141413">TEMPLATE</text><text class="clay-sub" x="367.41" y="293.68" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="10" fill="#87867F">CONCEPT 02</text></g><g class="clay-node" data-id="RG"><circle cx="233.58" cy="658.81" r="17" fill="none" stroke="#FE6C2D" stroke-width="2"/><text class="clay-lab" x="233.58" y="632.81" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="11" font-weight="600" fill="#141413">REVIEW GATE</text><text class="clay-sub" x="233.58" y="697.81" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="10" fill="#87867F">PART 05</text></g><g class="clay-node" data-id="DOC"><circle cx="233.58" cy="836.81" r="17" fill="none" stroke="#FE6C2D" stroke-width="2"/><circle cx="233.58" cy="836.81" r="13" fill="none" stroke="#FE6C2D" stroke-width="1.5"/><text class="clay-lab" x="233.58" y="810.81" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="11" font-weight="600" fill="#141413">DOCUMENT</text><text class="clay-sub" x="233.58" y="875.81" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="10" fill="#87867F">CONCEPT 01</text></g><g class="clay-node" data-id="EXT"><circle cx="445.5" cy="53.12" r="17" fill="none" stroke="#FE6C2D" stroke-width="2"/><text class="clay-lab" x="445.5" y="27.119999999999997" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="11" font-weight="600" fill="#141413">EXTENSION PROTOCOL</text><text class="clay-sub" x="445.5" y="92.12" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="10" fill="#87867F">CONCEPT 06</text></g><g class="clay-node" data-id="VER"><circle cx="523.59" cy="331.71" r="5" fill="#87867F"/><text class="clay-lab" x="523.59" y="315.71" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="11" font-weight="600" fill="#141413">SUITE VERSION</text><text class="clay-sub" x="523.59" y="349.71" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="10" fill="#87867F">MINOR · PATCH · MAJOR</text></g></g></g></svg></div>
+      <div class="fig-f">RENDERED VIA PELE, CLAYIFIED</div>
+    </figure>
+  </section>
+
+  <!-- PARTS -->
+  <section id="parts">
+    <span class="sec-kick">The parts</span>
+    <h2>Six parts, each taken in depth</h2>
+    <p class="section-lede">Each panel below takes one part of the Template instance: a definition lede worded from the suite's glossary, the behavior as the production run actually executes it, and — folded open — one edge case or misconception. Every fact comes from the suite brief; nothing here is invented.</p>
+
+    <div class="part-set">
+
+      <article class="part" id="part-1">
+        <div class="p-label">Part 01 · Where it begins</div>
+        <h3>The copy step</h3>
+        <p class="p-def">The instance begins as a literal copy of the Template — a finished, polished, full-HTML document with realistic placeholders — never a rebuild and never a component kit.</p>
+        <div class="p-behavior">
+          <p>A production run reaches the copy only after its first two steps. <b>Step 1, Intake</b>: the document's goal and acceptance criteria are asked for, and the session states its own recommendation — type and approach — from context. <b>Step 2, Index-first</b>: the suite index (<b>assets/templates/index.json</b>) grounds the type decision, with the user confirming if two types could match. <b>Step 3, Instance</b>: the chosen Template is copied.</p>
+          <p>The copy arrives complete. Every Clay token, fold, pill and hairline of the Template is already in place; the instance's work from here is content, not construction.</p>
+        </div>
+        <details class="fold">
+          <summary>Edge case · the copy waits for a confirmed type</summary>
+          <div class="fold-body">
+            <div class="example">
+              <span class="etype">Order of operations</span>
+              <p>The copy is never the first move. If two types could match, the user confirms the type first — only then is a Template copied. The unit being copied is one of the suite's 36 finished types, which is exactly why the confirmation matters: copying the wrong Template is the one mistake the later steps cannot undo.</p>
+            </div>
+          </div>
+        </details>
+      </article>
+
+      <article class="part" id="part-2">
+        <div class="p-label">Part 02 · What changes</div>
+        <h3>The content swap</h3>
+        <p class="p-def">The swap replaces the Template's self-describing placeholders with the reader's real facts — definitions worded to the suite's glossary, nothing invented.</p>
+        <div class="p-behavior">
+          <p>Placeholders are <b>self-describing</b>: they document the suite itself, so swapping means reading them, keeping their structure, and replacing the suite's facts with the document's own. Definitions are quoted word for word from the glossary — <b>Template</b>, <b>Document</b>, <b>Intake</b>, <b>Review gate</b>, <b>Storage menu</b> — used in their glossary sense, nowhere redefined.</p>
+          <p>The facts come from one place: the suite brief. It is the single source of truth for placeholder content, and a swap that asserts something the brief does not is out of contract.</p>
+        </div>
+        <details class="fold">
+          <summary>Misconception · "the swap is a place to improve the writing"</summary>
+          <div class="fold-body">
+            <div class="example">
+              <span class="etype">What the swap touches</span>
+              <p><s>The swap is where you rewrite the document's voice, tighten its ledes, improve its design.</s> No — the swap touches <b>content only</b>. Voice, structure and design belong to the Template, and reach instances only through a new Template version, never mid-swap.</p>
+            </div>
+          </div>
+        </details>
+      </article>
+
+      <article class="part" id="part-3">
+        <div class="p-label">Part 03 · What stays</div>
+        <h3>The preserved contract</h3>
+        <p class="p-def">Layout, interactions and Clay tokens are preserved through the swap — the invariant the suite brief writes into the Instance step in one breath: "preserving layout, interactions, and Clay tokens."</p>
+        <div class="p-behavior">
+          <p>Preserved, concretely: the <b>layout</b> — grid, section rhythm, panel anatomy; the <b>interactions</b> — <b>&lt;details&gt;</b> folds, <b>:target</b> jumps, hover states, with zero scripts by default under Clay discipline; and the <b>Clay tokens</b> — ivory ground, 1.5px hairlines, mono pill kickers, the ring grammar, the dark-mode flip and the print spec.</p>
+          <p>Break any one of the three and the artifact stops being a te9-docs Document: it may still be an HTML file, but it is no longer a sibling of the founding trio.</p>
+        </div>
+        <details class="fold">
+          <summary>Edge case · dark mode and print ride along for free</summary>
+          <div class="fold-body">
+            <div class="example">
+              <span class="etype">Why content swaps can't break them</span>
+              <p>The palette is <b>token-based</b>: the dark flip under <b>prefers-color-scheme</b> and the full print spec are properties of the tokens, not of the content. A swap that changes facts but not tokens inherits dark mode, print behavior and contrast guardrails unchanged — which is why token edits are the one swap the contract forbids.</p>
+            </div>
+          </div>
+        </details>
+      </article>
+
+      <article class="part" id="part-4">
+        <div class="p-label">Part 04 · What is rendered</div>
+        <h3>The figure pipeline</h3>
+        <p class="p-def">Figures are not drawn into the instance — they are rendered at build time: Mermaid source → pele render (Node) → clayify post-processing → one inline SVG in a fenced gray-100 plate with a mono FIG · NN caption.</p>
+        <div class="p-behavior">
+          <p><b>pele gives layout</b> — node positions and routed edges. <b>clayify restores the Clay ring grammar</b> on top: uniform ring radii, mono labels outside the rings, sub-labels beneath, supporting nodes as small gray dots, captioned hairline edges with no arrowheads, an optional legend row. The SVG ships inline with the Clay palette mapped onto pele's CSS variables — never with hex values rewritten by hand.</p>
+          <p>And the figure renders at <b>natural pele scale</b>: the plate's SVG keeps <b>width:auto</b>, centered, shrinking only to fit — labels hold their size in every figure, and no diagram is ever stretched to plate width.</p>
+        </div>
+        <details class="fold">
+          <summary>Edge case · the fullscreen view is Clay-correct too</summary>
+          <div class="fold-body">
+            <div class="example">
+              <span class="etype">Why the new tab still looks right</span>
+              <p>clayify embeds the Clay text styles and the dark flip <b>inside the SVG itself</b>. The FULLSCREEN pill opens the diagram in a new tab via a Blob URL — with no document stylesheet present — and the standalone view still reads Clay: mono labels, hairline edges, correct ink in dark mode.</p>
+            </div>
+          </div>
+        </details>
+      </article>
+
+      <article class="part" id="part-5">
+        <div class="p-label">Part 05 · Who sees it</div>
+        <h3>The gate pass</h3>
+        <p class="p-def">After the build, the instance is shown in the browser and the reader approves or gives feedback — the review gate: browser approval after each build.</p>
+        <div class="p-behavior">
+          <p>This is the production run's playback step. The freshly built document is <b>shown in the browser</b>; the reader's feedback is folded in on the spot, while the session is still open. The gate is <b>per build</b> — each instance passes its own gate, never a batch verdict — and the run only moves on to storage once it has passed.</p>
+          <p>The gate is also where an instance teaches its Template: what the reader corrects here is a fact about the Template it was copied from.</p>
+        </div>
+        <details class="fold">
+          <summary>Misconception · "the gate can be skipped when the build looks right"</summary>
+          <div class="fold-body">
+            <div class="example">
+              <span class="etype">No path around it</span>
+              <p><s>If the instance looks right, storage can happen without the gate.</s> No — the workflow is ordered: playback (step 5) precedes the storage menu (step 6), and the gate <b>is</b> the playback. A build that was never shown was never approved, and storage has nothing approved to store.</p>
+            </div>
+          </div>
+        </details>
+      </article>
+
+      <article class="part" id="part-6">
+        <div class="p-label">Part 06 · Where it lands</div>
+        <h3>The storage menu</h3>
+        <p class="p-def">Once the gate passes, the Document is offered a place to live — four options, and the fourth always wins when used.</p>
+        <div class="p-behavior">
+          <p>The menu, verbatim from the brief: <b>(a)</b> the project's docs folder, named <b>&lt;project&gt;/docs/&lt;YYYY-MM-DD&gt;-&lt;slug&gt;.html</b>; <b>(b)</b> the central collection at <b>E:\te9-docs\documents\</b>; <b>(c)</b> preview only, no copy kept; <b>(4th)</b> specify a location — which always wins when used.</p>
+          <p>The menu is what turns an instance into a Document with an address: from here it is out of the session's hands and in a reader's.</p>
+        </div>
+        <details class="fold">
+          <summary>Edge case · the fourth option's precedence</summary>
+          <div class="fold-body">
+            <div class="example">
+              <span class="etype">Precedence, not preference</span>
+              <p>Options (a)–(c) are standing offers; option 4 — <b>specify location</b> — is not a fourth peer but an override: <b>it always wins when used</b>. A reader who names a path ends the menu in one move, and the Document goes exactly there.</p>
+            </div>
+          </div>
+        </details>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- MISCONCEPTIONS -->
+  <section id="misconceptions">
+    <span class="sec-kick">Misconceptions</span>
+    <h2>Three things this concept is not</h2>
+    <p class="section-lede">The Template instance collects misconceptions the way a load-bearing wall collects cracks — small, plausible, structural. Each one below is struck through on the left and corrected in body ink on the right.</p>
+
+    <div class="mis-set">
+
+      <article class="mis">
+        <div class="mis-no">
+          <span class="mis-chip">Misconception</span>
+          <p class="mis-claim"><s>A Template is a skeleton you fill in.</s></p>
+        </div>
+        <div class="mis-yes">
+          <span class="mis-label">Instead</span>
+          <p>A Template is a <b>finished, polished, full-HTML document with realistic placeholders</b> — the suite's unit, not its scaffolding. An instance copies a working document, never a wireframe; that is why the copy step can preserve everything and still have nothing left to build.</p>
+        </div>
+      </article>
+
+      <article class="mis">
+        <div class="mis-no">
+          <span class="mis-chip">Misconception</span>
+          <p class="mis-claim"><s>The instance step is where you redesign.</s></p>
+        </div>
+        <div class="mis-yes">
+          <span class="mis-label">Instead</span>
+          <p>The swap is never the place to redesign — layout, interactions and Clay tokens are <b>preserved by definition</b>. A design improvement is a change to the Template itself, versioned as a template fix, and only then does it reach every instance born afterwards.</p>
+        </div>
+      </article>
+
+      <article class="mis">
+        <div class="mis-no">
+          <span class="mis-chip">Misconception</span>
+          <p class="mis-claim"><s>Figures are drawn by hand in the finished file.</s></p>
+        </div>
+        <div class="mis-yes">
+          <span class="mis-label">Instead</span>
+          <p>Figures are <b>rendered, never drawn</b>: Mermaid source goes through pele at build time, clayify restores the ring grammar, and the finished file carries only the inline SVG. Hand-editing the SVG's geometry or colors is out of contract — the sources in <b>assets/figures/</b> are the figure.</p>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- HOW THEY COMPOSE -->
+  <section id="compose">
+    <span class="sec-kick">How the parts compose</span>
+    <h2>The run order</h2>
+    <p class="section-lede">Read the six parts as one sequence — the order a production run executes them, from the copy to the stored Document. The figure showed the shape; this is the same anatomy in time.</p>
+
+    <ol class="run">
+      <li>
+        <span class="rn">01</span>
+        <div>
+          <h3>The copy step — a Template, copied whole</h3>
+          <p>After Intake confirms the goal and Index-first grounds the type, the chosen Template is copied — finished layout, finished interactions, finished tokens, all of it already working.</p>
+        </div>
+      </li>
+      <li>
+        <span class="rn">02</span>
+        <div>
+          <h3>The content swap — placeholders become facts</h3>
+          <p>Self-describing placeholders are replaced with the reader's real facts, definitions worded to the glossary, sourced from the suite brief alone.</p>
+        </div>
+      </li>
+      <li>
+        <span class="rn">03</span>
+        <div>
+          <h3>The preserved contract — the invariant throughout</h3>
+          <p>Not a step so much as a rule the other steps execute under: layout, interactions and Clay tokens stay untouched from the first copy to the last swap.</p>
+        </div>
+      </li>
+      <li>
+        <span class="rn">04</span>
+        <div>
+          <h3>The figure pipeline — rendered at build time</h3>
+          <p>Mermaid → pele → clayify → inline SVG at natural size in its fenced plate, captioned FIG · NN, fullscreen-safe by embedded Clay styles.</p>
+        </div>
+      </li>
+      <li>
+        <span class="rn">05</span>
+        <div>
+          <h3>The gate pass — shown, approved, feedback folded in</h3>
+          <p>The document is shown in the browser after the build; the reader approves or gives feedback, and the feedback is folded in before the run moves on.</p>
+        </div>
+      </li>
+      <li>
+        <span class="rn">06</span>
+        <div>
+          <h3>The storage menu — where the Document lands</h3>
+          <p>Project docs folder, central collection, or preview only — with option 4, specify a location, which always wins when used. The instance leaves the session as a Document.</p>
+        </div>
+      </li>
+    </ol>
+
+    <p class="run-note">One subject, six parts, one invariant: an instance is a Template with new facts — nothing more, nothing less. That restraint is the whole mechanic, and it is why the suite's 36 types still read as one publication.</p>
+  </section>
+
+  <!-- COLOPHON -->
+  <section id="colophon" class="colophon">
+    <span class="sec-kick">Colophon</span>
+    <h2>Concept Breakdown · template v0.1</h2>
+    <p class="statement">Assembled inside a fixed grammar — anatomy figure → parts → misconceptions → composition — with every definition quoted from the suite's glossary and every part grounded in the suite brief. The second concept-anatomy type: where introduction-of-concepts orients a reader across many concepts, this one takes a single concept apart and shows how its parts compose back.</p>
+    <div class="row">
+      <span>DOC ID · TE9-CBD-001</span>
+      <span>SUITE VERSION · 0.4.1</span>
+      <span>SUITE · <a href="../README.html">te9-docs</a></span>
+      <span>SIBLINGS · <a href="01-brief.html">Decision Brief</a> · <a href="02-dossier.html">Evidence Dossier</a> · <a href="03-deck.html">Presentation Deck</a> · <a href="04-introduction-of-concepts.html">Introduction of Concepts</a></span>
+      <span>PREPARED BY · Founding session</span>
+    </div>
+  </section>
+
+</div>
+
+<script>
+  document.querySelectorAll('.fig-fs').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var svg = btn.closest('.fig').querySelector('svg');
+      var blob = new Blob([svg.outerHTML], { type: 'image/svg+xml' });
+      window.open(URL.createObjectURL(blob), '_blank');
+    });
+  });
+</script>
+</body>
+</html>

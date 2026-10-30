@@ -1,0 +1,522 @@
+<!doctype html>
+<!-- te9-docs suite — self-describing placeholder · v0.8.0 — STYLE: Clay Explainer -->
+<!-- ================================================================
+     LLM AUTHORING CONTRACT — DECISIONS LOG v0.1 — STYLE: Clay Explainer
+     te9-docs suite — self-describing placeholder. Paste this comment
+     into the authoring LLM alongside the source material. The LLM
+     assembles; it does not redesign.
+
+     TASK        Keep ONE running record — the suite's decisions as an
+                 append-ordered ledger: every decision with its ID, date,
+                 title, the decision in one line, and its status. A log is
+                 scanned, not savored: compact ruled entries, newest on top.
+     FORMAT      Ledger reading document: masthead + summary band, log
+                 index pill strip, THE LEDGER (compact white ruled entries),
+                 one chronological chain figure, colophon.
+     HIERARCHY   doc > section > ledger entry > (fold: the reasoning)
+     SECTION     masthead (h1 + meta row + mono summary band + log index)
+                 → the ledger (entries, newest first, tight padding
+                 16–18px — not the tall part-panel grammar) → chain figure
+                 (FIG · 01, oldest → newest) → colophon
+     ORDER       strictly newest first; exactly one figure; one colophon.
+
+     BLOCK GRAMMAR
+       entry    compact white 1.5px-bordered row, two columns:
+                LEFT rail (hairline-ruled) = mono DEC-NN id + ADR-NNNN ref
+                + date + status chip, stacked; RIGHT = serif title + one-
+                line decision summary ALWAYS visible + <details> fold "the
+                reasoning" (2–3 sentence context + consequence line)
+       chip     Believe = clay-soft/clay-ink · Superseded = rust-soft/rust,
+                and its entry: struck muted title + visible "superseded by
+                ADR-NNNN" note — a log remembers, it does not delete
+       figure   ONE pele TD chain, ADR-0001 top → ADR-NNNN bottom, each ring
+                labeled ADR-NNNN with short-name sub; the superseded
+                decision as a gray dot; fenced gray-100 plate, legend row
+                in the plate header, mono FIG · NN caption, FULLSCREEN pill
+       colophon DOC ID · suite version · siblings · prepared-by
+
+     IRON RULES  Every entry grounded in the decision records (docs/adr/)
+                 + SUITE-BRIEF — no invented suite facts. Statuses match
+                 the records exactly; the newest-first order never breaks.
+                 The figure may not claim an order or status the ledger
+                 doesn't.
+     VOICE       Plausible, domain-real. No invented precise metrics.
+     STATUS      One chip in the masthead only:
+                 Draft | Believe | Reviewed | Signed-off
+     COLORS      decorative clay #FE6C2D, text clay #B8430F, on ivory
+                 #FAF9F5 with slate ink #141413 — olive #55673C,
+                 rust #B04A3F supporting — do not deviate. Dark mode:
+                 token flip under prefers-color-scheme.
+================================================================ -->
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>te9-docs · Decisions Log — suite v0.8.0</title>
+<style>
+  :root{
+    --ivory:#FAF9F5; --slate:#141413; --white:#FFFFFF;
+    --clay:#FE6C2D; --clay-ink:#B8430F; --clay-soft:#FDEBE0;
+    --oat:#E3DACC; --olive:#788C5D; --olive-ink:#55673C; --olive-soft:#EEF2E6;
+    --rust:#B04A3F; --rust-soft:#F8ECE9;
+    --gray-100:#F0EEE6; --gray-300:#D1CFC5; --muted:#67665F; --body:#3D3D3A;
+    --serif:ui-serif, Georgia, serif;
+    --sans:system-ui, -apple-system, sans-serif;
+    --mono:ui-monospace, "SF Mono", Menlo, monospace;
+    --radius-panel:12px; --radius-chip:999px;
+    --border:1.5px solid var(--gray-300);
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto;}
+  }
+  body{background:var(--ivory); color:var(--slate); font-family:var(--sans);
+       font-size:15.5px; line-height:1.6; -webkit-font-smoothing:antialiased;}
+  h1,h2,h3{font-family:var(--serif); font-weight:500; letter-spacing:-.01em;}
+  a{color:var(--clay-ink); text-decoration:none; border-bottom:1px dotted var(--clay-ink);}
+  a:hover{border-bottom-style:solid;}
+  a:focus-visible, summary:focus-visible{outline:2px solid var(--clay-ink); outline-offset:2px;}
+
+  /* ---------- kicker — pill + meta, the shared hero grammar ---------- */
+  .kicker{display:flex; align-items:baseline; gap:12px; flex-wrap:wrap;}
+  .pill{font-family:var(--mono); font-size:11px; text-transform:uppercase;
+        letter-spacing:.06em; color:var(--muted); background:var(--gray-100);
+        border:var(--border); border-radius:var(--radius-chip); padding:5px 11px;
+        white-space:nowrap;}
+  .pill b{color:var(--clay-ink); font-weight:500;}
+  .kicker-meta{font-family:var(--mono); font-size:11px; text-transform:uppercase;
+               letter-spacing:.18em; color:var(--muted);}
+  .page-no{margin-left:auto; font-family:var(--mono); font-size:11px;
+           letter-spacing:.18em; color:var(--muted); white-space:nowrap;}
+  .type-label{display:inline-block; margin-top:24px; font-family:var(--mono); font-size:11px;
+              text-transform:uppercase; letter-spacing:.06em; color:var(--muted);
+              background:var(--gray-100); border:var(--border);
+              border-radius:var(--radius-chip); padding:5px 11px;}
+
+  /* ---------- masthead — the hero directly on ivory ---------- */
+  .masthead{padding:56px 24px 0;}
+  .masthead-inner{max-width:1000px; margin:0 auto;}
+  h1{font-size:clamp(44px, 6.5vw, 80px); line-height:1.05; margin-top:20px; max-width:16ch;}
+  h1 em{font-style:italic; color:var(--clay-ink);}
+  .lede{margin-top:26px; font-size:17.5px; line-height:1.6; color:var(--body); border-left:3px solid var(--clay); padding:4px 0 4px 20px;}
+  .lede b{color:var(--slate); font-weight:600;}
+  .meta-row{display:flex; flex-wrap:wrap; gap:32px; margin-top:36px; padding-top:22px;
+            border-top:1px solid var(--gray-300);}
+  .meta-row dt{font-family:var(--mono); font-size:10px; letter-spacing:.18em;
+               text-transform:uppercase; color:var(--muted); margin-bottom:4px;}
+  .meta-row dd{font-weight:500; color:var(--slate);}
+  .chip{display:inline-block; font-family:var(--mono); font-size:11px;
+        letter-spacing:.06em; text-transform:uppercase; padding:4px 12px;
+        border-radius:var(--radius-chip); background:var(--clay-soft);
+        color:var(--clay-ink); border:1px solid var(--clay); white-space:nowrap;}
+
+  /* ---------- summary band — the slim mono strip ---------- */
+  .ledger-band{display:inline-block; margin-top:22px; font-family:var(--mono);
+               font-size:11px; letter-spacing:.14em; text-transform:uppercase;
+               color:var(--muted); background:var(--gray-100); border:var(--border);
+               border-radius:8px; padding:8px 14px;}
+  .ledger-band b{color:var(--clay-ink); font-weight:600;}
+  .ledger-band i{font-style:normal; color:var(--clay); padding:0 6px;}
+
+  /* ---------- log index — mono pill strip, jump-nav grammar ---------- */
+  nav.log-index{margin-top:26px;}
+  .index-title{font-family:var(--mono); font-size:10px; letter-spacing:.18em;
+               text-transform:uppercase; color:var(--muted); margin-bottom:10px;}
+  .index-links{display:flex; flex-wrap:wrap; gap:8px;}
+  .index-links a{font-family:var(--mono); font-size:11px; letter-spacing:.06em;
+                 text-transform:uppercase; color:var(--muted); background:var(--white);
+                 border:var(--border); border-bottom:var(--border);
+                 border-radius:var(--radius-chip); padding:5px 11px;}
+  .index-links a b{color:var(--clay-ink); font-weight:500; margin-right:4px;}
+  .index-links a.sup b{color:var(--rust);}
+  .index-links a:hover{background:var(--clay-soft); border-color:var(--clay);
+                       border-bottom-color:var(--clay);}
+
+  /* ---------- layout — section rhythm convention ---------- */
+  .wrap{max-width:1000px; margin:0 auto; padding:20px 24px 90px;}
+  section{margin-top:40px; padding-top:40px; border-top:1px solid var(--gray-300);
+          scroll-margin-top:24px;}
+  h2{font-size:28px; line-height:1.15; margin:16px 0 16px;}
+  h2 + *{margin-top:0;}
+  .sec-kick{display:inline-block; font-family:var(--mono); font-size:10px;
+            text-transform:uppercase; letter-spacing:.18em; color:var(--muted);
+            background:var(--gray-100); border:var(--border);
+            border-radius:var(--radius-chip); padding:4px 11px;}
+  .section-lede{font-size:16.5px; color:var(--body);}
+  .section-lede + *{margin-top:24px;}
+
+  /* ---------- THE LEDGER — compact white ruled entries, scan-first ---------- */
+  .ledger{display:grid; grid-template-columns:1fr; gap:10px; margin-top:4px;}
+  .dec{display:grid; grid-template-columns:122px 1fr; gap:18px;
+       background:var(--white); border:var(--border);
+       border-radius:var(--radius-panel); padding:16px 18px;
+       scroll-margin-top:24px;}
+  /* :target — border warms to clay under a soft clay-soft ring,
+     border and ring moving as one. JS-free. */
+  .dec:target{border-color:var(--clay);
+              box-shadow:0 0 0 4px var(--clay-soft);}
+  .dec-rail{display:flex; flex-direction:column; align-items:flex-start; gap:5px;
+            border-right:1px solid var(--gray-300); padding-right:14px;}
+  .dec-id{font-family:var(--mono); font-size:15px; font-weight:600;
+          letter-spacing:.04em; color:var(--clay-ink);}
+  .dec-adr{font-family:var(--mono); font-size:10px; letter-spacing:.14em;
+           text-transform:uppercase; color:var(--muted);}
+  .dec-date{font-family:var(--mono); font-size:11px; color:var(--body);}
+  .dec-chip{font-family:var(--mono); font-size:9.5px; letter-spacing:.1em;
+            text-transform:uppercase; padding:3px 9px; margin-top:3px;
+            border-radius:var(--radius-chip); white-space:nowrap;}
+  .dec-chip.believe{background:var(--clay-soft); color:var(--clay-ink); border:1px solid var(--clay);}
+  .dec-chip.superseded{background:var(--rust-soft); color:var(--rust); border:1px solid var(--rust);}
+  .dec h3{font-size:19px; line-height:1.3;}
+  .dec-line{margin-top:8px; font-size:14.5px; color:var(--body);}
+  .dec-line b{color:var(--slate); font-weight:600;}
+
+  /* superseded entry — struck muted title, rust chip, visible note */
+  .dec.is-sup .dec-id{color:var(--muted);}
+  .dec.is-sup h3{color:var(--muted); text-decoration:line-through;
+                 text-decoration-color:var(--rust); text-decoration-thickness:1.5px;}
+  .dec.is-sup .dec-line{color:var(--muted);}
+  .dec-sup{margin-top:10px; font-size:13px; color:var(--rust);
+           background:var(--rust-soft); border-radius:6px; padding:7px 12px;}
+  .dec-sup b{font-weight:600;}
+
+  /* ---------- folds — JS-free disclosure, deck grammar ---------- */
+  details.fold{margin-top:12px;}
+  details.fold summary{cursor:pointer; list-style:none; font-family:var(--mono);
+                       font-size:11px; letter-spacing:.08em; text-transform:uppercase;
+                       color:var(--clay-ink);}
+  details.fold summary::-webkit-details-marker{display:none;}
+  details.fold summary::before{content:"+ "; color:var(--clay-ink); font-weight:600;}
+  details.fold[open] summary::before{content:"− ";}
+  details.fold[open] summary{margin-bottom:10px;}
+  .dec-why{font-size:13.5px; line-height:1.6; color:var(--body);}
+  .dec-why b{color:var(--slate); font-weight:600;}
+  .dec-cons{margin-top:10px; padding-top:10px; border-top:1px solid var(--gray-300);
+            font-size:13.5px; color:var(--body);}
+  .dec-cons b{display:block; font-family:var(--mono); font-size:10px;
+              letter-spacing:.14em; text-transform:uppercase;
+              color:var(--muted); font-weight:500; margin-bottom:3px;}
+
+  /* ---------- figure — one chain on a gray-100 plate ---------- */
+  .fig{margin-top:22px; background:var(--gray-100); border:var(--border);
+       border-radius:var(--radius-panel); position:relative; overflow:hidden;}
+  .fig-h{display:flex; align-items:center; justify-content:space-between; gap:12px;
+         padding:10px 14px;}
+  .fig-id{font-family:var(--mono); font-size:10px; letter-spacing:.18em;
+          text-transform:uppercase; color:var(--muted);}
+  .fig-fs{font-family:var(--mono); font-size:10px; text-transform:uppercase;
+          letter-spacing:.14em; color:var(--muted); background:var(--white);
+          border:var(--border); border-radius:999px; padding:4px 10px; cursor:pointer;}
+  .fig-fs:hover{color:var(--clay-ink); border-color:var(--clay);}
+  .fig-fs:focus-visible{outline:2px solid var(--clay); outline-offset:2px;}
+  .fig-legend{display:flex; flex-wrap:wrap; gap:6px 18px; padding:0 14px 9px;
+              border-bottom:1px solid var(--gray-300); font-family:var(--mono);
+              font-size:10px; letter-spacing:.06em; text-transform:uppercase;
+              color:var(--muted);}
+  .fig-legend .lg{display:inline-flex; align-items:center; gap:6px;}
+  .fig-legend .lg-g{flex:none;}
+  .fig-b{padding:20px 18px;}
+  .fig-b svg{display:block; width:auto; max-width:100%; height:auto; margin:0 auto;}
+  .fig-f{padding:10px 14px; border-top:1px solid var(--gray-300);
+         font-family:var(--mono); font-size:10px; letter-spacing:.18em;
+         text-transform:uppercase; color:var(--muted); text-align:center;}
+
+  /* pele theming — Clay mapping lives here, never inline */
+  .fig svg{--pele-fg:var(--slate); --pele-fg-on-light:var(--body); --pele-muted:var(--gray-500);
+           --pele-line:var(--gray-300); --pele-bg:transparent; --pele-surface:transparent;
+           --pele-surface-alt:transparent; --pele-border:var(--gray-300); --pele-accent:var(--clay);
+           --pele-radius:4px;
+           --pele-font:system-ui,-apple-system,sans-serif;
+           --pele-font-mono:ui-monospace,"SF Mono",Menlo,monospace;}
+  .fig svg .pele-title{display:none;}
+  .fig svg .pele-edge-label rect{fill:transparent;}
+  .fig svg .pele-edge-label text{fill:var(--body); font-size:12.5px;}
+
+  /* ---------- colophon ---------- */
+  .colophon p.statement{font-size:14.5px; color:var(--body);}
+  .colophon .row{display:flex; flex-wrap:wrap; gap:8px 24px; margin-top:20px;
+                 font-family:var(--mono); font-size:11px; letter-spacing:.06em;
+                 color:var(--muted);}
+
+  @media (max-width:860px){
+    .masthead{padding:36px 16px 0;}
+    .wrap{padding:12px 16px 72px;}
+    .meta-row{gap:20px;}
+    .dec{grid-template-columns:1fr; gap:12px; padding:14px 16px;}
+    .dec-rail{flex-direction:row; flex-wrap:wrap; align-items:center; gap:8px 12px;
+              border-right:none; border-bottom:1px solid var(--gray-300);
+              padding:0 0 10px;}
+    .dec-chip{margin-top:0;}
+  }
+
+  /* ---------- dark mode — the token flip, carried wholesale ---------- */
+  @media (prefers-color-scheme: dark){
+    :root{
+      --ivory:#191817; --slate:#F0EEE6; --white:#201F1D;
+      --clay-ink:#FE6C2D; --clay-soft:#3A241A;
+      --oat:#4A4438; --olive-ink:#A9BC8B; --olive-soft:#262D1E;
+      --rust:#D98A80; --rust-soft:#3A2622;
+      --gray-100:#232220; --gray-300:#3D3D3A; --muted:#A5A39B; --body:#D6D4CC;
+    }
+  }
+
+  @media print{
+    body{background:#FFFFFF; color:#141413;}
+    :root{
+      --ivory:#FFFFFF; --slate:#141413; --white:#FFFFFF; --body:#3D3D3A;
+      --gray-100:#F5F4F0; --gray-300:#D1CFC5; --muted:#67665F;
+      --clay-ink:#B8430F; --clay-soft:#FDEBE0;
+      --olive-ink:#55673C; --olive-soft:#EEF2E6;
+      --rust:#B04A3F; --rust-soft:#F8ECE9;
+    }
+    nav.log-index{display:none;}
+    .wrap{padding:0 24px;}
+    .masthead{padding:0 24px;}
+    section{margin-top:36px; padding-top:24px;}
+    .dec, .fig, .ledger-band{break-inside:avoid;}
+    /* :target effects neutralized on paper */
+    .dec:target{border-color:var(--gray-300); box-shadow:none;}
+    /* folds forced open — the reasoning is never lost in print */
+    details.fold > *:not(summary){display:block !important;}
+    details.fold summary::before{content:"− ";}
+  }
+</style>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="masthead-inner">
+    <div class="kicker">
+      <span class="pill"><b>te9-docs</b> · skills.te9.dev</span>
+      <span class="kicker-meta">append-ordered · the suite's own decisions</span>
+      <span class="page-no">10 / 36</span>
+    </div>
+    <span class="type-label">Decisions Log</span>
+    <h1>Every choice, on the <em>record</em>.</h1>
+    <p class="lede"><b>Who this is for:</b> anyone who has asked why the suite is built the way it is — and wants the answer from the record, not from memory. The entries are the suite's seven recorded decisions, <b>docs/adr/0001–0007</b>, kept as a ledger: newest on top, each with an ID, a date, the decision in one line, and — folded open — the reasoning and its consequence. One entry has been superseded; the log keeps it struck, because a record that forgets is not a record.</p>
+    <dl class="meta-row">
+      <div><dt>Entries</dt><dd>7</dd></div>
+      <div><dt>Status breakdown</dt><dd>6 believe · 1 superseded</dd></div>
+      <div><dt>Decisions span</dt><dd>ADR-0001 – ADR-0007</dd></div>
+      <div><dt>Recorded</dt><dd>2026-10-29</dd></div>
+      <div><dt>Suite version</dt><dd>0.8.0</dd></div>
+      <div><dt>Status</dt><dd><span class="chip">Believe</span></dd></div>
+    </dl>
+    <p class="ledger-band"><b>7</b> entries <i>·</i> <b>6</b> believe <i>·</i> <b>1</b> superseded <i>·</i> newest first</p>
+    <nav class="log-index" aria-label="Log index">
+      <p class="index-title">Log index</p>
+      <div class="index-links">
+        <a href="#dec-7"><b>07</b>pele-strict figures</a>
+        <a href="#dec-6"><b>06</b>autonomous extension</a>
+        <a href="#dec-5" class="sup"><b>05</b>figures via pele · superseded</a>
+        <a href="#dec-4"><b>04</b>discipline + whitelist</a>
+        <a href="#dec-3"><b>03</b>self-describing content</a>
+        <a href="#dec-2"><b>02</b>clay design system</a>
+        <a href="#dec-1"><b>01</b>clean-room sibling</a>
+        <a href="#fig"><b>FIG</b>the chain</a>
+        <a href="#colophon"><b>—</b>colophon</a>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<div class="wrap">
+
+  <!-- THE LEDGER -->
+  <section id="ledger">
+    <span class="sec-kick">The ledger</span>
+    <h2>Seven entries, newest first</h2>
+    <p class="section-lede">Read it like a ledger. Each row is one decision: ID, date and status on the left rail, the decision itself in one line always visible on the right, the reasoning folded beneath. The one superseded entry is struck and rust-chipped, not deleted — its row stays in the append order, pointing at the entry that replaced it.</p>
+
+    <div class="ledger">
+
+      <article class="dec" id="dec-7">
+        <div class="dec-rail">
+          <span class="dec-id">DEC-07</span>
+          <span class="dec-adr">ADR-0007</span>
+          <span class="dec-date">2026-10-29</span>
+          <span class="dec-chip believe">Believe</span>
+        </div>
+        <div class="dec-main">
+          <h3>All figures render through pele — the hand fallback shrinks to true impossibility</h3>
+          <p class="dec-line">Every figure is Mermaid source rendered through pele at build time; hand-authoring an SVG is allowed <b>only</b> when pele cannot express the diagram type at all.</p>
+          <details class="fold">
+            <summary>The reasoning</summary>
+            <div class="fold-body">
+              <p class="dec-why">A user verdict at gate #4 — <b>"I can't imagine we can't draw a similar diagram with Mermaid via pele"</b> — was tested and confirmed: pele renders circle nodes, double circles, classDef strokes and edge captions. The earlier session learning had overstated the case; what pele gives up is pixel-level composition control, not the Clay ring grammar itself.</p>
+              <p class="dec-cons"><b>Consequence</b>Fills stay transparent so the dark flip keeps working, "double ring" replaces "filled = deliverable", and every hand-authored exception must argue its impossibility at the review gate. This supersedes the fallback clause of ADR-0005.</p>
+            </div>
+          </details>
+        </div>
+      </article>
+
+      <article class="dec" id="dec-6">
+        <div class="dec-rail">
+          <span class="dec-id">DEC-06</span>
+          <span class="dec-adr">ADR-0006</span>
+          <span class="dec-date">2026-10-29</span>
+          <span class="dec-chip believe">Believe</span>
+        </div>
+        <div class="dec-main">
+          <h3>The suite grows autonomously: extensions register themselves without asking</h3>
+          <p class="dec-line">A session needing an unlisted type builds it to convention, registers it in the suite index, and bumps the suite version — <b>no proposal step</b>, no staging area.</p>
+          <details class="fold">
+            <summary>The reasoning</summary>
+            <div class="fold-body">
+              <p class="dec-why">Every extension already passes the full conformance discipline — Clay, self-describing content, quality gates — the same discipline every launch template passes, which the user reviews continuously anyway. A request-approve round-trip bought nothing extra: <b>a plan cannot be evaluated better than the finished artifact</b>.</p>
+              <p class="dec-cons"><b>Consequence</b>The index changes without warning, so sessions consult it at each run. Misfits are discovered in the wild but stay user-inspectable, editable and removable; the changelog line and version bump on every extension are the audit trail of autonomous growth.</p>
+            </div>
+          </details>
+        </div>
+      </article>
+
+      <article class="dec is-sup" id="dec-5">
+        <div class="dec-rail">
+          <span class="dec-id">DEC-05</span>
+          <span class="dec-adr">ADR-0005</span>
+          <span class="dec-date">2026-10-29</span>
+          <span class="dec-chip superseded">Superseded</span>
+        </div>
+        <div class="dec-main">
+          <h3>Diagrams render through pele at build time; documents stay single-file and offline</h3>
+          <p class="dec-line">Diagrams are authored as Mermaid text and rendered with pele once at build time, inlined as static SVG — no runtime, no CDN, no diagram JavaScript.</p>
+          <p class="dec-sup">Superseded by <b>ADR-0007</b> — the hand-authored fallback this record allowed is gone; see <a href="#dec-7">DEC-07</a>.</p>
+          <details class="fold">
+            <summary>The reasoning</summary>
+            <div class="fold-body">
+              <p class="dec-why">Runtime mounting from a CDN breaks the zero-network, file:// offline contract; hand-authoring 50-arrow diagrams is error-prone. This record replaced html-docs' pretty-mermaid pipeline and its vanilla-JavaScript pan/zoom viewer, both rejected patterns for the suite.</p>
+              <p class="dec-cons"><b>Consequence</b>Node and the pele package became production-time dependencies of the skill — never of a finished document. ADR-0007 kept this record's build-time rule and removed its fallback clause, shrinking hand-authoring to true impossibility.</p>
+            </div>
+          </details>
+        </div>
+      </article>
+
+      <article class="dec" id="dec-4">
+        <div class="dec-rail">
+          <span class="dec-id">DEC-04</span>
+          <span class="dec-adr">ADR-0004</span>
+          <span class="dec-date">2026-10-29</span>
+          <span class="dec-chip believe">Believe</span>
+        </div>
+        <div class="dec-main">
+          <h3>Clay discipline is the default; real JavaScript requires a published whitelist</h3>
+          <p class="dec-line">Suite documents default to <b>zero scripts</b> — <b>&lt;details&gt;</b> folds, <b>:target</b> jumps, hover states — plus the deck's single sanctioned navigation script.</p>
+          <details class="fold">
+            <summary>The reasoning</summary>
+            <div class="fold-body">
+              <p class="dec-why">A pure zero-JavaScript rule would decay or be bypassed invisibly: some of the 33 additional types — API documentation, data report, editor-style documents — plausibly need behavior no CSS mechanism provides. html-docs-level interactivity, meanwhile, reintroduces the patterns the suite deliberately excluded and breaks the print and offline guarantees Clay bakes in.</p>
+              <p class="dec-cons"><b>Consequence</b>The whitelist is normative skill content — a template with non-whitelisted scripts is non-conformant — and the print and offline guarantees stay mandatory for every template, whitelisted or not.</p>
+            </div>
+          </details>
+        </div>
+      </article>
+
+      <article class="dec" id="dec-3">
+        <div class="dec-rail">
+          <span class="dec-id">DEC-03</span>
+          <span class="dec-adr">ADR-0003</span>
+          <span class="dec-date">2026-10-29</span>
+          <span class="dec-chip believe">Believe</span>
+        </div>
+        <div class="dec-main">
+          <h3>Placeholder content is self-describing: every template documents the suite</h3>
+          <p class="dec-line">Each template's realistic placeholders are written <b>about the te9-docs suite itself</b> — the meeting-notes template records a suite planning session, the API-documentation template specs the extension protocol.</p>
+          <details class="fold">
+            <summary>The reasoning</summary>
+            <div class="fold-body">
+              <p class="dec-why"><b>Dogfooding</b>: building all 36 templates with one coherent subject exercises every structural affordance the way a real document would, and the finished index doubles as the suite's own manual. A single shared subject also makes review fast — "does this read true about the suite?" instead of "does this read true about anything?".</p>
+              <p class="dec-cons"><b>Consequence</b>Every build starts from a shared brief of suite facts so placeholders stay consistent across authors and sessions; content goes stale when the suite changes — the brief refresh is part of template maintenance, not a blocker.</p>
+            </div>
+          </details>
+        </div>
+      </article>
+
+      <article class="dec" id="dec-2">
+        <div class="dec-rail">
+          <span class="dec-id">DEC-02</span>
+          <span class="dec-adr">ADR-0002</span>
+          <span class="dec-date">2026-10-29</span>
+          <span class="dec-chip believe">Believe</span>
+        </div>
+        <div class="dec-main">
+          <h3>One design system: the Clay Explainer, extracted from the founding examples</h3>
+          <p class="dec-line">All 36 templates share one tokenized house palette and header anatomy — warm ivory ground, 1.5px hairlines, mono pill kickers, one italic clay word.</p>
+          <details class="fold">
+            <summary>The reasoning</summary>
+            <div class="fold-body">
+              <p class="dec-why">Adopting html-docs' ivory/slate/clay set verbatim was rejected — it ships an unretuned palette whose clay fails AA as text, which is no signature. Designing a fresh palette in-session was rejected too: the work already existed, documented, AA-checked and embodied in three reviewed example documents.</p>
+              <p class="dec-cons"><b>Consequence</b>Raw clay is decorative-only on light ground and all accent text uses the retuned clay-ink; dark mode and the print spec are part of the system by default; templates failing the patterns checklist are non-conformant.</p>
+            </div>
+          </details>
+        </div>
+      </article>
+
+      <article class="dec" id="dec-1">
+        <div class="dec-rail">
+          <span class="dec-id">DEC-01</span>
+          <span class="dec-adr">ADR-0001</span>
+          <span class="dec-date">2026-10-29</span>
+          <span class="dec-chip believe">Believe</span>
+        </div>
+        <div class="dec-main">
+          <h3>te9-docs is a clean-room sibling of html-docs, not an evolution of it</h3>
+          <p class="dec-line">Build a new skill <b>alongside</b> the vendored html-docs — every pattern adopted from it is re-justified with an explicit adopt/adapt/reject verdict, never assumed.</p>
+          <details class="fold">
+            <summary>The reasoning</summary>
+            <div class="fold-body">
+              <p class="dec-why">Signature patterns require deliberate ownership. Modifying html-docs in place would muddy the provenance of a vendored skill and inherit its baggage; absorbing it into an existing doc skill would collapse two distinct concerns into one. html-docs stays untouched as a live reference for comparison.</p>
+              <p class="dec-cons"><b>Consequence</b>The two doc skills coexist temporarily, until a later decision deprecates one; every beneficial html-docs pattern must be consciously re-justified in te9-docs — nothing carries over on reputation.</p>
+            </div>
+          </details>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- THE CHAIN FIGURE -->
+  <section id="fig">
+    <span class="sec-kick">The chain</span>
+    <h2>One decision at a time</h2>
+    <p class="section-lede">The same record in chronological order — ADR-0001 at the top, ADR-0007 at the bottom, each ring one decision with its short name beneath, linked in the order the record grew. The gray dot is the one entry this log has retired: ADR-0005, superseded mid-chain by ADR-0007. The ledger above reads this same chain newest first; this figure is how it was built.</p>
+
+    <figure class="fig">
+      <div class="fig-h"><span class="fig-id">FIG &middot; 01</span><button class="fig-fs" type="button" aria-label="Open this diagram in a new tab">FULLSCREEN</button></div>
+      <div class="fig-legend"><span class="lg"><svg class="lg-g" width="14" height="14" viewBox="0 0 14 14" aria-hidden="true"><circle cx="7" cy="7" r="5" fill="none" stroke="#FE6C2D" stroke-width="2"/></svg>decision in force</span><span class="lg"><svg class="lg-g" width="12" height="12" viewBox="0 0 12 12" aria-hidden="true"><circle cx="6" cy="6" r="4" fill="#87867F"/></svg>superseded</span></div>
+      <div class="fig-b"><svg xmlns="http://www.w3.org/2000/svg" class="pele pele-flowchart" viewBox="-44.17999999999999 0 198.8 1026.48" width="199" height="1026" style="max-width:100%;height:auto;--_bg:var(--pele-bg,#fff);--_fg:var(--pele-fg,#1f1f1f);--_m:var(--pele-muted,#6e6e6e);--_l:var(--pele-line,#1f1f1f);--_s:var(--pele-surface,#f3f3f3);--_a:var(--pele-surface-alt,#e6e6e6);--_b:var(--pele-border,#8a8a8a);--_c:var(--pele-accent,#5b7bd5);color:var(--_fg);--_fm:var(--pele-font-mono,monospace);font:16px sans-serif;letter-spacing:normal;word-spacing:normal;text-transform:none;direction:ltr;font-family:var(--pele-font,sans-serif)" fill="var(--_fg)" role="graphics-document document" aria-roledescription="flowchart">
+  <style>
+    @media (prefers-color-scheme: dark){
+      .clay-lab{fill:#F0EEE6;}
+      .clay-sub{fill:#A5A39B;}
+    }
+  </style><g transform="translate(0 26.78)"><g class="pele-edges" fill="none" stroke="var(--_l)" stroke-linecap="round"><g class="clay-edge" style="stroke:#D1CFC5;stroke-width:1.5px;"><path d="M55.22,74.22L55.22,178.67" fill="none"/></g><g class="clay-edge" style="stroke:#D1CFC5;stroke-width:1.5px;"><path d="M55.22,216.67L55.22,321.12" fill="none"/></g><g class="clay-edge" style="stroke:#D1CFC5;stroke-width:1.5px;"><path d="M55.22,359.12L55.22,463.57" fill="none"/></g><g class="clay-edge" style="stroke:#D1CFC5;stroke-width:1.5px;"><path d="M55.22,501.57L55.22,618.02" fill="none"/></g><g class="clay-edge" style="stroke:#D1CFC5;stroke-width:1.5px;"><path d="M55.22,632.02L55.22,748.47" fill="none"/></g><g class="clay-edge" style="stroke:#D1CFC5;stroke-width:1.5px;"><path d="M55.22,786.47L55.22,890.92" fill="none"/></g></g><g class="pele-nodes"><g class="clay-node" data-id="A1"><circle cx="55.22" cy="55.22" r="17" fill="none" stroke="#FE6C2D" stroke-width="2"/><text class="clay-lab" x="55.22" y="29.22" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="11" font-weight="600" fill="#141413">ADR-0001</text><text class="clay-sub" x="55.22" y="94.22" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="10" fill="#87867F">CLEAN-ROOM SIBLING</text></g><g class="clay-node" data-id="A2"><circle cx="55.22" cy="197.67" r="17" fill="none" stroke="#FE6C2D" stroke-width="2"/><text class="clay-lab" x="55.22" y="171.67" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="11" font-weight="600" fill="#141413">ADR-0002</text><text class="clay-sub" x="55.22" y="236.67" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="10" fill="#87867F">CLAY EXPLAINER SYSTEM</text></g><g class="clay-node" data-id="A3"><circle cx="55.22" cy="340.12" r="17" fill="none" stroke="#FE6C2D" stroke-width="2"/><text class="clay-lab" x="55.22" y="314.12" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="11" font-weight="600" fill="#141413">ADR-0003</text><text class="clay-sub" x="55.22" y="379.12" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="10" fill="#87867F">SELF-DESCRIBING CONTENT</text></g><g class="clay-node" data-id="A4"><circle cx="55.22" cy="482.57" r="17" fill="none" stroke="#FE6C2D" stroke-width="2"/><text class="clay-lab" x="55.22" y="456.57" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="11" font-weight="600" fill="#141413">ADR-0004</text><text class="clay-sub" x="55.22" y="521.5699999999999" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="10" fill="#87867F">DISCIPLINE + WHITELIST</text></g><g class="clay-node" data-id="A5"><circle cx="55.22" cy="625.02" r="5" fill="#87867F"/><text class="clay-lab" x="55.22" y="609.02" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="11" font-weight="600" fill="#141413">ADR-0005</text><text class="clay-sub" x="55.22" y="643.02" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="10" fill="#87867F">PELE AT BUILD TIME</text></g><g class="clay-node" data-id="A6"><circle cx="55.22" cy="767.47" r="17" fill="none" stroke="#FE6C2D" stroke-width="2"/><text class="clay-lab" x="55.22" y="741.47" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="11" font-weight="600" fill="#141413">ADR-0006</text><text class="clay-sub" x="55.22" y="806.47" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="10" fill="#87867F">AUTONOMOUS EXTENSION</text></g><g class="clay-node" data-id="A7"><circle cx="55.22" cy="909.92" r="17" fill="none" stroke="#FE6C2D" stroke-width="2"/><text class="clay-lab" x="55.22" y="883.92" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="11" font-weight="600" fill="#141413">ADR-0007</text><text class="clay-sub" x="55.22" y="948.92" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="10" fill="#87867F">PELE-STRICT FIGURES</text></g></g></g></svg></div>
+      <div class="fig-f">FIG · 01 — THE SEVEN DECISIONS, OLDEST TO NEWEST · RENDERED VIA PELE, CLAYIFIED</div>
+    </figure>
+  </section>
+
+  <!-- COLOPHON -->
+  <section id="colophon" class="colophon">
+    <span class="sec-kick">Colophon</span>
+    <h2>Decisions Log · template v0.1</h2>
+    <p class="statement">Kept as a ledger, not a story: append-ordered, ruled, scan-first — status chips before sentences, one-line decisions before reasoning, tight rows instead of tall panels. The newest entry sits on top, the founding decision at the bottom, and the one superseded entry stays in the record, struck and pointing at its successor. Every fact comes from the decision records at docs/adr/0001–0007 and the suite brief alone.</p>
+    <div class="row">
+      <span>DOC ID · TE9-DEC-001</span>
+      <span>SUITE VERSION · 0.8.0</span>
+      <span>SUITE · <a href="../README.html">te9-docs</a></span>
+      <span>SIBLINGS · <a href="01-brief.html">Decision Brief</a> · <a href="02-dossier.html">Evidence Dossier</a> · <a href="09-what-how-why-who-when.html">What, How, Why, Who, When</a></span>
+      <span>PREPARED BY · Founding session</span>
+    </div>
+  </section>
+
+</div>
+
+<script>
+  document.querySelectorAll('.fig-fs').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var svg = btn.closest('.fig').querySelector('svg');
+      var blob = new Blob([svg.outerHTML], { type: 'image/svg+xml' });
+      window.open(URL.createObjectURL(blob), '_blank');
+    });
+  });
+</script>
+</body>
+</html>

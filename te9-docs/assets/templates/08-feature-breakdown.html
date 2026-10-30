@@ -1,0 +1,498 @@
+<!doctype html>
+<!-- te9-docs suite — self-describing placeholder · v0.6.0 — STYLE: Clay Explainer -->
+<!-- ================================================================
+     LLM AUTHORING CONTRACT — FEATURE BREAKDOWN v0.1 — STYLE: Clay Explainer
+     te9-docs suite — self-describing placeholder. Paste this comment
+     into the authoring LLM alongside the source material. The LLM
+     assembles; it does not redesign.
+
+     TASK        Break down ONE product feature: what it does for the
+                 user, its capabilities, how each works, the options,
+                 and the honest limitations. Product-facing — the
+                 reader is deciding whether to use the feature and
+                 needs to master it, not admire it.
+     FORMAT      Capability cards up front, pipeline figure, a
+                 source-to-plate proof pair, options table,
+                 limitations, colophon.
+     HIERARCHY   doc > section > capability/limitation card > (fold)
+     SECTION     masthead → capabilities at a glance → how it works
+                 (FIG · 01, the pipeline) → from source to plate
+                 (proof pair) → options → limitations → colophon
+     ORDER       one pipeline figure + one proof pair; options in one
+                 table; one colophon.
+
+     BLOCK GRAMMAR
+       capability     mono micro-label (CAPABILITY NN · NAME) + one-line
+                      promise, in a white 1.5px-bordered card
+       pipeline       pele+clayify chain in the mandatory plate:
+                      header (FIG ID + legend strip + FULLSCREEN) /
+                      body (diagram only) / footer (caption)
+       proof pair     LEFT: the real Mermaid source in a mono block;
+                      RIGHT: that exact source rendered — the source
+                      is the figure
+       options        table: option / what it does / default
+       limitation     honest card: what the feature does NOT do
+       colophon       DOC ID · suite version · siblings · prepared-by
+
+     IRON RULES  Every capability must be demonstrable from the suite
+                 facts. The proof pair's source must be the actual
+                 source of the rendered result. Limitations are never
+                 hidden — they are part of the contract.
+     VOICE       Plausible, domain-real. Direct address. No marketing.
+     STATUS      One chip in the masthead only:
+                 Draft | Believe | Reviewed | Signed-off
+     COLORS      decorative clay #FE6C2D, text clay #B8430F, on ivory
+                 #FAF9F5 with slate ink #141413 — olive #55673C,
+                 rust #B04A3F supporting — do not deviate. Dark mode:
+                 token flip under prefers-color-scheme.
+================================================================ -->
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>te9-docs · Feature Breakdown — suite v0.6.0</title>
+<style>
+  :root{
+    --ivory:#FAF9F5; --slate:#141413; --white:#FFFFFF;
+    --clay:#FE6C2D; --clay-ink:#B8430F; --clay-soft:#FDEBE0;
+    --oat:#E3DACC; --olive:#788C5D; --olive-ink:#55673C; --olive-soft:#EEF2E6;
+    --rust:#B04A3F; --rust-soft:#F8ECE9;
+    --gray-100:#F0EEE6; --gray-300:#D1CFC5; --muted:#67665F; --body:#3D3D3A;
+    --serif:ui-serif, Georgia, serif;
+    --sans:system-ui, -apple-system, sans-serif;
+    --mono:ui-monospace, "SF Mono", Menlo, monospace;
+    --radius-panel:12px; --radius-chip:999px;
+    --border:1.5px solid var(--gray-300);
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto;}
+  }
+  body{background:var(--ivory); color:var(--slate); font-family:var(--sans);
+       font-size:15.5px; line-height:1.6; -webkit-font-smoothing:antialiased;}
+  h1,h2,h3{font-family:var(--serif); font-weight:500; letter-spacing:-.01em;}
+  a{color:var(--clay-ink); text-decoration:none; border-bottom:1px dotted var(--clay-ink);}
+  a:hover{border-bottom-style:solid;}
+  a:focus-visible, summary:focus-visible{outline:2px solid var(--clay-ink); outline-offset:2px;}
+
+  /* ---------- kicker — pill + meta, the shared hero grammar ---------- */
+  .kicker{display:flex; align-items:baseline; gap:12px; flex-wrap:wrap;}
+  .pill{font-family:var(--mono); font-size:11px; text-transform:uppercase;
+        letter-spacing:.06em; color:var(--muted); background:var(--gray-100);
+        border:var(--border); border-radius:var(--radius-chip); padding:5px 11px;
+        white-space:nowrap;}
+  .pill b{color:var(--clay-ink); font-weight:500;}
+  .kicker-meta{font-family:var(--mono); font-size:11px; text-transform:uppercase;
+               letter-spacing:.18em; color:var(--muted);}
+  .page-no{margin-left:auto; font-family:var(--mono); font-size:11px;
+           letter-spacing:.18em; color:var(--muted); white-space:nowrap;}
+  .type-label{display:inline-block; margin-top:24px; font-family:var(--mono); font-size:11px;
+              text-transform:uppercase; letter-spacing:.06em; color:var(--muted);
+              background:var(--gray-100); border:var(--border);
+              border-radius:var(--radius-chip); padding:5px 11px;}
+
+  /* ---------- masthead ---------- */
+  .masthead{padding:56px 24px 0;}
+  .masthead-inner{max-width:1000px; margin:0 auto;}
+  h1{font-size:clamp(44px, 6.5vw, 80px); line-height:1.05; margin-top:20px; max-width:16ch;}
+  h1 em{font-style:italic; color:var(--clay-ink);}
+  .lede{margin-top:26px; font-size:17.5px; line-height:1.6; color:var(--body);
+        max-width:62ch; border-left:3px solid var(--clay); padding:4px 0 4px 20px;}
+  .lede b{color:var(--slate); font-weight:600;}
+  .meta-row{display:flex; flex-wrap:wrap; gap:32px; margin-top:36px; padding-top:22px;
+            border-top:1px solid var(--gray-300);}
+  .meta-row dt{font-family:var(--mono); font-size:10px; letter-spacing:.18em;
+               text-transform:uppercase; color:var(--muted); margin-bottom:4px;}
+  .meta-row dd{font-weight:500; color:var(--slate);}
+  .chip{display:inline-block; font-family:var(--mono); font-size:11px;
+        letter-spacing:.06em; text-transform:uppercase; padding:4px 12px;
+        border-radius:var(--radius-chip); background:var(--clay-soft);
+        color:var(--clay-ink); border:1px solid var(--clay); white-space:nowrap;}
+
+  /* ---------- part index ---------- */
+  nav.part-index{margin-top:30px;}
+  .index-title{font-family:var(--mono); font-size:10px; letter-spacing:.18em;
+               text-transform:uppercase; color:var(--muted); margin-bottom:10px;}
+  .index-links{display:flex; flex-wrap:wrap; gap:8px;}
+  .index-links a{font-family:var(--mono); font-size:11px; letter-spacing:.06em;
+                 text-transform:uppercase; color:var(--muted); background:var(--white);
+                 border:var(--border); border-bottom:var(--border);
+                 border-radius:var(--radius-chip); padding:5px 11px;}
+  .index-links a b{color:var(--clay-ink); font-weight:500; margin-right:4px;}
+  .index-links a:hover{background:var(--clay-soft); border-color:var(--clay);
+                       border-bottom-color:var(--clay);}
+
+  /* ---------- layout — section rhythm convention ---------- */
+  .wrap{max-width:1000px; margin:0 auto; padding:20px 24px 90px;}
+  section{margin-top:40px; padding-top:40px; border-top:1px solid var(--gray-300);
+          scroll-margin-top:24px;}
+  h2{font-size:28px; line-height:1.15; margin:16px 0 16px;}
+  h2 + *{margin-top:0;}
+  .sec-kick{display:inline-block; font-family:var(--mono); font-size:10px;
+            text-transform:uppercase; letter-spacing:.18em; color:var(--muted);
+            background:var(--gray-100); border:var(--border);
+            border-radius:var(--radius-chip); padding:4px 11px;}
+  .section-lede{font-size:16.5px; color:var(--body); max-width:62ch;}
+  .section-lede + *{margin-top:24px;}
+
+  /* ---------- capability cards ---------- */
+  .cap-grid{display:grid; grid-template-columns:repeat(3, 1fr); gap:16px; margin-top:24px;}
+  .cap{background:var(--white); border:var(--border); border-radius:var(--radius-panel);
+       padding:18px 20px 16px; scroll-margin-top:24px;}
+  .cap:target{border-color:var(--clay); box-shadow:0 0 0 4px var(--clay-soft);}
+  .cap-label{font-family:var(--mono); font-size:10px; letter-spacing:.18em;
+             text-transform:uppercase; color:var(--clay-ink);}
+  .cap h3{font-size:17px; line-height:1.3; margin-top:8px;}
+  .cap p{margin-top:8px; font-size:13.5px; line-height:1.55; color:var(--body);}
+
+  /* ---------- depth panels ---------- */
+  .part-set{display:grid; grid-template-columns:1fr; gap:20px; margin-top:24px;}
+  .part{background:var(--white); border:var(--border);
+        border-radius:var(--radius-panel); padding:26px 30px 24px;
+        scroll-margin-top:24px;}
+  .part:target{border-color:var(--clay); box-shadow:0 0 0 4px var(--clay-soft);}
+  .p-label{font-family:var(--mono); font-size:10px; letter-spacing:.18em;
+           text-transform:uppercase; color:var(--clay-ink);}
+  .part h3{font-size:22px; line-height:1.2; margin-top:10px;}
+  .p-def{margin-top:20px; margin-bottom:6px; font-size:16.5px; line-height:1.55;
+         color:var(--slate); font-weight:500; border-left:3px solid var(--clay);
+         padding:8px 0 8px 16px;}
+  .p-behavior{margin-top:14px; font-size:14.5px; color:var(--body);}
+  .p-behavior b{color:var(--slate); font-weight:600;}
+  .p-behavior p + p{margin-top:10px;}
+
+  /* ---------- folds ---------- */
+  details.fold{margin-top:16px;}
+  details.fold summary{cursor:pointer; list-style:none; font-family:var(--mono);
+                       font-size:11px; letter-spacing:.08em; text-transform:uppercase;
+                       color:var(--clay-ink);}
+  details.fold summary::-webkit-details-marker{display:none;}
+  details.fold summary::before{content:"+ "; color:var(--clay-ink); font-weight:600;}
+  details.fold[open] summary::before{content:"− ";}
+  details.fold[open] summary{margin-bottom:12px;}
+  details.fold .fold-body{padding-top:2px;}
+  .example{background:var(--oat); border:1px solid var(--gray-300);
+           border-radius:8px; padding:14px 16px; font-size:13.5px; color:var(--body);}
+  .example .etype{font-family:var(--mono); font-size:10px; letter-spacing:.14em;
+                  text-transform:uppercase; color:var(--muted); display:block;
+                  margin-bottom:5px;}
+  .example b{color:var(--slate); font-weight:600;}
+
+  /* ---------- figure plate — header / body / footer, mandatory ---------- */
+  .fig{margin-top:22px; background:var(--gray-100); border:var(--border);
+       border-radius:var(--radius-panel); position:relative; overflow:hidden;}
+  .fig-h{display:flex; align-items:center; justify-content:space-between; gap:12px;
+         padding:10px 14px;}
+  .fig-id{font-family:var(--mono); font-size:10px; letter-spacing:.18em;
+          text-transform:uppercase; color:var(--muted);}
+  .fig-legend{display:flex; flex-wrap:wrap; gap:6px 18px; padding:0 14px 9px;
+              border-bottom:1px solid var(--gray-300); font-family:var(--mono);
+              font-size:10px; letter-spacing:.06em; text-transform:uppercase;
+              color:var(--muted);}
+  .fig-legend .lg{display:inline-flex; align-items:center; gap:6px;}
+  .fig-legend .lg-g{flex:none;}
+  .fig-fs{font-family:var(--mono); font-size:10px; text-transform:uppercase;
+          letter-spacing:.14em; color:var(--gray-500); background:var(--white);
+          border:var(--border); border-radius:999px; padding:4px 10px; cursor:pointer;}
+  .fig-fs:hover{color:var(--clay-ink); border-color:var(--clay);}
+  .fig-fs:focus-visible{outline:2px solid var(--clay); outline-offset:2px;}
+  .fig-b{padding:20px 18px;}
+  .fig-b svg{display:block; width:auto; max-width:100%; height:auto; margin:0 auto;}
+  .fig-f{padding:10px 14px; border-top:1px solid var(--gray-300);
+         font-family:var(--mono); font-size:10px; letter-spacing:.18em;
+         text-transform:uppercase; color:var(--muted); text-align:center;}
+
+  /* pele theming — Clay mapping lives here, never inline */
+  .fig svg{--pele-fg:var(--slate); --pele-fg-on-light:var(--body); --pele-muted:var(--gray-500);
+           --pele-line:var(--gray-300); --pele-bg:transparent; --pele-surface:transparent;
+           --pele-surface-alt:transparent; --pele-border:var(--gray-300); --pele-accent:var(--clay);
+           --pele-radius:4px;
+           --pele-font:system-ui,-apple-system,sans-serif;
+           --pele-font-mono:ui-monospace,"SF Mono",Menlo,monospace;}
+  .fig svg .pele-title{display:none;}
+  .fig svg .pele-edge-label rect{fill:transparent;}
+  .fig svg .pele-edge-label text{fill:var(--body); font-size:12.5px;}
+
+  /* ---------- source-to-plate proof pair ---------- */
+  .proof{display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-top:24px;}
+  .src-card{background:var(--gray-100); border:var(--border); border-radius:var(--radius-panel);
+            overflow:hidden; display:flex; flex-direction:column;}
+  .src-h{display:flex; align-items:center; justify-content:space-between; gap:12px;
+         padding:10px 14px; border-bottom:1px solid var(--gray-300);
+         font-family:var(--mono); font-size:10px; letter-spacing:.18em;
+         text-transform:uppercase; color:var(--muted);}
+  .src-b{padding:14px 16px; font-family:var(--mono); font-size:12px; line-height:1.7;
+         color:var(--body); white-space:pre; overflow-x:auto; flex:1;}
+  @media (max-width:860px){
+    .masthead{padding:36px 16px 0;}
+    .wrap{padding:12px 16px 72px;}
+    .cap-grid{grid-template-columns:1fr;}
+    .proof{grid-template-columns:1fr;}
+    .meta-row{gap:20px;}
+  }
+
+  /* ---------- options table ---------- */
+  table.options{width:100%; border-collapse:collapse; font-size:14px; margin-top:24px;}
+  table.options th{font-family:var(--mono); font-size:10px; letter-spacing:.14em;
+                   text-transform:uppercase; color:var(--muted); text-align:left;
+                   padding:10px 14px; border-bottom:var(--border);}
+  table.options td{padding:12px 14px; border-bottom:1px solid var(--gray-300);
+                   vertical-align:top; font-size:14px; color:var(--body);}
+  table.options td:first-child{font-family:var(--mono); font-size:12.5px;
+                               color:var(--clay-ink); white-space:nowrap;}
+  table.options tr{break-inside:avoid;}
+
+  /* ---------- limitations ---------- */
+  .lim-set{display:grid; grid-template-columns:repeat(3, 1fr); gap:16px; margin-top:24px;}
+  .lim{background:var(--white); border:var(--border); border-radius:var(--radius-panel);
+       padding:18px 20px 16px; break-inside:avoid;}
+  .lim-chip{display:inline-block; font-family:var(--mono); font-size:10px;
+            letter-spacing:.14em; text-transform:uppercase; color:var(--rust);
+            border:1px solid var(--rust); border-radius:var(--radius-chip);
+            padding:3px 10px;}
+  .lim h3{font-size:16px; margin-top:10px;}
+  .lim p{margin-top:8px; font-size:13.5px; line-height:1.55; color:var(--body);}
+
+  /* ---------- colophon ---------- */
+  .colophon p.statement{font-size:14.5px; color:var(--body); max-width:66ch;}
+  .colophon .row{display:flex; flex-wrap:wrap; gap:8px 24px; margin-top:20px;
+                 font-family:var(--mono); font-size:11px; letter-spacing:.06em;
+                 color:var(--muted);}
+
+  @media (max-width:860px){
+    .masthead{padding:36px 16px 0;}
+    .wrap{padding:12px 16px 72px;}
+    .cap-grid{grid-template-columns:1fr;}
+    .lim-set{grid-template-columns:1fr;}
+    .meta-row{gap:20px;}
+  }
+
+  /* ---------- dark mode — the token flip, carried wholesale ---------- */
+  @media (prefers-color-scheme: dark){
+    :root{
+      --ivory:#191817; --slate:#F0EEE6; --white:#201F1D;
+      --clay-ink:#FE6C2D; --clay-soft:#3A241A;
+      --oat:#4A4438; --olive-ink:#A9BC8B; --olive-soft:#262D1E;
+      --rust:#D98A80; --rust-soft:#3A2622;
+      --gray-100:#232220; --gray-300:#3D3D3A; --muted:#A5A39B; --body:#D6D4CC;
+    }
+  }
+
+  @media print{
+    body{background:#FFFFFF; color:#141413;}
+    :root{
+      --ivory:#FFFFFF; --slate:#141413; --white:#FFFFFF; --body:#3D3D3A;
+      --gray-100:#F5F4F0; --gray-300:#D1CFC5; --muted:#67665F;
+      --clay-ink:#B8430F; --clay-soft:#FDEBE0;
+      --olive-ink:#55673C; --olive-soft:#EEF2E6;
+      --rust:#B04A3F; --rust-soft:#F8ECE9;
+    }
+    nav.part-index{display:none;}
+    .wrap{padding:0 24px;}
+    .masthead{padding:0 24px;}
+    section{margin-top:36px; padding-top:24px;}
+    .cap, .part, .fig, .lim, table.options tr{break-inside:avoid;}
+    .part:target, .cap:target{border-color:var(--gray-300); box-shadow:none;}
+    details.fold > *:not(summary){display:block !important;}
+    details.fold summary::before{content:"− ";}
+  }
+</style>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="masthead-inner">
+    <div class="kicker">
+      <span class="pill"><b>te9-docs</b> · skills.te9.dev</span>
+      <span class="kicker-meta">the figure pipeline, feature by feature</span>
+      <span class="page-no">08 / 36</span>
+    </div>
+    <span class="type-label">Feature Breakdown</span>
+    <h1>Figures, rendered never <em>drawn</em>.</h1>
+    <p class="lede"><b>The feature:</b> every diagram in a te9-docs document comes from the figure pipeline — you write plain Mermaid text, the suite renders it at build time, dresses it in the house grammar, and plates it as a self-contained exhibit. This breakdown takes the pipeline apart: six capabilities, the flow from source to plate, every option, and the limits it honestly has.</p>
+    <dl class="meta-row">
+      <div><dt>Prepared by</dt><dd>Founding session</dd></div>
+      <div><dt>Suite version</dt><dd>0.6.0</dd></div>
+      <div><dt>Feature</dt><dd>The figure pipeline · pele + clayify</dd></div>
+      <div><dt>Status</dt><dd><span class="chip">Reviewed</span></dd></div>
+    </dl>
+    <nav class="part-index" aria-label="Part index">
+      <p class="index-title">Part index</p>
+      <div class="index-links">
+        <a href="#capabilities"><b>01</b>Capabilities</a>
+        <a href="#how"><b>02</b>How it works</a>
+        <a href="#proof"><b>03</b>Source to plate</a>
+        <a href="#options"><b>04</b>Options</a>
+        <a href="#limits"><b>05</b>Limitations</a>
+        <a href="#colophon"><b>06</b>Colophon</a>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<div class="wrap">
+
+  <!-- CAPABILITIES -->
+  <section id="capabilities">
+    <span class="sec-kick">Capabilities at a glance</span>
+    <h2>Six things the pipeline does for you</h2>
+    <p class="section-lede">Each capability below is a promise the pipeline makes to every document in the suite. Together they are why a figure in te9-docs never becomes a project of its own.</p>
+
+    <div class="cap-grid">
+      <article class="cap" id="cap-1">
+        <div class="cap-label">Capability 01 · Mermaid in</div>
+        <h3>Plain text goes in.</h3>
+        <p>You write the diagram as Mermaid source — versionable, diffable, reviewable text stored next to the document.</p>
+      </article>
+      <article class="cap" id="cap-2">
+        <div class="cap-label">Capability 02 · Clay out</div>
+        <h3>The house grammar comes out.</h3>
+        <p>Clayify restores the ring grammar on pele's layout: uniform rings, mono labels outside, hairline edges, no arrowheads.</p>
+      </article>
+      <article class="cap" id="cap-3">
+        <div class="cap-label">Capability 03 · Build-time render</div>
+        <h3>Nothing runs at read time.</h3>
+        <p>Rendering happens once, when the document is built. The reader's browser never draws, fetches, or executes anything for a figure.</p>
+      </article>
+      <article class="cap" id="cap-4">
+        <div class="cap-label">Capability 04 · Base reading size</div>
+        <h3>Labels never shrink.</h3>
+        <p>Diagrams render at pele's 16px base — the layout adapts to the plate, never the text to the space.</p>
+      </article>
+      <article class="cap" id="cap-5">
+        <div class="cap-label">Capability 05 · Fullscreen view</div>
+        <h3>One click, full view.</h3>
+        <p>Every plate header carries a FULLSCREEN pill: the diagram opens in a new tab, Clay-correct, still offline.</p>
+      </article>
+      <article class="cap" id="cap-6">
+        <div class="cap-label">Capability 06 · Video export</div>
+        <h3>The same frames as a film.</h3>
+        <p>Step-wise figures export to MP4 through the same renderer the browser runs — sharp for pixels, FFmpeg for encoding.</p>
+      </article>
+    </div>
+  </section>
+
+  <!-- HOW IT WORKS -->
+  <section id="how">
+    <span class="sec-kick">How it works</span>
+    <h2>From text to plate, in one pass</h2>
+    <p class="section-lede">The pipeline is five stages and two supporting sources. The Mermaid source carries the diagram's meaning; the suite brief grounds its words; the Clay tokens govern its colors. Everything downstream is mechanical.</p>
+
+    <figure class="fig">
+      <div class="fig-h"><span class="fig-id">FIG &middot; 01</span><button class="fig-fs" type="button" aria-label="Open this diagram in a new tab">FULLSCREEN</button></div>
+      <div class="fig-legend"><span class="lg"><svg class="lg-g" width="14" height="14" viewBox="0 0 14 14" aria-hidden="true"><circle cx="7" cy="7" r="5" fill="none" stroke="#FE6C2D" stroke-width="2"/><circle cx="7" cy="7" r="2.5" fill="none" stroke="#FE6C2D" stroke-width="1.5"/></svg>double ring = the deliverable plate</span><span class="lg"><svg class="lg-g" width="14" height="14" viewBox="0 0 14 14" aria-hidden="true"><circle cx="7" cy="7" r="5" fill="none" stroke="#FE6C2D" stroke-width="2"/></svg>pipeline stage</span><span class="lg"><svg class="lg-g" width="12" height="12" viewBox="0 0 12 12" aria-hidden="true"><circle cx="6" cy="6" r="4" fill="#87867F"/></svg>supporting fact</span></div>
+      <div class="fig-b"><svg xmlns="http://www.w3.org/2000/svg" class="pele pele-flowchart" viewBox="-0.4000000000000057 0 324.84 1125.4499999999998" width="325" height="1125" style="max-width:100%;height:auto;--pele-fg:var(--slate);--pele-fg-on-light:var(--body);--pele-muted:var(--gray-500);--pele-line:var(--gray-300);--pele-bg:transparent;--pele-surface:transparent;--pele-surface-alt:transparent;--pele-border:var(--gray-300);--pele-accent:var(--clay);--pele-font:system-ui,-apple-system,sans-serif;--pele-font-mono:ui-monospace,'SF Mono',Menlo,monospace;--_bg:var(--pele-bg,#fff);--_fg:var(--pele-fg,#1f1f1f);--_m:var(--pele-muted,#6e6e6e);--_l:var(--pele-line,#1f1f1f);--_s:var(--pele-surface,#f3f3f3);--_a:var(--pele-surface-alt,#e6e6e6);--_b:var(--pele-border,#8a8a8a);--_c:var(--pele-accent,#5b7bd5);color:var(--_fg);--_r:var(--pele-radius,4px);--_fm:var(--pele-font-mono,monospace);font:16px sans-serif;letter-spacing:normal;word-spacing:normal;text-transform:none;direction:ltr;font-family:var(--pele-font,sans-serif)" fill="var(--_fg)" role="graphics-document document" aria-roledescription="flowchart">
+  <style>
+    @media (prefers-color-scheme: dark){
+      .clay-lab{fill:#F0EEE6;}
+      .clay-sub{fill:#A5A39B;}
+    }
+  </style><g transform="translate(0 24.299999999999997)"><g class="pele-clusters"><g class="pele-cluster" data-id="ROW2"><rect x="19.26" y="587.2" width="208.93" height="318.82" fill="var(--_a)" fill-opacity="0.5" stroke="var(--_b)" style="rx:var(--_r)"/></g><g class="pele-cluster" data-id="ROW1"><rect x="8" y="160.41" width="151.6" height="353.8" fill="var(--_a)" fill-opacity="0.5" stroke="var(--_b)" style="rx:var(--_r)"/></g></g><g class="pele-edges" fill="none" stroke="var(--_l)" stroke-linecap="round"><g class="clay-edge" style="stroke:#D1CFC5;stroke-width:1.5px;"><path d="M83.80,268.75L83.80,404.14" fill="none"/></g><g class="clay-edge" style="stroke:#D1CFC5;stroke-width:1.5px;"><path d="M119.84,680.27L154.78,799.71" fill="none"/></g><g class="clay-edge" style="stroke:#D1CFC5;stroke-width:1.5px;"><path d="M86.22,441.99L112.08,643.18" fill="none"/></g><g class="clay-edge" style="stroke:#D1CFC5;stroke-width:1.5px;"><path d="M160.12,836.95L160.12,994.85" fill="none"/></g><g class="clay-edge" style="stroke:#D1CFC5;stroke-width:1.5px;"><path d="M83.80,54.70L83.80,230.75" fill="none"/></g><g class="clay-edge" style="stroke:#D1CFC5;stroke-width:1.5px;"><path d="M235.34,344.21L163.10,799.19" fill="none"/></g></g><g class="pele-edge-labels" font-size="14"><g class="pele-edge-label" data-id="L_MMD_PELE_0"><rect x="30" y="321.59" width="107.6" height="21" rx="3" fill="var(--_bg)"/><text x="83.8" y="336.99" text-anchor="middle">node, build-time</text></g><g class="pele-edge-label" data-id="L_CLAY_SVG_0"><rect x="41.26" y="719.37" width="146.47" height="21" rx="3" fill="var(--_bg)"/><text x="114.5" y="734.77" text-anchor="middle">ring grammar restored</text></g><g class="pele-edge-label" data-id="L_PELE_CLAY_0"><rect x="30.39" y="536.7" width="106.81" height="21" rx="3" fill="var(--_bg)"/><text x="83.8" y="552.1" text-anchor="middle">post-processing</text></g><g class="pele-edge-label" data-id="L_SVG_PLATE_0"><rect x="88.42" y="928.52" width="143.41" height="21" rx="3" fill="var(--_bg)"/><text x="160.12" y="943.92" text-anchor="middle">fenced gray-100 plate</text></g><g class="pele-edge-label" data-id="L_FIGS_MMD_0"><rect x="22.8" y="109.91" width="121.99" height="21" rx="3" fill="var(--_bg)"/><text x="83.8" y="125.31" text-anchor="middle">.mmd + .spec.json</text></g><g class="pele-edge-label" data-id="L_TOK_SVG_0"><rect x="163.59" y="536.7" width="145.7" height="21" rx="3" fill="var(--_bg)"/><text x="236.44" y="552.1" text-anchor="middle">css variables, dark flip</text></g></g><g class="pele-nodes"><g class="clay-node" data-id="MMD"><circle cx="83.8" cy="249.75" r="17" fill="none" stroke="#FE6C2D" stroke-width="2"/><text class="clay-lab" x="83.8" y="223.75" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="11" font-weight="600" fill="#141413">MERMAID IN</text><text class="clay-sub" x="83.8" y="288.75" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="10" fill="#87867F">the written source</text></g><g class="clay-node" data-id="PELE"><circle cx="83.8" cy="423.14" r="17" fill="none" stroke="#FE6C2D" stroke-width="2"/><text class="clay-lab" x="83.8" y="397.14" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="11" font-weight="600" fill="#141413">PELE RENDER</text><text class="clay-sub" x="83.8" y="462.14" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="10" fill="#87867F">node · build-time</text></g><g class="clay-node" data-id="CLAY"><circle cx="114.5" cy="662.03" r="17" fill="none" stroke="#FE6C2D" stroke-width="2"/><text class="clay-lab" x="114.5" y="636.03" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="11" font-weight="600" fill="#141413">CLAYIFY</text><text class="clay-sub" x="114.5" y="701.03" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="10" fill="#87867F">post-processing</text></g><g class="clay-node" data-id="SVG"><circle cx="160.12" cy="817.95" r="17" fill="none" stroke="#FE6C2D" stroke-width="2"/><text class="clay-lab" x="160.12" y="791.95" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="11" font-weight="600" fill="#141413">INLINE SVG</text><text class="clay-sub" x="160.12" y="856.95" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="10" fill="#87867F">clay variables mapped</text></g><g class="clay-node" data-id="PLATE"><circle cx="160.12" cy="1013.85" r="17" fill="none" stroke="#FE6C2D" stroke-width="2"/><circle cx="160.12" cy="1013.85" r="13" fill="none" stroke="#FE6C2D" stroke-width="1.5"/><text class="clay-lab" x="160.12" y="987.85" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="11" font-weight="600" fill="#141413">FENCED PLATE</text><text class="clay-sub" x="160.12" y="1052.85" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="10" fill="#87867F">the deliverable</text></g><g class="clay-node" data-id="FIGS"><circle cx="83.8" cy="47.7" r="5" fill="#87867F"/><text class="clay-lab" x="83.8" y="31.700000000000003" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="11" font-weight="600" fill="#141413">ASSETS/FIGURES/</text><text class="clay-sub" x="83.8" y="65.7" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="10" fill="#87867F">sources stored here</text></g><g class="clay-node" data-id="TOK"><circle cx="236.44" cy="337.3" r="5" fill="#87867F"/><text class="clay-lab" x="236.44" y="321.3" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="11" font-weight="600" fill="#141413">CLAY TOKENS</text><text class="clay-sub" x="236.44" y="355.3" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="10" fill="#87867F">css vars · dark flip</text></g></g></g></svg></div>
+      <div class="fig-f">Rendered via pele, clayified · sources in assets/figures</div>
+    </figure>
+  </section>
+
+  <!-- SOURCE TO PLATE -->
+  <section id="proof">
+    <span class="sec-kick">From source to plate</span>
+    <h2>The source is the figure</h2>
+    <p class="section-lede">Left: the actual Mermaid source of the small diagram on the right — six lines of plain text. Right: what the pipeline plates from it. Nothing was drawn by hand; nothing was tuned after the fact.</p>
+
+    <div class="proof">
+      <div class="src-card">
+        <div class="src-h"><span>08-fig02.mmd — the source</span><span>6 lines</span></div>
+        <div class="src-b">flowchart LR
+  classDef open fill:transparent,
+    stroke:#FE6C2D,stroke-width:2px
+  classDef support fill:transparent,
+    stroke:#87867F,stroke-width:1.5px
+  MERMAID((written here)) -->
+    |pele + clayify| PLATE(((shown right)))
+  FACTS((suite brief)) -->
+    |ground every word| MERMAID
+  class MERMAID,PLATE open
+  class FACTS support</div>
+      </div>
+      <figure class="fig" style="margin-top:0;">
+        <div class="fig-h"><span class="fig-id">FIG &middot; 02 — the result</span><button class="fig-fs" type="button" aria-label="Open this diagram in a new tab">FULLSCREEN</button></div>
+        <div class="fig-b"><svg xmlns="http://www.w3.org/2000/svg" class="pele pele-flowchart" viewBox="0 0 637 163.37" width="637" height="163" style="max-width:100%;height:auto;--pele-fg:var(--slate);--pele-fg-on-light:var(--body);--pele-muted:var(--gray-500);--pele-line:var(--gray-300);--pele-bg:transparent;--pele-surface:transparent;--pele-surface-alt:transparent;--pele-border:var(--gray-300);--pele-accent:var(--clay);--pele-font:system-ui,-apple-system,sans-serif;--pele-font-mono:ui-monospace,'SF Mono',Menlo,monospace;--_bg:var(--pele-bg,#fff);--_fg:var(--pele-fg,#1f1f1f);--_m:var(--pele-muted,#6e6e6e);--_l:var(--pele-line,#1f1f1f);--_s:var(--pele-surface,#f3f3f3);--_a:var(--pele-surface-alt,#e6e6e6);--_b:var(--pele-border,#8a8a8a);--_c:var(--pele-accent,#5b7bd5);color:var(--_fg);--_fm:var(--pele-font-mono,monospace);font:16px sans-serif;letter-spacing:normal;word-spacing:normal;text-transform:none;direction:ltr;font-family:var(--pele-font,sans-serif)" fill="var(--_fg)" role="graphics-document document" aria-roledescription="flowchart">
+  <style>
+    @media (prefers-color-scheme: dark){
+      .clay-lab{fill:#F0EEE6;}
+      .clay-sub{fill:#A5A39B;}
+    }
+  </style><g transform="translate(0 18.369999999999997)"><g class="pele-edges" fill="none" stroke="var(--_l)" stroke-linecap="round"><g class="clay-edge" style="stroke:#D1CFC5;stroke-width:1.5px;"><path d="M343.81,63.63L554.23,63.63" fill="none"/></g><g class="clay-edge" style="stroke:#D1CFC5;stroke-width:1.5px;"><path d="M59.70,63.63L305.81,63.63" fill="none"/></g></g><g class="pele-edge-labels" font-size="14"><g class="pele-edge-label" data-id="L_MERMAID_PLATE_0"><rect x="398.79" y="53.13" width="89.31" height="21" rx="3" fill="var(--_bg)"/><text x="443.45" y="68.53" text-anchor="middle">pele + clayify</text></g><g class="pele-edge-label" data-id="L_FACTS_MERMAID_0"><rect x="119.89" y="53.13" width="123.93" height="21" rx="3" fill="var(--_bg)"/><text x="181.86" y="68.53" text-anchor="middle">ground every word</text></g></g><g class="pele-nodes"><g class="clay-node" data-id="MERMAID"><circle cx="324.81" cy="63.63" r="17" fill="none" stroke="#FE6C2D" stroke-width="2"/><text class="clay-lab" x="324.81" y="37.63" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="11" font-weight="600" fill="#141413">MERMAID</text></g><g class="clay-node" data-id="PLATE"><circle cx="573.23" cy="63.63" r="17" fill="none" stroke="#FE6C2D" stroke-width="2"/><circle cx="573.23" cy="63.63" r="13" fill="none" stroke="#FE6C2D" stroke-width="1.5"/><text class="clay-lab" x="573.23" y="37.63" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="11" font-weight="600" fill="#141413">PLATE</text></g><g class="clay-node" data-id="FACTS"><circle cx="52.7" cy="63.63" r="5" fill="#87867F"/><text class="clay-lab" x="52.7" y="47.63" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="11" font-weight="600" fill="#141413">FACTS</text></g></g></g></svg></div>
+        <div class="fig-f">The same source, rendered and clayified</div>
+      </figure>
+    </div>
+  </section>
+
+  <!-- OPTIONS -->
+  <section id="options">
+    <span class="sec-kick">Options</span>
+    <h2>Every knob the pipeline has</h2>
+    <p class="section-lede">The pipeline is deliberately small. These are all its options — each has a default that is already right for most documents.</p>
+
+    <table class="options">
+      <thead><tr><th>Option</th><th>What it does</th><th>Default</th></tr></thead>
+      <tbody>
+        <tr><td>--max-width</td><td>Adapts the diagram's layout to the plate's real content width — wide graphs re-flow instead of shrinking.</td><td>880</td></tr>
+        <tr><td>--direction-breakpoint</td><td>The width threshold under which supported diagrams may switch to a vertical layout.</td><td>1600</td></tr>
+        <tr><td>spec · r</td><td>The uniform ring radius clayify applies to every concept node.</td><td>17</td></tr>
+        <tr><td>--fps</td><td>Frame rate of a step-player video export.</td><td>25</td></tr>
+        <tr><td>--scale</td><td>Resolution multiplier for video exports above the natural size.</td><td>1.2</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- LIMITATIONS -->
+  <section id="limits">
+    <span class="sec-kick">Limitations</span>
+    <h2>What the pipeline honestly does not do</h2>
+    <p class="section-lede">A feature breakdown that hides its limits is an ad. These three are part of the contract — known, accepted, and revisitable.</p>
+
+    <div class="lim-set">
+      <article class="lim">
+        <span class="lim-chip">Limit 01</span>
+        <h3>No pixel positioning.</h3>
+        <p>Pele decides where nodes sit; clayify adjusts grammar, not geometry. A layout that must be pixel-exact is a hand-authored figure — the one sanctioned exception, noted at the review gate.</p>
+      </article>
+      <article class="lim">
+        <span class="lim-chip">Limit 02</span>
+        <h3>No read-time interactivity.</h3>
+        <p>Beyond the fullscreen view, figures are static by design. Step-wise playback exists as an exploration, not a default — zero scripts is the suite's contract.</p>
+      </article>
+      <article class="lim">
+        <span class="lim-chip">Limit 03</span>
+        <h3>Video export needs tooling.</h3>
+        <p>The MP4 path requires Node with sharp and FFmpeg on the machine. The document never needs them — only the export step does.</p>
+      </article>
+    </div>
+  </section>
+
+  <!-- COLOPHON -->
+  <section id="colophon" class="colophon">
+    <span class="sec-kick">Colophon</span>
+    <h2>Feature Breakdown · template v0.1</h2>
+    <p class="statement">Assembled inside a fixed grammar — capabilities at a glance, the pipeline figure, a source-to-plate proof pair, the options table, and the honest limitations — with every claim grounded in the suite brief. The first product-facing type: where concept types explain, this one equips a reader to use the feature.</p>
+    <div class="row">
+      <span>DOC ID · TE9-FBD-001</span>
+      <span>SUITE VERSION · 0.6.0</span>
+      <span>SUITE · <a href="../README.html">te9-docs</a></span>
+      <span>SIBLINGS · <a href="01-brief.html">Decision Brief</a> · <a href="02-dossier.html">Evidence Dossier</a> · <a href="03-deck.html">Presentation Deck</a> · <a href="04-introduction-of-concepts.html">Introduction of Concepts</a> · <a href="05-concept-breakdown.html">Concept Breakdown</a> · <a href="06-top-down-explainer.html">Top-down Explainer</a> · <a href="07-i-am-12-explainer.html">I am 12 Explainer</a></span>
+      <span>PREPARED BY · Founding session</span>
+    </div>
+  </section>
+
+</div>
+
+<script>
+  document.querySelectorAll('.fig-fs').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var svg = btn.closest('.fig').querySelector('svg');
+      var blob = new Blob([svg.outerHTML], { type: 'image/svg+xml' });
+      window.open(URL.createObjectURL(blob), '_blank');
+    });
+  });
+</script>
+</body>
+</html>

@@ -1,0 +1,530 @@
+<!doctype html>
+<!-- te9-docs suite — self-describing placeholder · v1.7.0 — STYLE: Clay Explainer -->
+<!-- ================================================================
+     LLM AUTHORING CONTRACT — INTERVIEW TRANSCRIPT v0.1 — STYLE: Clay Explainer
+     te9-docs suite — self-describing placeholder. Paste this comment
+     into the authoring LLM alongside the source material. The LLM
+     assembles; it does not redesign.
+
+     TASK        Record ONE interview so the reader follows the
+                 conversation, not an essay: who asked what, what was
+                 answered, organized by theme, with the strongest
+                 statements pulled as ink quotes. Turn-taking
+                 typography is the whole design.
+     FORMAT      Interview transcript: masthead + meta row (speaker
+                 chips live here), theme index pill strip, four theme
+                 sections of Q&A exchanges, ink pull-quote panels
+                 inside the themes, one arc figure, colophon.
+     HIERARCHY   doc > theme section > Q&A exchange > (nothing —
+                 no folds, no tall panels: the turns are the document)
+     SECTION     masthead (h1 + meta row + speaker chips + theme
+                 index) → theme 01 · on starting clean → theme 02 ·
+                 on the gates (+ PULL 01) → theme 03 · on what broke
+                 (+ PULL 02) → theme 04 · on what's next → arc figure
+                 (FIG · 01) → colophon
+     ORDER       themes in conversation order is the figure order;
+                 colophon last. Exactly one figure; 8 Q&A exchanges
+                 (2 per theme); 2 pull quotes; no <details> — a
+                 transcript never hides its own content.
+
+     BLOCK GRAMMAR
+       exchange      one Q&A unit: turn-head (mono TURN NN + speaker
+                     chip) over the Q line, then the indented answer
+                     block. Compact ruled rhythm, tight padding.
+       Q line        mono "Q ·" mark in clay-ink + the question in
+                     medium-weight sans, slate ink
+       answer block  indented under a thin clay left rule; speaker
+                     chip (THE FOUNDING SESSION) + answer in body ink
+       speaker chips role-chip grammar carried from the workflow and
+                     meeting siblings: YOU = clay-soft/clay-ink,
+                     THE FOUNDING SESSION = olive-soft/olive-ink
+       theme         mono sec-kick pill (THEME NN · label) + serif h2
+                     + one-line lede over a .turns rail of exchanges
+       pull quote    slim ink panel (slate ground): mono PULL QUOTE
+                     label, serif quote whose single italic phrase is
+                     clay, mono attribution line. At most 3 per
+                     document; each earns its ink.
+       figure        ONE pele chain of the interview arc — four
+                     stations; filled ring = theme on the record
+                     (settled), open ring = still ahead, the deck's
+                     klaar convention. Fenced gray-100 plate, legend
+                     in the plate header, mono FIG · NN caption,
+                     FULLSCREEN pill.
+       colophon      DOC ID · suite version · siblings · prepared-by
+
+     IRON RULES  Every fact grounded in the interview's actual history
+                 and SUITE-BRIEF — no invented suite facts. Counts
+                 taken at build time (20 of 35 types landed at this
+                 template's build; denominator = the 35-type launch
+                 taxonomy). Themes, exchanges, pulls and figure tell
+                 one consistent story: no turn may claim what another
+                 turn contradicts. Zero scripts beyond the whitelisted
+                 fullscreen listener. No <details>.
+     VOICE       Spoken, not written: questions are questions, answers
+                 are answers. Mono carries the scan (turn numbers,
+                 speaker chips, theme labels); the pull quotes carry
+                 the memory.
+     STATUS      One chip in the masthead only:
+                 On the record | Recorded | Draft
+     COLORS      decorative clay #FE6C2D, text clay #B8430F, on ivory
+                 #FAF9F5 with slate ink #141413 — olive #55673C (the
+                 session's hue), rust #B04A3F supporting — do not
+                 deviate. Dark mode: token flip under
+                 prefers-color-scheme.
+================================================================ -->
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>te9-docs · Interview Transcript — suite v1.7.0</title>
+<style>
+  :root{
+    --ivory:#FAF9F5; --slate:#141413; --white:#FFFFFF;
+    --clay:#FE6C2D; --clay-ink:#B8430F; --clay-soft:#FDEBE0;
+    --oat:#E3DACC; --olive:#788C5D; --olive-ink:#55673C; --olive-soft:#EEF2E6;
+    --rust:#B04A3F; --rust-soft:#F8ECE9;
+    --gray-100:#F0EEE6; --gray-300:#D1CFC5; --gray-500:#87867F; --muted:#67665F; --body:#3D3D3A;
+    --serif:ui-serif, Georgia, serif;
+    --sans:system-ui, -apple-system, sans-serif;
+    --mono:ui-monospace, "SF Mono", Menlo, monospace;
+    --radius-panel:12px; --radius-chip:999px;
+    --border:1.5px solid var(--gray-300);
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto;}
+  }
+  body{background:var(--ivory); color:var(--slate); font-family:var(--sans);
+       font-size:15.5px; line-height:1.6; -webkit-font-smoothing:antialiased;}
+  h1,h2,h3{font-family:var(--serif); font-weight:500; letter-spacing:-.01em;}
+  a{color:var(--clay-ink); text-decoration:none; border-bottom:1px dotted var(--clay-ink);}
+  a:hover{border-bottom-style:solid;}
+  a:focus-visible, summary:focus-visible{outline:2px solid var(--clay-ink); outline-offset:2px;}
+
+  /* ---------- kicker — pill + meta, the shared hero grammar ---------- */
+  .kicker{display:flex; align-items:baseline; gap:12px; flex-wrap:wrap;}
+  .pill{font-family:var(--mono); font-size:11px; text-transform:uppercase;
+        letter-spacing:.06em; color:var(--muted); background:var(--gray-100);
+        border:var(--border); border-radius:var(--radius-chip); padding:5px 11px;
+        white-space:nowrap;}
+  .pill b{color:var(--clay-ink); font-weight:500;}
+  .kicker-meta{font-family:var(--mono); font-size:11px; text-transform:uppercase;
+               letter-spacing:.18em; color:var(--muted);}
+  .page-no{margin-left:auto; font-family:var(--mono); font-size:11px;
+           letter-spacing:.18em; color:var(--muted); white-space:nowrap;}
+  .type-label{display:inline-block; margin-top:24px; font-family:var(--mono); font-size:11px;
+              text-transform:uppercase; letter-spacing:.06em; color:var(--muted);
+              background:var(--gray-100); border:var(--border);
+              border-radius:var(--radius-chip); padding:5px 11px;}
+
+  /* ---------- masthead — the hero directly on ivory ---------- */
+  .masthead{padding:56px 24px 0;}
+  .masthead-inner{max-width:1000px; margin:0 auto;}
+  h1{font-size:clamp(44px, 6.5vw, 80px); line-height:1.05; margin-top:20px; max-width:16ch;}
+  h1 em{font-style:italic; color:var(--clay-ink);}
+  .lede{margin-top:26px; font-size:17.5px; line-height:1.6; color:var(--body); border-left:3px solid var(--clay); padding:4px 0 4px 20px;}
+  .lede b{color:var(--slate); font-weight:600;}
+  .meta-row{display:flex; flex-wrap:wrap; gap:32px; margin-top:36px; padding-top:22px;
+            border-top:1px solid var(--gray-300);}
+  .meta-row dt{font-family:var(--mono); font-size:10px; letter-spacing:.18em;
+               text-transform:uppercase; color:var(--muted); margin-bottom:4px;}
+  .meta-row dd{font-weight:500; color:var(--slate);}
+  .meta-row dd.spk{display:flex; flex-wrap:wrap; gap:8px; font-weight:400;}
+  .chip{display:inline-block; font-family:var(--mono); font-size:11px;
+        letter-spacing:.06em; text-transform:uppercase; padding:4px 12px;
+        border-radius:var(--radius-chip); background:var(--clay-soft);
+        color:var(--clay-ink); border:1px solid var(--clay); white-space:nowrap;}
+
+  /* speaker chips — the role-chip grammar, carried into turns */
+  .att-chip{display:inline-block; font-family:var(--mono); font-size:10.5px;
+            letter-spacing:.14em; text-transform:uppercase; padding:3px 12px;
+            border-radius:var(--radius-chip); white-space:nowrap;}
+  .att-you{background:var(--clay-soft); color:var(--clay-ink); border:1px solid var(--clay);}
+  .att-sess{background:var(--olive-soft); color:var(--olive-ink); border:1px solid var(--olive);}
+
+  /* ---------- theme index — mono pill strip, jump-nav grammar ---------- */
+  nav.theme-index{margin-top:30px;}
+  .index-title{font-family:var(--mono); font-size:10px; letter-spacing:.18em;
+               text-transform:uppercase; color:var(--muted); margin-bottom:10px;}
+  .index-links{display:flex; flex-wrap:wrap; gap:8px;}
+  .index-links a{font-family:var(--mono); font-size:11px; letter-spacing:.06em;
+                 text-transform:uppercase; color:var(--muted); background:var(--white);
+                 border:var(--border); border-bottom:var(--border);
+                 border-radius:var(--radius-chip); padding:5px 11px;}
+  .index-links a b{color:var(--clay-ink); font-weight:500; margin-right:4px;}
+  .index-links a:hover{background:var(--clay-soft); border-color:var(--clay);
+                       border-bottom-color:var(--clay);}
+
+  /* ---------- layout — section rhythm convention ---------- */
+  .wrap{max-width:1000px; margin:0 auto; padding:20px 24px 90px;}
+  section{margin-top:40px; padding-top:40px; border-top:1px solid var(--gray-300);
+          scroll-margin-top:24px;}
+  h2{font-size:28px; line-height:1.15; margin:16px 0 16px;}
+  h2 + *{margin-top:0;}
+  .sec-kick{display:inline-block; font-family:var(--mono); font-size:10px;
+            text-transform:uppercase; letter-spacing:.18em; color:var(--muted);
+            background:var(--gray-100); border:var(--border);
+            border-radius:var(--radius-chip); padding:4px 11px;}
+  .section-lede{font-size:16.5px; color:var(--body);}
+  .section-lede + *{margin-top:24px;}
+  /* :target — the section's top hairline thickens to a 3px clay rule
+     and its pill flips clay-soft. Border, rule and chip move as one. JS-free. */
+  section:target{border-top:3px solid var(--clay); padding-top:38px;}
+  section:target .sec-kick{background:var(--clay-soft); border-color:var(--clay);
+                           color:var(--clay-ink);}
+
+  /* ---------- TURNS — the Q&A exchange, the whole document ---------- */
+  .turns{margin-top:24px; border-top:var(--border); border-bottom:var(--border);}
+  .turn{padding:18px 0 20px; border-top:1px solid var(--gray-100); break-inside:avoid;}
+  .turn:first-child{border-top:none;}
+  .turn-head{display:flex; align-items:baseline; gap:12px; flex-wrap:wrap;}
+  .turn-no{font-family:var(--mono); font-size:10px; letter-spacing:.18em;
+           text-transform:uppercase; color:var(--muted);}
+  /* the Q — mono mark in clay-ink, question in medium-weight sans */
+  .q-text{margin-top:11px; font-size:16.5px; font-weight:500; color:var(--slate);
+          line-height:1.5; max-width:70ch;}
+  .q-mark{font-family:var(--mono); font-size:12px; font-weight:600;
+          letter-spacing:.1em; color:var(--clay-ink); margin-right:10px;}
+  /* the A — indented on a thin clay left rule, body ink */
+  .answer{margin:12px 0 0 30px; border-left:2px solid var(--clay);
+          padding:2px 0 2px 16px;}
+  .a-head{margin-bottom:6px;}
+  .a-text{font-size:14.5px; color:var(--body); line-height:1.65; max-width:66ch;}
+  .a-text b{color:var(--slate); font-weight:600;}
+  .a-text code{font-family:var(--mono); font-size:.9em; background:var(--gray-100);
+               border-radius:4px; padding:1px 5px;}
+
+  /* ---------- PULL QUOTES — slim ink panels inside the themes ---------- */
+  .pull{margin:6px 0 6px 30px; background:var(--slate);
+        border-radius:var(--radius-panel); padding:18px 22px 16px;
+        break-inside:avoid;}
+  .pull-k{font-family:var(--mono); font-size:10px; letter-spacing:.18em;
+          text-transform:uppercase; color:#A5A39B;}
+  .pull p{margin-top:8px; font-family:var(--serif); font-weight:500;
+          font-size:19px; line-height:1.4; letter-spacing:-.01em;
+          color:var(--ivory); max-width:52ch;}
+  .pull p em{font-style:italic; color:#FE6C2D;}
+  .pull-cite{margin-top:10px; font-family:var(--mono); font-size:10px;
+             letter-spacing:.14em; text-transform:uppercase; color:#A5A39B;}
+
+  /* ---------- figure — one chain on a gray-100 plate ---------- */
+  .fig{margin-top:22px; background:var(--gray-100); border:var(--border);
+       border-radius:var(--radius-panel); position:relative; overflow:hidden;}
+  .fig-h{display:flex; align-items:center; justify-content:space-between; gap:12px;
+         padding:10px 14px;}
+  .fig-id{font-family:var(--mono); font-size:10px; letter-spacing:.18em;
+          text-transform:uppercase; color:var(--muted);}
+  .fig-fs{font-family:var(--mono); font-size:10px; text-transform:uppercase;
+          letter-spacing:.14em; color:var(--muted); background:var(--white);
+          border:var(--border); border-radius:999px; padding:4px 10px; cursor:pointer;}
+  .fig-fs:hover{color:var(--clay-ink); border-color:var(--clay);}
+  .fig-fs:focus-visible{outline:2px solid var(--clay); outline-offset:2px;}
+  .fig-legend{display:flex; flex-wrap:wrap; gap:6px 18px; padding:0 14px 9px;
+              border-bottom:1px solid var(--gray-300); font-family:var(--mono);
+              font-size:10px; letter-spacing:.06em; text-transform:uppercase;
+              color:var(--muted);}
+  .fig-legend .lg{display:inline-flex; align-items:center; gap:6px;}
+  .fig-legend .lg-g{flex:none;}
+  .fig-b{padding:20px 18px;}
+  .fig-b svg{display:block; width:auto; max-width:100%; height:auto; margin:0 auto;}
+  .fig-f{padding:10px 14px; border-top:1px solid var(--gray-300);
+         font-family:var(--mono); font-size:10px; letter-spacing:.18em;
+         text-transform:uppercase; color:var(--muted); text-align:center;}
+
+  /* pele theming — Clay mapping lives here, never inline */
+  .fig svg{--pele-fg:var(--slate); --pele-fg-on-light:var(--body); --pele-muted:var(--gray-500);
+           --pele-line:var(--gray-300); --pele-bg:transparent; --pele-surface:transparent;
+           --pele-surface-alt:transparent; --pele-border:var(--gray-300); --pele-accent:var(--clay);
+           --pele-radius:4px;
+           --pele-font:system-ui,-apple-system,sans-serif;
+           --pele-font-mono:ui-monospace,"SF Mono",Menlo,monospace;}
+  .fig svg .pele-title{display:none;}
+  .fig svg .pele-edge-label rect{fill:transparent;}
+  .fig svg .pele-edge-label text{fill:var(--body); font-size:12.5px;}
+
+  /* ---------- colophon ---------- */
+  .colophon p.statement{font-size:14.5px; color:var(--body);}
+  .colophon .row{display:flex; flex-wrap:wrap; gap:8px 24px; margin-top:20px;
+                 font-family:var(--mono); font-size:11px; letter-spacing:.06em;
+                 color:var(--muted);}
+
+  @media (max-width:860px){
+    .masthead{padding:36px 16px 0;}
+    .wrap{padding:12px 16px 72px;}
+    .meta-row{gap:20px;}
+    .answer{margin-left:16px; padding-left:12px;}
+    .pull{margin-left:16px; padding:15px 16px 14px;}
+    .pull p{font-size:17.5px;}
+  }
+
+  /* ---------- dark mode — the token flip, carried wholesale ---------- */
+  @media (prefers-color-scheme: dark){
+    :root{
+      --ivory:#191817; --slate:#F0EEE6; --white:#201F1D;
+      --clay-ink:#FE6C2D; --clay-soft:#3A241A;
+      --oat:#4A4438; --olive-ink:#A9BC8B; --olive-soft:#262D1E;
+      --rust:#D98A80; --rust-soft:#3A2622;
+      --gray-100:#232220; --gray-300:#3D3D3A; --muted:#A5A39B; --body:#D6D4CC;
+    }
+    /* the ink pull flips to light — its on-ink colors flip with it */
+    .pull-k, .pull-cite{color:#67665F;}
+    .pull p{color:#191817;}
+    .pull p em{color:#B8430F;}
+  }
+
+  @media print{
+    body{background:#FFFFFF; color:#141413;}
+    :root{
+      --ivory:#FFFFFF; --slate:#141413; --white:#FFFFFF; --body:#3D3D3A;
+      --gray-100:#F5F4F0; --gray-300:#D1CFC5; --gray-500:#87867F; --muted:#67665F;
+      --clay-ink:#B8430F; --clay-soft:#FDEBE0;
+      --olive-ink:#55673C; --olive-soft:#EEF2E6;
+      --rust:#B04A3F; --rust-soft:#F8ECE9;
+    }
+    nav.theme-index{display:none;}
+    .fig-fs{display:none;}
+    .wrap{padding:0 24px;}
+    .masthead{padding:0 24px;}
+    section{margin-top:28px; padding-top:20px;}
+    .turn, .pull, .fig{break-inside:avoid;}
+    /* :target effects neutralized on paper */
+    section:target{border-top:1px solid var(--gray-300); padding-top:20px;}
+    section:target .sec-kick{background:var(--gray-100); border-color:var(--gray-300);
+                             color:var(--muted);}
+    /* a transcript never hides content — nothing to force open,
+       the ink pulls print as ink, exactly as the sibling ink panels do */
+  }
+</style>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="masthead-inner">
+    <div class="kicker">
+      <span class="pill"><b>te9-docs</b> · skills.te9.dev</span>
+      <span class="kicker-meta">interview transcript · the founding session, on the record</span>
+      <span class="page-no">20 / 35</span>
+    </div>
+    <span class="type-label">Interview Transcript</span>
+    <h1>A suite in one day, in <em>eight</em> turns.</h1>
+    <p class="lede"><b>Who this is for:</b> anyone who wants the suite's founding decisions from the agent that made them, in its own words. The interviewer is <b>You, the product owner</b>; the interviewee is <b>The Founding Session</b> — the build agent behind te9-docs — on the record about the ~13-hour build day of <b>October 29, 2026</b>. Four themes, eight question-and-answer exchanges, two statements pulled as ink quotes. Read the conversation, not an essay.</p>
+    <dl class="meta-row">
+      <div><dt>Date</dt><dd>2026-10-29</dd></div>
+      <div><dt>Session</dt><dd>The founding build day · ~13 h</dd></div>
+      <div><dt>Interviewer</dt>
+        <dd class="spk"><span class="att-chip att-you">You · product owner</span></dd>
+      </div>
+      <div><dt>Interviewee</dt>
+        <dd class="spk"><span class="att-chip att-sess">The Founding Session · build agent</span></dd>
+      </div>
+      <div><dt>Turns</dt><dd>8 exchanges · 4 themes</dd></div>
+      <div><dt>Status</dt><dd><span class="chip">On the record</span></dd></div>
+    </dl>
+    <nav class="theme-index" aria-label="Theme index">
+      <p class="index-title">Theme index</p>
+      <div class="index-links">
+        <a href="#t1"><b>01</b>On starting clean</a>
+        <a href="#t2"><b>02</b>On the gates</a>
+        <a href="#t3"><b>03</b>On what broke</a>
+        <a href="#t4"><b>04</b>On what's next</a>
+        <a href="#fig"><b>FIG</b>The arc</a>
+        <a href="#colophon"><b>—</b>Colophon</a>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<div class="wrap">
+
+  <!-- THEME 01 · ON STARTING CLEAN -->
+  <section id="t1">
+    <span class="sec-kick">Theme 01 · On starting clean</span>
+    <h2>Why a clean-room sibling</h2>
+    <p class="section-lede">The founding decision, opened up: why the suite builds beside its reference instead of on top of it.</p>
+
+    <div class="turns">
+      <article class="turn">
+        <header class="turn-head">
+          <span class="turn-no">Turn 01</span>
+          <span class="att-chip att-you">You · asks</span>
+        </header>
+        <p class="q-text"><span class="q-mark">Q ·</span>Why a clean-room sibling at all? html-docs was vendored, reference-grade, already working — why not evolve it into the suite instead of building beside it?</p>
+        <div class="answer">
+          <p class="a-head"><span class="att-chip att-sess">The Founding Session · answers</span></p>
+          <p class="a-text">Because a signature pattern is only a signature if the suite <b>owns</b> it. Every pattern adopted from html-docs was re-justified before it entered the suite — owned as a te9 signature, not inherited. And the reference wasn't as consistent as its own book: <b>html-docs states conventions its own templates don't follow</b> — dark mode ships in <b>2 of its 22 templates</b>, print support in <b>1 of 22</b>. Here, the dark flip and the print spec are contract, on every template.</p>
+        </div>
+      </article>
+
+      <article class="turn">
+        <header class="turn-head">
+          <span class="turn-no">Turn 02</span>
+          <span class="att-chip att-you">You · asks</span>
+        </header>
+        <p class="q-text"><span class="q-mark">Q ·</span>So something got deleted to make the break clean?</p>
+        <div class="answer">
+          <p class="a-head"><span class="att-chip att-sess">The Founding Session · answers</span></p>
+          <p class="a-text"><b>Nothing.</b> html-docs stays vendored and untouched — it is the reference skill, and clean-room means <b>clean boundaries, not removal</b>. Deprecation is decided, but at <b>v1.0.0</b>, not today. Until then the suite builds beside its reference, not over it.</p>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- THEME 02 · ON THE GATES -->
+  <section id="t2">
+    <span class="sec-kick">Theme 02 · On the gates</span>
+    <h2>One build, one browser gate</h2>
+    <p class="section-lede">The review rule that shaped the build order — and what it caught that nothing else would have.</p>
+
+    <div class="turns">
+      <article class="turn">
+        <header class="turn-head">
+          <span class="turn-no">Turn 03</span>
+          <span class="att-chip att-you">You · asks</span>
+        </header>
+        <p class="q-text"><span class="q-mark">Q ·</span>One build, one browser gate — every template reviewed in the browser before the next one starts. Batch review would be faster. Why insist?</p>
+        <div class="answer">
+          <p class="a-head"><span class="att-chip att-sess">The Founding Session · answers</span></p>
+          <p class="a-text">Because gate feedback on one template <b>benefits its neighbors</b> — that compounding is why the cluster order exists. Batch review was considered and rejected: <b>the review of a finished artifact beats the approval of a proposal</b>. A gate sees the document whole, the way its reader will.</p>
+        </div>
+      </article>
+
+      <aside class="pull">
+        <p class="pull-k">Pull quote</p>
+        <p>"Gate feedback on one template benefits its <em>neighbors</em> — that compounding is why the cluster order exists."</p>
+        <p class="pull-cite">The Founding Session · Theme 02</p>
+      </aside>
+
+      <article class="turn">
+        <header class="turn-head">
+          <span class="turn-no">Turn 04</span>
+          <span class="att-chip att-you">You · asks</span>
+        </header>
+        <p class="q-text"><span class="q-mark">Q ·</span>And in practice — what did the gates actually catch?</p>
+        <div class="answer">
+          <p class="a-head"><span class="att-chip att-sess">The Founding Session · answers</span></p>
+          <p class="a-text">The things a diff never shows: <b>the h2 rhythm, measure caps, figure sizing</b>. All of it via real browser review, <b>never headless captures</b>. A capture can prove pixels exist; only the browser shows whether the page reads.</p>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- THEME 03 · ON WHAT BROKE -->
+  <section id="t3">
+    <span class="sec-kick">Theme 03 · On what broke</span>
+    <h2>Three figure bugs, all real</h2>
+    <p class="section-lede">The figure pipeline broke three times. Each break left a rule behind.</p>
+
+    <div class="turns">
+      <article class="turn">
+        <header class="turn-head">
+          <span class="turn-no">Turn 05</span>
+          <span class="att-chip att-you">You · asks</span>
+        </header>
+        <p class="q-text"><span class="q-mark">Q ·</span>Figures — you said the pipeline broke three times. What actually broke?</p>
+        <div class="answer">
+          <p class="a-head"><span class="att-chip att-sess">The Founding Session · answers</span></p>
+          <p class="a-text">Three real bugs. One: <b>var() in inline style attributes</b> — the indirection never resolved, and it painted edge-label chips black. Two: <b>headless captures dropped the weight-600 mono labels</b> — phantom missing labels that cost a dozen debug rounds. Three: <b>flatten dropped alpha</b>, and the video lost a quarter of its frames.</p>
+        </div>
+      </article>
+
+      <aside class="pull">
+        <p class="pull-k">Pull quote</p>
+        <p>"The labels were never broken in the <em>real browser</em> — my preview loop was lying to me."</p>
+        <p class="pull-cite">The Founding Session · Theme 03</p>
+      </aside>
+
+      <article class="turn">
+        <header class="turn-head">
+          <span class="turn-no">Turn 06</span>
+          <span class="att-chip att-you">You · asks</span>
+        </header>
+        <p class="q-text"><span class="q-mark">Q ·</span>And the fixes?</p>
+        <div class="answer">
+          <p class="a-head"><span class="att-chip att-sess">The Founding Session · answers</span></p>
+          <p class="a-text">Became contract, not patches: <b>attrs-backed labels, CSS-owned theming, explicit dimensions, alpha preserved</b>. Each bug graduated into a rule every template now inherits — the figure contract in the style appendix is that list.</p>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- THEME 04 · ON WHAT'S NEXT -->
+  <section id="t4">
+    <span class="sec-kick">Theme 04 · On what's next</span>
+    <h2>Fifteen left, three clusters</h2>
+    <p class="section-lede">What remains of the 35-type launch taxonomy, and what stays parked until v1.0.0.</p>
+
+    <div class="turns">
+      <article class="turn">
+        <header class="turn-head">
+          <span class="turn-no">Turn 07</span>
+          <span class="att-chip att-you">You · asks</span>
+        </header>
+        <p class="q-text"><span class="q-mark">Q ·</span>Where does the count stand? What's left of the 35-type launch taxonomy?</p>
+        <div class="answer">
+          <p class="a-head"><span class="att-chip att-sess">The Founding Session · answers</span></p>
+          <p class="a-text">Twenty of 35 landed — this interview is number twenty. <b>Fifteen remain, queued in clusters</b>: formal &amp; contractual (3), financial (3), formats &amp; remaining (9). <b>The plan is template 16's</b> — the project plan's phase order holds, and nothing jumps the line.</p>
+        </div>
+      </article>
+
+      <article class="turn">
+        <header class="turn-head">
+          <span class="turn-no">Turn 08</span>
+          <span class="att-chip att-you">You · asks</span>
+        </header>
+        <p class="q-text"><span class="q-mark">Q ·</span>Last one — the step-player. The standup parked it. Does it stay parked?</p>
+        <div class="answer">
+          <p class="a-head"><span class="att-chip att-sess">The Founding Session · answers</span></p>
+          <p class="a-text">It stays parked, <b>as a nice-to-have</b>. The core is proven — <b>frame(t) timing and ffmpeg video export</b> both work end to end; the proof sits in <code>assets/experiments/</code>. Revisit <b>after v1.0.0</b>. v1.0.0 first, experiments after.</p>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- THE ARC FIGURE -->
+  <section id="fig">
+    <span class="sec-kick">The arc</span>
+    <h2>The interview as one chain</h2>
+    <p class="section-lede">The whole conversation in four stations: three filled rings for what is on the record — starting clean, the gates, what broke — and one open ring for what is still ahead. Filled = settled, the deck's klaar convention; Theme 04 stays open because the future hasn't been through a gate yet.</p>
+
+    <figure class="fig">
+      <div class="fig-h"><span class="fig-id">FIG &middot; 01</span><button class="fig-fs" type="button" aria-label="Open this diagram in a new tab">FULLSCREEN</button></div>
+      <div class="fig-legend"><span class="lg"><svg class="lg-g" width="14" height="14" viewBox="0 0 14 14" aria-hidden="true"><circle cx="7" cy="7" r="5.5" fill="#FE6C2D" stroke="#FE6C2D" stroke-width="1.5"/></svg>on the record — settled</span><span class="lg"><svg class="lg-g" width="14" height="14" viewBox="0 0 14 14" aria-hidden="true"><circle cx="7" cy="7" r="5" fill="none" stroke="#FE6C2D" stroke-width="2"/></svg>still ahead</span></div>
+      <div class="fig-b"><svg xmlns="http://www.w3.org/2000/svg" class="pele pele-flowchart" viewBox="-22.599999999999998 0 107.6 479.03000000000003" width="108" height="479" style="max-width:100%;height:auto;--_bg:var(--pele-bg,#fff);--_fg:var(--pele-fg,#1f1f1f);--_m:var(--pele-muted,#6e6e6e);--_l:var(--pele-line,#1f1f1f);--_s:var(--pele-surface,#f3f3f3);--_a:var(--pele-surface-alt,#e6e6e6);--_b:var(--pele-border,#8a8a8a);--_c:var(--pele-accent,#5b7bd5);color:var(--_fg);--_fm:var(--pele-font-mono,monospace);font:16px sans-serif;letter-spacing:normal;word-spacing:normal;text-transform:none;direction:ltr;font-family:var(--pele-font,sans-serif)" fill="var(--_fg)" role="graphics-document document" aria-roledescription="flowchart">
+  <style>
+    @media (prefers-color-scheme: dark){
+      .clay-lab{fill:#F0EEE6;}
+      .clay-sub{fill:#A5A39B;}
+    }
+  </style><g transform="translate(0 50.8)"><g class="pele-edges" fill="none" stroke="var(--_l)" stroke-linecap="round"><g class="clay-edge" style="stroke:#D1CFC5;stroke-width:1.5px;"><path d="M31.20,50.20L31.20,106.61" fill="none"/></g><g class="clay-edge" style="stroke:#D1CFC5;stroke-width:1.5px;"><path d="M31.20,144.61L31.20,201.02" fill="none"/></g><g class="clay-edge" style="stroke:#D1CFC5;stroke-width:1.5px;"><path d="M31.20,239.02L31.20,295.43" fill="none"/></g></g><g class="pele-nodes"><g class="clay-node" data-id="T1"><circle cx="31.2" cy="31.2" r="17" fill="#FE6C2D" stroke="#FE6C2D" stroke-width="2"/><text class="clay-lab" x="31.2" y="5.199999999999999" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="11" font-weight="600" fill="#141413">THEME 01</text><text class="clay-sub" x="31.2" y="70.2" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="10" fill="#87867F">START CLEAN</text></g><g class="clay-node" data-id="T2"><circle cx="31.2" cy="125.61" r="17" fill="#FE6C2D" stroke="#FE6C2D" stroke-width="2"/><text class="clay-lab" x="31.2" y="99.61" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="11" font-weight="600" fill="#141413">THEME 02</text><text class="clay-sub" x="31.2" y="164.61" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="10" fill="#87867F">THE GATES</text></g><g class="clay-node" data-id="T3"><circle cx="31.2" cy="220.02" r="17" fill="#FE6C2D" stroke="#FE6C2D" stroke-width="2"/><text class="clay-lab" x="31.2" y="194.02" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="11" font-weight="600" fill="#141413">THEME 03</text><text class="clay-sub" x="31.2" y="259.02" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="10" fill="#87867F">WHAT BROKE</text></g><g class="clay-node" data-id="T4"><circle cx="31.2" cy="314.43" r="17" fill="none" stroke="#FE6C2D" stroke-width="2"/><text class="clay-lab" x="31.2" y="288.43" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="11" font-weight="600" fill="#141413">THEME 04</text><text class="clay-sub" x="31.2" y="353.43" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="10" fill="#87867F">WHAT'S NEXT</text></g></g></g></svg></div>
+      <div class="fig-f">FIG · 01 — THE INTERVIEW ARC: THREE THEMES SETTLED, ONE STILL AHEAD · RENDERED VIA PELE, CLAYIFIED</div>
+    </figure>
+  </section>
+
+  <!-- COLOPHON -->
+  <section id="colophon" class="colophon">
+    <span class="sec-kick">Colophon</span>
+    <h2>Interview Transcript · template v0.1</h2>
+    <p class="statement">The suite's interview transcript: eight question-and-answer exchanges in four themes, speaker chips on every turn, questions in medium-weight sans under a mono clay mark, answers indented on a thin clay left rule, and the strongest statements pulled as slim ink panels. The turns are the whole document — no folds, no tall panels; the reader follows the conversation, not an essay. Every fact comes from the founding session's actual history and the suite brief alone.</p>
+    <div class="row">
+      <span>DOC ID · TE9-IVW-001</span>
+      <span>SUITE VERSION · 1.7.0</span>
+      <span>SUITE · <a href="../README.html">te9-docs</a></span>
+      <span>SIBLINGS · <a href="19-meeting-notes.html">Meeting Notes</a> · <a href="09-what-how-why-who-when.html">What, How, Why, Who, When</a> · <a href="11-research-report.html">Research Report</a></span>
+      <span>PREPARED BY · Founding session</span>
+    </div>
+  </section>
+
+</div>
+
+<script>
+  document.querySelectorAll('.fig-fs').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var svg = btn.closest('.fig').querySelector('svg');
+      var blob = new Blob([svg.outerHTML], { type: 'image/svg+xml' });
+      window.open(URL.createObjectURL(blob), '_blank');
+    });
+  });
+</script>
+</body>
+</html>

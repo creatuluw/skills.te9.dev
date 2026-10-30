@@ -1,0 +1,622 @@
+<!doctype html>
+<!-- te9-docs suite — self-describing placeholder · v2.0.0-rc1 — STYLE: Clay Explainer -->
+<!-- ================================================================
+     LLM AUTHORING CONTRACT — REQUEST FOR PROPOSAL v0.1 —
+     STYLE: Clay Explainer
+     te9-docs suite — self-describing placeholder. Paste this comment
+     into the authoring LLM alongside the source material. The LLM
+     assembles; it does not redesign.
+
+     TASK        Solicit ONE outbound procurement as a formal-
+                 contractual RFP: background, objectives, scope of
+                 work, mandatory/desirable requirements, weighted
+                 evaluation criteria, submission instructions,
+                 timeline, terms & conditions. The most outward-
+                 facing formal grammar in the suite — the document
+                 asks vendors to propose; it is an invitation, not
+                 an offer.
+     FORMAT      RFP reading document: masthead + RFP CONTROL table,
+                 index pill strip, eight numbered sections, objectives
+                 and terms as clause-rail rows, requirement and
+                 evaluation tables, one timeline figure, colophon.
+     HIERARCHY   doc > section > clause/table row > (no folds — a
+                 solicitation shows every term it will be held to)
+     SECTION     masthead (h1 + control table + index) → 1 background
+                 → 2 objectives → 3 scope of work → 4 requirements →
+                 5 evaluation criteria → 6 submission instructions →
+                 7 timeline (+ FIG · 01 chain) → 8 terms & conditions
+                 → colophon
+     ORDER       sections numbered 1–8; evaluation weights sum to
+                 exactly 100; the deadline reads identically in the
+                 control table, section 6 and section 7; colophon last.
+
+     BLOCK GRAMMAR
+       rfp-control  ruled table at the top of the masthead — the
+                    formal signature: RFP number, issue date, buyer,
+                    responses due, channel; one chip only (Open)
+       clause       white 1.5px-bordered row, two columns: LEFT rail
+                    (hairline-ruled) = mono OBJECTIVE/TERM micro-label
+                    + the clause number; RIGHT = the clause text,
+                    complete sentences only, MUST/SHALL in clay-ink
+                    bold, paths/labels in mono code marks
+       tables       requirements (MANDATORY M1–M5 / DESIRABLE D1–D3),
+                    evaluation (criterion · weight · what scores —
+                    weights sum to 100), scope (in-scope S-1…S-4 /
+                    out-of-scope X-1…X-4), proposal format (P-1…P-5),
+                    timeline (milestone · date · what happens) —
+                    ruled, mono headers, break-inside avoid
+       figure       pele chain of the RFP timeline, one ring per
+                    milestone in date order; filled ring = here-now,
+                    double ring = the destination; fenced gray-100
+                    plate, legend row in the plate header, mono
+                    FIG · NN caption, FULLSCREEN pill
+     IRON RULES   Every fact grounded in the suite's real state
+                  (SUITE-BRIEF + CLAY-STYLE + the template directory
+                  on disk) — no invented tooling, no invented dates.
+                  MUST/SHALL only where the RFP actually binds.
+                  No <details> anywhere; zero scripts beyond the
+                  whitelisted fullscreen listener.
+     VOICE        Formal-contractual. The buyer proposes terms; the
+                  vendor proposes work. Short declarative sentences.
+     STATUS       One chip only, in the control head: Open.
+     COLORS       decorative clay #FE6C2D, text clay #B8430F, on ivory
+                 #FAF9F5 with slate ink #141413 — olive #55673C,
+                 rust #B04A3F supporting — do not deviate. Dark mode:
+                 token flip under prefers-color-scheme.
+================================================================ -->
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>te9-docs · Request for Proposal — suite v2.0.0-rc1</title>
+<style>
+  :root{
+    --ivory:#FAF9F5; --slate:#141413; --white:#FFFFFF;
+    --clay:#FE6C2D; --clay-ink:#B8430F; --clay-soft:#FDEBE0;
+    --oat:#E3DACC; --olive:#788C5D; --olive-ink:#55673C; --olive-soft:#EEF2E6;
+    --rust:#B04A3F; --rust-soft:#F8ECE9;
+    --gray-100:#F0EEE6; --gray-300:#D1CFC5; --muted:#67665F; --body:#3D3D3A;
+    --serif:ui-serif, Georgia, serif;
+    --sans:system-ui, -apple-system, sans-serif;
+    --mono:ui-monospace, "SF Mono", Menlo, monospace;
+    --radius-panel:12px; --radius-chip:999px;
+    --border:1.5px solid var(--gray-300);
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto;}
+  }
+  body{background:var(--ivory); color:var(--slate); font-family:var(--sans);
+       font-size:15.5px; line-height:1.6; -webkit-font-smoothing:antialiased;}
+  h1,h2,h3{font-family:var(--serif); font-weight:500; letter-spacing:-.01em;}
+  a{color:var(--clay-ink); text-decoration:none; border-bottom:1px dotted var(--clay-ink);}
+  a:hover{border-bottom-style:solid;}
+  a:focus-visible, summary:focus-visible{outline:2px solid var(--clay-ink); outline-offset:2px;}
+
+  /* ---------- kicker — pill + meta, the shared hero grammar ---------- */
+  .kicker{display:flex; align-items:baseline; gap:12px; flex-wrap:wrap;}
+  .pill{font-family:var(--mono); font-size:11px; text-transform:uppercase;
+        letter-spacing:.06em; color:var(--muted); background:var(--gray-100);
+        border:var(--border); border-radius:var(--radius-chip); padding:5px 11px;
+        white-space:nowrap;}
+  .pill b{color:var(--clay-ink); font-weight:500;}
+  .kicker-meta{font-family:var(--mono); font-size:11px; text-transform:uppercase;
+               letter-spacing:.18em; color:var(--muted);}
+  .page-no{margin-left:auto; font-family:var(--mono); font-size:11px;
+           letter-spacing:.18em; color:var(--muted); white-space:nowrap;}
+  .type-label{display:inline-block; margin-top:24px; font-family:var(--mono); font-size:11px;
+              text-transform:uppercase; letter-spacing:.06em; color:var(--muted);
+              background:var(--gray-100); border:var(--border);
+              border-radius:var(--radius-chip); padding:5px 11px;}
+
+  /* ---------- masthead — the hero directly on ivory ---------- */
+  .masthead{padding:56px 24px 0;}
+  .masthead-inner{max-width:1000px; margin:0 auto;}
+  h1{font-size:clamp(44px, 6.5vw, 80px); line-height:1.05; margin-top:20px; max-width:16ch;}
+  h1 em{font-style:italic; color:var(--clay-ink);}
+  .lede{margin-top:26px; font-size:17.5px; line-height:1.6; color:var(--body); border-left:3px solid var(--clay); padding:4px 0 4px 20px;}
+  .lede b{color:var(--slate); font-weight:600;}
+
+  /* ---------- RFP CONTROL — the formal signature of the RFP grammar ---------- */
+  .dc-head{display:flex; align-items:center; gap:12px; margin-top:32px;}
+  .dc-title{font-family:var(--mono); font-size:10px; letter-spacing:.18em;
+            text-transform:uppercase; color:var(--muted);}
+  .chip{display:inline-block; font-family:var(--mono); font-size:11px;
+        letter-spacing:.06em; text-transform:uppercase; padding:4px 12px;
+        border-radius:var(--radius-chip); background:var(--clay-soft);
+        color:var(--clay-ink); border:1px solid var(--clay); white-space:nowrap;}
+  .dc-head .chip{margin-left:auto;}
+  .dc{margin-top:10px; background:var(--white); border:var(--border);
+      border-radius:var(--radius-panel); overflow:hidden;}
+  .dc table{width:100%; border-collapse:collapse;}
+  .dc th,.dc td{padding:11px 16px; border-top:1px solid var(--gray-300);
+                text-align:left; vertical-align:top;}
+  .dc tr:first-child th,.dc tr:first-child td{border-top:none;}
+  .dc th{font-family:var(--mono); font-size:10px; letter-spacing:.14em;
+         text-transform:uppercase; color:var(--muted); font-weight:500;
+         width:190px; white-space:nowrap;}
+  .dc td{font-size:14.5px; color:var(--slate); font-weight:500;}
+  .dc td .mono{font-family:var(--mono); font-size:13.5px; letter-spacing:.02em;}
+  .dc td .id{font-family:var(--mono); font-size:14px; font-weight:600;
+             letter-spacing:.04em; color:var(--clay-ink);}
+  .dc td code{font-family:var(--mono); font-size:.9em; color:var(--slate);
+              background:var(--gray-100); border:1px solid var(--gray-300);
+              border-radius:4px; padding:1px 5px; white-space:nowrap;}
+
+  /* ---------- index — mono pill strip, jump-nav grammar ---------- */
+  nav.proc-index{margin-top:26px;}
+  .index-title{font-family:var(--mono); font-size:10px; letter-spacing:.18em;
+               text-transform:uppercase; color:var(--muted); margin-bottom:10px;}
+  .index-links{display:flex; flex-wrap:wrap; gap:8px;}
+  .index-links a{font-family:var(--mono); font-size:11px; letter-spacing:.06em;
+                 text-transform:uppercase; color:var(--muted); background:var(--white);
+                 border:var(--border); border-bottom:var(--border);
+                 border-radius:var(--radius-chip); padding:5px 11px;}
+  .index-links a b{color:var(--clay-ink); font-weight:500; margin-right:4px;}
+  .index-links a:hover{background:var(--clay-soft); border-color:var(--clay);
+                       border-bottom-color:var(--clay);}
+
+  /* ---------- layout — section rhythm convention ---------- */
+  .wrap{max-width:1000px; margin:0 auto; padding:20px 24px 90px;}
+  section{margin-top:40px; padding-top:40px; border-top:1px solid var(--gray-300);
+          scroll-margin-top:24px;}
+  h2{font-size:28px; line-height:1.15; margin:16px 0 16px;}
+  h2 + *{margin-top:0;}
+  .sec-kick{display:inline-block; font-family:var(--mono); font-size:10px;
+            text-transform:uppercase; letter-spacing:.18em; color:var(--muted);
+            background:var(--gray-100); border:var(--border);
+            border-radius:var(--radius-chip); padding:4px 11px;}
+  .section-lede{font-size:16.5px; color:var(--body);}
+  .section-lede + *{margin-top:24px;}
+  .section-lede b{color:var(--slate); font-weight:600;}
+
+  /* ---------- CLAUSES — left-rail rows, MUST/SHALL in clay-ink ---------- */
+  .clauses{display:grid; gap:8px; margin-top:4px;}
+  .clause{display:grid; grid-template-columns:96px 1fr; gap:16px;
+          background:var(--white); border:var(--border);
+          border-radius:var(--radius-panel); padding:13px 16px;
+          scroll-margin-top:24px;}
+  .clause:target{border-color:var(--clay); box-shadow:0 0 0 4px var(--clay-soft);}
+  .clause-rail{display:flex; flex-direction:column; align-items:flex-start; gap:4px;
+               border-right:1px solid var(--gray-300); padding-right:14px;}
+  .clause-tag{font-family:var(--mono); font-size:9.5px; letter-spacing:.16em;
+              text-transform:uppercase; color:var(--muted);}
+  .clause-no{font-family:var(--mono); font-size:16px; font-weight:600;
+             letter-spacing:.04em; color:var(--clay-ink);}
+  .clause-text{font-size:14.5px; line-height:1.65; color:var(--body);}
+  .clause-text b{color:var(--clay-ink); font-weight:600;}
+  .clause-text code{font-family:var(--mono); font-size:.9em; color:var(--slate);
+                    background:var(--gray-100); border:1px solid var(--gray-300);
+                    border-radius:4px; padding:1px 5px; white-space:nowrap;}
+
+  /* ---------- ruled tables — scope, requirements, evaluation, format, timeline ---------- */
+  .tpanel{margin-top:20px; background:var(--white); border:var(--border);
+          border-radius:var(--radius-panel); overflow:hidden;}
+  .tpanel table{width:100%; border-collapse:collapse; font-size:14px;}
+  .tpanel th{font-family:var(--mono); font-size:10px; letter-spacing:.14em;
+             text-transform:uppercase; color:var(--muted); font-weight:500;
+             text-align:left; padding:10px 16px; white-space:nowrap;}
+  .tpanel td{padding:11px 16px; border-top:1px solid var(--gray-300);
+             color:var(--body); text-align:left; vertical-align:top;}
+  .tpanel thead th{border-top:none; border-bottom:1px solid var(--gray-300);}
+  .tpanel tbody tr:first-child th,.tpanel tbody tr:first-child td{border-top:none;}
+  .tpanel tbody th{border-top:1px solid var(--gray-300); width:190px;}
+  .tpanel tbody tr:first-child th{border-top:none;}
+  .tpanel .rid{font-family:var(--mono); font-size:11.5px; font-weight:600;
+               letter-spacing:.04em; color:var(--clay-ink); white-space:nowrap;}
+  .tpanel .wt{font-family:var(--mono); font-size:13px; font-weight:600;
+              letter-spacing:.04em; color:var(--slate); white-space:nowrap;}
+  .tpanel .ms{font-weight:600; color:var(--slate);}
+  .tpanel tr.total td{border-top:1.5px solid var(--gray-300);
+                      color:var(--slate); font-weight:600;}
+  .tpanel tr.total .sum{font-family:var(--mono); font-size:14px; font-weight:600;
+                        letter-spacing:.04em; color:var(--clay-ink);}
+  .tpanel td b{color:var(--clay-ink); font-weight:600;}
+  .tpanel code{font-family:var(--mono); font-size:.9em; color:var(--slate);
+               background:var(--gray-100); border:1px solid var(--gray-300);
+               border-radius:4px; padding:1px 5px; white-space:nowrap;}
+  .tpanel h3{font-size:15px; margin:22px 0 0;}
+  .tpanel-h{margin-top:28px; font-family:var(--mono); font-size:10px;
+            letter-spacing:.18em; text-transform:uppercase; color:var(--muted);}
+
+  /* ---------- figure — one chain on a gray-100 plate ---------- */
+  .fig{margin-top:22px; background:var(--gray-100); border:var(--border);
+       border-radius:var(--radius-panel); position:relative; overflow:hidden;}
+  .fig-h{display:flex; align-items:center; justify-content:space-between; gap:12px;
+         padding:10px 14px;}
+  .fig-id{font-family:var(--mono); font-size:10px; letter-spacing:.18em;
+          text-transform:uppercase; color:var(--muted);}
+  .fig-fs{font-family:var(--mono); font-size:10px; text-transform:uppercase;
+          letter-spacing:.14em; color:var(--muted); background:var(--white);
+          border:var(--border); border-radius:999px; padding:4px 10px; cursor:pointer;}
+  .fig-fs:hover{color:var(--clay-ink); border-color:var(--clay);}
+  .fig-fs:focus-visible{outline:2px solid var(--clay); outline-offset:2px;}
+  .fig-legend{display:flex; flex-wrap:wrap; gap:6px 18px; padding:0 14px 9px;
+              border-bottom:1px solid var(--gray-300); font-family:var(--mono);
+              font-size:10px; letter-spacing:.06em; text-transform:uppercase;
+              color:var(--muted);}
+  .fig-legend .lg{display:inline-flex; align-items:center; gap:6px;}
+  .fig-legend .lg-g{flex:none;}
+  .fig-b{padding:20px 18px;}
+  .fig-b svg{display:block; width:auto; max-width:100%; height:auto; margin:0 auto;}
+  .fig-f{padding:10px 14px; border-top:1px solid var(--gray-300);
+         font-family:var(--mono); font-size:10px; letter-spacing:.18em;
+         text-transform:uppercase; color:var(--muted); text-align:center;}
+
+  /* pele theming — Clay mapping lives here, never inline */
+  .fig svg{--pele-fg:var(--slate); --pele-fg-on-light:var(--body); --pele-muted:var(--gray-500);
+           --pele-line:var(--gray-300); --pele-bg:transparent; --pele-surface:transparent;
+           --pele-surface-alt:transparent; --pele-border:var(--gray-300); --pele-accent:var(--clay);
+           --pele-radius:4px;
+           --pele-font:system-ui,-apple-system,sans-serif;
+           --pele-font-mono:ui-monospace,"SF Mono",Menlo,monospace;}
+  .fig svg .pele-title{display:none;}
+  .fig svg .pele-edge-label rect{fill:transparent;}
+  .fig svg .pele-edge-label text{fill:var(--body); font-size:12.5px;}
+
+  /* ---------- colophon ---------- */
+  .colophon p.statement{font-size:14.5px; color:var(--body);}
+  .colophon .row{display:flex; flex-wrap:wrap; gap:8px 24px; margin-top:20px;
+                 font-family:var(--mono); font-size:11px; letter-spacing:.06em;
+                 color:var(--muted);}
+
+  @media (max-width:860px){
+    .masthead{padding:36px 16px 0;}
+    .wrap{padding:12px 16px 72px;}
+    .dc th{width:120px;}
+    .clause{grid-template-columns:1fr; gap:10px; padding:12px 14px;}
+    .clause-rail{flex-direction:row; align-items:center; gap:10px;
+                 border-right:none; border-bottom:1px solid var(--gray-300);
+                 padding:0 0 8px;}
+  }
+
+  /* ---------- dark mode — the token flip, carried wholesale ---------- */
+  @media (prefers-color-scheme: dark){
+    :root{
+      --ivory:#191817; --slate:#F0EEE6; --white:#201F1D;
+      --clay-ink:#FE6C2D; --clay-soft:#3A241A;
+      --oat:#4A4438; --olive-ink:#A9BC8B; --olive-soft:#262D1E;
+      --rust:#D98A80; --rust-soft:#3A2622;
+      --gray-100:#232220; --gray-300:#3D3D3A; --muted:#A5A39B; --body:#D6D4CC;
+    }
+  }
+
+  @media print{
+    body{background:#FFFFFF; color:#141413;}
+    :root{
+      --ivory:#FFFFFF; --slate:#141413; --white:#FFFFFF; --body:#3D3D3A;
+      --gray-100:#F5F4F0; --gray-300:#D1CFC5; --muted:#67665F;
+      --clay-ink:#B8430F; --clay-soft:#FDEBE0;
+      --olive-ink:#55673C; --olive-soft:#EEF2E6;
+      --rust:#B04A3F; --rust-soft:#F8ECE9;
+    }
+    nav.proc-index{display:none;}
+    .wrap{padding:0 24px;}
+    .masthead{padding:0 24px;}
+    section{margin-top:36px; padding-top:24px;}
+    .dc, .tpanel, .clause, .fig{break-inside:avoid;}
+    /* :target effects neutralized on paper */
+    .clause:target{border-color:var(--gray-300); box-shadow:none;}
+  }
+</style>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="masthead-inner">
+    <div class="kicker">
+      <span class="pill"><b>te9-docs</b> · skills.te9.dev</span>
+      <span class="kicker-meta">outbound solicitation · the accessibility &amp; print audit</span>
+      <span class="page-no">23 / 35</span>
+    </div>
+    <span class="type-label">Request for Proposal</span>
+    <h1>The release audit, put out to <em>bid</em>.</h1>
+    <p class="lede"><b>Who this is for:</b> external specialists in accessibility and print output — agencies or sole traders — invited to propose against the specification below. te9-docs, the document-suite skill behind this very document, is commissioning an independent audit of its 22 templates before the suite is declared 1.0.0. This document is the solicitation: it states the background, objectives, scope, requirements, evaluation criteria, submission instructions, timeline and terms. <b>It is an invitation to propose, not an offer.</b> Proposals are answers to it, judged by it.</p>
+
+    <div class="dc-head">
+      <span class="dc-title">RFP control</span>
+      <span class="chip">Open</span>
+    </div>
+    <div class="dc">
+      <table>
+        <tbody>
+          <tr><th scope="row">RFP number</th><td><span class="id">RFP-2026-01</span></td></tr>
+          <tr><th scope="row">Subject</th><td>Accessibility &amp; print audit of the te9-docs suite</td></tr>
+          <tr><th scope="row">Issued</th><td><span class="mono">2026-10-29</span></td></tr>
+          <tr><th scope="row">Buyer</th><td>te9-docs · Founding session</td></tr>
+          <tr><th scope="row">Responses due</th><td><span class="mono">2026-11-12 · 14:00</span></td></tr>
+          <tr><th scope="row">Channel</th><td>Repository issue tracker · label <code>rfp-2026-01</code></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <nav class="proc-index" aria-label="Section index">
+      <p class="index-title">Section index</p>
+      <div class="index-links">
+        <a href="#s1"><b>01</b>Background</a>
+        <a href="#s2"><b>02</b>Objectives</a>
+        <a href="#s3"><b>03</b>Scope of work</a>
+        <a href="#s4"><b>04</b>Requirements</a>
+        <a href="#s5"><b>05</b>Evaluation criteria</a>
+        <a href="#s6"><b>06</b>Submission instructions</a>
+        <a href="#s7"><b>07</b>Timeline</a>
+        <a href="#s8"><b>08</b>Terms &amp; conditions</a>
+        <a href="#fig"><b>FIG</b>the timeline</a>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<div class="wrap">
+
+  <!-- 1 · BACKGROUND -->
+  <section id="s1">
+    <span class="sec-kick">Section 1</span>
+    <h2>Background</h2>
+    <p class="section-lede">te9-docs is a document-suite skill: it produces polished, shareable, single-file HTML documents for human readers. At suite version <b>2.0.0-rc1</b> it ships 22 templates in one design system — <b>Clay Explainer</b> — where every document self-describes its own construction, runs on system fonts alone, and carries zero scripts beyond one whitelisted fullscreen listener. The suite already checks itself: contrast guardrails were computed into the design system at design time, and every build passes a browser review gate. But those checks are the author grading its own work. Before the suite is declared <b>1.0.0</b>, te9-docs wants an <b>independent WCAG 2.2 AA and print-output audit</b> of the whole suite — which is what this RFP commissions.</p>
+    <div class="tpanel">
+      <table>
+        <tbody>
+          <tr><th scope="row">Suite version</th><td><span class="rid">2.0.0-rc1</span> — release candidate; 22 templates on disk of the 35-type launch taxonomy.</td></tr>
+          <tr><th scope="row">Design system</th><td>Clay Explainer — one shared palette, three system faces, zero webfonts, zero network requests.</td></tr>
+          <tr><th scope="row">Discipline</th><td>Zero scripts by default; <code>&lt;details&gt;</code> folds and <code>:target</code> jumps instead; one sanctioned fullscreen listener per figure plate.</td></tr>
+          <tr><th scope="row">In-house checks</th><td>Contrast guardrails computed into the style reference (all text tones ≥ 4.5:1 on their grounds) and a browser review gate on every build.</td></tr>
+          <tr><th scope="row">Outstanding</th><td>An <b>independent</b> WCAG 2.2 AA audit — light and dark — plus a print-output audit, ahead of v1.0.0.</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- 2 · OBJECTIVES -->
+  <section id="s2">
+    <span class="sec-kick">Section 2</span>
+    <h2>Objectives</h2>
+    <p class="section-lede">Three objectives, numbered. The proposal MUST state how each is met; the report is accepted only when all three are discharged.</p>
+
+    <div class="clauses">
+
+      <article class="clause" id="obj-1">
+        <div class="clause-rail">
+          <span class="clause-tag">Objective</span>
+          <span class="clause-no">2.1</span>
+        </div>
+        <p class="clause-text">An <b>independent WCAG 2.2 AA conformance audit</b> of all 22 templates, assessed against the WCAG 2.2 level AA success criteria — light and dark modes audited as separate passes — with every finding graded for severity.</p>
+      </article>
+
+      <article class="clause" id="obj-2">
+        <div class="clause-rail">
+          <span class="clause-tag">Objective</span>
+          <span class="clause-no">2.2</span>
+        </div>
+        <p class="clause-text">A <b>print-output audit</b> of every template at A4 against the suite's print specification: all folds forced open on paper, the light palette printed regardless of OS theme, no component split across a page break, and pointer-era effects absent.</p>
+      </article>
+
+      <article class="clause" id="obj-3">
+        <div class="clause-rail">
+          <span class="clause-tag">Objective</span>
+          <span class="clause-no">2.3</span>
+        </div>
+        <p class="clause-text">A <b>remediation plan</b> that severity-grades every finding, locates it precisely — template file, affected region, and the design token or rule involved — and states the concrete fix, ordered so the suite can land it before v1.0.0.</p>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- 3 · SCOPE OF WORK -->
+  <section id="s3">
+    <span class="sec-kick">Section 3</span>
+    <h2>Scope of work</h2>
+    <p class="section-lede">The audit covers the suite as published at 2.0.0-rc1. Work outside the in-scope table is out of contract; anything else requires a written change note under term 8.1.</p>
+
+    <p class="tpanel-h">In scope</p>
+    <div class="tpanel">
+      <table>
+        <thead>
+          <tr><th>ID</th><th>Work item</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><span class="rid">S-1</span></td><td>All 22 templates at 2.0.0-rc1, plus the template gallery and the compendium of archetypes as published — the full document surface.</td></tr>
+          <tr><td><span class="rid">S-2</span></td><td>Light and dark: every template assessed in both color schemes (<code>prefers-color-scheme</code>), each as its own pass.</td></tr>
+          <tr><td><span class="rid">S-3</span></td><td>Print: A4 print preview per template — pagination, forced-open folds, light palette on paper, break behavior.</td></tr>
+          <tr><td><span class="rid">S-4</span></td><td>Keyboard-only pass: every interactive element — index pills, folds, figure fullscreen buttons — reached and operated without a pointer.</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p class="tpanel-h">Out of scope</p>
+    <div class="tpanel">
+      <table>
+        <thead>
+          <tr><th>ID</th><th>Exclusion</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><span class="rid">X-1</span></td><td>Redesign — no visual redesign of the Clay design system; findings are fixed within it, not against it.</td></tr>
+          <tr><td><span class="rid">X-2</span></td><td>New templates — the launch taxonomy's pending types are not designed or built under this RFP.</td></tr>
+          <tr><td><span class="rid">X-3</span></td><td>Content edits — placeholder copy is out of scope unless a finding requires a wording change to conform.</td></tr>
+          <tr><td><span class="rid">X-4</span></td><td>The parked step-player experiment (<code>assets/experiments/05-concept-breakdown-v2.html</code>) — parked work is not audited.</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- 4 · REQUIREMENTS -->
+  <section id="s4">
+    <span class="sec-kick">Section 4</span>
+    <h2>Requirements</h2>
+    <p class="section-lede">Proposals <b>MUST</b> respond to every mandatory requirement explicitly. A proposal that cannot meet a mandatory requirement <b>MUST</b> say so — silence is scored as non-compliance and the proposal is not evaluated further. Desirable requirements are optional and are credited under the evaluation criteria.</p>
+
+    <p class="tpanel-h">Mandatory</p>
+    <div class="tpanel">
+      <table>
+        <thead>
+          <tr><th>ID</th><th>Requirement</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><span class="rid">M-1</span> WCAG 2.2 AA expertise</td><td>The named auditor has shipped conformance audits against WCAG 2.2 level AA, including the 2.2-era success criteria (focus appearance, target size, dragging movements), and can cite them by number.</td></tr>
+          <tr><td><span class="rid">M-2</span> Print-CSS experience</td><td>Production experience with paged media — <code>@media print</code>, page breaks, forced-open content on paper — on documents that actually print correctly.</td></tr>
+          <tr><td><span class="rid">M-3</span> Tooling &amp; report format</td><td>Findings delivered both human-readable (the audit report) and machine-readable (a structured findings file the suite can track), with the tooling and manual passes behind every check stated.</td></tr>
+          <tr><td><span class="rid">M-4</span> Fixed-fee quote</td><td>A single fixed fee covering the full scope of work in section 3. Day rates are not accepted under this RFP.</td></tr>
+          <tr><td><span class="rid">M-5</span> NDA</td><td>The supplier signs the suite's confidentiality agreement before any audit material changes hands, per term 8.3.</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p class="tpanel-h">Desirable</p>
+    <div class="tpanel">
+      <table>
+        <thead>
+          <tr><th>ID</th><th>Requirement</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><span class="rid">D-1</span> pele / Mermaid familiarity</td><td>The suite's figures are Mermaid sources rendered through pele at build time and clayified to the house grammar. Familiarity with either shortens the figure audit.</td></tr>
+          <tr><td><span class="rid">D-2</span> Design-system audits</td><td>Prior audits of component libraries or design systems — token-level, multi-component work — not only single-page products.</td></tr>
+          <tr><td><span class="rid">D-3</span> Automation</td><td>Playwright or similar, for scripted checks repeated across 22 documents without 22 manual runs.</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- 5 · EVALUATION CRITERIA -->
+  <section id="s5">
+    <span class="sec-kick">Section 5</span>
+    <h2>Evaluation criteria</h2>
+    <p class="section-lede">Mandatory requirements are pass/fail: only compliant proposals are scored. Desirable requirements are credited under relevant experience. The award goes to the highest-scoring compliant proposal. The weights are fixed and sum to <b>100</b>.</p>
+    <div class="tpanel">
+      <table>
+        <thead>
+          <tr><th>Criterion</th><th>Weight</th><th>What scores</th></tr>
+        </thead>
+        <tbody>
+          <tr><td class="ms">Relevant experience</td><td class="wt">30</td><td>Named audits of comparable document suites or design systems — WCAG 2.2 and print — with outcomes a referee could confirm.</td></tr>
+          <tr><td class="ms">Methodology</td><td class="wt">25</td><td>How the audit runs: the criteria mapping, the split between automated and manual passes, and how dark mode and print output are reproduced and evidenced.</td></tr>
+          <tr><td class="ms">Fixed price</td><td class="wt">20</td><td>The fixed fee against the full scope of work — completeness and realism of the quote, not merely its size.</td></tr>
+          <tr><td class="ms">Timeline</td><td class="wt">15</td><td>A credible plan that starts on 2026-11-26 and reports at the cadence the timeline in section 7 implies.</td></tr>
+          <tr><td class="ms">Work samples</td><td class="wt">10</td><td>Anonymized excerpts of prior audit reports — severity grading and fix specificity, two to three pages.</td></tr>
+        </tbody>
+        <tfoot>
+          <tr class="total"><td>Total</td><td class="sum">100</td><td>—</td></tr>
+        </tfoot>
+      </table>
+    </div>
+  </section>
+
+  <!-- 6 · SUBMISSION INSTRUCTIONS -->
+  <section id="s6">
+    <span class="sec-kick">Section 6</span>
+    <h2>Submission instructions</h2>
+    <p class="section-lede">One document, one channel, one deadline. Proposals <b>MUST</b> arrive as a single PDF of at most <b>10 pages</b>, filed to the skills.te9.dev repository's issue tracker with the label <code>rfp-2026-01</code>, before <b>14:00 on 2026-11-12</b>. Late proposals are not evaluated. Questions <b>MUST</b> be filed to the same tracker before the Q&amp;A window closes on 2026-11-05; answers are published to all suppliers through the tracker.</p>
+    <div class="tpanel">
+      <table>
+        <thead>
+          <tr><th>Part</th><th>Required content</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><span class="rid">P-1</span> Profile &amp; compliance</td><td>The supplier's details and an explicit response to every mandatory requirement, <span class="rid">M-1</span> through <span class="rid">M-5</span>.</td></tr>
+          <tr><td><span class="rid">P-2</span> Methodology</td><td>How objectives 2.1–2.3 are met: pass structure, tooling, evidence formats.</td></tr>
+          <tr><td><span class="rid">P-3</span> Fixed fee</td><td>The single fixed fee and exactly what it covers.</td></tr>
+          <tr><td><span class="rid">P-4</span> Timeline</td><td>The plan against the dates in section 7.</td></tr>
+          <tr><td><span class="rid">P-5</span> Work samples</td><td>Anonymized excerpts, as weighted under section 5.</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="section-lede" style="margin-top:18px;">A proposal is filed by opening one issue on the tracker, attaching the PDF, and applying the label <code>rfp-2026-01</code>. The issue title <b>MUST</b> read <code>RFP-2026-01 — &lt;supplier name&gt;</code>. Acknowledgment is posted to the issue within two working days.</p>
+  </section>
+
+  <!-- 7 · TIMELINE -->
+  <section id="s7">
+    <span class="sec-kick">Section 7</span>
+    <h2>Timeline</h2>
+    <p class="section-lede">Five dated milestones govern this RFP. Dates are fixed at issue; only term 8.4 can move them.</p>
+    <div class="tpanel">
+      <table>
+        <thead>
+          <tr><th>Milestone</th><th>Date</th><th>What happens</th></tr>
+        </thead>
+        <tbody>
+          <tr><td class="ms">Issue</td><td><code>2026-10-29</code></td><td>This RFP is published; the Q&amp;A window opens.</td></tr>
+          <tr><td class="ms">Q&amp;A closes</td><td><code>2026-11-05</code></td><td>Last day for questions via the tracker.</td></tr>
+          <tr><td class="ms">Submissions due</td><td><code>2026-11-12 · 14:00</code></td><td>Deadline; late proposals are not evaluated.</td></tr>
+          <tr><td class="ms">Award</td><td><code>2026-11-19</code></td><td>The winning supplier is notified via the tracker.</td></tr>
+          <tr><td class="ms">Audit starts</td><td><code>2026-11-26</code></td><td>Work begins; the NDA is in force before materials move.</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <figure class="fig" id="fig">
+      <div class="fig-h"><span class="fig-id">FIG &middot; 01</span><button class="fig-fs" type="button" aria-label="Open this diagram in a new tab">FULLSCREEN</button></div>
+      <div class="fig-legend"><span class="lg"><svg class="lg-g" width="14" height="14" viewBox="0 0 14 14" aria-hidden="true"><circle cx="7" cy="7" r="5.5" fill="#FE6C2D" stroke="#FE6C2D" stroke-width="1.5"/></svg>filled = here-now · issue day, 2026-10-29</span><span class="lg"><svg class="lg-g" width="14" height="14" viewBox="0 0 14 14" aria-hidden="true"><circle cx="7" cy="7" r="5" fill="none" stroke="#FE6C2D" stroke-width="2"/></svg>open = ahead · dates fixed at issue</span><span class="lg"><svg class="lg-g" width="14" height="14" viewBox="0 0 14 14" aria-hidden="true"><circle cx="7" cy="7" r="5" fill="none" stroke="#FE6C2D" stroke-width="2"/><circle cx="7" cy="7" r="2.5" fill="none" stroke="#FE6C2D" stroke-width="1.5"/></svg>the destination · the audit begins</span></div>
+      <div class="fig-b"><svg xmlns="http://www.w3.org/2000/svg" class="pele pele-flowchart" viewBox="-72.6 0 911.69 178.47" width="912" height="178" style="max-width:100%;height:auto;--_bg:var(--pele-bg,#fff);--_fg:var(--pele-fg,#1f1f1f);--_m:var(--pele-muted,#6e6e6e);--_l:var(--pele-line,#1f1f1f);--_s:var(--pele-surface,#f3f3f3);--_a:var(--pele-surface-alt,#e6e6e6);--_b:var(--pele-border,#8a8a8a);--_c:var(--pele-accent,#5b7bd5);color:var(--_fg);--_fm:var(--pele-font-mono,monospace);font:16px sans-serif;letter-spacing:normal;word-spacing:normal;text-transform:none;direction:ltr;font-family:var(--pele-font,sans-serif)" fill="var(--_fg)" role="graphics-document document" aria-roledescription="flowchart"> <style> @media (prefers-color-scheme: dark){ .clay-lab{fill:#F0EEE6;} .clay-sub{fill:#A5A39B;} } </style><g transform="translate(0 33.47)"><g class="pele-edges" fill="none" stroke="var(--_l)" stroke-linecap="round"><g class="clay-edge" style="stroke:#D1CFC5;stroke-width:1.5px;"><path d="M57.20,48.53L192.25,48.53" fill="none"/></g><g class="clay-edge" style="stroke:#D1CFC5;stroke-width:1.5px;"><path d="M230.25,48.53L376.41,48.53" fill="none"/></g><g class="clay-edge" style="stroke:#D1CFC5;stroke-width:1.5px;"><path d="M414.41,48.53L573.63,48.53" fill="none"/></g><g class="clay-edge" style="stroke:#D1CFC5;stroke-width:1.5px;"><path d="M611.63,48.53L743.49,48.53" fill="none"/></g></g><g class="pele-edge-labels" font-size="14"><g class="pele-edge-label" data-id="L_T1_T2_0"><rect x="90.89" y="38.03" width="67.92" height="21" rx="3" fill="var(--_bg)"/><text x="124.85" y="53.43" text-anchor="middle">questions</text></g><g class="pele-edge-label" data-id="L_T2_T3_0"><rect x="256.69" y="38.03" width="68.69" height="21" rx="3" fill="var(--_bg)"/><text x="291.03" y="53.43" text-anchor="middle">proposals</text></g><g class="pele-edge-label" data-id="L_T3_T4_0"><rect x="458.44" y="38.03" width="71.81" height="21" rx="3" fill="var(--_bg)"/><text x="494.35" y="53.43" text-anchor="middle">evaluation</text></g><g class="pele-edge-label" data-id="L_T4_T5_0"><rect x="648" y="38.03" width="52.34" height="21" rx="3" fill="var(--_bg)"/><text x="674.17" y="53.43" text-anchor="middle">kick-off</text></g></g><g class="pele-nodes"><g class="clay-node" data-id="T1"><circle cx="38.2" cy="48.53" r="17" fill="#FE6C2D" stroke="#FE6C2D" stroke-width="2"/><text class="clay-lab" x="38.2" y="22.53" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="11" font-weight="600" fill="#141413">01 · ISSUE</text><text class="clay-sub" x="38.2" y="87.53" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="10" fill="#87867F">2026-10-29 · THIS DOCUMENT</text></g><g class="clay-node" data-id="T2"><circle cx="211.25" cy="48.53" r="17" fill="none" stroke="#FE6C2D" stroke-width="2"/><text class="clay-lab" x="211.25" y="22.53" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="11" font-weight="600" fill="#141413">02 · Q&amp;A CLOSES</text><text class="clay-sub" x="211.25" y="87.53" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="10" fill="#87867F">2026-11-05</text></g><g class="clay-node" data-id="T3"><circle cx="395.41" cy="48.53" r="17" fill="none" stroke="#FE6C2D" stroke-width="2"/><text class="clay-lab" x="395.41" y="22.53" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="11" font-weight="600" fill="#141413">03 · SUBMISSIONS DUE</text><text class="clay-sub" x="395.41" y="87.53" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="10" fill="#87867F">2026-11-12 · 14:00</text></g><g class="clay-node" data-id="T4"><circle cx="592.63" cy="48.53" r="17" fill="none" stroke="#FE6C2D" stroke-width="2"/><text class="clay-lab" x="592.63" y="22.53" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="11" font-weight="600" fill="#141413">04 · AWARD</text><text class="clay-sub" x="592.63" y="87.53" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="10" fill="#87867F">2026-11-19</text></g><g class="clay-node" data-id="T5"><circle cx="762.49" cy="48.53" r="17" fill="none" stroke="#FE6C2D" stroke-width="2"/><circle cx="762.49" cy="48.53" r="13" fill="none" stroke="#FE6C2D" stroke-width="1.5"/><text class="clay-lab" x="762.49" y="22.53" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="11" font-weight="600" fill="#141413">05 · AUDIT STARTS</text><text class="clay-sub" x="762.49" y="87.53" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="10" fill="#87867F">2026-11-26</text></g></g></g></svg></div>
+      <div class="fig-f">FIG · 01 — THE RFP TIMELINE, ISSUE TO AUDIT START · RENDERED VIA PELE, CLAYIFIED</div>
+    </figure>
+    <p class="section-lede" style="margin-top:18px;">Drawn, the same five dates are one chain: a ring per milestone, left to right in date order. The filled ring is issue day — the here-now this document publishes into; the double ring is the destination, where the audit begins and the RFP's work hands over to the suite's.</p>
+  </section>
+
+  <!-- 8 · TERMS & CONDITIONS -->
+  <section id="s8">
+    <span class="sec-kick">Section 8</span>
+    <h2>Terms &amp; conditions</h2>
+    <p class="section-lede">Four terms govern any award. They attach to the RFP at issue; a proposal filed to the tracker is proposed under them.</p>
+
+    <div class="clauses">
+
+      <article class="clause" id="t-1">
+        <div class="clause-rail">
+          <span class="clause-tag">Term</span>
+          <span class="clause-no">8.1</span>
+        </div>
+        <p class="clause-text"><b>Fixed fee.</b> The awarded fee is fixed for the full scope of work in section 3: no day rates, and no scope growth without a written change note agreed by both parties before the extra work starts.</p>
+      </article>
+
+      <article class="clause" id="t-2">
+        <div class="clause-rail">
+          <span class="clause-tag">Term</span>
+          <span class="clause-no">8.2</span>
+        </div>
+        <p class="clause-text"><b>Intellectual property.</b> All audit reports, findings files and remediation artifacts produced under this RFP assign to te9 on payment of the fixed fee. The supplier retains its own pre-existing tooling.</p>
+      </article>
+
+      <article class="clause" id="t-3">
+        <div class="clause-rail">
+          <span class="clause-tag">Term</span>
+          <span class="clause-no">8.3</span>
+        </div>
+        <p class="clause-text"><b>Confidentiality.</b> Suite materials shared for the audit are confidential. The <b>M-5</b> NDA is signed before any material changes hands, and the obligation survives the award decision — including for suppliers not awarded.</p>
+      </article>
+
+      <article class="clause" id="t-4">
+        <div class="clause-rail">
+          <span class="clause-tag">Term</span>
+          <span class="clause-no">8.4</span>
+        </div>
+        <p class="clause-text"><b>Right to reject.</b> This RFP is an invitation to propose, not an offer. te9 <b>MAY</b> reject any or all proposals — including all of them — without stating reasons. Published Q&amp;A answers form part of these terms; a moved date is announced through the tracker before the affected deadline.</p>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- COLOPHON -->
+  <section id="colophon" class="colophon">
+    <span class="sec-kick">Colophon</span>
+    <h2>Request for Proposal · template v0.1</h2>
+    <p class="statement">The suite's outward-facing formal grammar: an RFP control header, numbered objectives, in/out-of-scope tables, mandatory and desirable requirements, weighted criteria summing to one hundred, submission instructions with one deadline, a dated timeline drawn as one chain, and four terms — because a solicitation that hides a term cannot be proposed against. Every fact comes from the suite brief, the Clay style reference and the template directory on disk alone.</p>
+    <div class="row">
+      <span>DOC ID · TE9-RFP-001</span>
+      <span>SUITE VERSION · 2.0.0-rc1</span>
+      <span>SUITE · <a href="../README.html">te9-docs</a></span>
+      <span>SIBLINGS · <a href="21-standard-operating-procedure.html">Standard Operating Procedure</a> · <a href="16-project-plan.html">Project Plan</a> · <a href="18-workflow-template.html">Workflow Template</a></span>
+      <span>PREPARED BY · Founding session</span>
+    </div>
+  </section>
+
+</div>
+
+<script>
+  document.querySelectorAll('.fig-fs').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var svg = btn.closest('.fig').querySelector('svg');
+      var blob = new Blob([svg.outerHTML], { type: 'image/svg+xml' });
+      window.open(URL.createObjectURL(blob), '_blank');
+    });
+  });
+</script>
+</body>
+</html>

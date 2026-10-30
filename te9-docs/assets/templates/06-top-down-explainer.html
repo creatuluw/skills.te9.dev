@@ -1,0 +1,511 @@
+<!doctype html>
+<!-- te9-docs suite — self-describing placeholder · v0.4.9 — STYLE: Clay Explainer -->
+<!-- ================================================================
+     LLM AUTHORING CONTRACT — TOP-DOWN EXPLAINER v0.1 — STYLE: Clay Explainer
+     te9-docs suite — self-describing placeholder. Paste this comment
+     into the authoring LLM alongside the source material. The LLM
+     assembles; it does not redesign.
+
+     TASK        Explain one subject top-down: start with the whole in
+                 one breath, then drill down level by level — whole →
+                 parts → each part in depth → details on demand. The
+                 drill-down is the organizing principle, not an
+                 accessory; progressive disclosure IS the last level.
+     FORMAT      Long-form reading document: statement band directly on
+                 ivory, 2×2 pillar grid, drill-down figure, full-width
+                 depth panels with one fold each, colophon.
+     HIERARCHY   doc > level > pillar / deep panel > (fold = level 4)
+     SECTION     masthead → part-index pill strip → LEVEL 1 the whole
+                 (large serif statement, no panel) → LEVEL 2 the four
+                 pillars (2×2 white panels) → drill-down figure (FIG · 01)
+                 → LEVEL 3 each pillar in depth (full-width panels, one
+                 fold each) → colophon
+     ORDER       exactly one figure; one fold per depth panel; the folds
+                 are LEVEL 4 — they get no section of their own; one
+                 colophon.
+
+     BLOCK GRAMMAR
+       statement      LEVEL 1 · large serif statement directly on ivory
+                      — the whole in one breath; no panel, no fence
+       pillar         LEVEL 2 · white panel in a 2×2 grid: mono
+                      micro-label (PILLAR NN · NAME) + serif h3 + short
+                      body + IN DEPTH link to its Level 3 panel
+       figure         ONE pele-rendered drill-down tree in a fenced
+                      gray-100 plate: double ring = the whole, four
+                      rings = the pillars, gray dots = their key facts;
+                      header with FIG ID + legend strip + FULLSCREEN;
+                      body = diagram only; footer = caption
+       deep           LEVEL 3 · full-width white panel, one per pillar:
+                      definition lede (glossary wording, clay rule) +
+                      behavior body + ONE <details> fold
+       fold           LEVEL 4 · the fold IS the fourth level; summary
+                      prefixed "Level 4 ·"; body on an oat plate
+       colophon       DOC ID · suite version · siblings · prepared-by
+
+     IRON RULES  Facts grounded in SUITE-BRIEF only — no invented suite
+                 facts. Definitions match the glossary word for word.
+                 The figure may not carry a claim the panels don't.
+                 Zero scripts beyond the whitelisted fullscreen
+                 listener.
+     VOICE       Plausible, domain-real. No invented precise metrics.
+     STATUS      One chip in the masthead only:
+                 Draft | Believe | Reviewed | Signed-off
+     COLORS      decorative clay #FE6C2D, text clay #B8430F, on ivory
+                 #FAF9F5 with slate ink #141413 — olive #55673C,
+                 rust #B04A3F supporting — do not deviate. Dark mode:
+                 token flip under prefers-color-scheme.
+================================================================ -->
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>te9-docs · Top-down Explainer — suite v0.4.9</title>
+<style>
+  :root{
+    --ivory:#FAF9F5; --slate:#141413; --white:#FFFFFF;
+    --clay:#FE6C2D; --clay-ink:#B8430F; --clay-soft:#FDEBE0;
+    --oat:#E3DACC; --olive:#788C5D; --olive-ink:#55673C; --olive-soft:#EEF2E6;
+    --rust:#B04A3F; --rust-soft:#F8ECE9;
+    --gray-100:#F0EEE6; --gray-300:#D1CFC5; --muted:#67665F; --body:#3D3D3A;
+    --serif:ui-serif, Georgia, serif;
+    --sans:system-ui, -apple-system, sans-serif;
+    --mono:ui-monospace, "SF Mono", Menlo, monospace;
+    --radius-panel:12px; --radius-chip:999px;
+    --border:1.5px solid var(--gray-300);
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto;}
+  }
+  body{background:var(--ivory); color:var(--slate); font-family:var(--sans);
+       font-size:15.5px; line-height:1.6; -webkit-font-smoothing:antialiased;}
+  h1,h2,h3{font-family:var(--serif); font-weight:500; letter-spacing:-.01em;}
+  a{color:var(--clay-ink); text-decoration:none; border-bottom:1px dotted var(--clay-ink);}
+  a:hover{border-bottom-style:solid;}
+  a:focus-visible, summary:focus-visible{outline:2px solid var(--clay-ink); outline-offset:2px;}
+
+  /* ---------- kicker — pill + meta, the shared hero grammar ---------- */
+  .kicker{display:flex; align-items:baseline; gap:12px; flex-wrap:wrap;}
+  .pill{font-family:var(--mono); font-size:11px; text-transform:uppercase;
+        letter-spacing:.06em; color:var(--muted); background:var(--gray-100);
+        border:var(--border); border-radius:var(--radius-chip); padding:5px 11px;
+        white-space:nowrap;}
+  .pill b{color:var(--clay-ink); font-weight:500;}
+  .kicker-meta{font-family:var(--mono); font-size:11px; text-transform:uppercase;
+               letter-spacing:.18em; color:var(--muted);}
+  .page-no{margin-left:auto; font-family:var(--mono); font-size:11px;
+           letter-spacing:.18em; color:var(--muted); white-space:nowrap;}
+  .type-label{display:inline-block; margin-top:24px; font-family:var(--mono); font-size:11px;
+              text-transform:uppercase; letter-spacing:.06em; color:var(--muted);
+              background:var(--gray-100); border:var(--border);
+              border-radius:var(--radius-chip); padding:5px 11px;}
+
+  /* ---------- masthead — the hero directly on ivory ---------- */
+  .masthead{padding:56px 24px 0;}
+  .masthead-inner{max-width:1000px; margin:0 auto;}
+  h1{font-size:clamp(44px, 6.5vw, 80px); line-height:1.05; margin-top:20px; max-width:16ch;}
+  h1 em{font-style:italic; color:var(--clay-ink);}
+  .lede{margin-top:26px; font-size:17.5px; line-height:1.6; color:var(--body); border-left:3px solid var(--clay); padding:4px 0 4px 20px;}
+  .lede b{color:var(--slate); font-weight:600;}
+  .meta-row{display:flex; flex-wrap:wrap; gap:32px; margin-top:36px; padding-top:22px;
+            border-top:1px solid var(--gray-300);}
+  .meta-row dt{font-family:var(--mono); font-size:10px; letter-spacing:.18em;
+               text-transform:uppercase; color:var(--muted); margin-bottom:4px;}
+  .meta-row dd{font-weight:500; color:var(--slate);}
+  .chip{display:inline-block; font-family:var(--mono); font-size:11px;
+        letter-spacing:.06em; text-transform:uppercase; padding:4px 12px;
+        border-radius:var(--radius-chip); background:var(--clay-soft);
+        color:var(--clay-ink); border:1px solid var(--clay); white-space:nowrap;}
+
+  /* ---------- part index — mono pill strip, jump-nav grammar ---------- */
+  nav.part-index{margin-top:30px;}
+  .index-title{font-family:var(--mono); font-size:10px; letter-spacing:.18em;
+               text-transform:uppercase; color:var(--muted); margin-bottom:10px;}
+  .index-links{display:flex; flex-wrap:wrap; gap:8px;}
+  .index-links a{font-family:var(--mono); font-size:11px; letter-spacing:.06em;
+                 text-transform:uppercase; color:var(--muted); background:var(--white);
+                 border:var(--border); border-bottom:var(--border);
+                 border-radius:var(--radius-chip); padding:5px 11px;}
+  .index-links a b{color:var(--clay-ink); font-weight:500; margin-right:4px;}
+  .index-links a:hover{background:var(--clay-soft); border-color:var(--clay);
+                       border-bottom-color:var(--clay);}
+
+  /* ---------- layout — section rhythm convention ---------- */
+  .wrap{max-width:1000px; margin:0 auto; padding:20px 24px 90px;}
+  section{margin-top:40px; padding-top:40px; border-top:1px solid var(--gray-300);
+          scroll-margin-top:24px;}
+  h2{font-size:28px; line-height:1.15; margin:16px 0 16px;}
+  h2 + *{margin-top:0;}
+  .sec-kick{display:inline-block; font-family:var(--mono); font-size:10px;
+            text-transform:uppercase; letter-spacing:.18em; color:var(--muted);
+            background:var(--gray-100); border:var(--border);
+            border-radius:var(--radius-chip); padding:4px 11px;}
+  .section-lede{font-size:16.5px; color:var(--body);}
+  .section-lede + *{margin-top:24px;}
+
+  /* ---------- level 1 — the whole: one statement band directly on ivory ---------- */
+  h2.statement{font-size:clamp(30px, 4.6vw, 52px); line-height:1.15; margin:24px 0 0;
+               max-width:24ch;}
+  h2.statement em{font-style:italic; color:var(--clay-ink);}
+  .statement-note{margin-top:22px; font-family:var(--mono); font-size:10px;
+                  letter-spacing:.18em; text-transform:uppercase; color:var(--muted);}
+
+  /* ---------- panels — white 1.5px-bordered panels on ivory ---------- */
+  /* level 2: the pillar grid; level 3: full-width deep panels. Same panel
+     anatomy, two grades of the drill. */
+  .pillar-grid{display:grid; grid-template-columns:1fr 1fr; gap:20px; margin-top:24px;}
+  .part{background:var(--white); border:var(--border);
+        border-radius:var(--radius-panel); padding:26px 30px 24px;
+        scroll-margin-top:24px;}
+  /* :target — border warms to clay under a soft clay-soft ring,
+     border and ring moving as one. JS-free. */
+  .part:target{border-color:var(--clay);
+               box-shadow:0 0 0 4px var(--clay-soft);}
+  .p-label{font-family:var(--mono); font-size:10px; letter-spacing:.18em;
+           text-transform:uppercase; color:var(--clay-ink);}
+  .part h3{font-size:22px; line-height:1.2; margin-top:10px;}
+  .pillar p{margin-top:14px; font-size:14.5px; color:var(--body);}
+  .p-behavior{margin-top:14px; font-size:14.5px; color:var(--body);}
+  .pillar p b, .p-behavior b{color:var(--slate); font-weight:600;}
+  /* stacked full-width deep panels keep the grid's 20px rhythm */
+  #depth .part{margin-top:20px;}
+  .go{display:inline-block; margin-top:16px; font-family:var(--mono); font-size:10px;
+      letter-spacing:.14em; text-transform:uppercase; color:var(--clay-ink);
+      border:var(--border); border-bottom:var(--border); border-radius:var(--radius-chip);
+      padding:4px 11px;}
+  .go:hover{background:var(--clay-soft); border-color:var(--clay); border-bottom-color:var(--clay);}
+
+  /* ---------- level 3 — definition lede on the clay rule ---------- */
+  .p-def{margin-top:20px; margin-bottom:0; font-size:16.5px; line-height:1.55; color:var(--slate);
+         font-weight:500; border-left:3px solid var(--clay);
+         padding:8px 0 8px 16px;}
+
+  /* ---------- folds — LEVEL 4, JS-free disclosure ---------- */
+  details.fold{margin-top:16px;}
+  details.fold summary{cursor:pointer; list-style:none; font-family:var(--mono);
+                       font-size:11px; letter-spacing:.08em; text-transform:uppercase;
+                       color:var(--clay-ink);}
+  details.fold summary::-webkit-details-marker{display:none;}
+  details.fold summary::before{content:"+ "; color:var(--clay-ink); font-weight:600;}
+  details.fold[open] summary::before{content:"− ";}
+  details.fold[open] summary{margin-bottom:12px;}
+  details.fold .fold-body{padding-top:2px;}
+  .example{background:var(--oat); border:1px solid var(--gray-300);
+           border-radius:8px; padding:14px 16px; font-size:13.5px; color:var(--body);}
+  .example .etype{font-family:var(--mono); font-size:10px; letter-spacing:.14em;
+                  text-transform:uppercase; color:var(--muted); display:block;
+                  margin-bottom:5px;}
+  .example b{color:var(--slate); font-weight:600;}
+
+  /* ---------- figure — one drill-down tree on a gray-100 plate ---------- */
+  .fig{margin-top:22px; background:var(--gray-100); border:var(--border);
+       border-radius:var(--radius-panel); position:relative; overflow:hidden;}
+  .fig-h{display:flex; align-items:center; justify-content:space-between; gap:12px;
+         padding:10px 14px;}
+  .fig-id{font-family:var(--mono); font-size:10px; letter-spacing:.18em;
+          text-transform:uppercase; color:var(--muted);}
+  .fig-fs{font-family:var(--mono); font-size:10px; text-transform:uppercase;
+          letter-spacing:.14em; color:var(--gray-500); background:var(--white);
+          border:var(--border); border-radius:999px; padding:4px 10px; cursor:pointer;}
+  .fig-fs:hover{color:var(--clay-ink); border-color:var(--clay);}
+  .fig-fs:focus-visible{outline:2px solid var(--clay); outline-offset:2px;}
+  .fig-legend{display:flex; flex-wrap:wrap; gap:6px 18px; padding:0 14px 9px;
+              border-bottom:1px solid var(--gray-300); font-family:var(--mono);
+              font-size:10px; letter-spacing:.06em; text-transform:uppercase;
+              color:var(--muted);}
+  .fig-legend .lg{display:inline-flex; align-items:center; gap:6px;}
+  .fig-legend .lg-g{flex:none;}
+  .fig-b{padding:20px 18px;}
+  .fig-b svg{display:block; width:auto; max-width:100%; height:auto; margin:0 auto;}
+  /* pele → Clay mapping, on the .fig svg (CSS, never inline var() indirection) */
+  .fig svg{
+    --pele-fg:var(--slate);
+    --pele-fg-on-light:var(--body);
+    --pele-muted:var(--gray-500);
+    --pele-line:var(--gray-300);
+    --pele-surface:transparent;
+    --pele-surface-alt:transparent;
+    --pele-bg:transparent;
+    --pele-border:var(--gray-300);
+    --pele-accent:var(--clay);
+    --pele-critical:var(--rust);
+    --pele-error:var(--rust);
+    --pele-font:system-ui, -apple-system, sans-serif;
+    --pele-font-mono:ui-monospace, "SF Mono", Menlo, monospace;
+    --pele-title-weight:500;
+    --pele-heading-weight:500;
+    --pele-radius:4px;
+  }
+  .fig svg .pele-title{display:none;}
+  .fig-f{padding:10px 14px; border-top:1px solid var(--gray-300);
+         font-family:var(--mono); font-size:10px; letter-spacing:.18em;
+         text-transform:uppercase; color:var(--muted); text-align:center;}
+
+  /* ---------- level note — the reading-levels reminder ---------- */
+  .level-note{margin-top:24px; padding:14px 16px; background:var(--gray-100);
+              border:var(--border); border-radius:8px; font-size:14px;
+              color:var(--body);}
+  .level-note b{color:var(--clay-ink); font-weight:600;}
+
+  /* ---------- colophon ---------- */
+  .colophon p.statement{font-size:14.5px; color:var(--body);}
+  .colophon .row{display:flex; flex-wrap:wrap; gap:8px 24px; margin-top:20px;
+                 font-family:var(--mono); font-size:11px; letter-spacing:.06em;
+                 color:var(--muted);}
+
+  @media (max-width:860px){
+    .masthead{padding:36px 16px 0;}
+    .wrap{padding:12px 16px 72px;}
+    .part{padding:20px 18px 18px;}
+    .pillar-grid{grid-template-columns:1fr;}
+    .meta-row{gap:20px;}
+  }
+
+  /* ---------- dark mode — the token flip, carried wholesale ---------- */
+  @media (prefers-color-scheme: dark){
+    :root{
+      --ivory:#191817; --slate:#F0EEE6; --white:#201F1D;
+      --clay-ink:#FE6C2D; --clay-soft:#3A241A;
+      --oat:#4A4438; --olive-ink:#A9BC8B; --olive-soft:#262D1E;
+      --rust:#D98A80; --rust-soft:#3A2622;
+      --gray-100:#232220; --gray-300:#3D3D3A; --muted:#A5A39B; --body:#D6D4CC;
+    }
+  }
+
+  @media print{
+    body{background:#FFFFFF; color:#141413;}
+    :root{
+      --ivory:#FFFFFF; --slate:#141413; --white:#FFFFFF; --body:#3D3D3A;
+      --gray-100:#F5F4F0; --gray-300:#D1CFC5; --muted:#67665F;
+      --clay-ink:#B8430F; --clay-soft:#FDEBE0;
+      --olive-ink:#55673C; --olive-soft:#EEF2E6;
+      --rust:#B04A3F; --rust-soft:#F8ECE9;
+    }
+    nav.part-index{display:none;}
+    .wrap{padding:0 24px;}
+    .masthead{padding:0 24px;}
+    section{margin-top:36px; padding-top:24px;}
+    .part, .example, .fig, .level-note{break-inside:avoid;}
+    .part{box-shadow:none;}
+    /* :target effects neutralized on paper */
+    .part:target{border-color:var(--gray-300); box-shadow:none;}
+    h2.statement{font-size:34px;}
+    /* folds forced open — level 4 is never lost on paper */
+    details.fold > *:not(summary){display:block !important;}
+    details.fold summary::before{content:"− ";}
+  }
+</style>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="masthead-inner">
+    <div class="kicker">
+      <span class="pill"><b>te9-docs</b> · skills.te9.dev</span>
+      <span class="kicker-meta">whole &rarr; parts &rarr; depth &rarr; on demand</span>
+      <span class="page-no">06 / 36</span>
+    </div>
+    <span class="type-label">Top-down Explainer</span>
+    <h1>The whole suite, read <em>top-down</em></h1>
+    <p class="lede"><b>Who this is for:</b> anyone meeting te9-docs who wants the shape of it before the specifics. This document is its own best demo of the type: it opens with the suite as a whole in one breath, then drills — four pillars, each taken in depth, and the details only on demand. <b>Level 4 is not a section you scroll to; it is the folds you choose to open.</b> Progressive disclosure is the point of the type.</p>
+    <dl class="meta-row">
+      <div><dt>Prepared by</dt><dd>Founding session</dd></div>
+      <div><dt>Suite version</dt><dd>0.4.9</dd></div>
+      <div><dt>Approach</dt><dd>Whole &rarr; parts &rarr; depth &rarr; on demand</dd></div>
+      <div><dt>Status</dt><dd><span class="chip">Reviewed</span></dd></div>
+    </dl>
+    <nav class="part-index" aria-label="Part index">
+      <p class="index-title">Part index</p>
+      <div class="index-links">
+        <a href="#whole"><b>01</b>The whole</a>
+        <a href="#pillars"><b>02</b>Pillars</a>
+        <a href="#drilldown"><b>03</b>Fig &middot; 01</a>
+        <a href="#deep-1"><b>04</b>Design system</a>
+        <a href="#deep-2"><b>05</b>Workflow</a>
+        <a href="#deep-3"><b>06</b>Taxonomy</a>
+        <a href="#deep-4"><b>07</b>Growth</a>
+        <a href="#colophon"><b>08</b>Colophon</a>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<div class="wrap">
+
+  <!-- LEVEL 1 · THE WHOLE -->
+  <section id="whole">
+    <span class="sec-kick">Level 1 &middot; The whole</span>
+    <h2 class="statement">te9-docs is a document-suite skill: it produces <em>polished</em>, shareable, single-file HTML documents for human readers.</h2>
+    <p class="statement-note">The whole, in one breath &mdash; every level below drills into this sentence. It sits on the page itself: no panel, no fence.</p>
+  </section>
+
+  <!-- LEVEL 2 · THE FOUR PILLARS -->
+  <section id="pillars">
+    <span class="sec-kick">Level 2 &middot; The four pillars</span>
+    <h2>Four pillars hold the whole up</h2>
+    <p class="section-lede">The one-breath sentence comes apart into four pillars. Each panel below is a load-bearing part of the suite — the look, the run, the menu of types, the growth protocol — and each carries a link straight down to its Level 3 treatment. Nothing here is decoration.</p>
+
+    <div class="pillar-grid">
+
+      <article class="part pillar" id="pillar-1">
+        <div class="p-label">Pillar 01 &middot; The look</div>
+        <h3>The Clay design system</h3>
+        <p>Every Document wears one look: warm ivory paper ground, 1.5px hairlines, mono pill kickers, giant serif headlines with one italic clay word, and fenced gray-100 figure plates. One clay-orange thread does all the wayfinding.</p>
+        <a class="go" href="#deep-1">In depth &darr;</a>
+      </article>
+
+      <article class="part pillar" id="pillar-2">
+        <div class="p-label">Pillar 02 &middot; The run</div>
+        <h3>The production workflow</h3>
+        <p>A production run is six ordered steps — Intake, Index-first, Instance, Figures, Playback, Storage menu — carrying a request all the way to a stored Document.</p>
+        <a class="go" href="#deep-2">In depth &darr;</a>
+      </article>
+
+      <article class="part pillar" id="pillar-3">
+        <div class="p-label">Pillar 03 &middot; The menu</div>
+        <h3>The launch taxonomy</h3>
+        <p>36 templates at launch: the three Founding documents plus 33 additional types, registered in one machine-readable Index that is normative for discovery.</p>
+        <a class="go" href="#deep-3">In depth &darr;</a>
+      </article>
+
+      <article class="part pillar" id="pillar-4">
+        <div class="p-label">Pillar 04 &middot; The growth</div>
+        <h3>The autonomous growth protocol</h3>
+        <p>The suite grows itself: a session needing an unlisted type builds it to the same conventions, registers it in the Index, bumps the Suite version, and writes its own changelog line.</p>
+        <a class="go" href="#deep-4">In depth &darr;</a>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- THE DRILL-DOWN FIGURE -->
+  <section id="drilldown">
+    <span class="sec-kick">The drill-down map</span>
+    <h2>One tree, four levels</h2>
+    <p class="section-lede">The whole document as one tree. The double ring is Level 1 — the whole suite; the four clay rings are the pillars of Level 2; the gray dots are the key facts each Level 3 panel puts in depth. Level 4 is deliberately absent from the drawing: it exists only when a reader opens a fold. Rendered from Mermaid via pele at build time, then clayified into the ring grammar.</p>
+
+    <figure class="fig">
+      <div class="fig-h"><span class="fig-id">FIG &middot; 01</span><button class="fig-fs" type="button" aria-label="Open this diagram in a new tab">FULLSCREEN</button></div>
+            <div class="fig-legend"><span class="lg"><svg class="lg-g" width="14" height="14" viewBox="0 0 14 14" aria-hidden="true"><circle cx="7" cy="7" r="5" fill="none" stroke="#FE6C2D" stroke-width="2"/><circle cx="7" cy="7" r="2.5" fill="none" stroke="#FE6C2D" stroke-width="1.5"/></svg>double ring = the whole suite</span><span class="lg"><svg class="lg-g" width="14" height="14" viewBox="0 0 14 14" aria-hidden="true"><circle cx="7" cy="7" r="5" fill="none" stroke="#FE6C2D" stroke-width="2"/></svg>a pillar — level 2</span><span class="lg"><svg class="lg-g" width="12" height="12" viewBox="0 0 12 12" aria-hidden="true"><circle cx="6" cy="6" r="4" fill="#87867F"/></svg>a key fact</span></div>
+      <div class="fig-b"><svg xmlns="http://www.w3.org/2000/svg" class="pele pele-flowchart" viewBox="-40.599999999999994 0 914.59 560.25" width="915" height="560" style="--pele-bg:transparent;--pele-surface:transparent;--pele-surface-alt:transparent;--_bg:var(--pele-bg,#fff);--_fg:var(--pele-fg,#1f1f1f);--_m:var(--pele-muted,#6e6e6e);--_l:var(--pele-line,#1f1f1f);--_s:var(--pele-surface,#f3f3f3);--_a:var(--pele-surface-alt,#e6e6e6);--_b:var(--pele-border,#8a8a8a);--_c:var(--pele-accent,#5b7bd5);color:var(--_fg);--_fm:var(--pele-font-mono,monospace);font:16px sans-serif;letter-spacing:normal;word-spacing:normal;text-transform:none;direction:ltr;font-family:var(--pele-font,sans-serif)" fill="var(--_fg)" role="graphics-document document" aria-roledescription="flowchart">
+  <style>
+    @media (prefers-color-scheme: dark){
+      .clay-lab{fill:#F0EEE6;}
+      .clay-sub{fill:#A5A39B;}
+    }
+  </style><g transform="translate(0 28.060000000000002)"><g class="pele-edges" fill="none" stroke="var(--_l)" stroke-linecap="round"><g class="clay-edge" style="stroke:#D1CFC5;stroke-width:1.5px;"><path d="M399.48,64.86L105.40,271.28" fill="none"/></g><g class="clay-edge" style="stroke:#D1CFC5;stroke-width:1.5px;"><path d="M407.65,71.45L326.12,264.69" fill="none"/></g><g class="clay-edge" style="stroke:#D1CFC5;stroke-width:1.5px;"><path d="M422.81,71.27L509.74,264.87" fill="none"/></g><g class="clay-edge" style="stroke:#D1CFC5;stroke-width:1.5px;"><path d="M430.63,64.78L728.00,271.36" fill="none"/></g><g class="clay-edge" style="stroke:#D1CFC5;stroke-width:1.5px;"><path d="M83.88,300.24L38.20,438.36" fill="none"/></g><g class="clay-edge" style="stroke:#D1CFC5;stroke-width:1.5px;"><path d="M95.45,300.36L141.64,450.01" fill="none"/></g><g class="clay-edge" style="stroke:#D1CFC5;stroke-width:1.5px;"><path d="M313.07,300.33L266.01,450.86" fill="none"/></g><g class="clay-edge" style="stroke:#D1CFC5;stroke-width:1.5px;"><path d="M324.77,300.22L371.33,439.46" fill="none"/></g><g class="clay-edge" style="stroke:#D1CFC5;stroke-width:1.5px;"><path d="M512.03,300.39L470.93,436.58" fill="none"/></g><g class="clay-edge" style="stroke:#D1CFC5;stroke-width:1.5px;"><path d="M522.87,300.43L564.16,441.24" fill="none"/></g><g class="clay-edge" style="stroke:#D1CFC5;stroke-width:1.5px;"><path d="M737.46,300.18L684.47,455.50" fill="none"/></g><g class="clay-edge" style="stroke:#D1CFC5;stroke-width:1.5px;"><path d="M749.97,300.10L802.64,448.08" fill="none"/></g></g><g class="pele-edge-labels" font-size="14"><g class="pele-edge-label" data-id="L_TE_DS_0"><rect x="16.21" y="169.89" width="147.27" height="21" rx="3" fill="var(--_bg)"/><text x="89.85" y="185.29" text-anchor="middle">styles every document</text></g><g class="pele-edge-label" data-id="L_TE_WF_0"><rect x="234.2" y="169.89" width="169.07" height="21" rx="3" fill="var(--_bg)"/><text x="318.74" y="185.29" text-anchor="middle">produces every document</text></g><g class="pele-edge-label" data-id="L_TE_TX_0"><rect x="457.5" y="169.89" width="120.04" height="21" rx="3" fill="var(--_bg)"/><text x="517.52" y="185.29" text-anchor="middle">selects every type</text></g><g class="pele-edge-label" data-id="L_TE_GR_0"><rect x="692.52" y="169.89" width="102.15" height="21" rx="3" fill="var(--_bg)"/><text x="743.6" y="185.29" text-anchor="middle">grows the suite</text></g><g class="pele-edge-label" data-id="L_DS_DSC_0"><rect x="10.6" y="366.51" width="50.8" height="21" rx="3" fill="var(--_bg)"/><text x="36" y="381.91" text-anchor="middle">named</text></g><g class="pele-edge-label" data-id="L_DS_TOK_0"><rect x="110.14" y="366.51" width="67.11" height="21" rx="3" fill="var(--_bg)"/><text x="143.7" y="381.91" text-anchor="middle">first-class</text></g><g class="pele-edge-label" data-id="L_WF_INS_0"><rect x="224.91" y="366.51" width="78.03" height="21" rx="3" fill="var(--_bg)"/><text x="263.92" y="381.91" text-anchor="middle">copy, swap</text></g><g class="pele-edge-label" data-id="L_WF_GATE_0"><rect x="342.7" y="366.51" width="61.69" height="21" rx="3" fill="var(--_bg)"/><text x="373.55" y="381.91" text-anchor="middle">approval</text></g><g class="pele-edge-label" data-id="L_TX_FND_0"><rect x="438.06" y="366.51" width="61.7" height="21" rx="3" fill="var(--_bg)"/><text x="468.91" y="381.91" text-anchor="middle">founding</text></g><g class="pele-edge-label" data-id="L_TX_IDX_0"><rect x="531.4" y="366.51" width="69.46" height="21" rx="3" fill="var(--_bg)"/><text x="566.13" y="381.91" text-anchor="middle">normative</text></g><g class="pele-edge-label" data-id="L_GR_EXT_0"><rect x="639.69" y="366.51" width="85.04" height="21" rx="3" fill="var(--_bg)"/><text x="682.21" y="381.91" text-anchor="middle">autonomous</text></g><g class="pele-edge-label" data-id="L_GR_VER_0"><rect x="774.14" y="366.51" width="61.69" height="21" rx="3" fill="var(--_bg)"/><text x="804.99" y="381.91" text-anchor="middle">stamped</text></g></g><g class="pele-nodes"><g class="clay-node" data-id="TE"><circle cx="415.03" cy="53.94" r="17" fill="none" stroke="#FE6C2D" stroke-width="2"/><circle cx="415.03" cy="53.94" r="13" fill="none" stroke="#FE6C2D" stroke-width="1.5"/><text class="clay-lab" x="415.03" y="27.939999999999998" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="11" font-weight="600" fill="#141413">TE9-DOCS</text><text class="clay-sub" x="415.03" y="92.94" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="10" fill="#87867F">THE WHOLE · LEVEL 1</text></g><g class="clay-node" data-id="DS"><circle cx="89.85" cy="282.2" r="17" fill="none" stroke="#FE6C2D" stroke-width="2"/><text class="clay-lab" x="89.85" y="256.2" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="11" font-weight="600" fill="#141413">DESIGN SYSTEM</text><text class="clay-sub" x="89.85" y="321.2" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="10" fill="#87867F">LEVEL 2 · PILLAR 01</text></g><g class="clay-node" data-id="WF"><circle cx="318.74" cy="282.2" r="17" fill="none" stroke="#FE6C2D" stroke-width="2"/><text class="clay-lab" x="318.74" y="256.2" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="11" font-weight="600" fill="#141413">WORKFLOW</text><text class="clay-sub" x="318.74" y="321.2" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="10" fill="#87867F">LEVEL 2 · PILLAR 02</text></g><g class="clay-node" data-id="TX"><circle cx="517.52" cy="282.2" r="17" fill="none" stroke="#FE6C2D" stroke-width="2"/><text class="clay-lab" x="517.52" y="256.2" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="11" font-weight="600" fill="#141413">TAXONOMY</text><text class="clay-sub" x="517.52" y="321.2" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="10" fill="#87867F">LEVEL 2 · PILLAR 03</text></g><g class="clay-node" data-id="GR"><circle cx="743.6" cy="282.2" r="17" fill="none" stroke="#FE6C2D" stroke-width="2"/><text class="clay-lab" x="743.6" y="256.2" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="11" font-weight="600" fill="#141413">GROWTH</text><text class="clay-sub" x="743.6" y="321.2" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="10" fill="#87867F">LEVEL 2 · PILLAR 04</text></g><g class="clay-node" data-id="DSC"><circle cx="36" cy="445.01" r="5" fill="#87867F"/><text class="clay-lab" x="36" y="429.01" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="11" font-weight="600" fill="#141413">CLAY EXPLAINER</text><text class="clay-sub" x="36" y="463.01" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="10" fill="#87867F">THE SYSTEM, NAMED</text></g><g class="clay-node" data-id="TOK"><circle cx="143.7" cy="456.7" r="5" fill="#87867F"/><text class="clay-lab" x="143.7" y="440.7" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="11" font-weight="600" fill="#141413">TOKEN FLIP</text><text class="clay-sub" x="143.7" y="474.7" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="10" fill="#87867F">DARK MODE + PRINT</text></g><g class="clay-node" data-id="INS"><circle cx="263.92" cy="457.54" r="5" fill="#87867F"/><text class="clay-lab" x="263.92" y="441.54" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="11" font-weight="600" fill="#141413">INSTANCE</text><text class="clay-sub" x="263.92" y="475.54" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="10" fill="#87867F">COPY + CONTENT SWAP</text></g><g class="clay-node" data-id="GATE"><circle cx="373.55" cy="446.1" r="5" fill="#87867F"/><text class="clay-lab" x="373.55" y="430.1" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="11" font-weight="600" fill="#141413">REVIEW GATE</text><text class="clay-sub" x="373.55" y="464.1" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="10" fill="#87867F">BROWSER APPROVAL</text></g><g class="clay-node" data-id="FND"><circle cx="468.91" cy="443.28" r="5" fill="#87867F"/><text class="clay-lab" x="468.91" y="427.28" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="11" font-weight="600" fill="#141413">FOUNDING TRIO</text><text class="clay-sub" x="468.91" y="461.28" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="10" fill="#87867F">BRIEF · DOSSIER · DECK</text></g><g class="clay-node" data-id="IDX"><circle cx="566.13" cy="447.96" r="5" fill="#87867F"/><text class="clay-lab" x="566.13" y="431.96" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="11" font-weight="600" fill="#141413">INDEX</text><text class="clay-sub" x="566.13" y="465.96" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="10" fill="#87867F">ONE REGISTRY, NORMATIVE</text></g><g class="clay-node" data-id="EXT"><circle cx="682.21" cy="462.13" r="5" fill="#87867F"/><text class="clay-lab" x="682.21" y="446.13" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="11" font-weight="600" fill="#141413">EXTENSION PROTOCOL</text><text class="clay-sub" x="682.21" y="480.13" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="10" fill="#87867F">FULLY AUTONOMOUS</text></g><g class="clay-node" data-id="VER"><circle cx="804.99" cy="454.67" r="5" fill="#87867F"/><text class="clay-lab" x="804.99" y="438.67" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="11" font-weight="600" fill="#141413">SUITE VERSION</text><text class="clay-sub" x="804.99" y="472.67" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="10" fill="#87867F">SEMVER, STAMPED</text></g></g></g></svg></div>
+      <div class="fig-f">RENDERED VIA PELE, CLAYIFIED</div>
+    </figure>
+  </section>
+
+  <!-- LEVEL 3 · EACH PILLAR IN DEPTH -->
+  <section id="depth">
+    <span class="sec-kick">Level 3 &middot; Each pillar in depth</span>
+    <h2>Four panels, one per pillar</h2>
+    <p class="section-lede">Each panel takes one pillar in depth: a definition lede worded from the suite's glossary, the behavior as the suite actually runs it — and, at the bottom of each, one fold. <b>The folds are Level 4: on-demand depth.</b> Progressive disclosure is the organizing principle of this type, so the fourth level has no section of its own — it is exactly as deep as you choose to read.</p>
+
+    <article class="part" id="deep-1">
+      <div class="p-label">Level 3 &middot; Pillar 01</div>
+      <h3>The Clay design system</h3>
+      <p class="p-def">Clay Explainer — the suite's one design system: warm ivory paper ground, 1.5px hairlines, mono pill kickers, giant serif headlines with one italic clay word, and fenced gray-100 figure plates with mono FIG &middot; NN captions.</p>
+      <div class="p-behavior">
+        <p>The system is specified in <b>references/CLAY-STYLE.md</b>, extracted from the founding examples. Accent discipline is baked in: raw clay <b>#FE6C2D</b> is decorative-only on light ground — borders, rings, icons — and every piece of accent text retunes to <b>--clay-ink #B8430F</b> for AA contrast. Olive and rust support it, each with ink and soft variants.</p>
+        <p>Three system faces, zero webfonts: ui-serif display, system-ui body, ui-monospace micro-labels — which is why every document ships with <b>zero network requests</b>. And under Clay discipline, <b>zero scripts</b> by default: <b>&lt;details&gt;</b> folds, <b>:target</b> jumps and hover states carry every interaction, with anything more needing the script whitelist.</p>
+      </div>
+      <details class="fold">
+        <summary>Level 4 &middot; why the orange never carries text</summary>
+        <div class="fold-body">
+          <div class="example">
+            <span class="etype">The retune, in one number</span>
+            <p>Raw clay on ivory measures <b>2.69:1</b> — fine for a ring, illegible for a sentence. So the palette carries two clays: the raw one for everything decorative, and <b>--clay-ink #B8430F</b>, at 4.70:1 or better everywhere it carries text, for every word. In dark mode the relationship flips and clay itself becomes AA text again — one token flip, no redesign.</p>
+          </div>
+        </div>
+      </details>
+    </article>
+
+    <article class="part" id="deep-2">
+      <div class="p-label">Level 3 &middot; Pillar 02</div>
+      <h3>The production workflow</h3>
+      <p class="p-def">A production run is the suite's six-step workflow — intake before any writing, storage only after approval.</p>
+      <div class="p-behavior">
+        <p><b>1 &middot; Intake</b> asks for the document's goal and acceptance criteria, and states the skill's own recommendation — type and approach — from context. <b>2 &middot; Index-first</b> reads the suite index (<b>assets/templates/index.json</b>) and grounds the type decision in it, confirming with the user if two types could match. <b>3 &middot; Instance</b> copies the Template and swaps its self-describing placeholders for real facts, preserving layout, interactions and Clay tokens.</p>
+        <p><b>4 &middot; Figures</b> renders Mermaid through pele at build time into inline SVG in Clay variables. <b>5 &middot; Playback</b> — the Review gate — shows the document in the browser and folds in the reader's feedback. <b>6 &middot; Storage menu</b> offers the finished Document its place to live.</p>
+      </div>
+      <details class="fold">
+        <summary>Level 4 &middot; the storage menu's fourth option always wins</summary>
+        <div class="fold-body">
+          <div class="example">
+            <span class="etype">Precedence, not preference</span>
+            <p>The menu: <b>(a)</b> the project's docs folder, <b>(b)</b> the central collection, <b>(c)</b> preview only — and <b>(4th)</b> specify a location, which always wins when used. The fourth option is not a fourth peer but an override: a reader who names a path ends the menu in one move, and the Document goes exactly there.</p>
+          </div>
+        </div>
+      </details>
+    </article>
+
+    <article class="part" id="deep-3">
+      <div class="p-label">Level 3 &middot; Pillar 03</div>
+      <h3>The launch taxonomy</h3>
+      <p class="p-def">Launch taxonomy — 36 templates: the three Founding documents plus 33 additional types, from introduction of concepts to tutorial.</p>
+      <div class="p-behavior">
+        <p>The Founding documents came first: <b>brief.html</b> (decision brief), <b>dossier.html</b> (evidence dossier) and <b>deck.html</b> (presentation deck), converted from the examples with their placeholders rewritten about the suite. Around them stand the 33 additional types — introduction of concepts, concept breakdown, top-down explainer, standard operating procedure, API documentation, tutorial, and more.</p>
+        <p>Discovery runs through one machine-readable registry: the <b>Index</b> at <b>assets/templates/index.json</b>, generated from the template directory and normative for type decisions — no keyword heuristics file.</p>
+      </div>
+      <details class="fold">
+        <summary>Level 4 &middot; this document is one of the 33</summary>
+        <div class="fold-body">
+          <div class="example">
+            <span class="etype">Self-describing, literally</span>
+            <p>Top-down explainer is named in the taxonomy — and this Template is that type, documenting the suite with its own grammar. When a session needs a type the taxonomy lacks, it does not wait: the growth protocol below turns the gap into the next registration.</p>
+          </div>
+        </div>
+      </details>
+    </article>
+
+    <article class="part" id="deep-4">
+      <div class="p-label">Level 3 &middot; Pillar 04</div>
+      <h3>The autonomous growth protocol</h3>
+      <p class="p-def">Extension protocol — fully autonomous: a session needing an unlisted type builds it to the same conventions and registers it itself.</p>
+      <div class="p-behavior">
+        <p>The protocol is a fixed sequence: build the new type to the suite's conventions — Clay, self-describing content, whitelist compliance, quality gates — save it to <b>assets/templates/</b>, register it in the Index, bump the Suite version, and write the session's own changelog line. The user discovers new types in the Index next session.</p>
+        <p>Growth is how this document exists: this top-down explainer reached the suite through the same protocol it describes.</p>
+      </div>
+      <details class="fold">
+        <summary>Level 4 &middot; what each version bump means</summary>
+        <div class="fold-body">
+          <div class="example">
+            <span class="etype">Semver, stamped in the brief</span>
+            <p>The Suite version is semver <b>MAJOR.MINOR.PATCH</b>: a new template bumps <b>MINOR</b>, a template or convention fix bumps <b>PATCH</b>, a breaking change bumps <b>MAJOR</b>. Every bump appends a one-line changelog entry — the version number is the suite's own top-down summary.</p>
+          </div>
+        </div>
+      </details>
+    </article>
+
+    <p class="level-note">Reading levels: <b>1</b> the statement on ivory &middot; <b>2</b> the pillar grid &middot; <b>3</b> these four panels &middot; <b>4</b> the folds you just opened — progressive disclosure is the fourth level, and it has no section of its own.</p>
+  </section>
+
+  <!-- COLOPHON -->
+  <section id="colophon" class="colophon">
+    <span class="sec-kick">Colophon</span>
+    <h2>Top-down Explainer &middot; template v0.1</h2>
+    <p class="statement">Assembled as one drill: a statement band on ivory, a 2&times;2 pillar grid, one drill-down tree, four full-width depth panels — and the folds as the fourth level, so details cost a click, never a scroll. Every fact comes from the suite brief; the layout grammar is Clay, and the only script is the whitelisted fullscreen listener.</p>
+    <div class="row">
+      <span>DOC ID &middot; TE9-TDD-001</span>
+      <span>SUITE VERSION &middot; 0.4.9</span>
+      <span>SUITE &middot; <a href="../README.html">te9-docs</a></span>
+      <span>SIBLINGS &middot; <a href="01-brief.html">Decision Brief</a> &middot; <a href="02-dossier.html">Evidence Dossier</a> &middot; <a href="03-deck.html">Presentation Deck</a> &middot; <a href="04-introduction-of-concepts.html">Introduction of Concepts</a> &middot; <a href="05-concept-breakdown.html">Concept Breakdown</a></span>
+      <span>PREPARED BY &middot; Founding session</span>
+    </div>
+  </section>
+
+</div>
+
+<script>
+  document.querySelectorAll('.fig-fs').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var svg = btn.closest('.fig').querySelector('svg');
+      var blob = new Blob([svg.outerHTML], { type: 'image/svg+xml' });
+      window.open(URL.createObjectURL(blob), '_blank');
+    });
+  });
+</script>
+</body>
+</html>

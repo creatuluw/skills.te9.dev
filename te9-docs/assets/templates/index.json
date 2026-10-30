@@ -1,0 +1,147 @@
+{
+  "suite-version": "2.7.0",
+  "design-system": "Clay Explainer",
+  "note": "Generated from the template directory. Regenerate on extension; never hand-edit entries.",
+  "templates": [
+    {
+      "slug": "brief",
+      "file": "01-brief.html",
+      "description": "Decision brief: one sheet on ivory â€” options with kill rules, weighted matrix, risk pairs, verdict; the founding brief layout"
+    },
+    {
+      "slug": "dossier",
+      "file": "02-dossier.html",
+      "description": "Evidence dossier: TOC pills, TL;DR pillars, findings with fold-out receipts, citation map, ink verdict; the founding dossier layout"
+    },
+    {
+      "slug": "deck",
+      "file": "03-deck.html",
+      "description": "Presentation deck: cover hero, numbered cards, journey SVG, timeline, rec figure; arrow-key navigation (the one sanctioned script)"
+    },
+    {
+      "slug": "introduction-of-concepts",
+      "file": "04-introduction-of-concepts.html",
+      "description": "Introduction of concepts: concept panels with definitions, why-it-matters, fold-out worked examples, cross-link chips, relationship figure; for orienting a reader in a new concept set"
+    },
+    {
+      "slug": "top-down-explainer",
+      "file": "06-top-down-explainer.html",
+      "description": "Top-down explainer: the whole in one breath, then drill-down levels — statement band, pillar grid, per-pillar depth panels, folds as level 4; drill-down tree figure"
+    },
+    {
+      "slug": "i-am-12-explainer",
+      "file": "07-i-am-12-explainer.html",
+      "description": "I-am-12 explainer: real facts in 12-year-old words — short sentences, everyday metaphors, story-step panels, big-words-simply term cards with verbatim glossary folds"
+    },
+    {
+      "slug": "feature-breakdown",
+      "file": "08-feature-breakdown.html",
+      "description": "Feature breakdown: capability cards, pipeline figure, a real source-to-plate proof pair, options table, honest limitations — for mastering one product feature"
+    },
+    {
+      "slug": "what-how-why-who-when",
+      "file": "09-what-how-why-who-when.html",
+      "description": "Five-lens explainer: one subject through WHAT/HOW/WHY/WHO/WHEN — giant interrogative stamps, perfectly equal lens sections, hub figure; for full-circle orientation"
+    },
+    {
+      "slug": "decisions-log",
+      "file": "10-decisions-log.html",
+      "description": "Decisions log: a ruled, append-ordered ledger of decisions — ID/date/status rail, always-visible one-liner, reasoning folds; superseded entries struck and chipped"
+    },
+    {
+      "slug": "research-report",
+      "file": "11-research-report.html",
+      "description": "Research report: question, method band, numbered findings with root-cause/fix/status, conclusion contract, recommendations strip — evidence-first investigation"
+    },
+    {
+      "slug": "directional-report",
+      "file": "12-directional-report.html",
+      "description": "Directional report: current position, chosen direction with BECAUSE rows, cluster markers timeline, explicit anti-direction cards, review triggers — the bearing, stated"
+    },
+    {
+      "slug": "concept-breakdown",
+      "file": "05-concept-breakdown.html",
+      "description": "Concept breakdown: the anatomy of ONE concept — subject double ring, 4-6 part panels with definition/behavior/folds, misconceptions, composition run-order"
+    },
+    {
+      "slug": "management-report",
+      "file": "13-management-report.html",
+      "description": "Management report: BLUF verdict, KPI tiles, cluster progress bars, highlights/lowlights, decisions needed — scannable in 60 seconds"
+    },
+    {
+      "slug": "data-report",
+      "file": "14-data-report.html",
+      "description": "Data report: dataset + method, pele pie and xychart charts in clay series colors, metrics table with real byte counts, numbered observations — numbers-first reporting"
+    },
+    {
+      "slug": "annual-report",
+      "file": "15-annual-report.html",
+      "description": "Annual report: publication-grade yearly summary — cover numeral, year-at-a-glance tiles, signed lead's letter, the day in review timeline, performance table, portfolio catalog, outlook"
+    },
+    {
+      "slug": "project-plan",
+      "file": "16-project-plan.html",
+      "description": "Project plan: objective band, scope in/out, five phase panels with deliverables/exit-criteria/status, milestone chain to v1.0.0, dependencies & risks, governance — the execution contract"
+    },
+    {
+      "slug": "high-level-timelines-and-steps",
+      "file": "17-high-level-timelines-and-steps.html",
+      "description": "High-level timelines and steps: the suite's four core processes as step tracks — numbered circles on hairlines, per-step trigger/output cards, effort estimates; the sequencing view"
+    },
+    {
+      "slug": "workflow-template",
+      "file": "18-workflow-template.html",
+      "description": "Workflow template: roles strip, do/verify step rows with role chips, decision-point callouts, per-phase checklists, definition-of-done band; swimlane figure in two role lanes"
+    },
+    {
+      "slug": "meeting-notes",
+      "file": "19-meeting-notes.html",
+      "description": "Meeting notes: attendees, agenda, per-topic discussion, decisions made as chip-led rows, action table with owners, follow-ups — the suite's lightest grammar, everything visible"
+    },
+    {
+      "slug": "interview-transcript",
+      "file": "20-interview-transcript.html",
+      "description": "Interview transcript: turn-taking Q&A in four themes — speaker chips, clay-ruled answers, ink pull quotes; true founding-session history"
+    },
+    {
+      "slug": "standard-operating-procedure",
+      "file": "21-standard-operating-procedure.html",
+      "description": "Standard operating procedure: doc-control table, numbered clauses with MUST/SHALL, verification, records, revision history, approval block — the compliance-grade grammar. Subject: operating the figure pipeline"
+    },
+    {
+      "slug": "api-documentation",
+      "file": "22-api-documentation.html",
+      "description": "API documentation: precision reference for the build-time CLI — signatures, parameter tables, real captured examples, exit codes, PeleError anatomy; documented from source, verified by running the tools"
+    },
+    {
+      "slug": "request-for-proposal",
+      "file": "23-request-for-proposal.html",
+      "description": "Request for proposal: outbound solicitation — background, objectives, scope in/out, mandatory/desirable requirements, weighted evaluation (sums 100), submission instructions, timeline, terms. Subject: RFP-2026-01, the accessibility & print audit"
+    },
+    {
+      "slug": "request-for-information",
+      "file": "24-request-for-information.html",
+      "description": "Request for information: the light inquiry — control table, not-a-solicitation strip, four numbered question groups on automated template-quality tooling, response guidelines, explicit no-obligation next steps"
+    },
+    {
+      "slug": "business-case",
+      "file": "25-business-case.html",
+      "description": "Business case: retrospective validation of the founding investment — three options with cost models, cost-benefit table, break-even xychart (clay series), sensitivity rows, risks, validated verdict"
+    },
+    {
+      "slug": "rolling-forecast",
+      "file": "26-rolling-forecast.html",
+      "description": "Rolling forecast: window band with the re-roll rule, forecast-vs-actuals ledger with variance chips, cumulative actuals+forecast xychart to the 35-template horizon, assumptions in the open"
+    },
+    {
+      "slug": "cashflow-statement",
+      "file": "27-cashflow-statement.html",
+      "description": "Cashflow statement: the v1.0.0 build economy in effort hours — inflows/outflows by activity, per-period columns, net rows, double-ruled closing balance, accounting policy notes, balance xychart"
+    },
+    {
+      "slug": "2d-quadrant-overview",
+      "file": "28-2d-quadrant-overview.html",
+      "description": "2D quadrant overview: the last eight types plotted by build effort vs reader impact — native pele quadrantChart, four corner-meaning sections with resident tables and build-order consequences, landed anchors proving the axes"
+    }
+  ]
+}

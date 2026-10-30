@@ -1,0 +1,941 @@
+<!doctype html>
+<!-- te9-docs suite — self-describing placeholder · v1.9.0 — STYLE: Clay Explainer -->
+<!-- ================================================================
+     LLM AUTHORING CONTRACT — API DOCUMENTATION v0.1 —
+     STYLE: Clay Explainer
+     te9-docs suite — self-describing placeholder. Paste this comment
+     into the authoring LLM alongside the source material. The LLM
+     assembles; it does not redesign.
+
+     TASK        Document ONE tool surface as a precision reference:
+                 signatures, parameter tables, invocations with their
+                 expected output, error/exit-code tables. Everything
+                 exact — a reader integrates against this page, so
+                 every fact is transcribed from the real sources.
+     FORMAT      API reading document: masthead + REFERENCE CONTROL
+                 table, index pill strip, numbered sections, one tool
+                 section per tool (signature → parameters → example →
+                 errors), one chain figure, an error-handling section,
+                 colophon.
+     HIERARCHY   doc > section > tool > (no folds — a reference hides
+                 nothing the integrator needs)
+     SECTION     masthead (h1 + reference-control table + index)
+                 → 1 reference surface (+ FIG · 01 chain) → 2 shared
+                 conventions (arg grammar, exit-code contract, output
+                 discipline) → 3 render-figure.mjs → 4 clayify.mjs →
+                 5 render-figure-video.mjs → 6 error handling →
+                 colophon
+     ORDER       sections numbered 1–6; every tool section keeps the
+                 same block order: SIGNATURE, PARAMETERS, EXAMPLE,
+                 ERRORS; colophon last.
+
+     BLOCK GRAMMAR
+       reference-control  ruled table at the top of the masthead —
+                          reference ID, documents, suite, engine,
+                          owner; one chip only (Current)
+       tool section       tool head (exact lowercase path pill + role
+                          line) → SIGNATURE usage block (verbatim from
+                          the source) → PARAMETERS ruled table (name ·
+                          type · default · behavior) → EXAMPLE: the
+                          invocation on a gray-100 mono plate, its
+                          expected output on an ink terminal block →
+                          ERRORS ruled table (exit · message · cause)
+       spec schema        clayify's spec JSON as a ruled table
+                          (key · type · default · meaning)
+       pipeline steps     SOP clause rows (left rail = STEP n) for the
+                          video tool's five-stage render pipeline
+       terminal           ink block: fixed dark ground in both modes,
+                          output verbatim as the tool prints it — only
+                          real captured output goes in a terminal
+       figure             pele chain of the three tools, one ring per
+                          tool, double ring = the document, gray dots =
+                          files; fenced gray-100 plate, clayified
+                          legend row pasted into the plate header, mono
+                          FIG · NN caption, FULLSCREEN pill
+     IRON RULES   Every flag, default, message, log line and exit code
+                  transcribed from the actual sources (render-figure.mjs,
+                  clayify.mjs, render-figure-video.mjs, pele 1.12.0) —
+                  no invention, no paraphrase of stderr. Terminal blocks
+                  carry only output actually captured from a run.
+                  No <details> anywhere; zero scripts beyond the
+                  whitelisted fullscreen listener.
+     VOICE        Exact, declarative, checkable. Short sentences.
+     STATUS       One chip only, in the reference-control head: Current.
+     COLORS       decorative clay #FE6C2D, text clay #B8430F, on ivory
+                 #FAF9F5 with slate ink #141413 — olive #55673C,
+                 rust #B04A3F supporting — do not deviate. Dark mode:
+                 token flip under prefers-color-scheme; the terminal
+                 blocks stay dark in both modes.
+================================================================ -->
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>te9-docs · API Documentation — suite v1.9.0</title>
+<style>
+  :root{
+    --ivory:#FAF9F5; --slate:#141413; --white:#FFFFFF;
+    --clay:#FE6C2D; --clay-ink:#B8430F; --clay-soft:#FDEBE0;
+    --oat:#E3DACC; --olive:#788C5D; --olive-ink:#55673C; --olive-soft:#EEF2E6;
+    --rust:#B04A3F; --rust-soft:#F8ECE9;
+    --gray-100:#F0EEE6; --gray-300:#D1CFC5; --muted:#67665F; --body:#3D3D3A;
+    --serif:ui-serif, Georgia, serif;
+    --sans:system-ui, -apple-system, sans-serif;
+    --mono:ui-monospace, "SF Mono", Menlo, monospace;
+    --radius-panel:12px; --radius-chip:999px;
+    --border:1.5px solid var(--gray-300);
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto;}
+  }
+  body{background:var(--ivory); color:var(--slate); font-family:var(--sans);
+       font-size:15.5px; line-height:1.6; -webkit-font-smoothing:antialiased;}
+  h1,h2,h3{font-family:var(--serif); font-weight:500; letter-spacing:-.01em;}
+  a{color:var(--clay-ink); text-decoration:none; border-bottom:1px dotted var(--clay-ink);}
+  a:hover{border-bottom-style:solid;}
+  a:focus-visible, summary:focus-visible{outline:2px solid var(--clay-ink); outline-offset:2px;}
+
+  /* ---------- kicker — pill + meta, the shared hero grammar ---------- */
+  .kicker{display:flex; align-items:baseline; gap:12px; flex-wrap:wrap;}
+  .pill{font-family:var(--mono); font-size:11px; text-transform:uppercase;
+        letter-spacing:.06em; color:var(--muted); background:var(--gray-100);
+        border:var(--border); border-radius:var(--radius-chip); padding:5px 11px;
+        white-space:nowrap;}
+  .pill b{color:var(--clay-ink); font-weight:500;}
+  .kicker-meta{font-family:var(--mono); font-size:11px; text-transform:uppercase;
+               letter-spacing:.18em; color:var(--muted);}
+  .page-no{margin-left:auto; font-family:var(--mono); font-size:11px;
+           letter-spacing:.18em; color:var(--muted); white-space:nowrap;}
+  .type-label{display:inline-block; margin-top:24px; font-family:var(--mono); font-size:11px;
+              text-transform:uppercase; letter-spacing:.06em; color:var(--muted);
+              background:var(--gray-100); border:var(--border);
+              border-radius:var(--radius-chip); padding:5px 11px;}
+
+  /* ---------- masthead — the hero directly on ivory ---------- */
+  .masthead{padding:56px 24px 0;}
+  .masthead-inner{max-width:1000px; margin:0 auto;}
+  h1{font-size:clamp(44px, 6.5vw, 80px); line-height:1.05; margin-top:20px; max-width:16ch;}
+  h1 em{font-style:italic; color:var(--clay-ink);}
+  .lede{margin-top:26px; font-size:17.5px; line-height:1.6; color:var(--body); border-left:3px solid var(--clay); padding:4px 0 4px 20px;}
+  .lede b{color:var(--slate); font-weight:600;}
+  .lede code{font-family:var(--mono); font-size:.9em; color:var(--slate);
+             background:var(--gray-100); border:1px solid var(--gray-300);
+             border-radius:4px; padding:1px 5px; white-space:nowrap;}
+
+  /* ---------- REFERENCE CONTROL — the formal signature of the API grammar ---------- */
+  .dc-head{display:flex; align-items:center; gap:12px; margin-top:32px;}
+  .dc-title{font-family:var(--mono); font-size:10px; letter-spacing:.18em;
+            text-transform:uppercase; color:var(--muted);}
+  .chip{display:inline-block; font-family:var(--mono); font-size:11px;
+        letter-spacing:.06em; text-transform:uppercase; padding:4px 12px;
+        border-radius:var(--radius-chip); background:var(--clay-soft);
+        color:var(--clay-ink); border:1px solid var(--clay); white-space:nowrap;}
+  .dc-head .chip{margin-left:auto;}
+  .dc{margin-top:10px; background:var(--white); border:var(--border);
+      border-radius:var(--radius-panel); overflow:hidden;}
+  .dc table{width:100%; border-collapse:collapse;}
+  .dc th,.dc td{padding:11px 16px; border-top:1px solid var(--gray-300);
+                text-align:left; vertical-align:top;}
+  .dc tr:first-child th,.dc tr:first-child td{border-top:none;}
+  .dc th{font-family:var(--mono); font-size:10px; letter-spacing:.14em;
+         text-transform:uppercase; color:var(--muted); font-weight:500;
+         width:190px; white-space:nowrap;}
+  .dc td{font-size:14.5px; color:var(--slate); font-weight:500;}
+  .dc td .mono{font-family:var(--mono); font-size:13.5px; letter-spacing:.02em;}
+  .dc td .id{font-family:var(--mono); font-size:14px; font-weight:600;
+             letter-spacing:.04em; color:var(--clay-ink);}
+  .dc td code{font-family:var(--mono); font-size:13px; color:var(--slate);}
+
+  /* ---------- index — mono pill strip, jump-nav grammar ---------- */
+  nav.proc-index{margin-top:26px;}
+  .index-title{font-family:var(--mono); font-size:10px; letter-spacing:.18em;
+               text-transform:uppercase; color:var(--muted); margin-bottom:10px;}
+  .index-links{display:flex; flex-wrap:wrap; gap:8px;}
+  .index-links a{font-family:var(--mono); font-size:11px; letter-spacing:.06em;
+                 color:var(--muted); background:var(--white);
+                 border:var(--border); border-bottom:var(--border);
+                 border-radius:var(--radius-chip); padding:5px 11px;}
+  .index-links a b{color:var(--clay-ink); font-weight:500; margin-right:4px;}
+  .index-links a:hover{background:var(--clay-soft); border-color:var(--clay);
+                       border-bottom-color:var(--clay);}
+
+  /* ---------- layout — section rhythm convention ---------- */
+  .wrap{max-width:1000px; margin:0 auto; padding:20px 24px 90px;}
+  section{margin-top:40px; padding-top:40px; border-top:1px solid var(--gray-300);
+          scroll-margin-top:24px;}
+  h2{font-size:28px; line-height:1.15; margin:16px 0 16px;}
+  h2 + *{margin-top:0;}
+  .sec-kick{display:inline-block; font-family:var(--mono); font-size:10px;
+            text-transform:uppercase; letter-spacing:.18em; color:var(--muted);
+            background:var(--gray-100); border:var(--border);
+            border-radius:var(--radius-chip); padding:4px 11px;}
+  section:target{box-shadow:0 -3px 0 0 var(--clay);}
+  section:target .sec-kick{background:var(--clay-soft); border-color:var(--clay); color:var(--clay-ink);}
+  .section-lede{font-size:16.5px; color:var(--body);}
+  .section-lede + *{margin-top:24px;}
+  .section-lede b{color:var(--slate); font-weight:600;}
+  .section-lede code{font-family:var(--mono); font-size:.9em; color:var(--slate);
+                     background:var(--gray-100); border:1px solid var(--gray-300);
+                     border-radius:4px; padding:1px 5px; white-space:nowrap;}
+
+  /* ---------- tool head — exact path pill + role ---------- */
+  .tool-head{display:flex; align-items:center; gap:14px; flex-wrap:wrap; margin-top:4px;}
+  .tool-name{font-family:var(--mono); font-size:14.5px; font-weight:600;
+             letter-spacing:.02em; color:var(--slate); background:var(--gray-100);
+             border:var(--border); border-radius:var(--radius-chip); padding:6px 14px;
+             white-space:nowrap;}
+  .tool-role{font-size:14.5px; color:var(--muted);}
+
+  /* ---------- SIGNATURE + terminal — command on paper, output on ink ---------- */
+  .block-label{margin-top:26px; font-family:var(--mono); font-size:10px; letter-spacing:.18em;
+               text-transform:uppercase; color:var(--muted);}
+  .usage{margin-top:10px; background:var(--gray-100); border:var(--border);
+         border-radius:var(--radius-panel); padding:12px 16px; font-family:var(--mono);
+         font-size:13px; line-height:1.75; color:var(--slate); overflow-x:auto;
+         white-space:pre;}
+  .usage .u-p{color:var(--clay-ink); font-weight:600;}
+  .term{margin-top:10px; background:#141413; color:#D6D4CC; border:1.5px solid #141413;
+        border-radius:var(--radius-panel); padding:12px 16px; font-family:var(--mono);
+        font-size:12.5px; line-height:1.8; overflow-x:auto; white-space:pre;}
+  .term .t-cmd{color:#FE6C2D;}
+  .term .t-ok{color:#A9BC8B;}
+  .code-cap{margin-top:8px; font-family:var(--mono); font-size:10px; letter-spacing:.12em;
+            text-transform:uppercase; color:var(--muted); line-height:1.8;}
+  .code-cap b{color:var(--clay-ink); font-weight:500;}
+
+  /* ---------- clause rows — conventions, pipeline steps ---------- */
+  .clauses{display:grid; gap:8px; margin-top:4px;}
+  .clause{display:grid; grid-template-columns:96px 1fr; gap:16px;
+          background:var(--white); border:var(--border);
+          border-radius:var(--radius-panel); padding:13px 16px;
+          scroll-margin-top:24px;}
+  .clause:target{border-color:var(--clay); box-shadow:0 0 0 4px var(--clay-soft);}
+  .clause-rail{display:flex; flex-direction:column; align-items:flex-start; gap:4px;
+               border-right:1px solid var(--gray-300); padding-right:14px;}
+  .clause-tag{font-family:var(--mono); font-size:9.5px; letter-spacing:.16em;
+              text-transform:uppercase; color:var(--muted);}
+  .clause-no{font-family:var(--mono); font-size:16px; font-weight:600;
+             letter-spacing:.04em; color:var(--clay-ink);}
+  .clause-text{font-size:14.5px; line-height:1.65; color:var(--body);}
+  .clause-text b{color:var(--clay-ink); font-weight:600;}
+  .clause-text code{font-family:var(--mono); font-size:.9em; color:var(--slate);
+                    background:var(--gray-100); border:1px solid var(--gray-300);
+                    border-radius:4px; padding:1px 5px; white-space:nowrap;}
+
+  /* ---------- ruled tables — registry, parameters, errors, codes ---------- */
+  .tpanel{margin-top:20px; background:var(--white); border:var(--border);
+          border-radius:var(--radius-panel); overflow:hidden;}
+  .tpanel table{width:100%; border-collapse:collapse; font-size:14px; table-layout:fixed;}
+  .tpanel th{font-family:var(--mono); font-size:10px; letter-spacing:.14em;
+             text-transform:uppercase; color:var(--muted); font-weight:500;
+             text-align:left; padding:10px 16px; white-space:nowrap;}
+  .tpanel td{padding:11px 16px; border-top:1px solid var(--gray-300);
+             color:var(--body); text-align:left; vertical-align:top;
+             overflow-wrap:break-word;}
+  .tpanel thead th{border-top:none; border-bottom:1px solid var(--gray-300);}
+  .tpanel tbody tr:first-child td{border-top:none;}
+  .tpanel .rid{font-family:var(--mono); font-size:11.5px; font-weight:600;
+               letter-spacing:.04em; color:var(--clay-ink); white-space:nowrap;}
+  .tpanel .rid.ok{color:var(--olive-ink);}
+  .tpanel td b{color:var(--clay-ink); font-weight:600;}
+  .tpanel code{font-family:var(--mono); font-size:.9em; color:var(--slate);
+               background:var(--gray-100); border:1px solid var(--gray-300);
+               border-radius:4px; padding:1px 5px;}
+  .tpanel td code.msg{white-space:pre-wrap; display:block; background:none;
+                      border:none; padding:0; color:var(--body);}
+
+  /* ---------- figure — one chain on a gray-100 plate ---------- */
+  .fig{margin-top:22px; background:var(--gray-100); border:var(--border);
+       border-radius:var(--radius-panel); position:relative; overflow:hidden;}
+  .fig-h{display:flex; align-items:center; justify-content:space-between; gap:12px;
+         padding:10px 14px;}
+  .fig-id{font-family:var(--mono); font-size:10px; letter-spacing:.18em;
+          text-transform:uppercase; color:var(--muted);}
+  .fig-fs{font-family:var(--mono); font-size:10px; text-transform:uppercase;
+          letter-spacing:.14em; color:var(--muted); background:var(--white);
+          border:var(--border); border-radius:999px; padding:4px 10px; cursor:pointer;}
+  .fig-fs:hover{color:var(--clay-ink); border-color:var(--clay);}
+  .fig-fs:focus-visible{outline:2px solid var(--clay); outline-offset:2px;}
+  .fig-legend{display:flex; flex-wrap:wrap; gap:6px 18px; padding:0 14px 9px;
+              border-bottom:1px solid var(--gray-300); font-family:var(--mono);
+              font-size:10px; letter-spacing:.06em; text-transform:uppercase;
+              color:var(--muted);}
+  .fig-legend .lg{display:inline-flex; align-items:center; gap:6px;}
+  .fig-legend .lg-g{flex:none;}
+  .fig-b{padding:20px 18px;}
+  .fig-b svg{display:block; width:auto; max-width:100%; height:auto; margin:0 auto;}
+  .fig-f{padding:10px 14px; border-top:1px solid var(--gray-300);
+         font-family:var(--mono); font-size:10px; letter-spacing:.18em;
+         text-transform:uppercase; color:var(--muted); text-align:center;}
+
+  /* pele theming — Clay mapping lives here, never inline */
+  .fig svg{--pele-fg:var(--slate); --pele-fg-on-light:var(--body); --pele-muted:var(--gray-500);
+           --pele-line:var(--gray-300); --pele-bg:transparent; --pele-surface:transparent;
+           --pele-surface-alt:transparent; --pele-border:var(--gray-300); --pele-accent:var(--clay);
+           --pele-radius:4px;
+           --pele-font:system-ui,-apple-system,sans-serif;
+           --pele-font-mono:ui-monospace,"SF Mono",Menlo,monospace;}
+  .fig svg .pele-title{display:none;}
+  .fig svg .pele-edge-label rect{fill:transparent;}
+  .fig svg .pele-edge-label text{fill:var(--body); font-size:12.5px;}
+
+  /* ---------- colophon ---------- */
+  .colophon p.statement{font-size:14.5px; color:var(--body);}
+  .colophon .row{display:flex; flex-wrap:wrap; gap:8px 24px; margin-top:20px;
+                 font-family:var(--mono); font-size:11px; letter-spacing:.06em;
+                 color:var(--muted);}
+
+  @media (max-width:860px){
+    .masthead{padding:36px 16px 0;}
+    .wrap{padding:12px 16px 72px;}
+    .dc th{width:120px;}
+    .clause{grid-template-columns:1fr; gap:10px; padding:12px 14px;}
+    .clause-rail{flex-direction:row; align-items:center; gap:10px;
+                 border-right:none; border-bottom:1px solid var(--gray-300);
+                 padding:0 0 8px;}
+    .tpanel{table-layout:auto;}
+  }
+
+  /* ---------- dark mode — the token flip, carried wholesale ---------- */
+  @media (prefers-color-scheme: dark){
+    :root{
+      --ivory:#191817; --slate:#F0EEE6; --white:#201F1D;
+      --clay-ink:#FE6C2D; --clay-soft:#3A241A;
+      --oat:#4A4438; --olive-ink:#A9BC8B; --olive-soft:#262D1E;
+      --rust:#D98A80; --rust-soft:#3A2622;
+      --gray-100:#232220; --gray-300:#3D3D3A; --muted:#A5A39B; --body:#D6D4CC;
+    }
+    /* the terminal stays dark in both modes — output reads as a terminal */
+    .term{background:#141413; border-color:#3D3D3A;}
+  }
+
+  @media print{
+    body{background:#FFFFFF; color:#141413;}
+    :root{
+      --ivory:#FFFFFF; --slate:#141413; --white:#FFFFFF; --body:#3D3D3A;
+      --gray-100:#F5F4F0; --gray-300:#D1CFC5; --muted:#67665F;
+      --clay-ink:#B8430F; --clay-soft:#FDEBE0;
+      --olive-ink:#55673C; --olive-soft:#EEF2E6;
+      --rust:#B04A3F; --rust-soft:#F8ECE9;
+    }
+    nav.proc-index{display:none;}
+    .wrap{padding:0 24px;}
+    .masthead{padding:0 24px;}
+    section{margin-top:36px; padding-top:24px;}
+    .dc, .tpanel, .clause, .fig, .usage, .term{break-inside:avoid;}
+    /* :target effects neutralized on paper */
+    section:target{box-shadow:none;}
+    .clause:target{border-color:var(--gray-300); box-shadow:none;}
+    /* the terminal prints as a quiet paper block */
+    .term{background:#FFFFFF; border:1px solid #D1CFC5; color:#3D3D3A;}
+    .term .t-cmd{color:#B8430F;}
+    .term .t-ok{color:#55673C;}
+  }
+</style>
+</head>
+
+<body>
+
+<header class="masthead">
+  <div class="masthead-inner">
+    <div class="kicker">
+      <span class="pill"><b>te9-docs</b> · skills.te9.dev</span>
+      <span class="kicker-meta">precision reference · scripts/ · signatures · exit codes</span>
+      <span class="page-no">22 / 35</span>
+    </div>
+    <span class="type-label">API Documentation</span>
+    <h1>The build-time CLI, in <em>exact</em> terms.</h1>
+    <p class="lede"><b>Who this is for:</b> anyone wiring the suite's figure pipeline into a build — and anyone auditing it. This page is the precision reference for the three tools in <code>scripts/</code>: signatures, parameter tables, invocations with their expected output, and the full exit-code map. A reader integrates against this page, so every fact on it is transcribed from the source files and re-verified by running the tools at suite <b>1.9.0</b> — nothing paraphrased, nothing invented.</p>
+
+    <div class="dc-head">
+      <span class="dc-title">Reference control</span>
+      <span class="chip">Current</span>
+    </div>
+    <div class="dc">
+      <table>
+        <tbody>
+          <tr><th scope="row">Reference ID</th><td><span class="id">TE9-API-001</span></td></tr>
+          <tr><th scope="row">Documents</th><td>The <span class="mono">scripts/</span> build-time CLI — three tools</td></tr>
+          <tr><th scope="row">Suite</th><td><span class="mono">1.9.0</span></td></tr>
+          <tr><th scope="row">Engine</th><td><span class="mono">pele 1.12.0 · sharp 0.35.5 · ffmpeg on PATH</span></td></tr>
+          <tr><th scope="row">Owner</th><td>Founding session</td></tr>
+          <tr><th scope="row">Source of truth</th><td><span class="mono">scripts/render-figure.mjs · scripts/clayify.mjs · scripts/render-figure-video.mjs</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <nav class="proc-index" aria-label="Section index">
+      <p class="index-title">Index</p>
+      <div class="index-links">
+        <a href="#s1"><b>01</b>Reference surface</a>
+        <a href="#s2"><b>02</b>Shared conventions</a>
+        <a href="#s3"><b>03</b>render-figure</a>
+        <a href="#s4"><b>04</b>clayify</a>
+        <a href="#s5"><b>05</b>render-figure-video</a>
+        <a href="#s6"><b>06</b>Error handling</a>
+        <a href="#fig"><b>FIG</b>the chain</a>
+        <a href="#colophon"><b>—</b>Colophon</a>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<div class="wrap">
+
+  <!-- 1 · REFERENCE SURFACE -->
+  <section id="s1">
+    <span class="sec-kick">Section 1</span>
+    <h2>Reference surface</h2>
+    <p class="section-lede">Three tools, one pipeline. <b>render-figure</b> turns Mermaid source into pele layout SVG; <b>clayify</b> restores the Clay ring grammar on top and emits the plate's legend markup; <b>render-figure-video</b> turns a step-player document into an MP4 — driven by the same frame(t) function the browser runs. The registry is the contract at a glance; FIG · 01 draws the chain with the exact flags that bind each edge.</p>
+
+    <div class="tpanel">
+      <table>
+        <thead>
+          <tr><th style="width:230px">Tool</th><th>Reads</th><th>Writes</th><th style="width:170px">Exit codes</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><span class="rid">render-figure.mjs</span></td>
+            <td>Mermaid source (<code>.mmd</code>), read as UTF-8</td>
+            <td>SVG file — or stdout when <code>--output</code> is omitted</td>
+            <td><span class="mono">0 · 1 · 2 · 3</span></td>
+          </tr>
+          <tr>
+            <td><span class="rid">clayify.mjs</span></td>
+            <td>pele-rendered SVG + spec JSON</td>
+            <td>clayified SVG (+ <code>&lt;out&gt;.legend.html</code> when the spec has a legend)</td>
+            <td><span class="mono">0 · 2</span></td>
+          </tr>
+          <tr>
+            <td><span class="rid">render-figure-video.mjs</span></td>
+            <td>step-player document — FRAME-CORE block + <code>.fig-b.stepplayer</code> SVG</td>
+            <td>MP4 (<code>--out</code>; default <code>assets/experiments/figure-video.mp4</code>)</td>
+            <td><span class="mono">0 · 1 · 2 · 3 · 4 · 5</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <figure class="fig" id="fig">
+      <div class="fig-h"><span class="fig-id">FIG &middot; 01</span><button class="fig-fs" type="button" aria-label="Open this diagram in a new tab">FULLSCREEN</button></div>
+      <div class="fig-legend"><span class="lg"><svg class="lg-g" width="14" height="14" viewBox="0 0 14 14" aria-hidden="true"><circle cx="7" cy="7" r="5" fill="none" stroke="#FE6C2D" stroke-width="2"/></svg>build-time tool — scripts/</span><span class="lg"><svg class="lg-g" width="14" height="14" viewBox="0 0 14 14" aria-hidden="true"><circle cx="7" cy="7" r="5" fill="none" stroke="#FE6C2D" stroke-width="2"/><circle cx="7" cy="7" r="2.5" fill="none" stroke="#FE6C2D" stroke-width="1.5"/></svg>the deliverable</span><span class="lg"><svg class="lg-g" width="12" height="12" viewBox="0 0 12 12" aria-hidden="true"><circle cx="6" cy="6" r="4" fill="#87867F"/></svg>file in the chain</span></div>
+      <div class="fig-b"><svg xmlns="http://www.w3.org/2000/svg" class="pele pele-flowchart" viewBox="-76.03999999999999 0 296.59 923.9200000000001" width="297" height="924" style="max-width:100%;height:auto;--_bg:var(--pele-bg,#fff);--_fg:var(--pele-fg,#1f1f1f);--_m:var(--pele-muted,#6e6e6e);--_l:var(--pele-line,#1f1f1f);--_s:var(--pele-surface,#f3f3f3);--_a:var(--pele-surface-alt,#e6e6e6);--_b:var(--pele-border,#8a8a8a);--_c:var(--pele-accent,#5b7bd5);color:var(--_fg);--_w:var(--pele-bold-weight,bold);--_fm:var(--pele-font-mono,monospace);font:16px sans-serif;letter-spacing:normal;word-spacing:normal;text-transform:none;direction:ltr;font-family:var(--pele-font,sans-serif)" fill="var(--_fg)" role="graphics-document document" aria-roledescription="flowchart">
+  <style>
+    @media (prefers-color-scheme: dark){
+      .clay-lab{fill:#F0EEE6;}
+      .clay-sub{fill:#A5A39B;}
+    }
+  </style><g transform="translate(0 33.44)"><g class="pele-edges" fill="none" stroke="var(--_l)" stroke-linecap="round"><g class="clay-edge" style="stroke:#D1CFC5;stroke-width:1.5px;"><path d="M38.56,45.56L38.56,147.17" fill="none"/></g><g class="clay-edge" style="stroke:#D1CFC5;stroke-width:1.5px;"><path d="M38.56,185.17L38.56,289.10" fill="none"/></g><g class="clay-edge" style="stroke:#D1CFC5;stroke-width:1.5px;"><path d="M41.11,302.62L82.44,408.32" fill="none"/></g><g class="clay-edge" style="stroke:#D1CFC5;stroke-width:1.5px;"><path d="M137.60,302.62L96.28,408.32" fill="none"/></g><g class="clay-edge" style="stroke:#D1CFC5;stroke-width:1.5px;"><path d="M89.36,445.02L89.36,538.52" fill="none"/></g><g class="clay-edge" style="stroke:#D1CFC5;stroke-width:1.5px;"><path d="M89.36,576.52L89.36,670.33" fill="none"/></g><g class="clay-edge" style="stroke:#D1CFC5;stroke-width:1.5px;"><path d="M89.36,708.33L89.36,808.04" fill="none"/></g></g><g class="pele-edge-labels" font-size="14"><g class="pele-edge-label" data-id="L_MMD_RF_0"><rect x="14.72" y="91.62" width="47.68" height="21" rx="3" fill="var(--_bg)"/><text x="38.56" y="107.02" text-anchor="middle">--input</text></g><g class="pele-edge-label" data-id="L_RF_SVG_0"><rect x="10.44" y="212.73" width="56.24" height="21" rx="3" fill="var(--_bg)"/><text x="38.56" y="228.13" text-anchor="middle">--output</text></g><g class="pele-edge-label" data-id="L_SVG_CL_0"><rect x="24.45" y="351.47" width="28.22" height="21" rx="3" fill="var(--_bg)"/><text x="38.56" y="366.87" text-anchor="middle">--in</text></g><g class="pele-edge-label" data-id="L_SPEC_CL_0"><rect x="116.71" y="351.47" width="46.89" height="21" rx="3" fill="var(--_bg)"/><text x="140.15" y="366.87" text-anchor="middle">--spec</text></g><g class="pele-edge-label" data-id="L_CL_DOC_0"><rect x="40.22" y="472.58" width="98.27" height="21" rx="3" fill="var(--_bg)"/><text x="89.36" y="487.98" text-anchor="middle">inline the plate</text></g><g class="pele-edge-label" data-id="L_DOC_RV_0"><rect x="69.41" y="614.47" width="39.89" height="21" rx="3" fill="var(--_bg)"/><text x="89.36" y="629.87" text-anchor="middle">--doc</text></g><g class="pele-edge-label" data-id="L_RV_MP4_0"><rect x="70.97" y="736.18" width="36.78" height="21" rx="3" fill="var(--_bg)"/><text x="89.36" y="751.58" text-anchor="middle">--out</text></g></g><g class="pele-nodes"><g class="clay-node" data-id="MMD"><circle cx="38.56" cy="38.56" r="5" fill="#87867F"/><text class="clay-lab" x="38.56" y="22.560000000000002" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="11" font-weight="600" fill="#141413">MERMAID SOURCE</text><text class="clay-sub" x="38.56" y="56.56" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="10" fill="#87867F">assets/figures/NN-figNN.mmd</text></g><g class="clay-node" data-id="RF"><circle cx="38.56" cy="166.17" r="17" fill="none" stroke="#FE6C2D" stroke-width="2"/><text class="clay-lab" x="38.56" y="140.17" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="11" font-weight="600" fill="#141413">RENDER-FIGURE</text><text class="clay-sub" x="38.56" y="205.17" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="10" fill="#87867F">PELE LAYOUT · SVG OR STDOUT</text></g><g class="clay-node" data-id="SVG"><circle cx="38.56" cy="296.1" r="5" fill="#87867F"/><text class="clay-lab" x="38.56" y="280.1" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="11" font-weight="600" fill="#141413">RAW PELE SVG</text><text class="clay-sub" x="38.56" y="314.1" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="10" fill="#87867F">LAYOUT ONLY</text></g><g class="clay-node" data-id="CL"><circle cx="89.36" cy="426.02" r="17" fill="none" stroke="#FE6C2D" stroke-width="2"/><text class="clay-lab" x="89.36" y="400.02" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="11" font-weight="600" fill="#141413">CLAYIFY</text><text class="clay-sub" x="89.36" y="465.02" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="10" fill="#87867F">RING GRAMMAR + LEGEND MARKUP</text></g><g class="clay-node" data-id="SPEC"><circle cx="140.15" cy="296.1" r="5" fill="#87867F"/><text class="clay-lab" x="140.15" y="280.1" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="11" font-weight="600" fill="#141413">SPEC JSON</text><text class="clay-sub" x="140.15" y="314.1" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="10" fill="#87867F">NODES · LEGEND · R</text></g><g class="clay-node" data-id="DOC"><circle cx="89.36" cy="557.52" r="17" fill="none" stroke="#FE6C2D" stroke-width="2"/><circle cx="89.36" cy="557.52" r="13" fill="none" stroke="#FE6C2D" stroke-width="1.5"/><text class="clay-lab" x="89.36" y="531.52" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="11" font-weight="600" fill="#141413">THE DOCUMENT</text><text class="clay-sub" x="89.36" y="596.52" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="10" fill="#87867F">INLINE SVG IN THE PLATE</text></g><g class="clay-node" data-id="RV"><circle cx="89.36" cy="689.33" r="17" fill="none" stroke="#FE6C2D" stroke-width="2"/><text class="clay-lab" x="89.36" y="663.33" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="11" font-weight="600" fill="#141413">RENDER-FIGURE-VIDEO</text><text class="clay-sub" x="89.36" y="728.33" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="10" fill="#87867F">SHARP → FFMPEG</text></g><g class="clay-node" data-id="MP4"><circle cx="89.36" cy="815.04" r="5" fill="#87867F"/><text class="clay-lab" x="89.36" y="799.04" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="11" font-weight="600" fill="#141413">VIDEO.MP4</text><text class="clay-sub" x="89.36" y="833.04" text-anchor="middle" font-family="ui-monospace,Menlo,monospace" font-size="10" fill="#87867F">assets/experiments/</text></g></g></g></svg></div>
+      <div class="fig-f">FIG · 01 — THE TOOL CHAIN, MERMAID SOURCE TO MP4 · EDGE CAPTIONS ARE THE FLAGS THAT BIND EACH STEP · RENDERED VIA PELE, CLAYIFIED</div>
+    </figure>
+  </section>
+
+  <!-- 2 · SHARED CONVENTIONS -->
+  <section id="s2">
+    <span class="sec-kick">Section 2</span>
+    <h2>Shared conventions</h2>
+    <p class="section-lede">One grammar under all three tools. Everything below is behavior of the shared argument reader and the exit-code contract — learn it once and every invocation on this page reads correctly.</p>
+
+    <div class="clauses">
+      <article class="clause">
+        <div class="clause-rail"><span class="clause-tag">Convention</span><span class="clause-no">A1</span></div>
+        <p class="clause-text"><b>Pairs.</b> Every option is read as the single token following its <code>--name</code>; where a name appears more than once, the <b>first occurrence wins</b>.</p>
+      </article>
+      <article class="clause">
+        <div class="clause-rail"><span class="clause-tag">Convention</span><span class="clause-no">A2</span></div>
+        <p class="clause-text"><b>Presence.</b> <code>--test</code> is a boolean: it is detected by presence in <code>argv</code>, never by a value.</p>
+      </article>
+      <article class="clause">
+        <div class="clause-rail"><span class="clause-tag">Convention</span><span class="clause-no">A3</span></div>
+        <p class="clause-text"><b>Tolerance.</b> Unknown flags are ignored — only the documented names are read; nothing validates the rest of <code>argv</code>.</p>
+      </article>
+      <article class="clause">
+        <div class="clause-rail"><span class="clause-tag">Convention</span><span class="clause-no">A4</span></div>
+        <p class="clause-text"><b>Types.</b> Values arrive as strings; where a parameter is declared numeric, the tool parses it itself — base-10 <code>parseInt</code> for render-figure's width pair, <code>parseFloat</code> for the video tool's <code>--fps</code> and <code>--scale</code>.</p>
+      </article>
+    </div>
+
+    <p class="block-label">Exit-code contract</p>
+    <div class="tpanel">
+      <table>
+        <thead>
+          <tr><th style="width:80px">Code</th><th>Meaning</th><th style="width:220px">Raised by</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><span class="rid ok">0</span></td><td>Success — including <code>--test</code> with all assertions passing</td><td>all three tools</td></tr>
+          <tr><td><span class="rid">1</span></td><td>A <code>PeleError</code> rejected the diagram (render-figure), an uncaught runtime error, or <code>--test</code> failures</td><td>render-figure · video</td></tr>
+          <tr><td><span class="rid">2</span></td><td>Usage error or unreadable input</td><td>all three tools</td></tr>
+          <tr><td><span class="rid">3</span></td><td>Missing build dependency — pele (render-figure), sharp (video)</td><td>render-figure · video</td></tr>
+          <tr><td><span class="rid">4</span></td><td>ffmpeg failed to start — is it on PATH?</td><td>video only</td></tr>
+          <tr><td><span class="rid">5</span></td><td>ffmpeg exited before all frames were written</td><td>video only</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p class="block-label">Output discipline</p>
+    <div class="clauses">
+      <article class="clause">
+        <div class="clause-rail"><span class="clause-tag">Rule</span><span class="clause-no">O1</span></div>
+        <p class="clause-text"><b>Channels.</b> Diagnostics go to stderr, logs and progress to stdout; render-figure puts SVG <b>data</b> on stdout only in stdout mode (no <code>--output</code>).</p>
+      </article>
+      <article class="clause">
+        <div class="clause-rail"><span class="clause-tag">Rule</span><span class="clause-no">O2</span></div>
+        <p class="clause-text"><b>Nothing partial.</b> Both writers render or transform fully in memory before the first write — a rejected source never leaves a half-written file. The two known exceptions are listed where they occur in section 05.</p>
+      </article>
+      <article class="clause">
+        <div class="clause-rail"><span class="clause-tag">Rule</span><span class="clause-no">O3</span></div>
+        <p class="clause-text"><b>Build-time only.</b> None of these tools is ever a dependency of a finished document (ADR-0005): pele and sharp live in <code>scripts/</code>, never in the HTML.</p>
+      </article>
+    </div>
+  </section>
+
+  <!-- 3 · RENDER-FIGURE -->
+  <section id="s3">
+    <span class="sec-kick">Section 3</span>
+    <h2>render-figure.mjs</h2>
+    <div class="tool-head">
+      <span class="tool-name">scripts/render-figure.mjs</span>
+      <span class="tool-role">Mermaid source in, layout SVG out — the pele step of the pipeline.</span>
+    </div>
+
+    <p class="block-label">Signature</p>
+    <div class="usage"><span class="u-p">$</span> node render-figure.mjs --input diagram.mmd [--output diagram.svg] [--id-prefix fig-1]</div>
+    <p class="code-cap">Verbatim from the source — this exact line is also the tool's own usage message.</p>
+
+    <p class="block-label">Parameters</p>
+    <div class="tpanel">
+      <table>
+        <thead>
+          <tr><th style="width:210px">Name</th><th style="width:90px">Type</th><th style="width:150px">Default</th><th>Behavior</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><span class="rid">--input</span></td><td>path</td><td><b>required</b></td>
+            <td>Mermaid source file, read as UTF-8 from the resolved path. Missing flag → usage line on stderr, exit 2. Unreadable file → <code>Cannot read input: …</code>, exit 2.</td>
+          </tr>
+          <tr>
+            <td><span class="rid">--output</span></td><td>path</td><td>stdout</td>
+            <td>Writes the rendered SVG to this path and logs <code>Wrote &lt;out&gt; (&lt;n&gt; bytes)</code>. Omitted, the SVG is written to stdout — pipe it or redirect it.</td>
+          </tr>
+          <tr>
+            <td><span class="rid">--id-prefix</span></td><td>string</td><td>pele default</td>
+            <td>Forwarded to pele as <code>idPrefix</code> — namespaces the SVG's internal element IDs.</td>
+          </tr>
+          <tr>
+            <td><span class="rid">--max-width</span></td><td>integer</td><td>pele default</td>
+            <td>Forwarded as pele's <code>maxWidth</code>: pele <b>adapts the layout</b> to the width — wraps labels, tightens spacing, switches direction — instead of the finished figure being scaled down afterwards.</td>
+          </tr>
+          <tr>
+            <td><span class="rid">--direction-breakpoint</span></td><td>integer</td><td>pele default</td>
+            <td>Forwarded as pele's <code>directionBreakpoint</code>. Parsed <b>only when</b> <code>--max-width</code> is present. The suite's renders pass <code>--max-width 880 --direction-breakpoint 1600</code>.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p class="block-label">Example</p>
+    <div class="usage"><span class="u-p">$</span> node scripts/render-figure.mjs \
+    --input assets/figures/22-fig01.mmd \
+    --output assets/figures/22-fig01.svg \
+    --max-width 880 --direction-breakpoint 1600</div>
+    <div class="term">Wrote assets/figures/22-fig01.svg (6797 bytes)</div>
+    <p class="code-cap">Run for this page — FIG · 01 is that file after clayify. The count is the SVG string's length as the tool reports it. Without <b>--output</b> the same SVG goes to stdout and nothing is logged.</p>
+
+    <p class="block-label">Errors</p>
+    <div class="tpanel">
+      <table>
+        <thead>
+          <tr><th style="width:70px">Exit</th><th>Message (stderr)</th><th style="width:250px">Cause</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><span class="rid">2</span></td>
+            <td><code class="msg">Usage: node render-figure.mjs --input diagram.mmd [--output diagram.svg] [--id-prefix fig-1]</code></td>
+            <td><code>--input</code> missing</td>
+          </tr>
+          <tr>
+            <td><span class="rid">2</span></td>
+            <td><code class="msg">Cannot read input: &lt;reason&gt;</code></td>
+            <td>input file unreadable (ENOENT and friends)</td>
+          </tr>
+          <tr>
+            <td><span class="rid">3</span></td>
+            <td><code class="msg">The pele package is not installed. Run once:  cd scripts &amp;&amp; npm install</code></td>
+            <td>the dynamic <code>import('pele')</code> failed</td>
+          </tr>
+          <tr>
+            <td><span class="rid">1</span></td>
+            <td><code class="msg">Pele could not render the diagram: &lt;message&gt;
+  at line &lt;line&gt;, column &lt;column&gt;</code></td>
+            <td>pele raised <code>PeleError</code> — the position line prints only when the error carries a <code>line</code> (see section 06)</td>
+          </tr>
+          <tr>
+            <td><span class="rid">1</span></td>
+            <td><code class="msg">(rethrown stack trace)</code></td>
+            <td>any other error propagates uncaught</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- 4 · CLAYIFY -->
+  <section id="s4">
+    <span class="sec-kick">Section 4</span>
+    <h2>clayify.mjs</h2>
+    <div class="tool-head">
+      <span class="tool-name">scripts/clayify.mjs</span>
+      <span class="tool-role">pele gives layout; clayify restores the Clay ring grammar on top (ADR-0007).</span>
+    </div>
+
+    <p class="block-label">Signature</p>
+    <div class="usage"><span class="u-p">$</span> node clayify.mjs --in figure.svg --spec figure.json [--out out.svg]</div>
+    <p class="code-cap">Verbatim from the source — also the tool's own usage message.</p>
+
+    <p class="block-label">Parameters</p>
+    <div class="tpanel">
+      <table>
+        <thead>
+          <tr><th style="width:150px">Name</th><th style="width:90px">Type</th><th style="width:170px">Default</th><th>Behavior</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><span class="rid">--in</span></td><td>path</td><td><b>required</b></td>
+            <td>The pele-rendered flowchart SVG to transform.</td>
+          </tr>
+          <tr>
+            <td><span class="rid">--spec</span></td><td>path</td><td><b>required</b></td>
+            <td>Spec JSON, schema below. Unreadable file or invalid JSON → the parse error's message on stderr, exit 2.</td>
+          </tr>
+          <tr>
+            <td><span class="rid">--out</span></td><td>path</td><td>the <b>--in</b> path</td>
+            <td>Where the clayified SVG is written — by default back over the input, in place.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p class="block-label">Spec JSON schema</p>
+    <div class="tpanel">
+      <table>
+        <thead>
+          <tr><th style="width:110px">Key</th><th style="width:100px">Type</th><th style="width:120px">Default</th><th>Meaning</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><span class="rid">r</span></td><td>number</td><td><code>17</code></td>
+            <td>Uniform ring radius — every non-support node becomes a circle of this radius.</td>
+          </tr>
+          <tr>
+            <td><span class="rid">nodes</span></td><td>object</td><td><code>{}</code></td>
+            <td>Map of pele node id → presentation. <code>label</code> — mono caps, drawn <b>above</b> the ring (default: the id, uppercased). <code>sub</code> — small label <b>below</b>. <code>fill: true</code> renders a filled clay ring — the deck's <code>klaar</code> convention (filled = here-now).</td>
+          </tr>
+          <tr>
+            <td><span class="rid">legend</span></td><td>array</td><td>—</td>
+            <td><code>{ type, label }</code> entries; glyph <code>type</code> is <code>ring | dot | dbl | fill</code>. Emitted as plate-header markup — <b>not</b> drawn into the SVG (step 4 below).</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p class="block-label">What it does</p>
+    <div class="clauses">
+      <article class="clause">
+        <div class="clause-rail"><span class="clause-tag">Step</span><span class="clause-no">1</span></div>
+        <p class="clause-text">Nodes become uniform clay rings; supporting nodes (pele's <code>support</code> class) become 5px filled gray dots; double circles stay double (<code>r</code> and <code>r−4</code>). Labels sit <b>outside</b> — 11px mono weight 600 above, 10px sub-label below.</p>
+      </article>
+      <article class="clause">
+        <div class="clause-rail"><span class="clause-tag">Step</span><span class="clause-no">2</span></div>
+        <p class="clause-text">Edges become plain trimmed hairlines between the uniform boundaries — arrowheads stripped (trim: <code>r+2</code>, dots <code>7</code>).</p>
+      </article>
+      <article class="clause">
+        <div class="clause-rail"><span class="clause-tag">Step</span><span class="clause-no">3</span></div>
+        <p class="clause-text">Collision-safe canvas — content is translated clear of the legend band (top <code>44px</code>), the viewBox is extended for label overhang, and the <code>width</code>/<code>height</code> attributes are re-synced to the adapted viewBox (rasterizers read those, not the viewBox).</p>
+      </article>
+      <article class="clause">
+        <div class="clause-rail"><span class="clause-tag">Step</span><span class="clause-no">4</span></div>
+        <p class="clause-text">Legend → written to <code>&lt;out&gt;.legend.html</code> as one <code>.fig-legend</code> div — the paste-in header markup for the figure plate. This step and its log line run only when the spec has a legend.</p>
+      </article>
+      <article class="clause">
+        <div class="clause-rail"><span class="clause-tag">Step</span><span class="clause-no">5</span></div>
+        <p class="clause-text">Dark flip — a Clay <code>prefers-color-scheme</code> style block is injected inside the SVG, so the fullscreen new-tab view is Clay-correct without the document's stylesheet.</p>
+      </article>
+    </div>
+
+    <p class="block-label">Example</p>
+    <div class="usage"><span class="u-p">$</span> node scripts/clayify.mjs --in assets/figures/22-fig01.svg --spec assets/figures/22-fig01.spec.json</div>
+    <div class="term">legend markup -&gt; assets/figures/22-fig01.svg.legend.html
+Clay-ified 8 nodes -&gt; assets/figures/22-fig01.svg</div>
+    <p class="code-cap">Run for this page — the legend row in FIG · 01's plate header is the pasted <b>.legend.html</b>; FIG · 01 itself is the clayified output.</p>
+
+    <p class="block-label">Errors</p>
+    <div class="tpanel">
+      <table>
+        <thead>
+          <tr><th style="width:70px">Exit</th><th>Message (stderr)</th><th style="width:250px">Cause</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><span class="rid">2</span></td>
+            <td><code class="msg">Usage: node clayify.mjs --in figure.svg --spec figure.json [--out out.svg]</code></td>
+            <td><code>--in</code> or <code>--spec</code> missing</td>
+          </tr>
+          <tr>
+            <td><span class="rid">2</span></td>
+            <td><code class="msg">&lt;error message&gt;</code></td>
+            <td>input file unreadable, or spec JSON unparseable</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- 5 · RENDER-FIGURE-VIDEO -->
+  <section id="s5">
+    <span class="sec-kick">Section 5</span>
+    <h2>render-figure-video.mjs</h2>
+    <div class="tool-head">
+      <span class="tool-name">scripts/render-figure-video.mjs</span>
+      <span class="tool-role">the document's frame(t), rasterized and piped to ffmpeg — the video is a function of time.</span>
+    </div>
+    <p class="section-lede" style="margin-top:18px;">Requirements: <code>npm i sharp</code> in <code>scripts/</code> and <code>ffmpeg</code> on PATH. The exporter reads a step-player document, extracts its marked FRAME-CORE — the pure, DOM-free frame function — applies frame(t) to the inline SVG, rasterizes frames with sharp, and pipes raw RGBA into ffmpeg: <b>the exact renderer the browser runs is the renderer that produces the video.</b></p>
+
+    <p class="block-label">Signature</p>
+    <div class="usage"><span class="u-p">$</span> node render-figure-video.mjs --doc doc.html [--out video.mp4] [--fps 25] [--scale 1.5] | --test</div>
+    <p class="code-cap">Verbatim from the source — also the tool's own usage message.</p>
+
+    <p class="block-label">Parameters</p>
+    <div class="tpanel">
+      <table>
+        <thead>
+          <tr><th style="width:140px">Name</th><th style="width:90px">Type</th><th style="width:230px">Default</th><th>Behavior</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><span class="rid">--doc</span></td><td>path</td><td><b>required</b></td>
+            <td>The step-player document. Its FRAME-CORE — the code between <code>/*FRAME-CORE-START*/</code> and <code>/*/FRAME-CORE-END*/</code> — must evaluate to <code>{ frame, STEPS, DURATION, ALL_IDS }</code>, and its <code>.fig-b.stepplayer</code> div must hold the base SVG. An unreadable path is <b>not</b> guarded: it exits 1 with a stack trace.</td>
+          </tr>
+          <tr>
+            <td><span class="rid">--out</span></td><td>path</td><td><code>assets/experiments/figure-video.mp4</code></td>
+            <td>Output video; the default resolves from the repo root (a sibling of <code>scripts/</code>).</td>
+          </tr>
+          <tr>
+            <td><span class="rid">--fps</span></td><td>number</td><td><code>25</code></td>
+            <td>Frame rate — ffmpeg's <code>-r</code>, and the render's sampling step (frame <code>i</code> renders <code>t = i / fps</code>).</td>
+          </tr>
+          <tr>
+            <td><span class="rid">--scale</span></td><td>number</td><td><code>1.5</code></td>
+            <td>Frame scale — the SVG's pixel size times scale, rounded to even dimensions (yuv420p requires even).</td>
+          </tr>
+          <tr>
+            <td><span class="rid">--test</span></td><td>flag</td><td>off</td>
+            <td>Runs the frame unit tests and exits — no render, no sharp, no ffmpeg. Exit 0 when all eight pass, 1 on any failure.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p class="block-label">Render pipeline</p>
+    <div class="clauses">
+      <article class="clause">
+        <div class="clause-rail"><span class="clause-tag">Stage</span><span class="clause-no">1</span></div>
+        <p class="clause-text">Extract the FRAME-CORE and evaluate it as a function body; it must return <code>{ frame, STEPS, DURATION, ALL_IDS }</code>. Logs <code>FRAME-CORE loaded: &lt;n&gt; steps, &lt;d&gt;s</code>. Missing markers → exit 2.</p>
+      </article>
+      <article class="clause">
+        <div class="clause-rail"><span class="clause-tag">Stage</span><span class="clause-no">2</span></div>
+        <p class="clause-text">Extract the base SVG from the <code>.fig-b.stepplayer</code> div. Missing → <code>No stepplayer figure found in the document.</code>, exit 2.</p>
+      </article>
+      <article class="clause">
+        <div class="clause-rail"><span class="clause-tag">Stage</span><span class="clause-no">3</span></div>
+        <p class="clause-text">Resolve Clay variables to literal values for the rasterizer — sharp's SVG engine does not resolve <code>var()</code> in presentation attributes (they fall back to black). Surfaces go transparent, fg <code>#141413</code>, muted <code>#87867F</code>, lines <code>#D1CFC5</code>, accent <code>#FE6C2D</code>; unknown variables fall back to their own fallback, else <code>#141413</code>.</p>
+      </article>
+      <article class="clause">
+        <div class="clause-rail"><span class="clause-tag">Stage</span><span class="clause-no">4</span></div>
+        <p class="clause-text">Apply frame(t) at string level — the same contract as the DOM runtime: per element id, state classes <code>st-future</code> (opacity .06), <code>st-done</code> (.34), <code>st-active</code> (1, stroke-width 3.5px) are swapped in, plus a scoped style block with <code>transition:none</code> for deterministic rasterization.</p>
+      </article>
+      <article class="clause">
+        <div class="clause-rail"><span class="clause-tag">Stage</span><span class="clause-no">5</span></div>
+        <p class="clause-text">Rasterize and pipe: sharp resizes to the exact frame dims (<code>fit: 'fill'</code>), flattens onto <code>#F0EEE6</code> — alpha would encode as black in yuv420p — then <code>ensureAlpha()</code> restores RGBA for the pipe declared <code>-pix_fmt rgba</code>. ffmpeg encodes <code>yuv420p</code> with <code>+faststart</code>; writes respect backpressure; a frame-buffer length mismatch throws (exit 1). Progress logs every 25 frames; the run ends <code>Video written: &lt;out&gt;</code>.</p>
+      </article>
+    </div>
+
+    <p class="block-label">The frame tests — timing as assertions</p>
+    <div class="tpanel">
+      <table>
+        <thead>
+          <tr><th style="width:50px">#</th><th style="width:320px">Assertion (verbatim)</th><th>Pass condition</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><span class="rid">1</span></td><td><code>the subject is active at t=1.0, before any other element</code></td><td>at t = 1.0 s the subject's state is <code>active</code> and Intake's is still <code>future</code></td></tr>
+          <tr><td><span class="rid">2</span></td><td><code>Intake and Index activate only after the subject step ends</code></td><td>Intake is <code>future</code> at 1.9 s and <code>active</code> at 2.1 s</td></tr>
+          <tr><td><span class="rid">3</span></td><td><code>elements settle to done after their step ends</code></td><td>at 4.5 s the subject is <code>done</code> while the Template step is <code>active</code></td></tr>
+          <tr><td><span class="rid">4</span></td><td><code>the Document never appears before the Review gate step</code></td><td>Document is <code>future</code> at 9.9 s and <code>active</code> at 10.1 s</td></tr>
+          <tr><td><span class="rid">5</span></td><td><code>every element has a defined state at every sampled time</code></td><td>sampled every 0.25 s from 0 to DURATION, every id in <code>ALL_IDS</code> has a state</td></tr>
+          <tr><td><span class="rid">6</span></td><td><code>no NaN/Infinity/undefined leaks into any frame</code></td><td><code>progress</code> and <code>t</code> are finite at every sample</td></tr>
+          <tr><td><span class="rid">7</span></td><td><code>frame SVG never contains a broken state class</code></td><td>no malformed <code>st-*</code> class and no <code>undefined</code> leaked into the SVG at t = 7.3 s</td></tr>
+          <tr><td><span class="rid">8</span></td><td><code>the final frame shows the complete diagram</code></td><td>at DURATION − 0.01 s, every id is <code>done</code> or <code>active</code></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p class="block-label">Example — the test mode</p>
+    <div class="usage"><span class="u-p">$</span> node scripts/render-figure-video.mjs \
+    --doc assets/experiments/05-concept-breakdown-v2.html --test</div>
+    <div class="term">FRAME-CORE loaded: 8 steps, 16.0s
+  <span class="t-ok">ok  - the subject is active at t=1.0, before any other element</span>
+  <span class="t-ok">ok  - Intake and Index activate only after the subject step ends</span>
+  <span class="t-ok">ok  - elements settle to done after their step ends</span>
+  <span class="t-ok">ok  - the Document never appears before the Review gate step</span>
+  <span class="t-ok">ok  - every element has a defined state at every sampled time</span>
+  <span class="t-ok">ok  - no NaN/Infinity/undefined leaks into any frame</span>
+  <span class="t-ok">ok  - frame SVG never contains a broken state class</span>
+  <span class="t-ok">ok  - the final frame shows the complete diagram</span>
+<span class="t-ok">All frame tests passed.</span></div>
+    <p class="code-cap">Captured from a real run at suite 1.9.0. A render run (omit <b>--test</b>) adds the header log <code>Rendering &lt;total&gt; frames @ &lt;fps&gt;fps → &lt;W&gt;x&lt;H&gt; → &lt;out&gt;</code>, a progress line every 25 frames, and ends <code>Video written: &lt;out&gt;</code>.</p>
+
+    <p class="block-label">Example — the FRAME-CORE guard</p>
+    <div class="usage"><span class="u-p">$</span> node scripts/render-figure-video.mjs --doc assets/templates/21-standard-operating-procedure.html</div>
+    <div class="term">No FRAME-CORE block found in the document.</div>
+    <p class="code-cap">Captured from a real run — a v1 document has no FRAME-CORE; the guard exits <b>2</b>.</p>
+
+    <p class="block-label">Errors</p>
+    <div class="tpanel">
+      <table>
+        <thead>
+          <tr><th style="width:70px">Exit</th><th>Message (stderr)</th><th style="width:260px">Cause</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><span class="rid">2</span></td>
+            <td><code class="msg">Usage: node render-figure-video.mjs --doc doc.html [--out video.mp4] [--fps 25] [--scale 1.5] | --test</code></td>
+            <td><code>--doc</code> missing</td>
+          </tr>
+          <tr>
+            <td><span class="rid">2</span></td>
+            <td><code class="msg">No FRAME-CORE block found in the document.</code></td>
+            <td>the doc has no FRAME-CORE markers</td>
+          </tr>
+          <tr>
+            <td><span class="rid">2</span></td>
+            <td><code class="msg">No stepplayer figure found in the document.</code></td>
+            <td>FRAME-CORE present, but no <code>.fig-b.stepplayer</code> SVG</td>
+          </tr>
+          <tr>
+            <td><span class="rid">3</span></td>
+            <td><code class="msg">sharp is not installed. Run once:  cd scripts &amp;&amp; npm install sharp</code></td>
+            <td>the dynamic <code>import('sharp')</code> failed</td>
+          </tr>
+          <tr>
+            <td><span class="rid">4</span></td>
+            <td><code class="msg">ffmpeg failed to start (is it on PATH?): &lt;message&gt;</code></td>
+            <td>ffmpeg spawn error</td>
+          </tr>
+          <tr>
+            <td><span class="rid">5</span></td>
+            <td><code class="msg">ffmpeg exited &lt;code&gt; before all frames were written</code></td>
+            <td>ffmpeg died mid-pipe</td>
+          </tr>
+          <tr>
+            <td><span class="rid">1</span></td>
+            <td><code class="msg">(uncaught exception + stack trace)</code></td>
+            <td>the <code>--doc</code> file is unreadable (unguarded <code>readFileSync</code>), or a frame buffer mismatches the pipe: <code>frame &lt;i&gt;: buffer &lt;n&gt; != &lt;W·H·4&gt;</code></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- 6 · ERROR HANDLING -->
+  <section id="s6">
+    <span class="sec-kick">Section 6</span>
+    <h2>Error handling</h2>
+    <p class="section-lede">Two layers share the failure duty: pele's <code>PeleError</code> objects carry <b>where and why</b> a diagram was rejected; the exit-code map turns that into scriptable signals. Field names and codes below are read from pele 1.12.0's source — this section is the decoder ring.</p>
+
+    <p class="block-label">PeleError anatomy</p>
+    <div class="tpanel">
+      <table>
+        <thead>
+          <tr><th style="width:220px">Field</th><th>Carries</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><span class="rid">name</span></td><td>always <code>"PeleError"</code> — render-figure branches on it</td></tr>
+          <tr><td><span class="rid">message</span></td><td>the human diagnosis, printed verbatim by render-figure</td></tr>
+          <tr><td><span class="rid">code</span></td><td>one of the four codes below — default <code>"syntax"</code></td></tr>
+          <tr><td><span class="rid">type · mermaidType</span></td><td>the detected diagram type, when detection got that far</td></tr>
+          <tr><td><span class="rid">line · column</span></td><td>position in the source — <code>0</code> when unknown; render-figure prints <code>at line N, column M</code> (indented two spaces) only when a line is present</td></tr>
+          <tr><td><span class="rid">snippet</span></td><td>the offending source text</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p class="block-label">The four codes</p>
+    <div class="tpanel">
+      <table>
+        <thead>
+          <tr><th style="width:220px">Code</th><th>Raised when</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><span class="rid">syntax</span> <span class="mono" style="color:var(--muted)">(default)</span></td>
+            <td>The Mermaid source doesn't parse. The message names the construct; <code>line</code>/<code>column</code> pinpoint it and <code>snippet</code> carries the offending text.</td>
+          </tr>
+          <tr>
+            <td><span class="rid">unsupported-diagram</span></td>
+            <td>No diagram type detected — <code>No diagram type detected for the given text.</code> — or the detected type is not registered: <code>Diagram type "&lt;type&gt;" is not supported yet.</code></td>
+          </tr>
+          <tr>
+            <td><span class="rid">semantic</span></td>
+            <td>Parsed, but undrawable — e.g. an xychart with no data: <code>No Plot to render, please provide a plot with some data</code>.</td>
+          </tr>
+          <tr>
+            <td><span class="rid">limit</span></td>
+            <td>Guardrails: the source exceeds the 50,000-character default — <code>Diagram source is longer than the limit of 50000 characters.</code> — or nesting exhausted the stack: <code>Diagram is nested too deeply.</code></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p class="block-label">The shared pattern</p>
+    <div class="clauses">
+      <article class="clause">
+        <div class="clause-rail"><span class="clause-tag">Pattern</span><span class="clause-no">E1</span></div>
+        <p class="clause-text"><b>Name the fix.</b> Guarded failures print the remedy, not just the fault: the dependency lines carry the exact install command (<code>cd scripts &amp;&amp; npm install</code>), the usage lines echo the exact invocation, the guards name the missing marker. The known unguarded paths — the video tool's <code>--doc</code> read and its frame-buffer check — exit 1 with a stack trace instead.</p>
+      </article>
+      <article class="clause">
+        <div class="clause-rail"><span class="clause-tag">Pattern</span><span class="clause-no">E2</span></div>
+        <p class="clause-text"><b>Nothing partial.</b> render-figure runs <code>pele.render</code> to completion before its only <code>writeFileSync</code>; clayify transforms the whole string before writing. A rejected render leaves no file behind.</p>
+      </article>
+      <article class="clause">
+        <div class="clause-rail"><span class="clause-tag">Pattern</span><span class="clause-no">E3</span></div>
+        <p class="clause-text"><b>Channels are the contract.</b> Data on stdout only in stdout mode; every diagnostic on stderr; every progress line on stdout; exit codes stable across the toolset — <b>2</b> usage/input, <b>3</b> dependency, <b>1</b> render/runtime, <b>4–5</b> the ffmpeg subprocess.</p>
+      </article>
+    </div>
+  </section>
+
+  <!-- COLOPHON -->
+  <section id="colophon" class="colophon">
+    <span class="sec-kick">Colophon</span>
+    <h2>API Documentation · template v0.1</h2>
+    <p class="statement">A precision reference earns its name by being checkable: every signature, default, message and exit code on this page was transcribed from <b>scripts/render-figure.mjs</b>, <b>scripts/clayify.mjs</b> and <b>scripts/render-figure-video.mjs</b> — and re-run where a run could prove it — at suite 1.9.0. The grammar it documents is the figure pipeline's: pele for layout, clayify for the house grammar, frame(t) for time. Nothing folds — a reference hides nothing the integrator needs.</p>
+    <div class="row">
+      <span>DOC ID · TE9-API-001</span>
+      <span>SUITE VERSION · 1.9.0</span>
+      <span>SUITE · <a href="../README.html">te9-docs</a></span>
+      <span>SIBLINGS · <a href="21-standard-operating-procedure.html">Standard Operating Procedure</a> · <a href="18-workflow-template.html">Workflow Template</a> · <a href="11-research-report.html">Research Report</a></span>
+      <span>PREPARED BY · Founding session</span>
+    </div>
+  </section>
+
+</div>
+
+<script>
+  document.querySelectorAll('.fig-fs').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var svg = btn.closest('.fig').querySelector('svg');
+      var blob = new Blob([svg.outerHTML], { type: 'image/svg+xml' });
+      window.open(URL.createObjectURL(blob), '_blank');
+    });
+  });
+</script>
+</body>
+</html>
