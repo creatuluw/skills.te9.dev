@@ -20,10 +20,13 @@ concrete problem — before hand-rolling code or picking the first Google hit.
 ```bash
 # One query, digest top results
 curl -s "https://productsear.ch/api/search?q=<urlencoded query>" --max-time 20
+# LLM usage guide (this skill, self-served)
+curl -s "https://productsear.ch/skill.md"
 ```
 
-Each result: `title`, `url`, `domain`, `excerpt`, `purpose` (1-line what-it-does),
-`category`, `tags`. No API key, no auth.
+No API key, no auth. Each result: `title`, `url`, `domain`, `excerpt`,
+`purpose` (1-line what-it-does), `category`, `tags`, `rerankScore` (0–1 relevance).
+Results are relevance-floored: `total` is the honest count of strong matches.
 
 ## Query pattern (the important part)
 
@@ -70,7 +73,15 @@ is already good — don't re-sort.
 - No key, no documented rate limit; observed ~1.5s latency, bursts of 3 fine
 - Keep it to **≤6 queries per task** and **≤2 in parallel** — cheap tool, lazy
   habit of query-spamming is the only real risk
-- 20 results per page; there is no pagination — refine the query instead
+- 20 results per page, `&page=N` (1-based); `total` tells you the honest ceiling —
+  refine the query rather than paging past weak matches
+
+## Other surfaces
+
+- `/archive?page=N` — every entry, newest first
+- `/collections` — corpus grouped by ~30 archetypes (agent frameworks, RAG & search,
+  video & motion, …); `/collections/<slug>` lists what/how/when per entry
+- Append `?view=llm` to any page for paste-ready markdown
 
 ## Combining with other tools
 
