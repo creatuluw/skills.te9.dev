@@ -24,7 +24,9 @@ curl -s "https://productsear.ch/api/search?q=<urlencoded query>" --max-time 20
 curl -s "https://productsear.ch/skill.md"
 ```
 
-No API key, no auth. Each result: `title`, `url`, `domain`, `excerpt`,
+No API key, no auth. JSON is the default output; add `&format=md` (or send
+`Accept: text/markdown`) to get the same results as paste-ready markdown.
+Each result: `title`, `url`, `domain`, `excerpt`,
 `purpose` (1-line what-it-does), `category`, `tags`, `rerankScore` (0–1 relevance).
 Results are relevance-floored: `total` is the honest count of strong matches.
 
